@@ -1,0 +1,294 @@
+- name: "Personne éligible pour l'aide PSOL car revenus < 900"
+  description: Personne handicape
+  period: 2016-02
+  input_variables:
+    age: 55
+    parisien: True
+    statut_occupation: 4
+    invalide: True
+    loyer: 600
+    chomage_net:
+      2016-01: 600
+  output_variables:
+    paris_logement_psol: 100
+
+- name: "Personne éligible pour l'aide PSOL car revenus < 900"
+  description: Personne agée
+  period: 2016-02
+  input_variables:
+    age: 65
+    parisien: True
+    statut_occupation: 4
+    loyer: 600
+    salaire_net:
+      2016-01: 2500
+  output_variables:
+    paris_logement_psol: 0
+
+- name: "Couple non éligible pour l'aide PSOL"
+  description: Personne agée
+  period: 2016-02
+  familles:
+    parents: ["couple1", "couple2"]
+    parisien: True
+    statut_occupation_famille: 4
+    aspa:
+      2015-11: 100
+      2015-12: 100
+      2016-01: 100
+  individus:
+  - id: "couple1"
+    age: 65
+    invalide: True
+    salaire_net:
+      2015-11: 100
+      2015-12: 100
+      2016-01: 900
+    aah:
+      2016-01: 500
+  - id: "couple2"
+    age: 65
+    invalide: True
+    salaire_net:
+      2015-11: 100
+      2015-12: 100
+      2016-01: 5
+    aah:
+      2016-01: 5
+  output_variables:
+    paris_logement_psol: 0
+
+- name: "Couple non éligible pour l'aide PSOL car statut handicapé"
+  description: Personne handicape
+  period: 2016-02
+  familles:
+    parents: ["couple1", "couple2"]
+    parisien: True
+    statut_occupation_famille: 4
+  individus:
+  - id: "couple1"
+    age: 55
+    aah:
+      2016-01: 900
+    salaire_net:
+      2016-01: 500
+    invalide: True
+  - id: "couple2"
+    age: 65
+    invalide: True
+    aah:
+      2016-01: 100
+    salaire_net:
+      2016-01: 10
+  output_variables:
+    paris_logement_psol: 0
+
+- name: "Personne non éligible pour l'aide PSOL car revenus > 900"
+  description: Personne handicape
+  period: 2016-02
+  input_variables:
+    age: 55
+    parisien: True
+    statut_occupation: 4
+    invalide: True
+    aah:
+      2016-01: 2000
+  output_variables:
+    paris_logement_psol: 0
+
+- name: "Personne non éligible pour l'aide PSOL car elle est pas une personne âgée"
+  description: Personne handicape
+  period: 2016-02
+  input_variables:
+    age: 55
+    parisien: True
+    statut_occupation: 4
+    invalide: False
+    aah:
+      2016-01: 500
+    salaire_net:
+      2016-01: 80
+  output_variables:
+    paris_logement_psol: 0
+
+- name: "Personne éligible pour l'aide PSOL car elle perçoit < 900"
+  description: Personne handicape
+  period: 2016-02
+  input_variables:
+    age: 55
+    parisien: True
+    statut_occupation: 4
+    invalide: True
+    aah:
+      2016-01: 500
+    salaire_net:
+      2016-01: 80
+  output_variables:
+    paris_logement_psol: 100
+
+- name: "Personne non éligible pour l'aide PSOL car revenus > 900"
+  description: Personne handicape
+  period: 2016-02
+  input_variables:
+    age: 55
+    parisien: True
+    statut_occupation: 4
+    invalide: True
+    aah:
+      2016-01: 500
+    salaire_net:
+      2016-01: 450
+  output_variables:
+    paris_logement_psol: 0
+
+- name: "Personne non éligible pour l'aide PSOL car revenus > 900"
+  description: Personne handicape
+  period: 2016-02
+  input_variables:
+    age: 55
+    parisien: True
+    statut_occupation: 4
+    invalide: True
+    aah:
+      2016-01: 800
+    salaire_net:
+      2016-01: 600
+  output_variables:
+    paris_logement_psol: 0
+
+- name: "Couple non éligible pour l'aide PSOL car pas de statut handicapé"
+  description: Personne handicape
+  period: 2016-02
+  familles:
+    parents: ["couple1", "couple2"]
+    parisien: True
+    statut_occupation_famille: 4
+  individus:
+  - id: "couple1"
+    age: 55
+    chomage_net:
+      2015-11: 100
+      2015-12: 100
+      2016-01: 100
+  - id: "couple2"
+    age: 55
+    indemnites_stage:
+      2015-11: 100
+      2015-12: 100
+      2016-01: 100
+    salaire_net:
+      2015-11: 100
+      2015-12: 100
+      2016-01: 100
+  output_variables:
+    paris_logement_psol: 0
+
+- name: "Couple éligible pour l'aide PSOL car statut handicapé"
+  description: Personne handicape
+  period: 2016-02
+  familles:
+    parents: ["couple1", "couple2"]
+    parisien: True
+    statut_occupation_famille: 4
+  individus:
+  - id: "couple1"
+    age: 55
+    aah:
+      2016-01: 800
+    invalide: True
+  - id: "couple2"
+    age: 55
+    indemnites_stage:
+      2016-01: 100
+  output_variables:
+    paris_logement_psol: 188
+
+- name: "Personne éligible pour l'aide PSOL car statut personne âgée"
+  description: Personne agée
+  period: 2016-02
+  input_variables:
+    age: 65
+    parisien: True
+    statut_occupation: 4
+  output_variables:
+    paris_logement_psol: 100
+
+- name: "Personne non éligible pour l'aide PSOL car revenus = 900"
+  description: Personne agée
+  period: 2016-02
+  familles:
+    parents: ["couple1"]
+    parisien: True
+    statut_occupation_famille: 4
+  individus:
+  - id: "couple1"
+    age: 65
+    chomage_net:
+      2015-11: 100
+      2015-12: 100
+      2016-01: 900
+  output_variables:
+    paris_logement_psol: 0
+
+- name: "Couple avec revenus inférieurs au plancher pour l'aide PSOL"
+  description: Personne agée
+  period: 2016-02
+  familles:
+    parents: ["couple1", "couple2"]
+    parisien: True
+    statut_occupation_famille: 4
+    aspa:
+      2016-01: 1242
+  individus:
+  - id: "couple1"
+    age: 65
+  - id: "couple2"
+    age: 66
+  output_variables:
+    paris_logement_psol: 188
+
+- name: "Couple avec revenus inférieurs au plancher pour l'aide PSOL"
+  description: Personne agée
+  period: 2016-02
+  familles:
+    parents: ["couple1", "couple2"]
+    parisien: True
+    statut_occupation_famille: 4
+    aspa:
+      2016-01: 850
+  individus:
+  - id: "couple1"
+    age: 65
+    salaire_net:
+      2016-01: 100
+  - id: "couple2"
+    age: 66
+  output_variables:
+    paris_logement_psol: 188
+
+- name: "Couple éligible pour l'aide PSOL car trop jeune"
+  description: Personne agée
+  period: 2016-02
+  familles:
+    parents: ["couple1", "couple2"]
+    parisien: True
+    statut_occupation_famille: 4
+    aspa:
+      2015-11: 100
+      2015-12: 100
+      2016-01: 100
+  individus:
+  - id: "couple1"
+    age: 65
+  - id: "couple2"
+    age: 55
+    indemnites_stage:
+      2015-11: 100
+      2015-12: 100
+      2016-01: 100
+    salaire_net:
+      2015-11: 100
+      2015-12: 100
+      2016-01: 100
+  output_variables:
+    paris_logement_psol: 188
