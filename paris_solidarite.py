@@ -19,10 +19,14 @@ class paris_logement_psol(Variable):
         personnes_agees = simulation.compute('paris_personnes_agees', period)
         personnes_agees_famille = self.any_by_roles(personnes_agees)
         personne_handicap_individu = simulation.compute('paris_personnes_handicap', period)
-        personne_handicap = self.any_by_roles(personne_handicap_individu)
+        personne_handicap = self.sum_by_entity(personne_handicap_individu)
+        enfant_handicape = simulation.calculate('paris_enfant_handicape', period)
+        nb_enfant = self.sum_by_entity(enfant_handicape)
         montant_aide = simulation.calculate('paris_logement_psol_montant', period)
 
-        result = parisien * (personnes_agees_famille + personne_handicap) * montant_aide
+        adulte_handicape = (personne_handicap - nb_enfant) >= 1
+
+        result = parisien * (personnes_agees_famille + adulte_handicape) * montant_aide
 
         return period, result
 

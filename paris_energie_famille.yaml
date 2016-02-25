@@ -142,3 +142,51 @@
     invalide: True
   output_variables:
     paris_energie_famille: 0
+
+- name: "Famille éligible pour l'aide paris energie famille"
+  period: 2016-02
+  familles:
+    parents: ["couple1", "couple2"]
+    enfants: ["enfant1"]
+    parisien: True
+    statut_occupation_famille: 4
+  individus:
+  - id: "couple1"
+    age: 35
+    salaire_net:
+      2015-11: 1860
+      2015-12: 1860
+      2016-01: 1860
+      year:2015-02: 22320
+  - id: "couple2"
+    age: 55
+  - id: "enfant1"
+    age: 9
+    invalide: True
+  output_variables:
+    paris_energie_famille: 275
+
+- name: "Famille éligible pour l'aide paris energie famille"
+  period: 2016-02
+  familles:
+    parents: ["couple1", "couple2"]
+    enfants: ["enfant1","enfant2"]
+    parisien: True
+    statut_occupation_famille: 4
+  individus:
+  - id: "couple1"
+    age: 35
+    salaire_net:
+      2015-11: 1000
+      2015-12: 1000
+      2016-01: 1000
+      year:2015-02: 22320
+  - id: "couple2"
+    age: 55
+  - id: "enfant1"
+    age: 9
+    invalide: True
+  - id: "enfant2"
+    age: 9
+  output_variables:
+    paris_energie_famille: 275

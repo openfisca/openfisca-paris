@@ -1,3 +1,26 @@
+- name: "Couple non éligible pour l'aide PSOL car statut handicapé"
+  description: Personne handicape
+  period: 2016-02
+  familles:
+    parents: ["couple1", "couple2"]
+    enfants: ["enfant1"]
+    parisien: True
+    statut_occupation_famille: 4
+  individus:
+  - id: "couple1"
+    age: 35
+    salaire_net:
+      2016-01: 500
+  - id: "couple2"
+    age: 35
+    salaire_net:
+      2016-01: 10
+  - id: "enfant1"
+    age: 8
+    invalide: True
+  output_variables:
+    paris_logement_psol: 0
+
 - name: "Personne éligible pour l'aide PSOL car revenus < 900"
   description: Personne handicape
   period: 2016-02

@@ -2,6 +2,37 @@
   description: Paris Logement Famille
   period: 2016-02
   familles:
+    parents: ["parent1","parent2"]
+    enfants: ["enfant1", "enfant2"]
+    parisien: True
+    statut_occupation_famille: 4
+  menages:
+    personne_de_reference: "parent1"
+    conjoint: "parent2"
+    enfants: ["enfant1", "enfant2"]
+    loyer: 500
+  individus:
+    - id: "parent1"
+      age: 35
+      salaire_net:
+        2015-11: 1000
+        2015-12: 1000
+        2016-01: 1000
+        year:2015-02: 12000
+    - id: "parent2"
+      age: 35
+    - id: "enfant1"
+      age: 5
+    - id: "enfant2"
+      age: 9
+      invalide: True
+  output_variables:
+    paris_logement_familles: 128
+
+- name: "Famille éligible pour l'aide Paris logement car parent monoparental avec trois enfant et ressources < 5000"
+  description: Paris Logement Famille
+  period: 2016-02
+  familles:
     parents: ["parent1"]
     enfants: ["enfant1", "enfant2", "enfant3"]
     parisien: True

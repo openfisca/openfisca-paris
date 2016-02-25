@@ -48,8 +48,8 @@ class paris_energie_famille(Variable):
         nb_enfant_handicape = self.sum_by_entity(enfant_handicape)
         ressources_familliales = simulation.calculate('paris_base_ressources_commun', last_month)
 
-        result = select([(nb_enfant == 1) * (ressources_familliales <= premier_plafond_pef),
-            (nb_enfant == 2) * (ressources_familliales <= deuxieme_plafond_pef),
+        result = select([((nb_enfant == 1) * (nb_enfant_handicape == 0)) * (ressources_familliales <= premier_plafond_pef),
+            ((nb_enfant == 2) * (nb_enfant_handicape == 0)) * (ressources_familliales <= deuxieme_plafond_pef),
             ((nb_enfant >= 3) + (nb_enfant_handicape >= 1)) * (ressources_familliales <= troisieme_plafond_pef)],
             [aide_1er_plafond_pef, aide_2eme_plafond_pef, aide_3eme_plafond_pef]) * elig
 
