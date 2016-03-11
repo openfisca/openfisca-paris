@@ -163,10 +163,10 @@ class paris_enfant_garde_alternee(Variable):
     def function(self, simulation, period):
         period = period.this_month
 
-        alt = simulation.calculate('alt', period)
+        garde_alternee = simulation.calculate('garde_alternee', period)
         paris_enfant = simulation.calculate('paris_enfant', period)
 
-        return period, alt * paris_enfant
+        return period, garde_alternee * paris_enfant
 
 class paris_enfant_handicape_garde_alternee(Variable):
     column = BoolCol
@@ -176,10 +176,10 @@ class paris_enfant_handicape_garde_alternee(Variable):
     def function(self, simulation, period):
         period = period.this_month
 
-        alt = simulation.calculate('alt', period)
+        garde_alternee = simulation.calculate('garde_alternee', period)
         paris_enfant_handicape = simulation.calculate('paris_enfant_handicape', period)
 
-        return period, alt * paris_enfant_handicape
+        return period, garde_alternee * paris_enfant_handicape
 
 class paris_personnes_agees(Variable):
     column = BoolCol
