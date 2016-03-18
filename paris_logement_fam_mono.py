@@ -44,6 +44,6 @@ class paris_logement_plfm(Variable):
         condition_plfm = select([(ressources_mensuelles_famille <= premier_plafond_plfm),
             (ressources_mensuelles_famille <= deuxieme_plafond_plfm)], [aide_1er_plafond_plfm, aide_2eme_plafond_plfm])
 
-        result = condition_plfm * parent_solo * (nb_enfants >= 1) * parisien * statut_occupation_plfm * ((loyer > 0) + (charges_locatives > 0))
+        result = condition_plfm * parent_solo * (nb_enfants >= 1) * (nb_enfants < 4) * parisien * statut_occupation_plfm * ((loyer > 0) + (charges_locatives > 0))
 
         return period, result
