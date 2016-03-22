@@ -89,7 +89,7 @@ class paris_logement_familles(Variable):
         P = simulation.legislation_at(period.start).paris.paris_logement_familles
         plafond_plfm = simulation.legislation_at(period.start).paris.plfm.deuxieme_plafond_plfm
 
-        parent_mono_plfm = (personnes_couple != 1) * (br > plafond_plfm)
+        parent_mono_plfm = (personnes_couple != 1) * ((nbenf >= 4) + ((nbenf >= 2) * (br > plafond_plfm)))
 
         ressources_sous_plaf_bas = (br <= P.plafond_bas_3enf)
         ressources_sous_plaf_haut = (br <= P.plafond_haut_3enf) * (br > P.plafond_bas_3enf)
