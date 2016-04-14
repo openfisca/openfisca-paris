@@ -266,3 +266,23 @@ class paris_charges_forfaitaire_logement(Variable):
             (couple * (nb_enfants >= 1)), (personne_isol * (nb_enfants >= 1))],
             [charges_forf_pers_isol, charges_forf_coloc, charges_forf_couple_ss_enf, charges_forf_couple_enf, 0])
         return period, result
+
+class loyer_net(Variable):
+    column = FloatCol
+    label = u"Charge nette de logement"
+    entity_class = Familles
+
+    def function(self, simulation, period):
+        period = period.this_month
+        last_month = period.last_month
+
+        loyer = simulation.calculate('loyer', period)
+        aide_logement = simulation.calculate('aide_logement', period)
+        aide_logement_dernier = simulation.calculate('aide_logement', last_month)
+        charges_forfaitaire_logement = simulation.calculate('paris_charges_forfaitaire_logement', period)
+
+        montant_aide_logement = where(aide_logement_dernier > 0, aide_logement_dernier, aide_logement)
+
+        result = loyer + charges_forfaitaire_logement - montant_aide_logement
+
+        return period, result

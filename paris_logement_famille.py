@@ -86,6 +86,7 @@ class paris_logement_familles(Variable):
         nbenf_garde_alternee = self.sum_by_entity(paris_enfant_garde_alternee)
         plf_handicap = simulation.calculate('plf_handicap', period)
         loyer = simulation.calculate('loyer', period) + simulation.calculate('charges_locatives', period)
+        loyer_net = simulation.calculate('loyer_net', period)
         P = simulation.legislation_at(period.start).paris.paris_logement_familles
         plafond_plfm = simulation.legislation_at(period.start).paris.plfm.deuxieme_plafond_plfm
 
@@ -114,4 +115,7 @@ class paris_logement_familles(Variable):
         plf = max_(plf, plf_handicap)
         plf = elig * plf
         plf = min_(plf, loyer)
-        return period, plf
+
+        result = where(plf > loyer_net, plf - (loyer_net - plf), plf )
+
+        return period, result
