@@ -116,6 +116,6 @@ class paris_logement_familles(Variable):
         plf = elig * plf
         plf = min_(plf, loyer)
 
-        result = where(plf > loyer_net, plf - (loyer_net - plf), plf )
+        result = where(plf > loyer_net, plf - (plf - loyer_net), plf)
 
         return period, result
