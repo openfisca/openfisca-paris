@@ -40,7 +40,7 @@
     - id: "enfant2"
       age: 9
   output_variables:
-    paris_logement_plfm: 150
+    paris_logement_plfm: 0
 
 - name: "Famille non éligible pour l'aide Paris logement familles monoparentales"
   period: 2016-02
@@ -93,7 +93,7 @@
     - id: "enfant2"
       age: 9
   output_variables:
-    paris_logement_plfm: 128
+    paris_logement_plfm: 0
 
 - name: "Famille éligible pour l'aide Paris logement familles monoparentales"
   period: 2016-02

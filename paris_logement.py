@@ -40,6 +40,7 @@ class paris_logement_pa_ph(Variable):
         asi = simulation.calculate('asi', last_month)
         aah = simulation.calculate('paris_base_ressources_aah', last_month)
         aide_logement = simulation.calculate('aide_logement', last_month)
+        loyer_net = simulation.calculate('paris_loyer_net', period)
         ressources_familiale = paris_base_ressources_commun + aspa + asi + aah + aide_logement
 
         personnes_couple = simulation.calculate('concub', period)
@@ -48,9 +49,14 @@ class paris_logement_pa_ph(Variable):
 
         plafond = select([(nb_enfants >= 1), (nb_enfants < 1)], [plafond_pl_avec_enf, plafond_pl])
         condition_ressource = ressources_familiale <= plafond
-        result = select([personnes_couple * (nb_enfants > 0), personnes_couple,
+        montant_aide = select([personnes_couple * (nb_enfants > 0), personnes_couple,
             ((personnes_couple != 1) * (nb_enfants == 0)), ((personnes_couple != 1) * (nb_enfants >= 1))],
             [aide_couple_avec_enf, aide_couple_ss_enf, aide_pers_isol, 0])
+
+        result_montant = where((montant_aide > loyer_net), (montant_aide - (montant_aide - loyer_net)), montant_aide)
+
+        result = where(result_montant > 0, result_montant, 0)
+
         return period, result * condition_ressource * paris_logement_elig_pa_ph
 
 
@@ -96,6 +102,7 @@ class paris_logement_fam(Variable):
         rsa = simulation.calculate('rsa', last_month)
         aah = simulation.calculate('paris_base_ressources_aah', last_month)
         aide_logement = simulation.calculate('aide_logement', last_month)
+        loyer_net = simulation.calculate('paris_loyer_net', period)
         ressources_familiale = paris_base_ressources_commun + rsa + aah + aide_logement
 
         personnes_couple = simulation.calculate('concub', period)
@@ -104,7 +111,9 @@ class paris_logement_fam(Variable):
 
         condition_ressource = ressources_familiale <= plafond_pl_fam
 
-        result = where(personnes_couple * (nb_enfants > 0), aide_pl_fam, 0)
+        montant_aide = where(personnes_couple * (nb_enfants > 0), aide_pl_fam, 0)
+
+        result = where((montant_aide > loyer_net), (montant_aide - (montant_aide - loyer_net)), montant_aide)
 
         return period, result * condition_ressource * paris_logement_elig_fam
 
@@ -148,6 +157,7 @@ class paris_logement_apd(Variable):
         indemnite = simulation.calculate('paris_indemnite_enfant', last_month)
         aah = simulation.calculate('paris_base_ressources_aah', last_month)
         aide_logement = simulation.calculate('aide_logement', last_month)
+        loyer_net = simulation.calculate('paris_loyer_net', period)
         ressources_familiale = paris_base_ressources_commun + aah + aide_logement + rsa - indemnite
 
         personnes_couple = simulation.calculate('concub', period)
@@ -155,7 +165,9 @@ class paris_logement_apd(Variable):
 
         condition_ressource = ressources_familiale <= plafond
 
-        result = where(personnes_couple, aide_pl_apd_couple, aide_pl_apd_pers_isol)
+        montant_aide = where(personnes_couple, aide_pl_apd_couple, aide_pl_apd_pers_isol)
+
+        result = where((montant_aide > loyer_net), (montant_aide - (montant_aide - loyer_net)), montant_aide)
 
         return period, result * condition_ressource * paris_logement_elig_apd
 
