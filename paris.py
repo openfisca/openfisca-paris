@@ -236,36 +236,10 @@ class paris_condition_taux_effort(Variable):
         apl = simulation.calculate('apl', period)
 
         ressources_mensuelles = simulation.calculate('paris_base_ressources_commun', period)
-        charges_forfaitaire_logement = simulation.calculate('paris_charges_forfaitaire_logement', period)
+        charges_forfaitaire_logement = simulation.calculate('aide_logement_charges', period)
         calcul_taux_effort = (loyer + charges_forfaitaire_logement - apl) / ressources_mensuelles
         condition_loyer = calcul_taux_effort >= taux_effort
         return period, condition_loyer
-
-
-class paris_charges_forfaitaire_logement(Variable):
-    column = FloatCol
-    label = u"Charges Forfaitaire Logement (CAF)"
-    entity_class = Familles
-
-    def function(self, simulation, period):
-        period = period.this_month
-
-        charges_forf_pers_isol = simulation.legislation_at(period.start).paris.charges_forf_pers_isol
-        charges_forf_coloc = simulation.legislation_at(period.start).paris.charges_forf_coloc
-        charges_forf_couple_ss_enf = simulation.legislation_at(period.start).paris.charges_forf_couple_ss_enf
-        charges_forf_couple_enf = simulation.legislation_at(period.start).paris.charges_forf_couple_enf
-
-        colocation_obj = simulation.compute('coloc', period)
-        colocation = self.any_by_roles(colocation_obj)
-        nb_enfants = simulation.calculate('paris_nb_enfants', period)
-        couple = simulation.calculate('concub', period)
-        personne_isol = (couple != 1) * (colocation != 1)
-        personne_isol_coloc = (couple != 1) * colocation
-        result = select([(personne_isol * (nb_enfants < 1)),
-            (personne_isol_coloc * (nb_enfants < 1)), (couple * (nb_enfants < 1)),
-            (couple * (nb_enfants >= 1)), (personne_isol * (nb_enfants >= 1))],
-            [charges_forf_pers_isol, charges_forf_coloc, charges_forf_couple_ss_enf, charges_forf_couple_enf, 0])
-        return period, result
 
 class paris_loyer_net(Variable):
     column = FloatCol

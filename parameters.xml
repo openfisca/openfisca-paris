@@ -13,26 +13,6 @@
     <VALUE deb="2015-01-01" fin="2015-12-31" valeur="60" />
     <VALUE deb="2012-01-01" fin="2014-12-31" valeur="60" /> <!-- Valeur supposée-->
   </CODE>
-  <CODE code="charges_forf_pers_isol" description="Charges forfaitaire de la CAF pour une personne isolée" format="float" type="monetary">
-    <VALUE deb="2016-01-01" fuzzy="true" valeur="53.23" />
-    <VALUE deb="2015-01-01" fin="2015-12-31" valeur="53.23" />
-    <VALUE deb="2012-01-01" fin="2014-12-31" valeur="53.23" /> <!-- Valeur supposée-->
-  </CODE>
-  <CODE code="charges_forf_coloc" description="Charges forfaitaire de la CAF en colocation" format="float" type="monetary">
-    <VALUE deb="2016-01-01" fuzzy="true" valeur="26.61" />
-    <VALUE deb="2015-01-01" fin="2015-12-31" valeur="26.61" />
-    <VALUE deb="2012-01-01" fin="2014-12-31" valeur="26.61" /> <!-- Valeur supposée-->
-  </CODE>
-  <CODE code="charges_forf_couple_ss_enf" description="Charges forfaitaire de la CAF pour un couple sans enfant" format="float" type="monetary">
-    <VALUE deb="2016-01-01" fuzzy="true" valeur="53.23" />
-    <VALUE deb="2015-01-01" fin="2015-12-31" valeur="53.23" />
-    <VALUE deb="2012-01-01" fin="2014-12-31" valeur="53.23" /> <!-- Valeur supposée-->
-  </CODE>
-  <CODE code="charges_forf_couple_enf" description="Charges forfaitaire de la CAF pour un couple avec enfant" format="float" type="monetary">
-    <VALUE deb="2016-01-01" fuzzy="true" valeur="65.29" />
-    <VALUE deb="2015-01-01" fin="2015-12-31" valeur="65.29" />
-    <VALUE deb="2012-01-01" fin="2014-12-31" valeur="65.29" /> <!-- Valeur supposée-->
-  </CODE>
   <CODE code="smic_net_mensuel" description="Montant du smic net mensuel" format="float" type="monetary">
     <VALUE deb="2016-01-01" fuzzy="true" valeur="1150" />
     <VALUE deb="2015-01-01" fin="2015-12-31" valeur="1140" />
