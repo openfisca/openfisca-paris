@@ -10,16 +10,6 @@ class parisien(Variable):
     entity_class = Familles
     label = u"Résidant à Paris au moins 3 ans dans les 5 dernières années"
 
-class a_charge_fiscale(Variable):
-    column = BoolCol(default = True)
-    entity_class = Individus
-    label = u"Enfant à charge fiscale du demandeur"
-
-class enfant_place(Variable):
-    column = BoolCol
-    entity_class = Individus
-    label = u"Enfant placé en structure spécialisée ou famille d'accueil"
-
 class paris_base_ressources_commun_i(Variable):
         column = FloatCol
         label = u"Base de ressources individuelle"
@@ -151,7 +141,7 @@ class paris_enfant(Variable):
 
         est_enfant_dans_famille = simulation.calculate('est_enfant_dans_famille', period)
         enfant_place = simulation.calculate('enfant_place', period)
-        a_charge_fiscale = simulation.calculate('a_charge_fiscale', period)
+        a_charge_fiscale = simulation.calculate('enfant_a_charge', period)
 
         return period, est_enfant_dans_famille * (1 - enfant_place) * a_charge_fiscale
 
