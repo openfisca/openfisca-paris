@@ -24,7 +24,7 @@ class paris_complement_sante(Variable):
         personnes_agees = self.any_by_roles(personnes_agees_i)
         personnes_handicape_i = simulation.compute('paris_personnes_handicap', period)
         personnes_handicap = self.any_by_roles(personnes_handicape_i)
-        concub = simulation.calculate('concub', period)
+        en_couple = simulation.calculate('en_couple', period)
         cmu_c = simulation.calculate('cmu_c', period)
         aspa = simulation.calculate('aspa', last_month)
         ass = simulation.calculate('ass', last_month)
@@ -41,20 +41,20 @@ class paris_complement_sante(Variable):
 
         ressources_couple += aspa + ass + asi + aide_logement
 
-        plafond = where(concub, plafond_couple_cs, plafond_pers_isol_cs)
+        plafond = where(en_couple, plafond_couple_cs, plafond_pers_isol_cs)
 
         acs_isole = (ressources_pers_isol <= (acs_plafond / 12)) * acs_montant
         acs_couple = (ressources_couple <= (acs_plafond / 12)) * acs_montant
 
-        montant_pers_handicap = where(parisien * personnes_handicap * (concub != 1) *
+        montant_pers_handicap = where(parisien * personnes_handicap * (en_couple != 1) *
             (ressources_pers_isol <= plafond) * (montant_aide_cs >= acs_isole) * (cmu_c != 1),
             montant_aide_cs - acs_isole, 0)
 
-        montant_couple = where(parisien * concub * (personnes_handicap + personnes_agees) *
+        montant_couple = where(parisien * en_couple * (personnes_handicap + personnes_agees) *
          (ressources_couple <= plafond) * (montant_aide_cs >= acs_couple) *
          (acs_couple > 0) * (cmu_c != 1), montant_aide_cs - acs_couple, 0)
 
-        montant_couple_ss_acs = where(parisien * concub * (personnes_handicap + personnes_agees) *
+        montant_couple_ss_acs = where(parisien * en_couple * (personnes_handicap + personnes_agees) *
             (acs_couple == 0) * (cmu_c != 1) * (ressources_couple <= plafond), montant_aide_cs, 0)
 
         return period, montant_pers_handicap + montant_couple + montant_couple_ss_acs

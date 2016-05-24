@@ -20,7 +20,7 @@
     age: 7
   - id: "enfant3"
     age: 9
-    invalide: True
+    handicap: True
   output_variables:
     paris_logement_aspeh: 153
 
@@ -67,7 +67,7 @@
     age: 5
   - id: "enfant2"
     age: 9
-    invalide: True
+    handicap: True
   output_variables:
     paris_logement_aspeh: 153
 
@@ -82,7 +82,7 @@
   individus:
   - id: "couple1"
     age: 55
-    invalide: True
+    handicap: True
     salaire_net:
       2016-01: 4100
   - id: "couple2"
@@ -91,9 +91,9 @@
       2016-01: 400
   - id: "enfant1"
     age: 5
-    invalide: True
+    handicap: True
   - id: "enfant2"
     age: 9
-    invalide: True
+    handicap: True
   output_variables:
     paris_logement_aspeh: 306

@@ -25,14 +25,14 @@ class paris_logement_plfm(Variable):
         parent_solo = not_(simulation.calculate('en_couple', period))
         nb_enfants = simulation.calculate('paris_nb_enfants', period)
         parisien = simulation.calculate('parisien', period)
-        statut_occupation = simulation.calculate('statut_occupation_logement_famille', period)
+        statut_occupation_logement = simulation.calculate('statut_occupation_logement_famille', period)
         statut_occupation_plfm = (
-            (statut_occupation == 1) +
-            (statut_occupation == 2) +
-            (statut_occupation == 3) +
-            (statut_occupation == 4) +
-            (statut_occupation == 5) +
-            (statut_occupation == 7))
+            (statut_occupation_logement == 1) +
+            (statut_occupation_logement == 2) +
+            (statut_occupation_logement == 3) +
+            (statut_occupation_logement == 4) +
+            (statut_occupation_logement == 5) +
+            (statut_occupation_logement == 7))
 
         loyer = simulation.calculate('loyer', period)
         charges_locatives = simulation.calculate('charges_locatives', period)

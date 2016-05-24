@@ -110,10 +110,10 @@
       2016-01: 400
   - id: "enfant1"
     age: 5
-    invalide: True
+    handicap: True
   - id: "enfant2"
     age: 9
-    invalide: True
+    handicap: True
   output_variables:
     paris_energie_famille: 275
 
@@ -127,7 +127,7 @@
   individus:
   - id: "couple1"
     age: 55
-    invalide: True
+    handicap: True
     salaire_net:
       2016-01: 4100
   - id: "couple2"
@@ -136,10 +136,10 @@
       2016-01: 1400
   - id: "enfant1"
     age: 5
-    invalide: True
+    handicap: True
   - id: "enfant2"
     age: 9
-    invalide: True
+    handicap: True
   output_variables:
     paris_energie_famille: 0
 
@@ -162,7 +162,7 @@
     age: 55
   - id: "enfant1"
     age: 9
-    invalide: True
+    handicap: True
   output_variables:
     paris_energie_famille: 275
 
@@ -185,7 +185,7 @@
     age: 55
   - id: "enfant1"
     age: 9
-    invalide: True
+    handicap: True
   - id: "enfant2"
     age: 9
   output_variables:

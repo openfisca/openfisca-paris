@@ -46,7 +46,7 @@ class paris_logement_psol_montant(Variable):
 
         montant_seul = montant_seul_annuel / 12
         montant_couple = montant_couple_annuel / 12
-        personnes_couple = simulation.calculate('concub', period)
+        personnes_couple = simulation.calculate('en_couple', period)
         paris_base_ressources_commun = simulation.calculate('paris_base_ressources_commun', last_month)
         aspa = simulation.calculate('aspa', last_month)
         asi = simulation.calculate('asi', last_month)

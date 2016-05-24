@@ -5,8 +5,8 @@
     age: 30
     parisien: True
     statut_occupation_logement_famille: 4
-    invalide: True
-    concub: False
+    handicap: True
+    en_couple: False
     cmu_c: False
     salaire_net:
       2016-01: 850
@@ -20,14 +20,14 @@
     parents: ["Couple1"]
     enfants: ["enfant1"]
     parisien: True
-    concub: False
+    en_couple: False
     statut_occupation_logement_famille: 4
     aide_logement:
       2016-01: 422
   individus:
   - id: "Couple1"
     age: 33
-    invalide: True
+    handicap: True
     aah:
       2016-01: 807
   - id: "enfant1"
@@ -40,7 +40,7 @@
   familles:
     parents: ["Couple1", "Couple2"]
     parisien: True
-    concub: True
+    en_couple: True
     statut_occupation_logement_famille: 4
   menages:
     personne_de_reference: "Couple1"
@@ -65,7 +65,7 @@
   familles:
     parents: ["Couple1", "Couple2"]
     parisien: True
-    concub: True
+    en_couple: True
     statut_occupation_logement_famille: 4
   menages:
     personne_de_reference: "Couple1"
@@ -90,7 +90,7 @@
   familles:
     parents: ["Couple1", "Couple2"]
     parisien: True
-    concub: True
+    en_couple: True
     statut_occupation_logement_famille: 4
   menages:
     personne_de_reference: "Couple1"
@@ -113,9 +113,9 @@
   input_variables:
     age: 45
     parisien: True
-    statut_occupation: 4
-    invalide: True
-    concub: False
+    statut_occupation_logement: 4
+    handicap: True
+    en_couple: False
     salaire_net:
       2016-01: 895
     loyer: 700
@@ -128,9 +128,9 @@
   input_variables:
     age: 45
     parisien: True
-    statut_occupation: 4
-    invalide: True
-    concub: False
+    statut_occupation_logement: 4
+    handicap: True
+    en_couple: False
     salaire_net:
       2016-01: 900
     loyer: 700
@@ -143,9 +143,9 @@
   input_variables:
     age: 45
     parisien: True
-    statut_occupation: 4
-    invalide: True
-    concub: False
+    statut_occupation_logement: 4
+    handicap: True
+    en_couple: False
     cmu_c: False
     salaire_net:
       2016-01: 900
@@ -159,9 +159,9 @@
   input_variables:
     age: 45
     parisien: True
-    statut_occupation: 4
-    invalide: True
-    concub: False
+    statut_occupation_logement: 4
+    handicap: True
+    en_couple: False
     salaire_net:
       2016-01: 910
     loyer: 700
@@ -174,9 +174,9 @@
   input_variables:
     age: 45
     parisien: True
-    statut_occupation: 4
-    invalide: True
-    concub: False
+    statut_occupation_logement: 4
+    handicap: True
+    en_couple: False
     salaire_net:
       2016-01: 915
     loyer: 700
@@ -188,7 +188,7 @@
   familles:
     parents: ["Couple1", "Couple2"]
     parisien: True
-    concub: True
+    en_couple: True
     statut_occupation_logement_famille: 4
     aspa:
       2016-01: 800
@@ -213,7 +213,7 @@
   familles:
     parents: ["Couple1", "Couple2"]
     parisien: True
-    concub: True
+    en_couple: True
     statut_occupation_logement_famille: 4
     aide_logement:
       2016-01: 200
@@ -238,7 +238,7 @@
   familles:
     parents: ["Couple1", "Couple2"]
     parisien: True
-    concub: True
+    en_couple: True
     statut_occupation_logement_famille: 4
     aide_logement:
       2016-01: 200
@@ -263,7 +263,7 @@
   familles:
     parents: ["Couple1", "Couple2"]
     parisien: True
-    concub: True
+    en_couple: True
     statut_occupation_logement_famille: 4
     aspa:
       2016-01: 1200

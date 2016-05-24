@@ -126,10 +126,10 @@ class paris_enfant_handicape(Variable):
     def function(self, simulation, period):
         period = period.this_month
 
-        invalide = simulation.calculate('invalide', period)
+        handicap = simulation.calculate('handicap', period)
         paris_enfant = simulation.calculate('paris_enfant', period)
 
-        return period, paris_enfant * invalide
+        return period, paris_enfant * handicap
 
 class paris_enfant(Variable):
     column = BoolCol
@@ -181,8 +181,8 @@ class paris_personnes_agees(Variable):
 
         age_min = simulation.legislation_at(period.start).paris.age_pers_agee
         age = simulation.calculate('age', period)
-        aspa_elig = simulation.calculate('aspa_elig', period)
-        personne_agee = (age >= age_min) + (aspa_elig)
+        aspa_eligibilite = simulation.calculate('aspa_eligibilite', period)
+        personne_agee = (age >= age_min) + (aspa_eligibilite)
         return period, personne_agee
 
 class paris_personnes_handicap(Variable):
@@ -194,10 +194,10 @@ class paris_personnes_handicap(Variable):
         period = period.this_month
 
         age_min = simulation.legislation_at(period.start).paris.age_pers_inapte
-        invalide = simulation.calculate('invalide', period)
+        handicap = simulation.calculate('handicap', period)
         inapte_travail = simulation.calculate('inapte_travail', period)
         age = simulation.calculate('age', period)
-        handicap = invalide + ((age < age_min) * inapte_travail)
+        handicap = handicap + ((age < age_min) * inapte_travail)
         return period, handicap
 
 class paris_nb_enfants(Variable):

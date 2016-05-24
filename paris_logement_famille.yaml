@@ -25,7 +25,7 @@
       age: 5
     - id: "enfant2"
       age: 9
-      invalide: True
+      handicap: True
   output_variables:
     paris_logement_familles: 63.25
 
@@ -55,7 +55,7 @@
       age: 9
     - id: "enfant3"
       age: 9
-      invalide: True
+      handicap: True
   output_variables:
     paris_logement_familles: 0
 
@@ -95,7 +95,7 @@
     enfants: ["enfant1", "enfant2"]
     parisien: True
     statut_occupation_logement_famille: 2
-    concub: True
+    en_couple: True
   menages:
     personne_de_reference: "parent1"
     conjoint: "parent2"
@@ -123,7 +123,7 @@
     enfants: ["enfant1","enfant2"]
     parisien: True
     statut_occupation_logement_famille: 4
-    concub: False
+    en_couple: False
   menages:
     personne_de_reference: "parent1"
     enfants: ["enfant1","enfant2"]
@@ -135,7 +135,7 @@
         2016-01: 1900
     - id: "enfant1"
       age: 5
-      invalide: True
+      handicap: True
     - id: "enfant2"
       age: 6
   output_variables:
@@ -149,7 +149,7 @@
     enfants: ["enfant1","enfant2","enfant3"]
     parisien: True
     statut_occupation_logement_famille: 4
-    concub: False
+    en_couple: False
   menages:
     personne_de_reference: "parent1"
     enfants: ["enfant1","enfant2","enfant3"]
@@ -161,7 +161,7 @@
         2016-01: 1900
     - id: "enfant1"
       age: 5
-      invalide: True
+      handicap: True
     - id: "enfant2"
       age: 6
     - id: "enfant3"
@@ -177,7 +177,7 @@
     enfants: ["enfant1", "enfant2"]
     parisien: True
     statut_occupation_logement_famille: 4
-    concub: False
+    en_couple: False
   menages:
     personne_de_reference: "parent1"
     enfants: ["enfant1", "enfant2"]
@@ -202,7 +202,7 @@
     enfants: ["enfant1", "enfant2"]
     parisien: True
     statut_occupation_logement_famille: 4
-    concub: True
+    en_couple: True
   menages:
     personne_de_reference: "parent1"
     conjoint: "parent2"
@@ -230,7 +230,7 @@
     enfants: ["enfant1", "enfant2"]
     parisien: True
     statut_occupation_logement_famille: 4
-    concub: True
+    en_couple: True
   menages:
     personne_de_reference: "parent1"
     conjoint: "parent2"
@@ -286,7 +286,7 @@
     enfants: ["enfant1", "enfant2", "enfant3", "enfant4"]
     parisien: True
     statut_occupation_logement_famille: 4
-    concub: True
+    en_couple: True
   menages:
     personne_de_reference: "parent1"
     conjoint: "parent2"
@@ -307,7 +307,7 @@
       age: 9
     - id: "enfant4"
       age: 12
-      invalide: True
+      handicap: True
   output_variables:
     paris_logement_familles: 0
 
@@ -319,7 +319,7 @@
     enfants: ["enfant1"]
     parisien: True
     statut_occupation_logement_famille: 4
-    concub: True
+    en_couple: True
   menages:
     personne_de_reference: "parent1"
     conjoint: "parent2"
@@ -334,6 +334,6 @@
       age: 55
     - id: "enfant1"
       age: 5
-      invalide: True
+      handicap: True
   output_variables:
     paris_logement_familles: 128

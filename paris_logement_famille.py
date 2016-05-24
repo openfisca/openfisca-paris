@@ -12,14 +12,14 @@ class paris_logement_familles_elig(Variable):
 
     def function(self, simulation, period):
         parisien = simulation.calculate('parisien', period)
-        statut_occupation = simulation.calculate('statut_occupation_logement_famille', period)
+        statut_occupation_logement = simulation.calculate('statut_occupation_logement_famille', period)
         charge_logement = (
-            (statut_occupation == 1) +
-            (statut_occupation == 2) +
-            (statut_occupation == 3) +
-            (statut_occupation == 4) +
-            (statut_occupation == 5) +
-            (statut_occupation == 7)
+            (statut_occupation_logement == 1) +
+            (statut_occupation_logement == 2) +
+            (statut_occupation_logement == 3) +
+            (statut_occupation_logement == 4) +
+            (statut_occupation_logement == 5) +
+            (statut_occupation_logement == 7)
             )
 
         result = parisien * charge_logement
@@ -41,7 +41,7 @@ class plf_handicap(Variable):
         br = simulation.calculate('paris_base_ressources_commun', last_month)
         P = simulation.legislation_at(period.start).paris.paris_logement_familles
         plafond_plfm = simulation.legislation_at(period.start).paris.plfm.deuxieme_plafond_plfm
-        personnes_couple = simulation.calculate('concub', period)
+        personnes_couple = simulation.calculate('en_couple', period)
 
         parent_mono_plfm = (personnes_couple != 1) * (br > plafond_plfm)
 
@@ -79,7 +79,7 @@ class paris_logement_familles(Variable):
 
         elig = simulation.calculate('paris_logement_familles_elig', period)
         br = simulation.calculate('paris_base_ressources_commun', last_month)
-        personnes_couple = simulation.calculate('concub', period)
+        personnes_couple = simulation.calculate('en_couple', period)
         paris_enfant = simulation.compute('paris_enfant', period)
         nbenf = self.sum_by_entity(paris_enfant)
         paris_enfant_garde_alternee = simulation.compute('paris_enfant_garde_alternee', period)
