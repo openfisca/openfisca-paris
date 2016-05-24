@@ -4,7 +4,7 @@
     parents: ["couple1", "couple2"]
     enfants: ["enfant1", "enfant2","enfant3"]
     parisien: True
-    statut_occupation_famille: 8
+    statut_occupation_logement_famille: 8
   individus:
   - id: "couple1"
     age: 55
@@ -29,7 +29,7 @@
     parents: ["couple1", "couple2"]
     enfants: ["enfant1", "enfant2","enfant3"]
     parisien: True
-    statut_occupation_famille: 4
+    statut_occupation_logement_famille: 4
   individus:
   - id: "couple1"
     age: 55
@@ -54,7 +54,7 @@
     parents: ["couple1", "couple2"]
     enfants: ["enfant1"]
     parisien: True
-    statut_occupation_famille: 4
+    statut_occupation_logement_famille: 4
   individus:
   - id: "couple1"
     age: 55
@@ -75,7 +75,7 @@
     parents: ["couple1", "couple2"]
     enfants: ["enfant1", "enfant2"]
     parisien: True
-    statut_occupation_famille: 4
+    statut_occupation_logement_famille: 4
   individus:
   - id: "couple1"
     age: 55
@@ -98,7 +98,7 @@
     parents: ["couple1", "couple2"]
     enfants: ["enfant1", "enfant2"]
     parisien: True
-    statut_occupation_famille: 4
+    statut_occupation_logement_famille: 4
   individus:
   - id: "couple1"
     age: 55
@@ -123,7 +123,7 @@
     parents: ["couple1", "couple2"]
     enfants: ["enfant1", "enfant2"]
     parisien: True
-    statut_occupation_famille: 4
+    statut_occupation_logement_famille: 4
   individus:
   - id: "couple1"
     age: 55
@@ -149,7 +149,7 @@
     parents: ["couple1", "couple2"]
     enfants: ["enfant1"]
     parisien: True
-    statut_occupation_famille: 4
+    statut_occupation_logement_famille: 4
   individus:
   - id: "couple1"
     age: 35
@@ -172,7 +172,7 @@
     parents: ["couple1", "couple2"]
     enfants: ["enfant1","enfant2"]
     parisien: True
-    statut_occupation_famille: 4
+    statut_occupation_logement_famille: 4
   individus:
   - id: "couple1"
     age: 35

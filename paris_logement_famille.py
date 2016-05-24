@@ -12,7 +12,7 @@ class paris_logement_familles_elig(Variable):
 
     def function(self, simulation, period):
         parisien = simulation.calculate('parisien', period)
-        statut_occupation = simulation.calculate('statut_occupation_famille', period)
+        statut_occupation = simulation.calculate('statut_occupation_logement_famille', period)
         charge_logement = (
             (statut_occupation == 1) +
             (statut_occupation == 2) +

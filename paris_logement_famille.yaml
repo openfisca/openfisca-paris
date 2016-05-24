@@ -5,7 +5,7 @@
     parents: ["parent1","parent2"]
     enfants: ["enfant1", "enfant2"]
     parisien: True
-    statut_occupation_famille: 4
+    statut_occupation_logement_famille: 4
   menages:
     personne_de_reference: "parent1"
     conjoint: "parent2"
@@ -36,7 +36,7 @@
     parents: ["parent1"]
     enfants: ["enfant1", "enfant2", "enfant3"]
     parisien: True
-    statut_occupation_famille: 4
+    statut_occupation_logement_famille: 4
   menages:
     personne_de_reference: "parent1"
     enfants: ["enfant1", "enfant2", "enfant3"]
@@ -66,7 +66,7 @@
     parents: ["parent1"]
     enfants: ["enfant1", "enfant2", "enfant3"]
     parisien: True
-    statut_occupation_famille: 2
+    statut_occupation_logement_famille: 2
   menages:
     personne_de_reference: "parent1"
     enfants: ["enfant1", "enfant2", "enfant3"]
@@ -94,7 +94,7 @@
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2"]
     parisien: True
-    statut_occupation_famille: 2
+    statut_occupation_logement_famille: 2
     concub: True
   menages:
     personne_de_reference: "parent1"
@@ -122,7 +122,7 @@
     parents: ["parent1"]
     enfants: ["enfant1","enfant2"]
     parisien: True
-    statut_occupation_famille: 4
+    statut_occupation_logement_famille: 4
     concub: False
   menages:
     personne_de_reference: "parent1"
@@ -148,7 +148,7 @@
     parents: ["parent1"]
     enfants: ["enfant1","enfant2","enfant3"]
     parisien: True
-    statut_occupation_famille: 4
+    statut_occupation_logement_famille: 4
     concub: False
   menages:
     personne_de_reference: "parent1"
@@ -176,7 +176,7 @@
     parents: ["parent1"]
     enfants: ["enfant1", "enfant2"]
     parisien: True
-    statut_occupation_famille: 4
+    statut_occupation_logement_famille: 4
     concub: False
   menages:
     personne_de_reference: "parent1"
@@ -201,7 +201,7 @@
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2"]
     parisien: True
-    statut_occupation_famille: 4
+    statut_occupation_logement_famille: 4
     concub: True
   menages:
     personne_de_reference: "parent1"
@@ -229,7 +229,7 @@
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2"]
     parisien: True
-    statut_occupation_famille: 4
+    statut_occupation_logement_famille: 4
     concub: True
   menages:
     personne_de_reference: "parent1"
@@ -259,7 +259,7 @@
     parents: ["parent1"]
     enfants: ["enfant1", "enfant2", "enfant3"]
     parisien: True
-    statut_occupation_famille: 2
+    statut_occupation_logement_famille: 2
   menages:
     personne_de_reference: "parent1"
     enfants: ["enfant1", "enfant2", "enfant3"]
@@ -285,7 +285,7 @@
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2", "enfant3", "enfant4"]
     parisien: True
-    statut_occupation_famille: 4
+    statut_occupation_logement_famille: 4
     concub: True
   menages:
     personne_de_reference: "parent1"
@@ -318,7 +318,7 @@
     parents: ["parent1", "parent2"]
     enfants: ["enfant1"]
     parisien: True
-    statut_occupation_famille: 4
+    statut_occupation_logement_famille: 4
     concub: True
   menages:
     personne_de_reference: "parent1"

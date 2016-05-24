@@ -5,7 +5,7 @@
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2"]
     parisien: True
-    statut_occupation_famille: 4
+    statut_occupation_logement_famille: 4
   menages:
     personne_de_reference: "parent1"
     conjoint: "parent2"
@@ -193,7 +193,7 @@
     parents: ["parent1"]
     enfants: ["enfant1", "enfant2"]
     parisien: True
-    statut_occupation_famille: 4
+    statut_occupation_logement_famille: 4
   menages:
     personne_de_reference: "parent1"
     enfants: ["enfant1", "enfant2"]
@@ -218,7 +218,7 @@
   familles:
     parents: ["parent1"]
     parisien: True
-    statut_occupation_famille: 4
+    statut_occupation_logement_famille: 4
     apl:
       2016-01: 200
       year:2015-02: 5000
@@ -239,7 +239,7 @@
   familles:
     parents: ["parent1"]
     parisien: True
-    statut_occupation_famille: 4
+    statut_occupation_logement_famille: 4
   individus:
     - id: "parent1"
       age: 55
@@ -258,7 +258,7 @@
   familles:
     parents: ["parent1"]
     parisien: True
-    statut_occupation_famille: 4
+    statut_occupation_logement_famille: 4
     aspa:
       2016-01: 850
   individus:
@@ -306,7 +306,7 @@
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2"]
     parisien: True
-    statut_occupation_famille: 4
+    statut_occupation_logement_famille: 4
   menages:
     personne_de_reference: "parent1"
     conjoint: "parent2"
@@ -335,7 +335,7 @@
   familles:
     parents: ["parent1", "parent2"]
     parisien: True
-    statut_occupation_famille: 4
+    statut_occupation_logement_famille: 4
   menages:
     personne_de_reference: "parent1"
     conjoint: "parent2"
@@ -359,7 +359,7 @@
   familles:
     parents: ["parent1", "parent2"]
     parisien: True
-    statut_occupation_famille: 4
+    statut_occupation_logement_famille: 4
   menages:
     personne_de_reference: "parent1"
     conjoint: "parent2"
@@ -387,7 +387,7 @@
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2"]
     parisien: True
-    statut_occupation_famille: 4
+    statut_occupation_logement_famille: 4
   menages:
     personne_de_reference: "parent1"
     conjoint: "parent2"
@@ -414,7 +414,7 @@
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2"]
     parisien: True
-    statut_occupation_famille: 4
+    statut_occupation_logement_famille: 4
     aide_logement: 200
   menages:
     personne_de_reference: "parent1"

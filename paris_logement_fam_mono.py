@@ -22,10 +22,10 @@ class paris_logement_plfm(Variable):
         aide_1er_plafond_plfm = simulation.legislation_at(period.start).paris.plfm.aide_1er_plafond_plfm
         aide_2eme_plafond_plfm = simulation.legislation_at(period.start).paris.plfm.aide_2eme_plafond_plfm
 
-        parent_solo = simulation.calculate('isol', period)
+        parent_solo = not_(simulation.calculate('en_couple', period))
         nb_enfants = simulation.calculate('paris_nb_enfants', period)
         parisien = simulation.calculate('parisien', period)
-        statut_occupation = simulation.calculate('statut_occupation_famille', period)
+        statut_occupation = simulation.calculate('statut_occupation_logement_famille', period)
         statut_occupation_plfm = (
             (statut_occupation == 1) +
             (statut_occupation == 2) +
