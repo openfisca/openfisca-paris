@@ -8,6 +8,7 @@ setup(
     license="http://www.fsf.org/licensing/licenses/agpl-3.0.html",
     author="Mairie de Paris, Incubateur de Services Numériques (SGMAP)",
     packages=find_packages(),
+    include_package_data=True,
     install_requires=[],
     classifiers=[
         "Programming Language :: Python",
