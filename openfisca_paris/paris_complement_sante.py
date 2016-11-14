@@ -8,36 +8,37 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 class paris_complement_sante(Variable):
     column = FloatCol
     label = u"L'aide Complémentaire Santé Paris"
-    entity_class = Familles
+    entity = Famille
 
-    def function(self, simulation, period):
+    def function(famille, period, legislation):
         period = period.this_month
         last_month = period.last_month
 
-        P = simulation.legislation_at(period.start)
+        P = legislation(period)
         plafond_pers_isol_cs = P.paris.complement_sante.plafond_pers_isol_cs
         plafond_couple_cs = P.paris.complement_sante.plafond_couple_cs
         montant_aide_cs = P.paris.complement_sante.montant_aide_cs
 
-        parisien = simulation.calculate('parisien', period)
-        personnes_agees_i = simulation.compute('paris_personnes_agees', period)
-        personnes_agees = self.any_by_roles(personnes_agees_i)
-        personnes_handicape_i = simulation.compute('paris_personnes_handicap', period)
-        personnes_handicap = self.any_by_roles(personnes_handicape_i)
-        en_couple = simulation.calculate('en_couple', period)
-        cmu_c = simulation.calculate('cmu_c', period)
-        aspa = simulation.calculate('aspa', last_month)
-        ass = simulation.calculate('ass', last_month)
-        asi = simulation.calculate('asi', last_month)
-        aide_logement = simulation.calculate('aide_logement', last_month)
-        ressources_i = simulation.compute('paris_complement_sante_i', last_month)
-        acs_montant = simulation.calculate('acs_montant', period)
-        acs_plafond = simulation.calculate('acs_plafond', period)
-        ressources = self.split_by_roles(ressources_i, roles = [CHEF, PART])
+        parisien = famille('parisien', period)
+        personnes_agees_i = famille.members('paris_personnes_agees', period)
+        personnes_agees = famille.any(personnes_agees_i)
+        personnes_handicape_i = famille.members('paris_personnes_handicap', period)
+        personnes_handicap = famille.any(personnes_handicape_i)
+        en_couple = famille('en_couple', period)
+        cmu_c = famille('cmu_c', period)
+        aspa = famille('aspa', last_month)
+        ass = famille('ass', last_month)
+        asi = famille('asi', last_month)
+        aide_logement = famille('aide_logement', last_month)
+        acs_montant = famille('acs_montant', period)
+        acs_plafond = famille('acs_plafond', period)
 
-        ressources_pers_isol = ressources[CHEF] + aspa + ass + asi + aide_logement
+        ressources_demandeur = famille.demandeur('paris_complement_sante_i', last_month)
+        ressources_conjoint = famille.conjoint('paris_complement_sante_i', last_month)
 
-        ressources_couple = ressources[CHEF] + ressources[PART]
+        ressources_pers_isol = ressources_demandeur + aspa + ass + asi + aide_logement
+
+        ressources_couple = ressources_demandeur + ressources_conjoint
 
         ressources_couple += aspa + ass + asi + aide_logement
 
@@ -62,14 +63,14 @@ class paris_complement_sante(Variable):
 class paris_complement_sante_i(Variable):
     column = FloatCol
     label = u"Ressources Individuelles"
-    entity_class = Individus
+    entity = Individu
 
-    def function(self, simulation, period):
+    def function(individu, period):
         period = period.this_month
         last_month = period.last_month
 
-        paris_base_ressources_commun_i = simulation.calculate('paris_base_ressources_commun_i', last_month)
-        aah = simulation.calculate('aah', last_month)
+        paris_base_ressources_commun_i = individu('paris_base_ressources_commun_i', last_month)
+        aah = individu('aah', last_month)
 
         ressources_demandeur = paris_base_ressources_commun_i + aah
 

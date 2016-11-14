@@ -10,20 +10,22 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 class paris_logement_aspeh(Variable):
     column = FloatCol
     label = u"Le montant de l'Allocation de soutien aux parents d’enfants handicapés"
-    entity_class = Familles
+    entity = Famille
 
-    def function(self, simulation, period):
+    def function(famille, period, legislation):
         period = period.this_month
         last_month = period.last_month
 
-        plafond_aspeh = simulation.legislation_at(period.start).paris.aspeh.plafond_aspeh
-        aide_aspeh = simulation.legislation_at(period.start).paris.aspeh.aide_aspeh
+        plafond_aspeh = legislation(period).paris.aspeh.plafond_aspeh
+        aide_aspeh = legislation(period).paris.aspeh.aide_aspeh
 
-        parisien = simulation.calculate('parisien', period)
-        enfant_handicape = simulation.calculate('paris_enfant_handicape', period)
-        nb_enfant = self.sum_by_entity(enfant_handicape)
-        paris_base_ressources_commun = simulation.calculate('paris_base_ressources_commun', last_month)
-        clca = simulation.calculate('paje_clca', last_month)
+        parisien = famille('parisien', period)
+
+        enfant_handicape = famille.members('paris_enfant_handicape', period)
+        nb_enfant = famille.sum(enfant_handicape)
+
+        paris_base_ressources_commun = famille('paris_base_ressources_commun', last_month)
+        clca = famille('paje_clca', last_month)
 
         ressources_mensuelles_famille = paris_base_ressources_commun + clca
 

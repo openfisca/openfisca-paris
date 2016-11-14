@@ -11,21 +11,21 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 class paris_logement_plfm(Variable):
     column = FloatCol
     label = u"Famille monoparentale qui est eligible à Paris logement familles monoparentales"
-    entity_class = Familles
+    entity = Famille
 
-    def function(self, simulation, period):
+    def function(famille, period, legislation):
         period = period.this_month
         last_month = period.last_month
 
-        premier_plafond_plfm = simulation.legislation_at(period.start).paris.plfm.premier_plafond_plfm
-        deuxieme_plafond_plfm = simulation.legislation_at(period.start).paris.plfm.deuxieme_plafond_plfm
-        aide_1er_plafond_plfm = simulation.legislation_at(period.start).paris.plfm.aide_1er_plafond_plfm
-        aide_2eme_plafond_plfm = simulation.legislation_at(period.start).paris.plfm.aide_2eme_plafond_plfm
+        premier_plafond_plfm = legislation(period).paris.plfm.premier_plafond_plfm
+        deuxieme_plafond_plfm = legislation(period).paris.plfm.deuxieme_plafond_plfm
+        aide_1er_plafond_plfm = legislation(period).paris.plfm.aide_1er_plafond_plfm
+        aide_2eme_plafond_plfm = legislation(period).paris.plfm.aide_2eme_plafond_plfm
 
-        parent_solo = not_(simulation.calculate('en_couple', period))
-        nb_enfants = simulation.calculate('paris_nb_enfants', period)
-        parisien = simulation.calculate('parisien', period)
-        statut_occupation_logement = simulation.calculate('statut_occupation_logement_famille', period)
+        parent_solo = not_(famille('en_couple', period))
+        nb_enfants = famille('paris_nb_enfants', period)
+        parisien = famille('parisien', period)
+        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
         statut_occupation_plfm = (
             (statut_occupation_logement == 1) +
             (statut_occupation_logement == 2) +
@@ -34,11 +34,11 @@ class paris_logement_plfm(Variable):
             (statut_occupation_logement == 5) +
             (statut_occupation_logement == 7))
 
-        loyer = simulation.calculate('loyer', period)
-        charges_locatives = simulation.calculate('charges_locatives', period)
-        paris_base_ressources_commun = simulation.calculate('paris_base_ressources_commun', last_month)
-        aide_logement = simulation.calculate('aide_logement', last_month)
-        loyer_net = simulation.calculate('paris_loyer_net', period)
+        loyer = famille.demandeur.menage('loyer', period)
+        charges_locatives = famille.demandeur.menage('charges_locatives', period)
+        paris_base_ressources_commun = famille('paris_base_ressources_commun', last_month)
+        aide_logement = famille('aide_logement', last_month)
+        loyer_net = famille('paris_loyer_net', period)
 
         ressources_mensuelles_famille = paris_base_ressources_commun + aide_logement
 
