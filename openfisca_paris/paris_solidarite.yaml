@@ -4,8 +4,10 @@
   familles:
     parents: ["couple1", "couple2"]
     enfants: ["enfant1"]
-    parisienconcu: True
-    statut_occupation_logement_famille: 4
+    parisien: True
+    en_couple: True
+  menages:
+    statut_occupation_logement: 4
   individus:
   - id: "couple1"
     age: 35
@@ -54,11 +56,12 @@
   familles:
     parents: ["couple1", "couple2"]
     parisien: True
-    statut_occupation_logement_famille: 4
     aspa:
       2015-11: 100
       2015-12: 100
       2016-01: 100
+  menages:
+    statut_occupation_logement: 4
   individus:
   - id: "couple1"
     age: 65
@@ -87,7 +90,8 @@
   familles:
     parents: ["couple1", "couple2"]
     parisien: True
-    statut_occupation_logement_famille: 4
+  menages:
+    statut_occupation_logement: 4
   individus:
   - id: "couple1"
     age: 55
@@ -185,7 +189,8 @@
   familles:
     parents: ["couple1", "couple2"]
     parisien: True
-    statut_occupation_logement_famille: 4
+  menages:
+    statut_occupation_logement: 4
   individus:
   - id: "couple1"
     age: 55
@@ -212,7 +217,8 @@
   familles:
     parents: ["couple1", "couple2"]
     parisien: True
-    statut_occupation_logement_famille: 4
+  menages:
+    statut_occupation_logement: 4
   individus:
   - id: "couple1"
     age: 55
@@ -242,7 +248,8 @@
   familles:
     parents: ["couple1"]
     parisien: True
-    statut_occupation_logement_famille: 4
+  menages:
+    statut_occupation_logement: 4
   individus:
   - id: "couple1"
     age: 65
@@ -259,9 +266,10 @@
   familles:
     parents: ["couple1", "couple2"]
     parisien: True
-    statut_occupation_logement_famille: 4
     aspa:
       2016-01: 1242
+  menages:
+    statut_occupation_logement: 4
   individus:
   - id: "couple1"
     age: 65
@@ -276,9 +284,10 @@
   familles:
     parents: ["couple1", "couple2"]
     parisien: True
-    statut_occupation_logement_famille: 4
     aspa:
       2016-01: 850
+  menages:
+    statut_occupation_logement: 4
   individus:
   - id: "couple1"
     age: 65
@@ -295,11 +304,12 @@
   familles:
     parents: ["couple1", "couple2"]
     parisien: True
-    statut_occupation_logement_famille: 4
     aspa:
       2015-11: 100
       2015-12: 100
       2016-01: 100
+  menages:
+    statut_occupation_logement: 4
   individus:
   - id: "couple1"
     age: 65

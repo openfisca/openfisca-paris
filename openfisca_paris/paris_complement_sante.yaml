@@ -4,7 +4,7 @@
   input_variables:
     age: 30
     parisien: True
-    statut_occupation_logement_famille: 4
+    statut_occupation_logement: 4
     handicap: True
     en_couple: False
     cmu_c: False
@@ -21,9 +21,10 @@
     enfants: ["enfant1"]
     parisien: True
     en_couple: False
-    statut_occupation_logement_famille: 4
     aide_logement:
       2016-01: 422
+  menages:
+    statut_occupation_logement: 4
   individus:
   - id: "Couple1"
     age: 33
@@ -41,8 +42,8 @@
     parents: ["Couple1", "Couple2"]
     parisien: True
     en_couple: True
-    statut_occupation_logement_famille: 4
   menages:
+    statut_occupation_logement: 4
     personne_de_reference: "Couple1"
     conjoint: "Couple2"
     loyer: 500
@@ -66,8 +67,8 @@
     parents: ["Couple1", "Couple2"]
     parisien: True
     en_couple: True
-    statut_occupation_logement_famille: 4
   menages:
+    statut_occupation_logement: 4
     personne_de_reference: "Couple1"
     conjoint: "Couple2"
     loyer: 500
@@ -91,8 +92,8 @@
     parents: ["Couple1", "Couple2"]
     parisien: True
     en_couple: True
-    statut_occupation_logement_famille: 4
   menages:
+    statut_occupation_logement: 4
     personne_de_reference: "Couple1"
     conjoint: "Couple2"
     loyer: 500
@@ -189,12 +190,12 @@
     parents: ["Couple1", "Couple2"]
     parisien: True
     en_couple: True
-    statut_occupation_logement_famille: 4
     aspa:
       2016-01: 800
     aide_logement:
       2016-01: 200
   menages:
+    statut_occupation_logement: 4
     personne_de_reference: "Couple1"
     conjoint: "Couple2"
     loyer: 550
@@ -214,10 +215,10 @@
     parents: ["Couple1", "Couple2"]
     parisien: True
     en_couple: True
-    statut_occupation_logement_famille: 4
     aide_logement:
       2016-01: 200
   menages:
+    statut_occupation_logement: 4
     personne_de_reference: "Couple1"
     conjoint: "Couple2"
     loyer: 550
@@ -239,12 +240,12 @@
     parents: ["Couple1", "Couple2"]
     parisien: True
     en_couple: True
-    statut_occupation_logement_famille: 4
     aide_logement:
       2016-01: 200
     aspa:
       2016-01: 1200
   menages:
+    statut_occupation_logement: 4
     personne_de_reference: "Couple1"
     conjoint: "Couple2"
     loyer: 550
@@ -264,10 +265,10 @@
     parents: ["Couple1", "Couple2"]
     parisien: True
     en_couple: True
-    statut_occupation_logement_famille: 4
     aspa:
       2016-01: 1200
   menages:
+    statut_occupation_logement: 4
     personne_de_reference: "Couple1"
     conjoint: "Couple2"
     loyer: 550

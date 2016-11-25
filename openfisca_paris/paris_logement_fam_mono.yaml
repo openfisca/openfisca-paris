@@ -4,8 +4,8 @@
     parents: ["parent1"]
     enfants: ["enfant1"]
     parisien: True
-    statut_occupation_logement_famille: 4
   menages:
+    statut_occupation_logement: 4
     personne_de_reference: "parent1"
     enfants: ["enfant1"]
     loyer: 400
@@ -25,8 +25,8 @@
     parents: ["parent1"]
     enfants: ["enfant1", "enfant2"]
     parisien: True
-    statut_occupation_logement_famille: 4
   menages:
+    statut_occupation_logement: 4
     personne_de_reference: "parent1"
     enfants: ["enfant1", "enfant2"]
     loyer: 400
@@ -48,8 +48,8 @@
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2"]
     parisien: True
-    statut_occupation_logement_famille: 4
   menages:
+    statut_occupation_logement: 4
     personne_de_reference: "parent1"
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2"]
@@ -76,10 +76,10 @@
     parents: ["parent1"]
     enfants: ["enfant1", "enfant2"]
     parisien: True
-    statut_occupation_logement_famille: 4
     aide_logement:
       2016-01: 100
   menages:
+    statut_occupation_logement: 4
     personne_de_reference: "parent1"
     enfants: ["enfant1", "enfant2"]
     charges_locatives: 50
@@ -101,10 +101,10 @@
     parents: ["parent1"]
     enfants: ["enfant1", "enfant2"]
     parisien: True
-    statut_occupation_logement_famille: 4
     aide_logement:
       2016-01: 100
   menages:
+    statut_occupation_logement: 4
     personne_de_reference: "parent1"
     enfants: ["enfant1", "enfant2"]
     charges_locatives: 50
@@ -127,10 +127,10 @@
     parents: ["parent1"]
     enfants: ["enfant1", "enfant2"]
     parisien: True
-    statut_occupation_logement_famille: 4
     aide_logement:
       2016-01: 100
   menages:
+    statut_occupation_logement: 4
     personne_de_reference: "parent1"
     enfants: ["enfant1", "enfant2"]
   individus:
@@ -151,8 +151,8 @@
     parents: ["parent1"]
     enfants: ["enfant1", "enfant2"]
     parisien: True
-    statut_occupation_logement_famille: 2
   menages:
+    statut_occupation_logement: 2
     personne_de_reference: "parent1"
     enfants: ["enfant1", "enfant2"]
     charges_locatives: 50

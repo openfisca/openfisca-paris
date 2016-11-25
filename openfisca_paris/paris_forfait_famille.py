@@ -8,12 +8,12 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 # Paris forfait familles
 class paris_forfait_famille_elig(Variable):
     column = BoolCol
-    label = u"Eligibilité à Paris Forfait Familles"
-    entity_class = Familles
+    label = u"Eligibilité à Paris Forfait Famille"
+    entity = Famille
 
-    def function(self, simulation, period):
-        parisien = simulation.calculate('parisien', period)
-        statut_occupation_logement = simulation.calculate('statut_occupation_logement_famille', period)
+    def function(famille, period):
+        parisien = famille('parisien', period)
+        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
         charge_logement = (
             (statut_occupation_logement == 1) +
             (statut_occupation_logement == 2) +
@@ -30,20 +30,20 @@ class paris_forfait_famille_elig(Variable):
 class paris_forfait_famille(Variable):
     column = FloatCol
     label = u"Famille qui est eligible à l'aide paris forfait famille "
-    entity_class = Familles
+    entity = Famille
 
-    def function(self, simulation, period):
+    def function(famille, period, legislation):
         period = period.this_month
         last_month = period.last_month
 
-        premier_plafond = simulation.legislation_at(period.start).paris.paris_forfait_famille.premier_plafond
-        deuxieme_plafond = simulation.legislation_at(period.start).paris.paris_forfait_famille.deuxieme_plafond
-        aide_1er_plafond = simulation.legislation_at(period.start).paris.paris_forfait_famille.aide_1er_plafond
-        aide_2eme_plafond = simulation.legislation_at(period.start).paris.paris_forfait_famille.aide_2eme_plafond
+        premier_plafond = legislation(period).paris.paris_forfait_famille.premier_plafond
+        deuxieme_plafond = legislation(period).paris.paris_forfait_famille.deuxieme_plafond
+        aide_1er_plafond = legislation(period).paris.paris_forfait_famille.aide_1er_plafond
+        aide_2eme_plafond = legislation(period).paris.paris_forfait_famille.aide_2eme_plafond
 
-        nb_enfants = simulation.calculate('paris_nb_enfants', period)
-        elig = simulation.calculate('paris_forfait_famille_elig', period)
-        ressources_mensuelles_famille = simulation.calculate('paris_base_ressources_commun', last_month)
+        nb_enfants = famille('paris_nb_enfants', period)
+        elig = famille('paris_forfait_famille_elig', period)
+        ressources_mensuelles_famille = famille('paris_base_ressources_commun', last_month)
         montant_aide = select([(ressources_mensuelles_famille <= premier_plafond),
             (ressources_mensuelles_famille <= deuxieme_plafond)], [aide_1er_plafond, aide_2eme_plafond])
         result = (select([(nb_enfants >= 3), (nb_enfants < 3)], [montant_aide, 0])) * elig

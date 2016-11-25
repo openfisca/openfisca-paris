@@ -5,8 +5,8 @@
     parents: ["parent1","parent2"]
     enfants: ["enfant1", "enfant2"]
     parisien: True
-    statut_occupation_logement_famille: 4
   menages:
+    statut_occupation_logement: 4
     personne_de_reference: "parent1"
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2"]
@@ -36,8 +36,8 @@
     parents: ["parent1"]
     enfants: ["enfant1", "enfant2", "enfant3"]
     parisien: True
-    statut_occupation_logement_famille: 4
   menages:
+    statut_occupation_logement: 4
     personne_de_reference: "parent1"
     enfants: ["enfant1", "enfant2", "enfant3"]
     loyer: 500
@@ -66,8 +66,8 @@
     parents: ["parent1"]
     enfants: ["enfant1", "enfant2", "enfant3"]
     parisien: True
-    statut_occupation_logement_famille: 2
   menages:
+    statut_occupation_logement: 2
     personne_de_reference: "parent1"
     enfants: ["enfant1", "enfant2", "enfant3"]
     loyer: 576
@@ -94,9 +94,9 @@
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2"]
     parisien: True
-    statut_occupation_logement_famille: 2
     en_couple: True
   menages:
+    statut_occupation_logement: 2
     personne_de_reference: "parent1"
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2"]
@@ -122,9 +122,9 @@
     parents: ["parent1"]
     enfants: ["enfant1","enfant2"]
     parisien: True
-    statut_occupation_logement_famille: 4
     en_couple: False
   menages:
+    statut_occupation_logement: 4
     personne_de_reference: "parent1"
     enfants: ["enfant1","enfant2"]
     loyer: 550
@@ -148,9 +148,9 @@
     parents: ["parent1"]
     enfants: ["enfant1","enfant2","enfant3"]
     parisien: True
-    statut_occupation_logement_famille: 4
     en_couple: False
   menages:
+    statut_occupation_logement: 4
     personne_de_reference: "parent1"
     enfants: ["enfant1","enfant2","enfant3"]
     loyer: 550
@@ -176,9 +176,9 @@
     parents: ["parent1"]
     enfants: ["enfant1", "enfant2"]
     parisien: True
-    statut_occupation_logement_famille: 4
     en_couple: False
   menages:
+    statut_occupation_logement: 4
     personne_de_reference: "parent1"
     enfants: ["enfant1", "enfant2"]
     loyer: 550
@@ -201,9 +201,9 @@
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2"]
     parisien: True
-    statut_occupation_logement_famille: 4
     en_couple: True
   menages:
+    statut_occupation_logement: 4
     personne_de_reference: "parent1"
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2"]
@@ -229,9 +229,9 @@
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2"]
     parisien: True
-    statut_occupation_logement_famille: 4
     en_couple: True
   menages:
+    statut_occupation_logement: 4
     personne_de_reference: "parent1"
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3"]
@@ -259,8 +259,8 @@
     parents: ["parent1"]
     enfants: ["enfant1", "enfant2", "enfant3"]
     parisien: True
-    statut_occupation_logement_famille: 2
   menages:
+    statut_occupation_logement: 2
     personne_de_reference: "parent1"
     enfants: ["enfant1", "enfant2", "enfant3"]
     loyer: 550
@@ -285,9 +285,9 @@
     parents: ["parent1", "parent2"]
     enfants: ["enfant1", "enfant2", "enfant3", "enfant4"]
     parisien: True
-    statut_occupation_logement_famille: 4
     en_couple: True
   menages:
+    statut_occupation_logement: 4
     personne_de_reference: "parent1"
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3", "enfant4"]
@@ -318,9 +318,9 @@
     parents: ["parent1", "parent2"]
     enfants: ["enfant1"]
     parisien: True
-    statut_occupation_logement_famille: 4
     en_couple: True
   menages:
+    statut_occupation_logement: 4
     personne_de_reference: "parent1"
     conjoint: "parent2"
     enfants: ["enfant1"]

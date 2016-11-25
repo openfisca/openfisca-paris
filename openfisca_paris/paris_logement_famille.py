@@ -7,12 +7,12 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 
 class paris_logement_familles_elig(Variable):
     column = BoolCol
-    label = u"Eligibilité à Paris-Logement-Familles"
-    entity_class = Familles
+    label = u"Eligibilité à Paris-Logement-Famille"
+    entity = Famille
 
-    def function(self, simulation, period):
-        parisien = simulation.calculate('parisien', period)
-        statut_occupation_logement = simulation.calculate('statut_occupation_logement_famille', period)
+    def function(famille, period):
+        parisien = famille('parisien', period)
+        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
         charge_logement = (
             (statut_occupation_logement == 1) +
             (statut_occupation_logement == 2) +
@@ -29,28 +29,30 @@ class paris_logement_familles_elig(Variable):
 
 class plf_handicap(Variable):
     column = FloatCol
-    entity_class = Familles
-    label = u"Allocation Paris-Logement-Familles en cas d'enfant handicapé"
+    entity = Famille
+    label = u"Allocation Paris-Logement-Famille en cas d'enfant handicapé"
 
-    def function(self, simulation, period):
+    def function(famille, period, legislation):
         period = period.this_month
         last_month = period.last_month
 
-        paris_enfant_handicape = simulation.compute('paris_enfant_handicape', period)
-        paris_enfant_handicape_garde_alternee = simulation.compute('paris_enfant_handicape_garde_alternee', period)
-        br = simulation.calculate('paris_base_ressources_commun', last_month)
-        P = simulation.legislation_at(period.start).paris.paris_logement_familles
-        plafond_plfm = simulation.legislation_at(period.start).paris.plfm.deuxieme_plafond_plfm
-        personnes_couple = simulation.calculate('en_couple', period)
+        br = famille('paris_base_ressources_commun', last_month)
+        P = legislation(period).paris.paris_logement_familles
+        plafond_plfm = legislation(period).paris.plfm.deuxieme_plafond_plfm
+        personnes_couple = famille('en_couple', period)
 
         parent_mono_plfm = (personnes_couple != 1) * (br > plafond_plfm)
 
-        nb_enfant = simulation.calculate('paris_nb_enfants', period)
-        nb_enf_handicape = self.sum_by_entity(paris_enfant_handicape)
-        nb_enf_handicape_garde_alternee = self.sum_by_entity(paris_enfant_handicape_garde_alternee)
+        nb_enfant = famille('paris_nb_enfants', period)
 
-        plafond = simulation.legislation_at(period.start).paris.paris_logement_familles.plafond_haut_3enf
-        montant = simulation.legislation_at(period.start).paris.paris_logement_familles.montant_haut_3enf
+        paris_enfant_handicape = famille.members('paris_enfant_handicape', period)
+        nb_enf_handicape = famille.sum(paris_enfant_handicape)
+
+        paris_enfant_handicape_garde_alternee = famille.members('paris_enfant_handicape_garde_alternee', period)
+        nb_enf_handicape_garde_alternee = famille.sum(paris_enfant_handicape_garde_alternee)
+
+        plafond = legislation(period).paris.paris_logement_familles.plafond_haut_3enf
+        montant = legislation(period).paris.paris_logement_familles.montant_haut_3enf
 
         plf_handicap = ((nb_enf_handicape > 0) * (br <= plafond) * montant) * (personnes_couple + parent_mono_plfm)
 
@@ -69,26 +71,27 @@ class plf_handicap(Variable):
 
 class paris_logement_familles(Variable):
     column = FloatCol
-    label = u"Allocation Paris Logement Familles"
-    entity_class = Familles
+    label = u"Allocation Paris Logement Famille"
+    entity = Famille
     url = "http://www.paris.fr/pratique/toutes-les-aides-et-allocations/aides-sociales/paris-logement-familles-prestation-ville-de-paris/rub_9737_stand_88805_port_24193"  # noqa
 
-    def function(self, simulation, period):
+    def function(famille, period, legislation):
         period = period.this_month
         last_month = period.last_month
 
-        elig = simulation.calculate('paris_logement_familles_elig', period)
-        br = simulation.calculate('paris_base_ressources_commun', last_month)
-        personnes_couple = simulation.calculate('en_couple', period)
-        paris_enfant = simulation.compute('paris_enfant', period)
-        nbenf = self.sum_by_entity(paris_enfant)
-        paris_enfant_garde_alternee = simulation.compute('paris_enfant_garde_alternee', period)
-        nbenf_garde_alternee = self.sum_by_entity(paris_enfant_garde_alternee)
-        plf_handicap = simulation.calculate('plf_handicap', period)
-        loyer = simulation.calculate('loyer', period) + simulation.calculate('charges_locatives', period)
-        loyer_net = simulation.calculate('paris_loyer_net', period)
-        P = simulation.legislation_at(period.start).paris.paris_logement_familles
-        plafond_plfm = simulation.legislation_at(period.start).paris.plfm.deuxieme_plafond_plfm
+        elig = famille('paris_logement_familles_elig', period)
+        br = famille('paris_base_ressources_commun', last_month)
+        personnes_couple = famille('en_couple', period)
+        paris_enfant = famille.members('paris_enfant', period)
+        nbenf = famille.sum(paris_enfant)
+        paris_enfant_garde_alternee = famille.members('paris_enfant_garde_alternee', period)
+        nbenf_garde_alternee = famille.sum(paris_enfant_garde_alternee)
+        plf_handicap = famille('plf_handicap', period)
+        menage = famille.demandeur.menage
+        loyer = menage('loyer', period) + menage('charges_locatives', period)
+        loyer_net = famille('paris_loyer_net', period)
+        P = legislation(period).paris.paris_logement_familles
+        plafond_plfm = legislation(period).paris.plfm.deuxieme_plafond_plfm
 
         parent_mono_plfm = (personnes_couple != 1) * ((nbenf >= 4) + ((nbenf >= 2) * (br > plafond_plfm)))
 

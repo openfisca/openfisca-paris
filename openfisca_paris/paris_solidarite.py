@@ -10,19 +10,22 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 class paris_logement_psol(Variable):
     column = FloatCol
     label = u"Montant de l'aide Paris Solidarité"
-    entity_class = Familles
+    entity = Famille
 
-    def function(self, simulation, period):
+    def function(famille, period):
         period = period.this_month
 
-        parisien = simulation.calculate('parisien', period)
-        personnes_agees = simulation.compute('paris_personnes_agees', period)
-        personnes_agees_famille = self.any_by_roles(personnes_agees)
-        personne_handicap_individu = simulation.compute('paris_personnes_handicap', period)
-        personne_handicap = self.sum_by_entity(personne_handicap_individu)
-        enfant_handicape = simulation.calculate('paris_enfant_handicape', period)
-        nb_enfant = self.sum_by_entity(enfant_handicape)
-        montant_aide = simulation.calculate('paris_logement_psol_montant', period)
+        parisien = famille('parisien', period)
+
+        personnes_agees = famille.members('paris_personnes_agees', period)
+        personnes_agees_famille = famille.any(personnes_agees)
+
+        personne_handicap_individu = famille.members('paris_personnes_handicap', period)
+        personne_handicap = famille.sum(personne_handicap_individu)
+
+        enfant_handicape = famille.members('paris_enfant_handicape', period)
+        nb_enfant = famille.sum(enfant_handicape)
+        montant_aide = famille('paris_logement_psol_montant', period)
 
         adulte_handicape = (personne_handicap - nb_enfant) >= 1
 
@@ -33,24 +36,24 @@ class paris_logement_psol(Variable):
 class paris_logement_psol_montant(Variable):
     column = FloatCol
     label = u"Montant de l'aide PSOL"
-    entity_class = Familles
+    entity = Famille
 
-    def function(self, simulation, period):
+    def function(famille, period, legislation):
         period = period.this_month
         last_month = period.last_month
 
-        montant_seul_annuel = simulation.legislation_at(period.start).minim.aspa.montant_seul
-        montant_couple_annuel = simulation.legislation_at(period.start).minim.aspa.montant_couple
-        plafond_seul_psol = simulation.legislation_at(period.start).paris.paris_solidarite.plafond_seul_psol
-        plafond_couple_psol = simulation.legislation_at(period.start).paris.paris_solidarite.plafond_couple_psol
+        montant_seul_annuel = legislation(period).prestations.minima_sociaux.aspa.montant_annuel_seul
+        montant_couple_annuel = legislation(period).prestations.minima_sociaux.aspa.montant_annuel_couple
+        plafond_seul_psol = legislation(period).paris.paris_solidarite.plafond_seul_psol
+        plafond_couple_psol = legislation(period).paris.paris_solidarite.plafond_couple_psol
 
         montant_seul = montant_seul_annuel / 12
         montant_couple = montant_couple_annuel / 12
-        personnes_couple = simulation.calculate('en_couple', period)
-        paris_base_ressources_commun = simulation.calculate('paris_base_ressources_commun', last_month)
-        aspa = simulation.calculate('aspa', last_month)
-        asi = simulation.calculate('asi', last_month)
-        aah = simulation.calculate('paris_base_ressources_aah', last_month)
+        personnes_couple = famille('en_couple', period)
+        paris_base_ressources_commun = famille('paris_base_ressources_commun', last_month)
+        aspa = famille('aspa', last_month)
+        asi = famille('asi', last_month)
+        aah = famille('paris_base_ressources_aah', last_month)
 
         ressources_mensuelles = paris_base_ressources_commun + asi + aspa + aah
 
