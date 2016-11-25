@@ -42,8 +42,8 @@ class paris_logement_psol_montant(Variable):
         period = period.this_month
         last_month = period.last_month
 
-        montant_seul_annuel = legislation(period).minim.aspa.montant_seul
-        montant_couple_annuel = legislation(period).minim.aspa.montant_couple
+        montant_seul_annuel = legislation(period).prestations.minima_sociaux.aspa.montant_annuel_seul
+        montant_couple_annuel = legislation(period).prestations.minima_sociaux.aspa.montant_annuel_couple
         plafond_seul_psol = legislation(period).paris.paris_solidarite.plafond_seul_psol
         plafond_couple_psol = legislation(period).paris.paris_solidarite.plafond_couple_psol
 
