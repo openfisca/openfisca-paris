@@ -10,6 +10,7 @@ class paris_forfait_famille_elig(Variable):
     column = BoolCol
     label = u"Eligibilité à Paris Forfait Famille"
     entity = Famille
+    definition_period = MONTH
 
     def function(famille, period):
         parisien = famille('parisien', period)
@@ -31,9 +32,9 @@ class paris_forfait_famille(Variable):
     column = FloatCol
     label = u"Famille qui est eligible à l'aide paris forfait famille "
     entity = Famille
+    definition_period = MONTH
 
     def function(famille, period, legislation):
-        period = period.this_month
         last_month = period.last_month
 
         premier_plafond = legislation(period).paris.paris_forfait_famille.premier_plafond

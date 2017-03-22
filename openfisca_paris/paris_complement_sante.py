@@ -9,9 +9,9 @@ class paris_complement_sante(Variable):
     column = FloatCol
     label = u"L'aide Complémentaire Santé Paris"
     entity = Famille
+    definition_period = MONTH
 
     def function(famille, period, legislation):
-        period = period.this_month
         last_month = period.last_month
 
         P = legislation(period)
@@ -64,9 +64,9 @@ class paris_complement_sante_i(Variable):
     column = FloatCol
     label = u"Ressources Individuelles"
     entity = Individu
+    definition_period = MONTH
 
     def function(individu, period):
-        period = period.this_month
         last_month = period.last_month
 
         paris_base_ressources_commun_i = individu('paris_base_ressources_commun_i', last_month)

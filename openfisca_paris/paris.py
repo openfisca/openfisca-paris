@@ -8,65 +8,66 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 class parisien(Variable):
     column = BoolCol
     entity = Famille
+    definition_period = MONTH
     label = u"Résidant à Paris au moins 3 ans dans les 5 dernières années"
 
 class paris_base_ressources_commun_i(Variable):
-        column = FloatCol
-        label = u"Base de ressources individuelle"
-        entity = Individu
+    column = FloatCol
+    label = u"Base de ressources individuelle"
+    entity = Individu
+    definition_period = MONTH
 
-        def function(individu, period, legislation):
-            period = period.this_month
-            last_year = period.last_year
+    def function(individu, period, legislation):
+        last_year = period.last_year
 
-            salaire_net = individu('salaire_net', period)
-            indemnites_stage = individu('indemnites_stage', period)
-            smic = legislation(period).paris.smic_net_mensuel
-            indemnites_stage_imposable = where((smic >= indemnites_stage), indemnites_stage, 0)
-            revenus_stage_formation_pro = individu('revenus_stage_formation_pro', period)
+        salaire_net = individu('salaire_net', period)
+        indemnites_stage = individu('indemnites_stage', period)
+        smic = legislation(period).paris.smic_net_mensuel
+        indemnites_stage_imposable = where((smic >= indemnites_stage), indemnites_stage, 0)
+        revenus_stage_formation_pro = individu('revenus_stage_formation_pro', period)
 
-            chomage_net = individu('chomage_net', period)
-            allocation_securisation_professionnelle = individu(
-                'allocation_securisation_professionnelle', period)
+        chomage_net = individu('chomage_net', period)
+        allocation_securisation_professionnelle = individu(
+            'allocation_securisation_professionnelle', period)
 
-            indemnites_journalieres = individu('indemnites_journalieres', period)
-            indemnites_chomage_partiel = individu('indemnites_chomage_partiel', period)
-            indemnites_volontariat = individu('indemnites_volontariat', period)
+        indemnites_journalieres = individu('indemnites_journalieres', period)
+        indemnites_chomage_partiel = individu('indemnites_chomage_partiel', period)
+        indemnites_volontariat = individu('indemnites_volontariat', period)
 
-            pensions_alimentaires_percues = individu('pensions_alimentaires_percues', period)
-            pensions_alimentaires_versees_individu = individu(
-                'pensions_alimentaires_versees_individu', period)
-            prestation_compensatoire = individu('prestation_compensatoire', period)
-            retraite_nette = individu('retraite_nette', period)
-            pensions_invalidite = individu('pensions_invalidite', period)
+        pensions_alimentaires_percues = individu('pensions_alimentaires_percues', period)
+        pensions_alimentaires_versees_individu = individu(
+            'pensions_alimentaires_versees_individu', period)
+        prestation_compensatoire = individu('prestation_compensatoire', period)
+        retraite_nette = individu('retraite_nette', period)
+        pensions_invalidite = individu('pensions_invalidite', period)
 
-            def revenus_tns():
-                revenus_auto_entrepreneur = individu('tns_auto_entrepreneur_benefice', period, options = [ADD])
+        def revenus_tns():
+            revenus_auto_entrepreneur = individu('tns_auto_entrepreneur_benefice', period, options = [ADD])
 
-                # Les revenus TNS hors AE sont estimés en se basant sur le revenu N-1
-                tns_micro_entreprise_benefice = individu('tns_micro_entreprise_benefice', last_year) / 12
-                tns_benefice_exploitant_agricole = individu('tns_benefice_exploitant_agricole', last_year) / 12
-                tns_autres_revenus = individu('tns_autres_revenus', last_year) / 12
+            # Les revenus TNS hors AE sont estimés en se basant sur le revenu N-1
+            tns_micro_entreprise_benefice = individu('tns_micro_entreprise_benefice', last_year) / 12
+            tns_benefice_exploitant_agricole = individu('tns_benefice_exploitant_agricole', last_year) / 12
+            tns_autres_revenus = individu('tns_autres_revenus', last_year) / 12
 
-                return revenus_auto_entrepreneur + tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole + tns_autres_revenus
+            return revenus_auto_entrepreneur + tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole + tns_autres_revenus
 
-            result = (
-                salaire_net + indemnites_chomage_partiel + chomage_net + retraite_nette +
-                pensions_alimentaires_percues - abs_(pensions_alimentaires_versees_individu) +
-                allocation_securisation_professionnelle + prestation_compensatoire +
-                pensions_invalidite + revenus_tns() + revenus_stage_formation_pro +
-                indemnites_stage_imposable + indemnites_journalieres + indemnites_volontariat
-                )
+        result = (
+            salaire_net + indemnites_chomage_partiel + chomage_net + retraite_nette +
+            pensions_alimentaires_percues - abs_(pensions_alimentaires_versees_individu) +
+            allocation_securisation_professionnelle + prestation_compensatoire +
+            pensions_invalidite + revenus_tns() + revenus_stage_formation_pro +
+            indemnites_stage_imposable + indemnites_journalieres + indemnites_volontariat
+            )
 
-            return period, result
+        return period, result
 
 class paris_base_ressources_commun(Variable):
     column = FloatCol
     label = u"Base de ressource"
     entity = Famille
+    definition_period = MONTH
 
     def function(famille, period):
-        period = period.this_month
 
         ass = famille('ass', period)
         paris_base_ressources_i = famille.members('paris_base_ressources_commun_i', period)
@@ -80,9 +81,9 @@ class paris_indemnite_enfant_i(Variable):
     column = FloatCol
     label = u"Indemnités de maternité, paternité, adoption"
     entity = Individu
+    definition_period = MONTH
 
     def function(individu, period):
-        period = period.this_month
 
         indemnites_maternite = individu('indemnites_journalieres_maternite', period)
         indemnites_paternite = individu('indemnites_journalieres_paternite', period)
@@ -96,9 +97,9 @@ class paris_indemnite_enfant(Variable):
     column = FloatCol
     label = u"Base de ressources pour Indemnités de maternité, paternité, adoption"
     entity = Famille
+    definition_period = MONTH
 
     def function(famille, period):
-        period = period.this_month
 
         paris_indemnite_enfant_i = famille.members('paris_indemnite_enfant_i', period)
         paris_indemnite_enfant = famille.sum(paris_indemnite_enfant_i)
@@ -109,9 +110,9 @@ class paris_base_ressources_aah(Variable):
     column = FloatCol
     label = u"Le montant de l'AAH s'il y a plusieurs personnes handicapés dans la famille"
     entity = Famille
+    definition_period = MONTH
 
     def function(famille, period):
-        period = period.this_month
 
         aah = famille.members('aah', period)
         aah_famille = famille.sum(aah)
@@ -122,9 +123,9 @@ class paris_enfant_handicape(Variable):
     column = BoolCol
     label = u"Enfant handicapé au sens de la mairie de Paris"
     entity = Individu
+    definition_period = MONTH
 
     def function(individu, period):
-        period = period.this_month
 
         handicap = individu('handicap', period)
         paris_enfant = individu('paris_enfant', period)
@@ -135,9 +136,9 @@ class paris_enfant(Variable):
     column = BoolCol
     label = u"Enfant pris en compte par la mairie de Paris"
     entity = Individu
+    definition_period = MONTH
 
     def function(individu, period):
-        period = period.this_month
 
         est_enfant_dans_famille = individu('est_enfant_dans_famille', period)
         enfant_place = individu('enfant_place', period)
@@ -149,9 +150,9 @@ class paris_enfant_garde_alternee(Variable):
     column = BoolCol
     label = u"Enfant en garde alternée pris en compte par la mairie de Paris"
     entity = Individu
+    definition_period = MONTH
 
     def function(individu, period):
-        period = period.this_month
 
         garde_alternee = individu('garde_alternee', period)
         paris_enfant = individu('paris_enfant', period)
@@ -162,9 +163,9 @@ class paris_enfant_handicape_garde_alternee(Variable):
     column = BoolCol
     label = u"Enfant handicapé en garde alternée pris en compte par la mairie de Paris"
     entity = Individu
+    definition_period = MONTH
 
     def function(individu, period):
-        period = period.this_month
 
         garde_alternee = individu('garde_alternee', period)
         paris_enfant_handicape = individu('paris_enfant_handicape', period)
@@ -175,9 +176,9 @@ class paris_personnes_agees(Variable):
     column = BoolCol
     label = u"Personne âgée"
     entity = Individu
+    definition_period = MONTH
 
     def function(individu, period, legislation):
-        period = period.this_month
 
         age_min = legislation(period).paris.age_pers_agee
         age = individu('age', period)
@@ -189,9 +190,9 @@ class paris_personnes_handicap(Variable):
     column = BoolCol
     label = u"Personne qui a le statut Handicapé"
     entity = Individu
+    definition_period = MONTH
 
     def function(individu, period, legislation):
-        period = period.this_month
 
         age_min = legislation(period).paris.age_pers_inapte
         handicap = individu('handicap', period)
@@ -204,9 +205,9 @@ class paris_nb_enfants(Variable):
     column = FloatCol
     label = u"Nombre d'enfant dans la famille"
     entity = Famille
+    definition_period = MONTH
 
     def function(famille, period):
-        period = period.this_month
 
         nb_enfants = famille.members('paris_enfant', period)
         paris_nb_enfants = famille.sum(nb_enfants)
@@ -217,9 +218,9 @@ class paris_condition_taux_effort(Variable):
     column = BoolCol
     label = u"condition du taux d'effort"
     entity = Famille
+    definition_period = MONTH
 
     def function(famille, period, legislation):
-        period = period.this_month
 
         taux_effort = legislation(period).paris.paris_logement.taux_effort
         loyer = famille.demandeur.menage('loyer', period)
@@ -235,9 +236,9 @@ class paris_loyer_net(Variable):
     column = FloatCol
     label = u"Charge nette de logement"
     entity = Famille
+    definition_period = MONTH
 
     def function(famille, period):
-        period = period.this_month
         last_month = period.last_month
 
         aide_logement = famille('aide_logement', period)

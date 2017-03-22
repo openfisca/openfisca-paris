@@ -12,9 +12,9 @@ class paris_logement_plfm(Variable):
     column = FloatCol
     label = u"Famille monoparentale qui est eligible à Paris logement familles monoparentales"
     entity = Famille
+    definition_period = MONTH
 
     def function(famille, period, legislation):
-        period = period.this_month
         last_month = period.last_month
 
         premier_plafond_plfm = legislation(period).paris.plfm.premier_plafond_plfm

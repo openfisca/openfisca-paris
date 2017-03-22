@@ -11,9 +11,9 @@ class paris_logement_aspeh(Variable):
     column = FloatCol
     label = u"Le montant de l'Allocation de soutien aux parents d’enfants handicapés"
     entity = Famille
+    definition_period = MONTH
 
     def function(famille, period, legislation):
-        period = period.this_month
         last_month = period.last_month
 
         plafond_aspeh = legislation(period).paris.aspeh.plafond_aspeh

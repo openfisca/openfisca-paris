@@ -9,6 +9,7 @@ class paris_logement_familles_elig(Variable):
     column = BoolCol
     label = u"Eligibilité à Paris-Logement-Famille"
     entity = Famille
+    definition_period = MONTH
 
     def function(famille, period):
         parisien = famille('parisien', period)
@@ -30,10 +31,10 @@ class paris_logement_familles_elig(Variable):
 class plf_handicap(Variable):
     column = FloatCol
     entity = Famille
+    definition_period = MONTH
     label = u"Allocation Paris-Logement-Famille en cas d'enfant handicapé"
 
     def function(famille, period, legislation):
-        period = period.this_month
         last_month = period.last_month
 
         br = famille('paris_base_ressources_commun', last_month)
@@ -73,10 +74,10 @@ class paris_logement_familles(Variable):
     column = FloatCol
     label = u"Allocation Paris Logement Famille"
     entity = Famille
+    definition_period = MONTH
     url = "http://www.paris.fr/pratique/toutes-les-aides-et-allocations/aides-sociales/paris-logement-familles-prestation-ville-de-paris/rub_9737_stand_88805_port_24193"  # noqa
 
     def function(famille, period, legislation):
-        period = period.this_month
         last_month = period.last_month
 
         elig = famille('paris_logement_familles_elig', period)
