@@ -31,7 +31,7 @@ class paris_logement_psol(Variable):
 
         result = parisien * (personnes_agees_famille + adulte_handicape) * montant_aide
 
-        return period, result
+        return result
 
 class paris_logement_psol_montant(Variable):
     column = FloatCol
@@ -68,4 +68,4 @@ class paris_logement_psol_montant(Variable):
             ((personnes_couple != 1) + personnes_couple) * (ressources_mensuelles_min > plafond_psol)],
             [(plafond_seul_psol - ressources_mensuelles_min), (plafond_couple_psol - ressources_mensuelles_min), 0])
 
-        return period, result
+        return result

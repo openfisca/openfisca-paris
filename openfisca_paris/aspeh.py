@@ -31,4 +31,4 @@ class paris_logement_aspeh(Variable):
 
         result = select([ressources_mensuelles_famille <= plafond_aspeh],
             [aide_aspeh]) * parisien
-        return period, result * nb_enfant
+        return result * nb_enfant

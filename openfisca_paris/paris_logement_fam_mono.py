@@ -51,4 +51,4 @@ class paris_logement_plfm(Variable):
 
         result = where(result_montant > 0, result_montant, 0)
 
-        return period, result
+        return result

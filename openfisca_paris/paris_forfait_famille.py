@@ -26,7 +26,7 @@ class paris_forfait_famille_elig(Variable):
 
         result = parisien * charge_logement
 
-        return period, result
+        return result
 
 class paris_forfait_famille(Variable):
     column = FloatCol
@@ -48,4 +48,4 @@ class paris_forfait_famille(Variable):
         montant_aide = select([(ressources_mensuelles_famille <= premier_plafond),
             (ressources_mensuelles_famille <= deuxieme_plafond)], [aide_1er_plafond, aide_2eme_plafond])
         result = (select([(nb_enfants >= 3), (nb_enfants < 3)], [montant_aide, 0])) * elig
-        return period, result
+        return result

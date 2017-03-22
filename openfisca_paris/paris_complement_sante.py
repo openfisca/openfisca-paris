@@ -58,7 +58,7 @@ class paris_complement_sante(Variable):
         montant_couple_ss_acs = where(parisien * en_couple * (personnes_handicap + personnes_agees) *
             (acs_couple == 0) * (cmu_c != 1) * (ressources_couple <= plafond), montant_aide_cs, 0)
 
-        return period, montant_pers_handicap + montant_couple + montant_couple_ss_acs
+        return montant_pers_handicap + montant_couple + montant_couple_ss_acs
 
 class paris_complement_sante_i(Variable):
     column = FloatCol
@@ -74,4 +74,4 @@ class paris_complement_sante_i(Variable):
 
         ressources_demandeur = paris_base_ressources_commun_i + aah
 
-        return period, ressources_demandeur
+        return ressources_demandeur

@@ -25,7 +25,7 @@ class paris_logement_familles_elig(Variable):
 
         result = parisien * charge_logement
 
-        return period, result
+        return result
 
 
 class plf_handicap(Variable):
@@ -68,7 +68,7 @@ class plf_handicap(Variable):
         plf_handicap = plf_handicap + suppl_enfant
 
         plf_handicap = plf_handicap - deduction_garde_alternee
-        return period, plf_handicap
+        return plf_handicap
 
 class paris_logement_familles(Variable):
     column = FloatCol
@@ -124,4 +124,4 @@ class paris_logement_familles(Variable):
 
         result = where(result_montant > 0, result_montant, 0)
 
-        return period, result
+        return result

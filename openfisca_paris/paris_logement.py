@@ -18,7 +18,7 @@ class paris_logement(Variable):
         paris_logement_fam = famille('paris_logement_fam', period)
         paris_logement_apd = famille('paris_logement_apd', period)
 
-        return period, paris_logement_pa_ph + paris_logement_fam + paris_logement_apd
+        return paris_logement_pa_ph + paris_logement_fam + paris_logement_apd
 
 class paris_logement_pa_ph(Variable):
     column = FloatCol
@@ -57,7 +57,7 @@ class paris_logement_pa_ph(Variable):
 
         result = where(result_montant > 0, result_montant, 0)
 
-        return period, result * condition_ressource * paris_logement_elig_pa_ph
+        return result * condition_ressource * paris_logement_elig_pa_ph
 
 class paris_logement_elig_pa_ph(Variable):
     column = BoolCol
@@ -88,7 +88,7 @@ class paris_logement_elig_pa_ph(Variable):
         adulte_handicape = (personne_handicap - nb_enfant) >= 1
 
         result = parisien * statut_occupation_elig * (personnes_agees_famille + adulte_handicape) * charges_logement
-        return period, result
+        return result
 
 class paris_logement_fam(Variable):
     column = FloatCol
@@ -119,7 +119,7 @@ class paris_logement_fam(Variable):
 
         result = where((montant_aide > loyer_net), (montant_aide - (montant_aide - loyer_net)), montant_aide)
 
-        return period, result * condition_ressource * paris_logement_elig_fam
+        return result * condition_ressource * paris_logement_elig_fam
 
 class paris_logement_elig_fam(Variable):
     column = BoolCol
@@ -144,7 +144,7 @@ class paris_logement_elig_fam(Variable):
             (statut_occupation_logement == 7))
         charges_logement = famille('paris_condition_taux_effort', period)
         result = parisien * statut_occupation_elig * (personnes_agees_famille != 1) * (personne_handicap_famille != 1) * charges_logement
-        return period, result
+        return result
 
 class paris_logement_apd(Variable):
     column = FloatCol
@@ -177,7 +177,7 @@ class paris_logement_apd(Variable):
 
         result = where((montant_aide > loyer_net), (montant_aide - (montant_aide - loyer_net)), montant_aide)
 
-        return period, result * condition_ressource * paris_logement_elig_apd
+        return result * condition_ressource * paris_logement_elig_apd
 
 class paris_logement_elig_apd(Variable):
     column = BoolCol
@@ -207,4 +207,4 @@ class paris_logement_elig_apd(Variable):
 
         result = parisien * statut_occupation_elig * (personnes_agees_famille != 1) * (personne_handicap_famille != 1) * charges_logement * (loyer > 0) * (nb_enfants == 0)
 
-        return period, result
+        return result

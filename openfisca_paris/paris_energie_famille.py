@@ -25,7 +25,7 @@ class paris_energie_famille_elig(Variable):
 
         result = parisien * charge_logement
 
-        return period, result
+        return result
 
 class paris_energie_famille(Variable):
     column = FloatCol
@@ -54,4 +54,4 @@ class paris_energie_famille(Variable):
             ((nb_enfant >= 3) + (nb_enfant_handicape >= 1)) * (ressources_familliales <= troisieme_plafond_pef)],
             [aide_1er_plafond_pef, aide_2eme_plafond_pef, aide_3eme_plafond_pef]) * elig
 
-        return period, result
+        return result

@@ -59,7 +59,7 @@ class paris_base_ressources_commun_i(Variable):
             indemnites_stage_imposable + indemnites_journalieres + indemnites_volontariat
             )
 
-        return period, result
+        return result
 
 class paris_base_ressources_commun(Variable):
     column = FloatCol
@@ -75,7 +75,7 @@ class paris_base_ressources_commun(Variable):
 
         result = paris_base_ressources + ass
 
-        return period, result
+        return result
 
 class paris_indemnite_enfant_i(Variable):
     column = FloatCol
@@ -91,7 +91,7 @@ class paris_indemnite_enfant_i(Variable):
 
         result = indemnites_maternite + indemnites_paternite + indemnites_adoption
 
-        return period, result
+        return result
 
 class paris_indemnite_enfant(Variable):
     column = FloatCol
@@ -104,7 +104,7 @@ class paris_indemnite_enfant(Variable):
         paris_indemnite_enfant_i = famille.members('paris_indemnite_enfant_i', period)
         paris_indemnite_enfant = famille.sum(paris_indemnite_enfant_i)
 
-        return period, paris_indemnite_enfant
+        return paris_indemnite_enfant
 
 class paris_base_ressources_aah(Variable):
     column = FloatCol
@@ -117,7 +117,7 @@ class paris_base_ressources_aah(Variable):
         aah = famille.members('aah', period)
         aah_famille = famille.sum(aah)
 
-        return period, aah_famille
+        return aah_famille
 
 class paris_enfant_handicape(Variable):
     column = BoolCol
@@ -130,7 +130,7 @@ class paris_enfant_handicape(Variable):
         handicap = individu('handicap', period)
         paris_enfant = individu('paris_enfant', period)
 
-        return period, paris_enfant * handicap
+        return paris_enfant * handicap
 
 class paris_enfant(Variable):
     column = BoolCol
@@ -144,7 +144,7 @@ class paris_enfant(Variable):
         enfant_place = individu('enfant_place', period)
         a_charge_fiscale = individu('enfant_a_charge', period)
 
-        return period, est_enfant_dans_famille * (1 - enfant_place) * a_charge_fiscale
+        return est_enfant_dans_famille * (1 - enfant_place) * a_charge_fiscale
 
 class paris_enfant_garde_alternee(Variable):
     column = BoolCol
@@ -157,7 +157,7 @@ class paris_enfant_garde_alternee(Variable):
         garde_alternee = individu('garde_alternee', period)
         paris_enfant = individu('paris_enfant', period)
 
-        return period, garde_alternee * paris_enfant
+        return garde_alternee * paris_enfant
 
 class paris_enfant_handicape_garde_alternee(Variable):
     column = BoolCol
@@ -170,7 +170,7 @@ class paris_enfant_handicape_garde_alternee(Variable):
         garde_alternee = individu('garde_alternee', period)
         paris_enfant_handicape = individu('paris_enfant_handicape', period)
 
-        return period, garde_alternee * paris_enfant_handicape
+        return garde_alternee * paris_enfant_handicape
 
 class paris_personnes_agees(Variable):
     column = BoolCol
@@ -184,7 +184,7 @@ class paris_personnes_agees(Variable):
         age = individu('age', period)
         aspa_eligibilite = individu('aspa_eligibilite', period)
         personne_agee = (age >= age_min) + (aspa_eligibilite)
-        return period, personne_agee
+        return personne_agee
 
 class paris_personnes_handicap(Variable):
     column = BoolCol
@@ -199,7 +199,7 @@ class paris_personnes_handicap(Variable):
         inapte_travail = individu('inapte_travail', period)
         age = individu('age', period)
         handicap = handicap + ((age < age_min) * inapte_travail)
-        return period, handicap
+        return handicap
 
 class paris_nb_enfants(Variable):
     column = FloatCol
@@ -212,7 +212,7 @@ class paris_nb_enfants(Variable):
         nb_enfants = famille.members('paris_enfant', period)
         paris_nb_enfants = famille.sum(nb_enfants)
 
-        return period, paris_nb_enfants
+        return paris_nb_enfants
 
 class paris_condition_taux_effort(Variable):
     column = BoolCol
@@ -230,7 +230,7 @@ class paris_condition_taux_effort(Variable):
         charges_forfaitaire_logement = famille('aide_logement_charges', period)
         calcul_taux_effort = (loyer + charges_forfaitaire_logement - apl) / ressources_mensuelles
         condition_loyer = calcul_taux_effort >= taux_effort
-        return period, condition_loyer
+        return condition_loyer
 
 class paris_loyer_net(Variable):
     column = FloatCol
@@ -250,4 +250,4 @@ class paris_loyer_net(Variable):
 
         result = loyer + charges_locatives - montant_aide_logement
 
-        return period, result
+        return result
