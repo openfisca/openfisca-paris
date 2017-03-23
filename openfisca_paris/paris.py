@@ -142,7 +142,7 @@ class paris_enfant(Variable):
 
         est_enfant_dans_famille = individu('est_enfant_dans_famille', period)
         enfant_place = individu('enfant_place', period)
-        a_charge_fiscale = individu('enfant_a_charge', period)
+        a_charge_fiscale = individu('enfant_a_charge', period.this_year)
 
         return est_enfant_dans_famille * (1 - enfant_place) * a_charge_fiscale
 
