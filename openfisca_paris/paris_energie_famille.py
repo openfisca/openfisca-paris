@@ -9,6 +9,7 @@ class paris_energie_famille_elig(Variable):
     column = BoolCol
     label = u"Eligibilité à Paris Energie Famille"
     entity = Famille
+    definition_period = MONTH
 
     def function(famille, period):
         parisien = famille('parisien', period)
@@ -24,15 +25,15 @@ class paris_energie_famille_elig(Variable):
 
         result = parisien * charge_logement
 
-        return period, result
+        return result
 
 class paris_energie_famille(Variable):
     column = FloatCol
     label = u"L'aide Paris Energie Famille"
     entity = Famille
+    definition_period = MONTH
 
     def function(famille, period, legislation):
-        period = period.this_month
         last_month = period.last_month
 
         premier_plafond_pef = legislation(period).paris.pef.premier_plafond_pef
@@ -53,4 +54,4 @@ class paris_energie_famille(Variable):
             ((nb_enfant >= 3) + (nb_enfant_handicape >= 1)) * (ressources_familliales <= troisieme_plafond_pef)],
             [aide_1er_plafond_pef, aide_2eme_plafond_pef, aide_3eme_plafond_pef]) * elig
 
-        return period, result
+        return result

@@ -9,9 +9,9 @@ class paris_complement_sante(Variable):
     column = FloatCol
     label = u"L'aide Complémentaire Santé Paris"
     entity = Famille
+    definition_period = MONTH
 
     def function(famille, period, legislation):
-        period = period.this_month
         last_month = period.last_month
 
         P = legislation(period)
@@ -58,15 +58,15 @@ class paris_complement_sante(Variable):
         montant_couple_ss_acs = where(parisien * en_couple * (personnes_handicap + personnes_agees) *
             (acs_couple == 0) * (cmu_c != 1) * (ressources_couple <= plafond), montant_aide_cs, 0)
 
-        return period, montant_pers_handicap + montant_couple + montant_couple_ss_acs
+        return montant_pers_handicap + montant_couple + montant_couple_ss_acs
 
 class paris_complement_sante_i(Variable):
     column = FloatCol
     label = u"Ressources Individuelles"
     entity = Individu
+    definition_period = MONTH
 
     def function(individu, period):
-        period = period.this_month
         last_month = period.last_month
 
         paris_base_ressources_commun_i = individu('paris_base_ressources_commun_i', last_month)
@@ -74,4 +74,4 @@ class paris_complement_sante_i(Variable):
 
         ressources_demandeur = paris_base_ressources_commun_i + aah
 
-        return period, ressources_demandeur
+        return ressources_demandeur

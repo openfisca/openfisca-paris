@@ -11,21 +11,22 @@ class paris_logement(Variable):
     column = FloatCol
     label = u"L'aide Paris Logement"
     entity = Famille
+    definition_period = MONTH
 
     def function(famille, period):
         paris_logement_pa_ph = famille('paris_logement_pa_ph', period)
         paris_logement_fam = famille('paris_logement_fam', period)
         paris_logement_apd = famille('paris_logement_apd', period)
 
-        return period, paris_logement_pa_ph + paris_logement_fam + paris_logement_apd
+        return paris_logement_pa_ph + paris_logement_fam + paris_logement_apd
 
 class paris_logement_pa_ph(Variable):
     column = FloatCol
     label = u"Paris Logement pour les personnes handicapées et les personnes agées"
     entity = Famille
+    definition_period = MONTH
 
     def function(famille, period, legislation):
-        period = period.this_month
         last_month = period.last_month
 
         plafond_pl = legislation(period).paris.paris_logement.plafond_pl
@@ -56,12 +57,13 @@ class paris_logement_pa_ph(Variable):
 
         result = where(result_montant > 0, result_montant, 0)
 
-        return period, result * condition_ressource * paris_logement_elig_pa_ph
+        return result * condition_ressource * paris_logement_elig_pa_ph
 
 class paris_logement_elig_pa_ph(Variable):
     column = BoolCol
     label = u"Personne qui est eligible pour l'aide PL pour les personnes agées et les personne handicapées"
     entity = Famille
+    definition_period = MONTH
 
     def function(famille, period):
         parisien = famille('parisien', period)
@@ -86,15 +88,15 @@ class paris_logement_elig_pa_ph(Variable):
         adulte_handicape = (personne_handicap - nb_enfant) >= 1
 
         result = parisien * statut_occupation_elig * (personnes_agees_famille + adulte_handicape) * charges_logement
-        return period, result
+        return result
 
 class paris_logement_fam(Variable):
     column = FloatCol
     label = u"Paris Logement pour les couples avec enfant(s)"
     entity = Famille
+    definition_period = MONTH
 
     def function(famille, period, legislation):
-        period = period.this_month
         last_month = period.last_month
 
         plafond_pl_fam = legislation(period).paris.paris_logement.plafond_pl_fam
@@ -117,12 +119,13 @@ class paris_logement_fam(Variable):
 
         result = where((montant_aide > loyer_net), (montant_aide - (montant_aide - loyer_net)), montant_aide)
 
-        return period, result * condition_ressource * paris_logement_elig_fam
+        return result * condition_ressource * paris_logement_elig_fam
 
 class paris_logement_elig_fam(Variable):
     column = BoolCol
     label = u"Personne qui est eligible pour l'aide Paris Logement quand c'est un couple avec enfant(s)"
     entity = Famille
+    definition_period = MONTH
 
     def function(famille, period):
         parisien = famille('parisien', period)
@@ -141,15 +144,15 @@ class paris_logement_elig_fam(Variable):
             (statut_occupation_logement == 7))
         charges_logement = famille('paris_condition_taux_effort', period)
         result = parisien * statut_occupation_elig * (personnes_agees_famille != 1) * (personne_handicap_famille != 1) * charges_logement
-        return period, result
+        return result
 
 class paris_logement_apd(Variable):
     column = FloatCol
     label = u"Paris Logement pour les personnes isolées et couples sans enfant"
     entity = Famille
+    definition_period = MONTH
 
     def function(famille, period, legislation):
-        period = period.this_month
         last_month = period.last_month
 
         plafond = legislation(period).paris.paris_logement.plafond_pl_apd
@@ -174,12 +177,13 @@ class paris_logement_apd(Variable):
 
         result = where((montant_aide > loyer_net), (montant_aide - (montant_aide - loyer_net)), montant_aide)
 
-        return period, result * condition_ressource * paris_logement_elig_apd
+        return result * condition_ressource * paris_logement_elig_apd
 
 class paris_logement_elig_apd(Variable):
     column = BoolCol
     label = u"Personne qui est eligible pour l'aide Paris Logement aide aux parisiens en difficultés"
     entity = Famille
+    definition_period = MONTH
 
     def function(famille, period):
         parisien = famille('parisien', period)
@@ -203,4 +207,4 @@ class paris_logement_elig_apd(Variable):
 
         result = parisien * statut_occupation_elig * (personnes_agees_famille != 1) * (personne_handicap_famille != 1) * charges_logement * (loyer > 0) * (nb_enfants == 0)
 
-        return period, result
+        return result

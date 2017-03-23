@@ -11,9 +11,9 @@ class paris_logement_psol(Variable):
     column = FloatCol
     label = u"Montant de l'aide Paris Solidarité"
     entity = Famille
+    definition_period = MONTH
 
     def function(famille, period):
-        period = period.this_month
 
         parisien = famille('parisien', period)
 
@@ -31,15 +31,15 @@ class paris_logement_psol(Variable):
 
         result = parisien * (personnes_agees_famille + adulte_handicape) * montant_aide
 
-        return period, result
+        return result
 
 class paris_logement_psol_montant(Variable):
     column = FloatCol
     label = u"Montant de l'aide PSOL"
     entity = Famille
+    definition_period = MONTH
 
     def function(famille, period, legislation):
-        period = period.this_month
         last_month = period.last_month
 
         montant_seul_annuel = legislation(period).prestations.minima_sociaux.aspa.montant_annuel_seul
@@ -68,4 +68,4 @@ class paris_logement_psol_montant(Variable):
             ((personnes_couple != 1) + personnes_couple) * (ressources_mensuelles_min > plafond_psol)],
             [(plafond_seul_psol - ressources_mensuelles_min), (plafond_couple_psol - ressources_mensuelles_min), 0])
 
-        return period, result
+        return result
