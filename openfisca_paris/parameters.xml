@@ -20,12 +20,14 @@
   </CODE>
   <NODE code="paris_solidarite" description="Paris Solidarité">
     <CODE code="plafond_seul_psol" description="plafond pour une personne seule" format="float" type="monetary">
-      <VALUE deb="2016-01-01" fuzzy="true" valeur="900" />
+      <VALUE deb="2017-04-01" fuzzy="true" valeur="803.20" />
+      <VALUE deb="2016-01-01" fin="2017-03-31" valeur="900" />
       <VALUE deb="2015-01-01" fin="2015-12-31" valeur="900" />
       <VALUE deb="2012-01-01" fin="2014-12-31" valeur="900" /> <!-- Valeur supposée-->
     </CODE>
     <CODE code="plafond_couple_psol" description="plafond pour un couple" format="float" type="monetary">
-      <VALUE deb="2016-01-01" fuzzy="true" valeur="1430" />
+      <VALUE deb="2017-04-01" fuzzy="true" valeur="1246.97" />
+      <VALUE deb="2016-01-01" fin="2017-03-31" valeur="1430" />
       <VALUE deb="2015-01-01" fin="2015-12-31" valeur="1430" />
       <VALUE deb="2012-01-01" fin="2014-12-31" valeur="1430" /> <!-- Valeur supposée-->
     </CODE>
@@ -177,7 +179,8 @@
   </NODE>
   <NODE code="complement_sante" description="Complementaire Santé">
     <CODE code="plafond_pers_isol_cs" description="Plafond de la Complementaire Santé pour une personne isolée " format="float" type="monetary">
-      <VALUE deb="2016-01-01" fuzzy="true" valeur="900" />
+      <VALUE deb="2017-04-01" fuzzy="true" valeur="915.66" />
+      <VALUE deb="2016-01-01" fin="2017-03-31" valeur="900" />
       <VALUE deb="2015-01-01" fin="2015-12-31" valeur="900" />
       <VALUE deb="2012-01-01" fin="2014-12-31" valeur="900" /> <!-- Valeur supposée-->
     </CODE>
