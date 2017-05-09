@@ -91,6 +91,7 @@
 
 
 - name: "eligible au PL aide aux parisiens en difficulté"
+  relative_error_margin: 0.02
   description: Paris Logement parisiens en difficulté
   period: 2016-02
   input_variables:
@@ -300,6 +301,7 @@
     paris_logement: 0
 
 - name: "Famille éligible pour l'aide Paris logement car un couple avec deux enfant et ressources < 1600"
+  relative_error_margin: 0.02
   description: Paris Logement PA et PH
   period: 2016-02
   familles:
@@ -381,6 +383,7 @@
     paris_logement: 95
 
 - name: "Famille éligible pour l'aide Paris logement car un couple avec deux enfant et ressources < 1600"
+  relative_error_margin: 0.02
   description: Paris Logement Couple avec enfants
   period: 2016-02
   familles:

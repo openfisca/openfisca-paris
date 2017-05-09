@@ -1,5 +1,6 @@
 - name: "Famille éligible pour l'aide Paris logement car parent monoparental avec trois enfant et ressources < 5000"
   description: Paris Logement Famille
+  relative_error_margin: 0.02
   period: 2016-02
   familles:
     parents: ["parent1","parent2"]
@@ -116,6 +117,7 @@
     paris_logement_familles: 116
 
 - name: "Famille  éligible pour l'aide Paris logement car parent monoparental et revenus > 1600"
+  relative_error_margin: 0.02
   description: Paris Logement Famille
   period: 2016-02
   familles:
@@ -142,6 +144,7 @@
     paris_logement_familles: 113.25
 
 - name: "Famille  éligible pour l'aide Paris logement car parent monoparental et revenus > 1600"
+  relative_error_margin: 0.02
   description: Paris Logement Famille
   period: 2016-02
   familles:
@@ -196,6 +199,7 @@
 
 - name: "Famille éligible pour l'aide Paris logement car un couple avec deux enfant et ressources < 2000"
   description: Paris Logement Famille
+  relative_error_margin: 0.02
   period: 2016-02
   familles:
     parents: ["parent1", "parent2"]
@@ -224,6 +228,7 @@
 
 - name: "Famille éligible pour l'aide Paris logement car un couple avec deux enfant et ressources < 3000"
   description: Paris Logement Famille
+  relative_error_margin: 0.02
   period: 2016-02
   familles:
     parents: ["parent1", "parent2"]
