@@ -9,7 +9,14 @@ setup(
     author="Mairie de Paris, Incubateur de Services Numériques (SGMAP)",
     packages=find_packages(),
     include_package_data=True,
-    install_requires=[],
+    install_requires=[
+        'OpenFisca-France >= 17.0, < 18.0'
+    ],
+    extras_require = {
+        'test': [
+            'OpenFisca-France[test]',
+            ],
+        },
     classifiers=[
         "Programming Language :: Python",
         "Programming Language :: Python :: 2.7",
