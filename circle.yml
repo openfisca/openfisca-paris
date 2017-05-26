@@ -1,0 +1,12 @@
+machine:
+  python:
+    version: 2.7.12
+
+dependencies:
+  override:
+    - pip install --upgrade pip wheel
+    - pip install . --upgrade
+
+test:
+  override:
+    - ./run-tests.sh
