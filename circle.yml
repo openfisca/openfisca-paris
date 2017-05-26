@@ -5,7 +5,7 @@ machine:
 dependencies:
   override:
     - pip install --upgrade pip wheel
-    - pip install .[test] --upgrade
+    - pip install . --upgrade
 
 test:
   override:
