@@ -18,12 +18,12 @@
   </CODE>
   <NODE code="paris_solidarite" description="Paris Solidarité">
     <CODE code="plafond_seul_psol" description="plafond pour une personne seule" format="float" type="monetary">
-      <VALUE deb="2017-04-01" valeur="803.20" />
+      <VALUE deb="2017-04-01" valeur="905" />
       <VALUE deb="2015-01-01" valeur="900" />
       <VALUE deb="2012-01-01" valeur="900" /> <!-- Valeur supposée-->
     </CODE>
     <CODE code="plafond_couple_psol" description="plafond pour un couple" format="float" type="monetary">
-      <VALUE deb="2017-04-01" valeur="1246.97" />
+      <VALUE deb="2017-04-01" valeur="1438" />
       <VALUE deb="2015-01-01" valeur="1430" />
       <VALUE deb="2012-01-01" valeur="1430" /> <!-- Valeur supposée-->
     </CODE>
