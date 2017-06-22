@@ -11,7 +11,7 @@ setup(
     include_package_data=True,
     install_requires=[
         'OpenFisca-Core >= 13, < 14',
-        'OpenFisca-France >= 18, < 19'
+        'OpenFisca-France >= 18, < 18.4.2'
     ],
     classifiers=[
         "Programming Language :: Python",
