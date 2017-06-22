@@ -10,7 +10,8 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     install_requires=[
-        'OpenFisca-France >= 18.0, < 19.0'
+        'OpenFisca-Core >= 13, < 14',
+        'OpenFisca-France >= 18, < 19'
     ],
     classifiers=[
         "Programming Language :: Python",
