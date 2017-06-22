@@ -14,7 +14,7 @@ class paris_logement_plfm(Variable):
     entity = Famille
     definition_period = MONTH
 
-    def function(famille, period, legislation):
+    def formula(famille, period, legislation):
         last_month = period.last_month
 
         premier_plafond_plfm = legislation(period).paris.plfm.premier_plafond_plfm

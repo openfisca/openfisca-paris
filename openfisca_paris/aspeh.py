@@ -13,7 +13,7 @@ class paris_logement_aspeh(Variable):
     entity = Famille
     definition_period = MONTH
 
-    def function(famille, period, legislation):
+    def formula(famille, period, legislation):
         last_month = period.last_month
 
         plafond_aspeh = legislation(period).paris.aspeh.plafond_aspeh

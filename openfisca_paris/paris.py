@@ -17,7 +17,7 @@ class paris_base_ressources_commun_i(Variable):
     entity = Individu
     definition_period = MONTH
 
-    def function(individu, period, legislation):
+    def formula(individu, period, legislation):
         last_year = period.last_year
 
         salaire_net = individu('salaire_net', period)
@@ -67,7 +67,7 @@ class paris_base_ressources_commun(Variable):
     entity = Famille
     definition_period = MONTH
 
-    def function(famille, period):
+    def formula(famille, period):
 
         ass = famille('ass', period)
         paris_base_ressources_i = famille.members('paris_base_ressources_commun_i', period)
@@ -83,7 +83,7 @@ class paris_indemnite_enfant_i(Variable):
     entity = Individu
     definition_period = MONTH
 
-    def function(individu, period):
+    def formula(individu, period):
 
         indemnites_maternite = individu('indemnites_journalieres_maternite', period)
         indemnites_paternite = individu('indemnites_journalieres_paternite', period)
@@ -99,7 +99,7 @@ class paris_indemnite_enfant(Variable):
     entity = Famille
     definition_period = MONTH
 
-    def function(famille, period):
+    def formula(famille, period):
 
         paris_indemnite_enfant_i = famille.members('paris_indemnite_enfant_i', period)
         paris_indemnite_enfant = famille.sum(paris_indemnite_enfant_i)
@@ -112,7 +112,7 @@ class paris_base_ressources_aah(Variable):
     entity = Famille
     definition_period = MONTH
 
-    def function(famille, period):
+    def formula(famille, period):
 
         aah = famille.members('aah', period)
         aah_famille = famille.sum(aah)
@@ -125,7 +125,7 @@ class paris_enfant_handicape(Variable):
     entity = Individu
     definition_period = MONTH
 
-    def function(individu, period):
+    def formula(individu, period):
 
         handicap = individu('handicap', period)
         paris_enfant = individu('paris_enfant', period)
@@ -138,7 +138,7 @@ class paris_enfant(Variable):
     entity = Individu
     definition_period = MONTH
 
-    def function(individu, period):
+    def formula(individu, period):
 
         est_enfant_dans_famille = individu('est_enfant_dans_famille', period)
         enfant_place = individu('enfant_place', period)
@@ -152,7 +152,7 @@ class paris_enfant_garde_alternee(Variable):
     entity = Individu
     definition_period = MONTH
 
-    def function(individu, period):
+    def formula(individu, period):
 
         garde_alternee = individu('garde_alternee', period)
         paris_enfant = individu('paris_enfant', period)
@@ -165,7 +165,7 @@ class paris_enfant_handicape_garde_alternee(Variable):
     entity = Individu
     definition_period = MONTH
 
-    def function(individu, period):
+    def formula(individu, period):
 
         garde_alternee = individu('garde_alternee', period)
         paris_enfant_handicape = individu('paris_enfant_handicape', period)
@@ -178,7 +178,7 @@ class paris_personnes_agees(Variable):
     entity = Individu
     definition_period = MONTH
 
-    def function(individu, period, legislation):
+    def formula(individu, period, legislation):
 
         age_min = legislation(period).paris.age_pers_agee
         age = individu('age', period)
@@ -192,7 +192,7 @@ class paris_personnes_handicap(Variable):
     entity = Individu
     definition_period = MONTH
 
-    def function(individu, period, legislation):
+    def formula(individu, period, legislation):
 
         age_min = legislation(period).paris.age_pers_inapte
         handicap = individu('handicap', period)
@@ -207,7 +207,7 @@ class paris_nb_enfants(Variable):
     entity = Famille
     definition_period = MONTH
 
-    def function(famille, period):
+    def formula(famille, period):
 
         nb_enfants = famille.members('paris_enfant', period)
         paris_nb_enfants = famille.sum(nb_enfants)
@@ -220,7 +220,7 @@ class paris_condition_taux_effort(Variable):
     entity = Famille
     definition_period = MONTH
 
-    def function(famille, period, legislation):
+    def formula(famille, period, legislation):
 
         taux_effort = legislation(period).paris.paris_logement.taux_effort
         loyer = famille.demandeur.menage('loyer', period)
@@ -238,7 +238,7 @@ class paris_loyer_net(Variable):
     entity = Famille
     definition_period = MONTH
 
-    def function(famille, period):
+    def formula(famille, period):
         last_month = period.last_month
 
         aide_logement = famille('aide_logement', period)

@@ -11,7 +11,7 @@ class paris_complement_sante(Variable):
     entity = Famille
     definition_period = MONTH
 
-    def function(famille, period, legislation):
+    def formula(famille, period, legislation):
         last_month = period.last_month
 
         P = legislation(period)
@@ -66,7 +66,7 @@ class paris_complement_sante_i(Variable):
     entity = Individu
     definition_period = MONTH
 
-    def function(individu, period):
+    def formula(individu, period):
         last_month = period.last_month
 
         paris_base_ressources_commun_i = individu('paris_base_ressources_commun_i', last_month)
