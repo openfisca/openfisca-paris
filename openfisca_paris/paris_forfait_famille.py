@@ -12,7 +12,7 @@ class paris_forfait_famille_elig(Variable):
     entity = Famille
     definition_period = MONTH
 
-    def function(famille, period):
+    def formula(famille, period):
         parisien = famille('parisien', period)
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
         charge_logement = (
@@ -34,7 +34,7 @@ class paris_forfait_famille(Variable):
     entity = Famille
     definition_period = MONTH
 
-    def function(famille, period, legislation):
+    def formula(famille, period, legislation):
         last_month = period.last_month
 
         premier_plafond = legislation(period).paris.paris_forfait_famille.premier_plafond

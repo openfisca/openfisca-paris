@@ -13,7 +13,7 @@ class paris_logement_psol(Variable):
     entity = Famille
     definition_period = MONTH
 
-    def function(famille, period):
+    def formula(famille, period):
 
         parisien = famille('parisien', period)
 
@@ -39,7 +39,7 @@ class paris_logement_psol_montant(Variable):
     entity = Famille
     definition_period = MONTH
 
-    def function(famille, period, legislation):
+    def formula(famille, period, legislation):
         last_month = period.last_month
 
         montant_seul_annuel = legislation(period).prestations.minima_sociaux.aspa.montant_annuel_seul

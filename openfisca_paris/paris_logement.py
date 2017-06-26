@@ -13,7 +13,7 @@ class paris_logement(Variable):
     entity = Famille
     definition_period = MONTH
 
-    def function(famille, period):
+    def formula(famille, period):
         paris_logement_pa_ph = famille('paris_logement_pa_ph', period)
         paris_logement_fam = famille('paris_logement_fam', period)
         paris_logement_apd = famille('paris_logement_apd', period)
@@ -26,7 +26,7 @@ class paris_logement_pa_ph(Variable):
     entity = Famille
     definition_period = MONTH
 
-    def function(famille, period, legislation):
+    def formula(famille, period, legislation):
         last_month = period.last_month
 
         plafond_pl = legislation(period).paris.paris_logement.plafond_pl
@@ -65,7 +65,7 @@ class paris_logement_elig_pa_ph(Variable):
     entity = Famille
     definition_period = MONTH
 
-    def function(famille, period):
+    def formula(famille, period):
         parisien = famille('parisien', period)
 
         personnes_agees = famille.members('paris_personnes_agees', period)
@@ -96,7 +96,7 @@ class paris_logement_fam(Variable):
     entity = Famille
     definition_period = MONTH
 
-    def function(famille, period, legislation):
+    def formula(famille, period, legislation):
         last_month = period.last_month
 
         plafond_pl_fam = legislation(period).paris.paris_logement.plafond_pl_fam
@@ -127,7 +127,7 @@ class paris_logement_elig_fam(Variable):
     entity = Famille
     definition_period = MONTH
 
-    def function(famille, period):
+    def formula(famille, period):
         parisien = famille('parisien', period)
 
         personnes_agees = famille.members('paris_personnes_agees', period)
@@ -152,7 +152,7 @@ class paris_logement_apd(Variable):
     entity = Famille
     definition_period = MONTH
 
-    def function(famille, period, legislation):
+    def formula(famille, period, legislation):
         last_month = period.last_month
 
         plafond = legislation(period).paris.paris_logement.plafond_pl_apd
@@ -185,7 +185,7 @@ class paris_logement_elig_apd(Variable):
     entity = Famille
     definition_period = MONTH
 
-    def function(famille, period):
+    def formula(famille, period):
         parisien = famille('parisien', period)
 
         personnes_agees = famille.members('paris_personnes_agees', period)
