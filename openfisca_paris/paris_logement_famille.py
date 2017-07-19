@@ -75,7 +75,7 @@ class paris_logement_familles(Variable):
     label = u"Allocation Paris Logement Famille"
     entity = Famille
     definition_period = MONTH
-    url = "http://www.paris.fr/pratique/toutes-les-aides-et-allocations/aides-sociales/paris-logement-familles-prestation-ville-de-paris/rub_9737_stand_88805_port_24193"  # noqa
+    reference = "http://www.paris.fr/pratique/toutes-les-aides-et-allocations/aides-sociales/paris-logement-familles-prestation-ville-de-paris/rub_9737_stand_88805_port_24193"  # noqa
 
     def formula(famille, period, legislation):
         last_month = period.last_month
