@@ -1,11 +1,8 @@
 name: Personne en situation de handicap taux d'effort < minimum
 description: La personne n'est pas éligible à l'aide au logement de la ville de Paris car son taux d'effort pour le financement de son loyer est inférieur au minimum.
 output_variables:
-  # paris_base_ressources_commun: ??
-  # aide_logement_charges: ??
-  # apl: ??
-  # paris_condition_taux_effort: false
-  # paris_logement_elig_pa_ph: false
+  paris_condition_taux_effort: false
+  paris_logement_elig_pa_ph: false
   paris_logement_pa_ph: 0
   paris_logement: 0
 absolute_error_margin: 0.1

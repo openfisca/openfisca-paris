@@ -224,11 +224,11 @@ class paris_condition_taux_effort(Variable):
 
         taux_effort = legislation(period).paris.paris_logement.taux_effort
         loyer = famille.demandeur.menage('loyer', period)
-        apl = famille('apl', period)
+        aide_logement = famille('aide_logement', period)
 
         ressources_mensuelles = famille('paris_base_ressources_commun', period)
         charges_forfaitaire_logement = famille('aide_logement_charges', period)
-        calcul_taux_effort = (loyer + charges_forfaitaire_logement - apl) / ressources_mensuelles
+        calcul_taux_effort = (loyer + charges_forfaitaire_logement - aide_logement) / ressources_mensuelles
         condition_loyer = calcul_taux_effort >= taux_effort
         return condition_loyer
 
