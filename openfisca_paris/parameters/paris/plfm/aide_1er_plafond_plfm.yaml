@@ -1,0 +1,7 @@
+description: Le montant de l'aide du 1er plafond
+unit: currency
+values:
+  2012-01-01:
+    value: 150.0
+  2015-01-01:
+    value: 150.0

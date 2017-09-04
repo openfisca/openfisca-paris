@@ -1,0 +1,7 @@
+description: Montant haut sup par enfant
+unit: currency
+values:
+  2012-01-01:
+    value: 41.0
+  2014-01-01:
+    value: 41.0

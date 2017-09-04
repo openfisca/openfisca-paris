@@ -1,0 +1,7 @@
+description: 2ème Plafond des ressources pour l'aide paris énergie famille
+unit: currency
+values:
+  2012-01-01:
+    value: 2500.0
+  2015-01-01:
+    value: 2500.0

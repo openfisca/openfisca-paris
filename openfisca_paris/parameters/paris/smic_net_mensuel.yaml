@@ -1,0 +1,9 @@
+description: Montant du smic net mensuel
+unit: currency
+values:
+  2012-01-01:
+    value: 1140.0
+  2015-01-01:
+    value: 1140.0
+  2016-01-01:
+    value: 1150.0

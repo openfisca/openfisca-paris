@@ -1,0 +1,9 @@
+description: 'Plafond de la Complementaire Santé pour une personne isolée '
+unit: currency
+values:
+  2012-01-01:
+    value: 900.0
+  2015-01-01:
+    value: 900.0
+  2017-04-01:
+    value: 915.66

@@ -1,0 +1,7 @@
+description: Plafond de PLF pour les familles à deux enfants.
+unit: currency
+values:
+  2012-01-01:
+    value: 2000.0
+  2014-01-01:
+    value: 2000.0

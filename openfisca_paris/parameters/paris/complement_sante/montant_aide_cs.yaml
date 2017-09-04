@@ -1,0 +1,7 @@
+description: 'Montant de l''aide Complémentaire Santé '
+unit: currency
+values:
+  2012-01-01:
+    value: 468.0
+  2015-01-01:
+    value: 468.0
