@@ -1,0 +1,7 @@
+description: Montant de l'allocation de soutien aux parents d’enfants handicapés
+unit: currency
+values:
+  2012-01-01:
+    value: 153.0
+  2015-01-01:
+    value: 153.0

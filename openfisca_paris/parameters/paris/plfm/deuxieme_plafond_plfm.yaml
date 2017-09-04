@@ -1,0 +1,7 @@
+description: 2ème Plafond des ressources pour l'aide paris forfait famille
+unit: currency
+values:
+  2012-01-01:
+    value: 1600.0
+  2015-01-01:
+    value: 1600.0

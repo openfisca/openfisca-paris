@@ -1,0 +1,8 @@
+description: Plafond haut de PLF pour les familles à 3 enfants, aussi plafond de PLF
+  avec enfant handicapé
+unit: currency
+values:
+  2012-01-01:
+    value: 5000.0
+  2014-01-01:
+    value: 5000.0

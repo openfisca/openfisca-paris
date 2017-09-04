@@ -1,0 +1,8 @@
+description: Age minimale d'une personne inapte au travail pour être une personne
+  âgée
+unit: currency
+values:
+  2012-01-01:
+    value: 60.0
+  2015-01-01:
+    value: 60.0

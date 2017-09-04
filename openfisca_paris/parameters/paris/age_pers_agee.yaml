@@ -1,0 +1,7 @@
+description: Age minimale d'une personne agée
+unit: currency
+values:
+  2012-01-01:
+    value: 65.0
+  2015-01-01:
+    value: 65.0

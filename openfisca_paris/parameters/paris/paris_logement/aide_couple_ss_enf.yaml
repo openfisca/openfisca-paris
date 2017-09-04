@@ -1,0 +1,7 @@
+description: Montant de l'aide pour un couple sans enfant
+unit: currency
+values:
+  2012-01-01:
+    value: 95.0
+  2015-01-01:
+    value: 95.0

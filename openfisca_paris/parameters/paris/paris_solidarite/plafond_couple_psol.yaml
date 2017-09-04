@@ -1,0 +1,9 @@
+description: plafond pour un couple
+unit: currency
+values:
+  2012-01-01:
+    value: 1430.0
+  2015-01-01:
+    value: 1430.0
+  2017-04-01:
+    value: 1438.0

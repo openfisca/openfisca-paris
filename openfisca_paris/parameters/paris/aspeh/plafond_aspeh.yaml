@@ -1,0 +1,7 @@
+description: Plafond des ressources mensuelles
+unit: currency
+values:
+  2012-01-01:
+    value: 5000.0
+  2015-01-01:
+    value: 5000.0

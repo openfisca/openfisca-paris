@@ -1,0 +1,7 @@
+description: Montant de l'aide pour une personne isolée
+unit: currency
+values:
+  2012-01-01:
+    value: 84.0
+  2015-01-01:
+    value: 84.0
