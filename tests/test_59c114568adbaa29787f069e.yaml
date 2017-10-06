@@ -3,8 +3,6 @@ description: >-
   Le taux d'effort n'étant pas atteint (4.6 %), l'aide Paris Logement (PL) ne
   devrait pas être proposée.
 output_variables:
-  cmu_c: true
-  ppa: 313.67041015625
   paris_logement: 0
 absolute_error_margin: 10
 period: 'month:2017-09'
