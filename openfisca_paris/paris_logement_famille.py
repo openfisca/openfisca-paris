@@ -6,7 +6,7 @@ from numpy import absolute as abs_, minimum as min_, maximum as max_, where
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
 class paris_logement_familles_elig(Variable):
-    column = BoolCol
+    value_type = bool
     label = u"Eligibilité à Paris-Logement-Famille"
     entity = Famille
     definition_period = MONTH
@@ -29,7 +29,7 @@ class paris_logement_familles_elig(Variable):
 
 
 class plf_handicap(Variable):
-    column = FloatCol
+    value_type = float
     entity = Famille
     definition_period = MONTH
     label = u"Allocation Paris-Logement-Famille en cas d'enfant handicapé"
@@ -71,7 +71,7 @@ class plf_handicap(Variable):
         return plf_handicap
 
 class paris_logement_familles(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Allocation Paris Logement Famille"
     entity = Famille
     definition_period = MONTH

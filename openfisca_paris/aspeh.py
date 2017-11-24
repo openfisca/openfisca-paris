@@ -8,7 +8,7 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 # Allocation de soutien aux parents d’enfants handicapés
 
 class paris_logement_aspeh(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Le montant de l'Allocation de soutien aux parents d’enfants handicapés"
     entity = Famille
     definition_period = MONTH

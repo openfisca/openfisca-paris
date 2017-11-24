@@ -8,7 +8,7 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 # Paris Logement pour les personnes agées et les personnes handicapées
 
 class paris_logement(Variable):
-    column = FloatCol
+    value_type = float
     label = u"L'aide Paris Logement"
     entity = Famille
     definition_period = MONTH
@@ -21,7 +21,7 @@ class paris_logement(Variable):
         return paris_logement_pa_ph + paris_logement_fam + paris_logement_apd
 
 class paris_logement_pa_ph(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Paris Logement pour les personnes handicapées et les personnes agées"
     entity = Famille
     definition_period = MONTH
@@ -60,7 +60,7 @@ class paris_logement_pa_ph(Variable):
         return result * condition_ressource * paris_logement_elig_pa_ph
 
 class paris_logement_elig_pa_ph(Variable):
-    column = BoolCol
+    value_type = bool
     label = u"Personne qui est eligible pour l'aide PL pour les personnes agées et les personne handicapées"
     entity = Famille
     definition_period = MONTH
@@ -91,7 +91,7 @@ class paris_logement_elig_pa_ph(Variable):
         return result
 
 class paris_logement_fam(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Paris Logement pour les couples avec enfant(s)"
     entity = Famille
     definition_period = MONTH
@@ -122,7 +122,7 @@ class paris_logement_fam(Variable):
         return result * condition_ressource * paris_logement_elig_fam
 
 class paris_logement_elig_fam(Variable):
-    column = BoolCol
+    value_type = bool
     label = u"Personne qui est eligible pour l'aide Paris Logement quand c'est un couple avec enfant(s)"
     entity = Famille
     definition_period = MONTH
@@ -147,7 +147,7 @@ class paris_logement_elig_fam(Variable):
         return result
 
 class paris_logement_apd(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Paris Logement pour les personnes isolées et couples sans enfant"
     entity = Famille
     definition_period = MONTH
@@ -180,7 +180,7 @@ class paris_logement_apd(Variable):
         return result * condition_ressource * paris_logement_elig_apd
 
 class paris_logement_elig_apd(Variable):
-    column = BoolCol
+    value_type = bool
     label = u"Personne qui est eligible pour l'aide Paris Logement aide aux parisiens en difficultés"
     entity = Famille
     definition_period = MONTH
