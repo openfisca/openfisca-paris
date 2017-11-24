@@ -9,7 +9,7 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 # Paris logement familles monoparentales
 
 class paris_logement_plfm(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Famille monoparentale qui est eligible à Paris logement familles monoparentales"
     entity = Famille
     definition_period = MONTH

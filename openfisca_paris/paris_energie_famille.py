@@ -6,7 +6,7 @@ from numpy import (maximum as max_, logical_not as not_, absolute as abs_, minim
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
 class paris_energie_famille_elig(Variable):
-    column = BoolCol
+    value_type = bool
     label = u"Eligibilité à Paris Energie Famille"
     entity = Famille
     definition_period = MONTH
@@ -28,7 +28,7 @@ class paris_energie_famille_elig(Variable):
         return result
 
 class paris_energie_famille(Variable):
-    column = FloatCol
+    value_type = float
     label = u"L'aide Paris Energie Famille"
     entity = Famille
     definition_period = MONTH

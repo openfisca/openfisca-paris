@@ -6,13 +6,13 @@ from numpy import (maximum as max_, logical_not as not_, absolute as abs_, minim
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
 class parisien(Variable):
-    column = BoolCol
+    value_type = bool
     entity = Famille
     definition_period = MONTH
     label = u"Résidant à Paris au moins 3 ans dans les 5 dernières années"
 
 class paris_base_ressources_commun_i(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Base de ressources individuelle"
     entity = Individu
     definition_period = MONTH
@@ -62,7 +62,7 @@ class paris_base_ressources_commun_i(Variable):
         return result
 
 class paris_base_ressources_commun(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Base de ressource"
     entity = Famille
     definition_period = MONTH
@@ -78,7 +78,7 @@ class paris_base_ressources_commun(Variable):
         return result
 
 class paris_indemnite_enfant_i(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Indemnités de maternité, paternité, adoption"
     entity = Individu
     definition_period = MONTH
@@ -94,7 +94,7 @@ class paris_indemnite_enfant_i(Variable):
         return result
 
 class paris_indemnite_enfant(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Base de ressources pour Indemnités de maternité, paternité, adoption"
     entity = Famille
     definition_period = MONTH
@@ -107,7 +107,7 @@ class paris_indemnite_enfant(Variable):
         return paris_indemnite_enfant
 
 class paris_base_ressources_aah(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Le montant de l'AAH s'il y a plusieurs personnes handicapés dans la famille"
     entity = Famille
     definition_period = MONTH
@@ -120,7 +120,7 @@ class paris_base_ressources_aah(Variable):
         return aah_famille
 
 class paris_enfant_handicape(Variable):
-    column = BoolCol
+    value_type = bool
     label = u"Enfant handicapé au sens de la mairie de Paris"
     entity = Individu
     definition_period = MONTH
@@ -133,7 +133,7 @@ class paris_enfant_handicape(Variable):
         return paris_enfant * handicap
 
 class paris_enfant(Variable):
-    column = BoolCol
+    value_type = bool
     label = u"Enfant pris en compte par la mairie de Paris"
     entity = Individu
     definition_period = MONTH
@@ -147,7 +147,7 @@ class paris_enfant(Variable):
         return est_enfant_dans_famille * (1 - enfant_place) * a_charge_fiscale
 
 class paris_enfant_garde_alternee(Variable):
-    column = BoolCol
+    value_type = bool
     label = u"Enfant en garde alternée pris en compte par la mairie de Paris"
     entity = Individu
     definition_period = MONTH
@@ -160,7 +160,7 @@ class paris_enfant_garde_alternee(Variable):
         return garde_alternee * paris_enfant
 
 class paris_enfant_handicape_garde_alternee(Variable):
-    column = BoolCol
+    value_type = bool
     label = u"Enfant handicapé en garde alternée pris en compte par la mairie de Paris"
     entity = Individu
     definition_period = MONTH
@@ -173,7 +173,7 @@ class paris_enfant_handicape_garde_alternee(Variable):
         return garde_alternee * paris_enfant_handicape
 
 class paris_personnes_agees(Variable):
-    column = BoolCol
+    value_type = bool
     label = u"Personne âgée"
     entity = Individu
     definition_period = MONTH
@@ -187,7 +187,7 @@ class paris_personnes_agees(Variable):
         return personne_agee
 
 class paris_personnes_handicap(Variable):
-    column = BoolCol
+    value_type = bool
     label = u"Personne qui a le statut Handicapé"
     entity = Individu
     definition_period = MONTH
@@ -202,7 +202,7 @@ class paris_personnes_handicap(Variable):
         return handicap
 
 class paris_nb_enfants(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Nombre d'enfant dans la famille"
     entity = Famille
     definition_period = MONTH
@@ -215,7 +215,7 @@ class paris_nb_enfants(Variable):
         return paris_nb_enfants
 
 class paris_condition_taux_effort(Variable):
-    column = BoolCol
+    value_type = bool
     label = u"condition du taux d'effort"
     entity = Famille
     definition_period = MONTH
@@ -233,7 +233,7 @@ class paris_condition_taux_effort(Variable):
         return condition_loyer
 
 class paris_loyer_net(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Charge nette de logement"
     entity = Famille
     definition_period = MONTH

@@ -6,7 +6,7 @@ from numpy import (maximum as max_, logical_not as not_, absolute as abs_, minim
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
 class paris_complement_sante(Variable):
-    column = FloatCol
+    value_type = float
     label = u"L'aide Complémentaire Santé Paris"
     entity = Famille
     definition_period = MONTH
@@ -61,7 +61,7 @@ class paris_complement_sante(Variable):
         return montant_pers_handicap + montant_couple + montant_couple_ss_acs
 
 class paris_complement_sante_i(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Ressources Individuelles"
     entity = Individu
     definition_period = MONTH

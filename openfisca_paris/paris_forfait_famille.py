@@ -7,7 +7,7 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 
 # Paris forfait familles
 class paris_forfait_famille_elig(Variable):
-    column = BoolCol
+    value_type = bool
     label = u"Eligibilité à Paris Forfait Famille"
     entity = Famille
     definition_period = MONTH
@@ -29,7 +29,7 @@ class paris_forfait_famille_elig(Variable):
         return result
 
 class paris_forfait_famille(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Famille qui est eligible à l'aide paris forfait famille "
     entity = Famille
     definition_period = MONTH

@@ -8,7 +8,7 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 # Paris solidarité pour les personnes agées et les personnes handicapées
 
 class paris_logement_psol(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Montant de l'aide Paris Solidarité"
     entity = Famille
     definition_period = MONTH
@@ -34,7 +34,7 @@ class paris_logement_psol(Variable):
         return result
 
 class paris_logement_psol_montant(Variable):
-    column = FloatCol
+    value_type = float
     label = u"Montant de l'aide PSOL"
     entity = Famille
     definition_period = MONTH
