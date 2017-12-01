@@ -4,7 +4,7 @@
   input_variables:
     age: 30
     parisien: True
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     handicap: True
     en_couple: False
     cmu_c: False
@@ -24,7 +24,7 @@
     aide_logement:
       2016-01: 422
   menages:
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
   individus:
   - id: "Couple1"
     age: 33
@@ -43,7 +43,7 @@
     parisien: True
     en_couple: True
   menages:
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     personne_de_reference: "Couple1"
     conjoint: "Couple2"
     loyer: 500
@@ -68,7 +68,7 @@
     parisien: True
     en_couple: True
   menages:
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     personne_de_reference: "Couple1"
     conjoint: "Couple2"
     loyer: 500
@@ -93,7 +93,7 @@
     parisien: True
     en_couple: True
   menages:
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     personne_de_reference: "Couple1"
     conjoint: "Couple2"
     loyer: 500
@@ -114,7 +114,7 @@
   input_variables:
     age: 45
     parisien: True
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     handicap: True
     en_couple: False
     salaire_net:
@@ -129,7 +129,7 @@
   input_variables:
     age: 45
     parisien: True
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     handicap: True
     en_couple: False
     salaire_net:
@@ -144,7 +144,7 @@
   input_variables:
     age: 45
     parisien: True
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     handicap: True
     en_couple: False
     cmu_c: False
@@ -160,7 +160,7 @@
   input_variables:
     age: 45
     parisien: True
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     handicap: True
     en_couple: False
     salaire_net:
@@ -175,7 +175,7 @@
   input_variables:
     age: 45
     parisien: True
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     handicap: True
     en_couple: False
     salaire_net:
@@ -195,7 +195,7 @@
     aide_logement:
       2016-01: 200
   menages:
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     personne_de_reference: "Couple1"
     conjoint: "Couple2"
     loyer: 550
@@ -218,7 +218,7 @@
     aide_logement:
       2016-01: 200
   menages:
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     personne_de_reference: "Couple1"
     conjoint: "Couple2"
     loyer: 550
@@ -245,7 +245,7 @@
     aspa:
       2016-01: 1200
   menages:
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     personne_de_reference: "Couple1"
     conjoint: "Couple2"
     loyer: 550
@@ -268,7 +268,7 @@
     aspa:
       2016-01: 1200
   menages:
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     personne_de_reference: "Couple1"
     conjoint: "Couple2"
     loyer: 550

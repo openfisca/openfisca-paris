@@ -5,7 +5,7 @@
     enfants: ["enfant1"]
     parisien: True
   menages:
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     personne_de_reference: "parent1"
     enfants: ["enfant1"]
     loyer: 400
@@ -26,7 +26,7 @@
     enfants: ["enfant1", "enfant2"]
     parisien: True
   menages:
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     personne_de_reference: "parent1"
     enfants: ["enfant1", "enfant2"]
     loyer: 400
@@ -49,7 +49,7 @@
     enfants: ["enfant1", "enfant2"]
     parisien: True
   menages:
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     personne_de_reference: "parent1"
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2"]
@@ -79,7 +79,7 @@
     aide_logement:
       2016-01: 100
   menages:
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     personne_de_reference: "parent1"
     enfants: ["enfant1", "enfant2"]
     charges_locatives: 50
@@ -104,7 +104,7 @@
     aide_logement:
       2016-01: 100
   menages:
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     personne_de_reference: "parent1"
     enfants: ["enfant1", "enfant2"]
     charges_locatives: 50
@@ -130,7 +130,7 @@
     aide_logement:
       2016-01: 100
   menages:
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     personne_de_reference: "parent1"
     enfants: ["enfant1", "enfant2"]
   individus:
@@ -152,7 +152,7 @@
     enfants: ["enfant1", "enfant2"]
     parisien: True
   menages:
-    statut_occupation_logement: 2
+    statut_occupation_logement: proprietaire
     personne_de_reference: "parent1"
     enfants: ["enfant1", "enfant2"]
     charges_locatives: 50

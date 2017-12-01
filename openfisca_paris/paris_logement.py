@@ -79,10 +79,11 @@ class paris_logement_elig_pa_ph(Variable):
 
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
         statut_occupation_elig = (
-            (statut_occupation_logement == 3) +
-            (statut_occupation_logement == 4) +
-            (statut_occupation_logement == 5) +
-            (statut_occupation_logement == 7))
+            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm) +
+            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_vide) +
+            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble) +
+            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer)
+        )
         charges_logement = famille('paris_condition_taux_effort', period)
 
         adulte_handicape = (personne_handicap - nb_enfant) >= 1
@@ -138,10 +139,11 @@ class paris_logement_elig_fam(Variable):
 
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
         statut_occupation_elig = (
-            (statut_occupation_logement == 3) +
-            (statut_occupation_logement == 4) +
-            (statut_occupation_logement == 5) +
-            (statut_occupation_logement == 7))
+            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm) +
+            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_vide) +
+            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble) +
+            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer)
+        )
         charges_logement = famille('paris_condition_taux_effort', period)
         result = parisien * statut_occupation_elig * (personnes_agees_famille != 1) * (personne_handicap_famille != 1) * charges_logement
         return result
@@ -199,10 +201,11 @@ class paris_logement_elig_apd(Variable):
         nb_enfants = famille('paris_nb_enfants', period)
 
         statut_occupation_elig = (
-            (statut_occupation_logement == 3) +
-            (statut_occupation_logement == 4) +
-            (statut_occupation_logement == 5) +
-            (statut_occupation_logement == 7))
+            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm) +
+            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_vide) +
+            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble) +
+            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer)
+        )
         charges_logement = famille('paris_condition_taux_effort', period)
 
         result = parisien * statut_occupation_elig * (personnes_agees_famille != 1) * (personne_handicap_famille != 1) * charges_logement * (loyer > 0) * (nb_enfants == 0)

@@ -7,7 +7,7 @@
     parisien: True
     en_couple: True
   menages:
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
   individus:
   - id: "couple1"
     age: 35
@@ -29,7 +29,7 @@
   input_variables:
     age: 55
     parisien: True
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     handicap: True
     loyer: 600
     chomage_net:
@@ -43,7 +43,7 @@
   input_variables:
     age: 65
     parisien: True
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     loyer: 600
     salaire_net:
       2016-01: 2500
@@ -61,7 +61,7 @@
       2015-12: 100
       2016-01: 100
   menages:
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
   individus:
   - id: "couple1"
     age: 65
@@ -91,7 +91,7 @@
     parents: ["couple1", "couple2"]
     parisien: True
   menages:
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
   individus:
   - id: "couple1"
     age: 55
@@ -116,7 +116,7 @@
   input_variables:
     age: 55
     parisien: True
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     handicap: True
     aah:
       2016-01: 2000
@@ -129,7 +129,7 @@
   input_variables:
     age: 55
     parisien: True
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     handicap: False
     aah:
       2016-01: 500
@@ -144,7 +144,7 @@
   input_variables:
     age: 55
     parisien: True
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     handicap: True
     aah:
       2016-01: 500
@@ -159,7 +159,7 @@
   input_variables:
     age: 55
     parisien: True
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     handicap: True
     aah:
       2016-01: 500
@@ -174,7 +174,7 @@
   input_variables:
     age: 55
     parisien: True
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     handicap: True
     aah:
       2016-01: 800
@@ -190,7 +190,7 @@
     parents: ["couple1", "couple2"]
     parisien: True
   menages:
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
   individus:
   - id: "couple1"
     age: 55
@@ -218,7 +218,7 @@
     parents: ["couple1", "couple2"]
     parisien: True
   menages:
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
   individus:
   - id: "couple1"
     age: 55
@@ -238,7 +238,7 @@
   input_variables:
     age: 65
     parisien: True
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
   output_variables:
     paris_logement_psol: 100
 
@@ -249,7 +249,7 @@
     parents: ["couple1"]
     parisien: True
   menages:
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
   individus:
   - id: "couple1"
     age: 65
@@ -269,7 +269,7 @@
     aspa:
       2016-01: 1242
   menages:
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
   individus:
   - id: "couple1"
     age: 65
@@ -287,7 +287,7 @@
     aspa:
       2016-01: 850
   menages:
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
   individus:
   - id: "couple1"
     age: 65
@@ -309,7 +309,7 @@
       2015-12: 100
       2016-01: 100
   menages:
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
   individus:
   - id: "couple1"
     age: 65
