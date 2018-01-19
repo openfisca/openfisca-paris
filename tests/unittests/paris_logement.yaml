@@ -6,7 +6,7 @@
     enfants: ["enfant1", "enfant2"]
     parisien: True
   menages:
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     personne_de_reference: "parent1"
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2"]
@@ -33,7 +33,7 @@
     age: 55
     parisien: True
     handicap: True
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     loyer: 550
     salaire_net:
       2016-01: 600
@@ -47,7 +47,7 @@
     age: 55
     parisien: True
     handicap: True
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     loyer: 550
     salaire_net:
       2016-01: 800
@@ -60,7 +60,7 @@
   input_variables:
     age: 65
     parisien: True
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     loyer: 750
     aspa:
       2016-01: 800
@@ -73,7 +73,7 @@
   period: 2016-02
   input_variables:
     age: 65
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     loyer: 350
   output_variables:
     paris_logement: 0
@@ -85,7 +85,7 @@
   input_variables:
     age: 65
     parisien: True
-    statut_occupation_logement: 2
+    statut_occupation_logement: proprietaire
   output_variables:
     paris_logement: 0
 
@@ -97,7 +97,7 @@
   input_variables:
     age: 55
     parisien: True
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     loyer: 350
   output_variables:
     paris_logement: 77.839
@@ -110,7 +110,7 @@
     age: 55
     parisien: True
     handicap: True
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     loyer: 550
   output_variables:
     paris_logement: 84
@@ -123,7 +123,7 @@
     parisien: True
     en_couple: True
     handicap: True
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     loyer: 550
     aah:
       2016-01: 800
@@ -138,7 +138,7 @@
     age: 55
     parisien: True
     handicap: True
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     aah:
       2016-01: 800
     en_couple: True
@@ -154,7 +154,7 @@
     age: 55
     parisien: True
     handicap: True
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     aah:
       2016-01: 800
     loyer: 550
@@ -168,7 +168,7 @@
     age: 55
     parisien: True
     handicap: True
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     aah:
       2016-01: 800
     loyer: 250
@@ -182,7 +182,7 @@
     age: 60
     parisien: True
     aspa_eligibilite: True
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     loyer: 550
   output_variables:
     paris_logement: 84
@@ -195,7 +195,7 @@
     enfants: ["enfant1", "enfant2"]
     parisien: True
   menages:
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     personne_de_reference: "parent1"
     enfants: ["enfant1", "enfant2"]
     loyer: 550
@@ -216,7 +216,7 @@
   menages:
     personne_de_reference: "parent1"
     loyer: 550
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
   familles:
     parents: ["parent1"]
     parisien: True
@@ -237,7 +237,7 @@
   menages:
     personne_de_reference: "parent1"
     loyer: 550
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
   familles:
     parents: ["parent1"]
     parisien: True
@@ -256,7 +256,7 @@
   menages:
     personne_de_reference: "parent1"
     loyer: 500
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
   familles:
     parents: ["parent1"]
     parisien: True
@@ -275,7 +275,7 @@
     age: 60
     parisien: True
     aspa_eligibilite: True
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     loyer: 550
     apl:
       2016-01: 200
@@ -291,7 +291,7 @@
     age: 60
     parisien: True
     aspa_eligibilite: True
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     loyer: 500
     apl:
       2016-01: 320
@@ -309,7 +309,7 @@
     enfants: ["enfant1", "enfant2"]
     parisien: True
   menages:
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     personne_de_reference: "parent1"
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2"]
@@ -338,7 +338,7 @@
     parents: ["parent1", "parent2"]
     parisien: True
   menages:
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     personne_de_reference: "parent1"
     conjoint: "parent2"
     loyer: 500
@@ -362,7 +362,7 @@
     parents: ["parent1", "parent2"]
     parisien: True
   menages:
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     personne_de_reference: "parent1"
     conjoint: "parent2"
     loyer: 550
@@ -391,7 +391,7 @@
     enfants: ["enfant1", "enfant2"]
     parisien: True
   menages:
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     personne_de_reference: "parent1"
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2"]
@@ -419,7 +419,7 @@
     parisien: True
     aide_logement: 200
   menages:
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     personne_de_reference: "parent1"
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2"]
@@ -446,7 +446,7 @@
   input_variables:
     age: 45
     parisien: True
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     loyer: 550
     aide_logement:
       2016-01: 200
@@ -461,7 +461,7 @@
   input_variables:
     age: 45
     parisien: True
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     loyer: 550
     aide_logement:
       2016-01: 200
@@ -476,7 +476,7 @@
   input_variables:
     age: 45
     parisien: True
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     loyer: 550
     aide_logement:
       2016-01: 200
@@ -492,7 +492,7 @@
     age: 45
     parisien: True
     en_couple: True
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     loyer: 550
     aide_logement:
       2016-01: 200
@@ -507,7 +507,7 @@
   input_variables:
     age: 66
     parisien: True
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     loyer: 550
     apl:
       2016-01: 200

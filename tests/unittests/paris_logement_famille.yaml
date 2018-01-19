@@ -7,7 +7,7 @@
     enfants: ["enfant1", "enfant2"]
     parisien: True
   menages:
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     personne_de_reference: "parent1"
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2"]
@@ -38,7 +38,7 @@
     enfants: ["enfant1", "enfant2", "enfant3"]
     parisien: True
   menages:
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     personne_de_reference: "parent1"
     enfants: ["enfant1", "enfant2", "enfant3"]
     loyer: 500
@@ -68,7 +68,7 @@
     enfants: ["enfant1", "enfant2", "enfant3"]
     parisien: True
   menages:
-    statut_occupation_logement: 2
+    statut_occupation_logement: proprietaire
     personne_de_reference: "parent1"
     enfants: ["enfant1", "enfant2", "enfant3"]
     loyer: 576
@@ -97,7 +97,7 @@
     parisien: True
     en_couple: True
   menages:
-    statut_occupation_logement: 2
+    statut_occupation_logement: proprietaire
     personne_de_reference: "parent1"
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2"]
@@ -126,7 +126,7 @@
     parisien: True
     en_couple: False
   menages:
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     personne_de_reference: "parent1"
     enfants: ["enfant1","enfant2"]
     loyer: 550
@@ -153,7 +153,7 @@
     parisien: True
     en_couple: False
   menages:
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     personne_de_reference: "parent1"
     enfants: ["enfant1","enfant2","enfant3"]
     loyer: 550
@@ -181,7 +181,7 @@
     parisien: True
     en_couple: False
   menages:
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     personne_de_reference: "parent1"
     enfants: ["enfant1", "enfant2"]
     loyer: 550
@@ -207,7 +207,7 @@
     parisien: True
     en_couple: True
   menages:
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     personne_de_reference: "parent1"
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2"]
@@ -236,7 +236,7 @@
     parisien: True
     en_couple: True
   menages:
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     personne_de_reference: "parent1"
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3"]
@@ -265,7 +265,7 @@
     enfants: ["enfant1", "enfant2", "enfant3"]
     parisien: True
   menages:
-    statut_occupation_logement: 2
+    statut_occupation_logement: proprietaire
     personne_de_reference: "parent1"
     enfants: ["enfant1", "enfant2", "enfant3"]
     loyer: 550
@@ -292,7 +292,7 @@
     parisien: True
     en_couple: True
   menages:
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     personne_de_reference: "parent1"
     conjoint: "parent2"
     enfants: ["enfant1", "enfant2", "enfant3", "enfant4"]
@@ -325,7 +325,7 @@
     parisien: True
     en_couple: True
   menages:
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
     personne_de_reference: "parent1"
     conjoint: "parent2"
     enfants: ["enfant1"]

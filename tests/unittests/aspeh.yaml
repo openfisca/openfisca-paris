@@ -5,7 +5,7 @@
     enfants: ["enfant1", "enfant2","enfant3"]
     parisien: True
   menages:
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
   individus:
   - id: "couple1"
     age: 55
@@ -33,7 +33,7 @@
     parisien: True
     paje_clca: 1000
   menages:
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
   individus:
   - id: "couple1"
     age: 55
@@ -56,7 +56,7 @@
     parisien: True
     paje_clca: 100
   menages:
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
   individus:
   - id: "couple1"
     age: 55
@@ -82,7 +82,7 @@
     parisien: True
     paje_clca: 100
   menages:
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
   individus:
   - id: "couple1"
     age: 55

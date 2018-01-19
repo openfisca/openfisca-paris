@@ -15,12 +15,12 @@ class paris_logement_familles_elig(Variable):
         parisien = famille('parisien', period)
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
         charge_logement = (
-            (statut_occupation_logement == 1) +
-            (statut_occupation_logement == 2) +
-            (statut_occupation_logement == 3) +
-            (statut_occupation_logement == 4) +
-            (statut_occupation_logement == 5) +
-            (statut_occupation_logement == 7)
+            (statut_occupation_logement == TypesStatutOccupationLogement.primo_accedant) +
+            (statut_occupation_logement == TypesStatutOccupationLogement.proprietaire) +
+            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm) +
+            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_vide) +
+            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble) +
+            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer)
             )
 
         result = parisien * charge_logement

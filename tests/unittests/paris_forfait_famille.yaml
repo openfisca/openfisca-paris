@@ -5,7 +5,7 @@
     enfants: ["enfant1", "enfant2","enfant3"]
     parisien: True
   menages:
-    statut_occupation_logement: 8
+    statut_occupation_logement: sans_domicile
   individus:
   - id: "couple1"
     age: 55
@@ -27,7 +27,7 @@
     enfants: ["enfant1", "enfant2"]
     parisien: True
   menages:
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
   individus:
   - id: "couple1"
     age: 55
@@ -53,7 +53,7 @@
     enfants: ["enfant1", "enfant2","enfant3", "enfant4"]
     parisien: False
   menages:
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
   individus:
   - id: "couple1"
     age: 55
@@ -81,7 +81,7 @@
     enfants: ["enfant1", "enfant2","enfant3"]
     parisien: True
   menages:
-    statut_occupation_logement: 4
+    statut_occupation_logement: locataire_vide
   individus:
   - id: "couple1"
     age: 55
