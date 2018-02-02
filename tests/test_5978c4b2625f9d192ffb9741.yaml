@@ -350,10 +350,10 @@ individus:
       2017-05: false
       2017-04: false
     statut_marital:
-      2017-07: Célibataire
-      2017-06: Célibataire
-      2017-05: Célibataire
-      2017-04: Célibataire
+      2017-07: celibataire
+      2017-06: celibataire
+      2017-05: celibataire
+      2017-04: celibataire
     taux_incapacite:
       2017-07: false
       2017-06: false
@@ -500,10 +500,10 @@ menages:
       2017-05: false
       2017-04: false
     statut_occupation_logement:
-      2017-07: Locataire ou sous-locataire d‘un logement loué vide non-HLM
-      2017-06: Locataire ou sous-locataire d‘un logement loué vide non-HLM
-      2017-05: Locataire ou sous-locataire d‘un logement loué vide non-HLM
-      2017-04: Locataire ou sous-locataire d‘un logement loué vide non-HLM
+      2017-07: locataire_vide
+      2017-06: locataire_vide
+      2017-05: locataire_vide
+      2017-04: locataire_vide
     charges_locatives:
       2017-07: 20
       2017-06: 20

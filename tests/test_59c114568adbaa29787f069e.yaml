@@ -362,10 +362,10 @@ individus:
       2017-07: '1957-01-01'
       2017-06: '1957-01-01'
     statut_marital:
-      2017-09: Marié
-      2017-08: Marié
-      2017-07: Marié
-      2017-06: Marié
+      2017-09: marie
+      2017-08: marie
+      2017-07: marie
+      2017-06: marie
     indemnite_fin_contrat_net:
       2016-09: 505.91999999999996
       2016-10: 505.91999999999996
@@ -506,10 +506,10 @@ individus:
       2016-09: 0
   - id: enfant_0
     scolarite:
-      2017-09: Inconnue
-      2017-08: Inconnue
-      2017-07: Inconnue
-      2017-06: Inconnue
+      2017-09: inconnue
+      2017-08: inconnue
+      2017-07: inconnue
+      2017-06: inconnue
     echelon_bourse:
       2017-09: -1
       2017-08: -1
@@ -609,10 +609,10 @@ individus:
       2017-07: bic
       2017-06: bic
     statut_marital:
-      2017-09: Marié
-      2017-08: Marié
-      2017-07: Marié
-      2017-06: Marié
+      2017-09: marie
+      2017-08: marie
+      2017-07: marie
+      2017-06: marie
     date_naissance:
       2017-09: '1964-09-01'
       2017-08: '1964-09-01'
@@ -683,10 +683,10 @@ menages:
       2017-07: '75114'
       2017-06: '75114'
     statut_occupation_logement:
-      2017-09: Locataire ou sous-locataire d‘un logement loué vide non-HLM
-      2017-08: Locataire ou sous-locataire d‘un logement loué vide non-HLM
-      2017-07: Locataire ou sous-locataire d‘un logement loué vide non-HLM
-      2017-06: Locataire ou sous-locataire d‘un logement loué vide non-HLM
+      2017-09: locataire_vide
+      2017-08: locataire_vide
+      2017-07: locataire_vide
+      2017-06: locataire_vide
     personne_de_reference: demandeur
     conjoint: conjoint
     enfants:

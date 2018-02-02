@@ -358,10 +358,10 @@ individus:
       2017-07: '1991-08-26'
       2017-06: '1991-08-26'
     statut_marital:
-      2017-09: Célibataire
-      2017-08: Célibataire
-      2017-07: Célibataire
-      2017-06: Célibataire
+      2017-09: celibataire
+      2017-08: celibataire
+      2017-07: celibataire
+      2017-06: celibataire
     age:
       2017-09: 26
       2017-08: 26
@@ -427,9 +427,9 @@ menages:
       2017-07: '75110'
       2017-06: '75110'
     statut_occupation_logement:
-      2017-09: Locataire ou sous-locataire d‘un logement loué vide non-HLM
-      2017-08: Locataire ou sous-locataire d‘un logement loué vide non-HLM
-      2017-07: Locataire ou sous-locataire d‘un logement loué vide non-HLM
-      2017-06: Locataire ou sous-locataire d‘un logement loué vide non-HLM
+      2017-09: locataire_vide
+      2017-08: locataire_vide
+      2017-07: locataire_vide
+      2017-06: locataire_vide
     personne_de_reference: demandeur
     enfants: []
