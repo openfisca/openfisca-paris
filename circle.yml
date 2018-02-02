@@ -9,4 +9,5 @@ dependencies:
 
 test:
   override:
-    - ./run-tests.sh
+    - openfisca-run-test tests/unittests/*.yaml --extensions openfisca_paris
+    - openfisca-run-test tests/*.yaml --extensions openfisca_paris
