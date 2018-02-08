@@ -231,7 +231,7 @@ class paris_condition_taux_effort(Variable):
         rsa = famille('rsa', last_month)
         aah = famille('paris_base_ressources_aah', last_month)
         charges_forfaitaire_logement = famille('aide_logement_charges', period)
-        calcul_taux_effort = (loyer + charges_forfaitaire_logement - aide_logement) / (ressources_mensuelles+rsa+aah)
+        calcul_taux_effort = (loyer + charges_forfaitaire_logement - aide_logement) / (ressources_mensuelles + rsa + aah)
         condition_loyer = calcul_taux_effort >= taux_effort
         return condition_loyer
 
