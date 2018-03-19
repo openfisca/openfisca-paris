@@ -1,0 +1,8 @@
+imposition_maximale:
+  values:
+    2012-01-01:
+      value: 2028
+imposition_maximale_en_renouvellement:
+  values:
+    2012-01-01:
+      value: 2430
