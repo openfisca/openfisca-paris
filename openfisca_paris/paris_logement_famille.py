@@ -55,20 +55,15 @@ class plf_handicap(Variable):
         plafond = legislation(period).paris.paris_logement_familles.plafond_haut_3enf
         montant = legislation(period).paris.paris_logement_familles.montant_haut_3enf
 
-        plf_handicap = ((nb_enf_handicape > 0) * (br <= plafond) * montant) * (personnes_couple + parent_mono_plfm)
+        plf_handicap_elig = (nb_enf_handicape > 0) * (br <= plafond) * (personnes_couple + parent_mono_plfm)
 
         # Si tous les enfants handicapés sont en garde alternée
-        garde_alternee = (nb_enf_handicape - nb_enf_handicape_garde_alternee) == 0
-        deduction_garde_alternee = garde_alternee * 0.5 * plf_handicap
+        deduction_garde_alternee = ((nb_enf_handicape - nb_enf_handicape_garde_alternee) == 0) * 0.5
 
         # S'il a plus de 3 enfants
-        supa3_enfant = where(nb_enfant > 3, nb_enfant - 3, 0)
-        suppl_enfant = where(supa3_enfant > 0, P.montant_haut_enf_sup * supa3_enfant, 0)
+        suppl_enfant = (br <= plafond) * (nb_enfant > 3) * P.montant_haut_enf_sup
 
-        plf_handicap = plf_handicap + suppl_enfant
-
-        plf_handicap = plf_handicap - deduction_garde_alternee
-        return plf_handicap
+        return plf_handicap_elig * ((1 - deduction_garde_alternee) * montant + suppl_enfant)
 
 class paris_logement_familles(Variable):
     value_type = float
