@@ -342,3 +342,49 @@
       handicap: True
   output_variables:
     paris_logement_familles: 128
+
+- name: Prise en compte du plafond dans PLF BR>5000
+  output_variables:
+    plf_handicap: 0
+  absolute_error_margin: 0.01
+  period: 2018-03
+  individus:
+    - id: demandeur
+    - id: enfant_0
+      paris_enfant: True
+    - id: enfant_1
+      paris_enfant: True
+    - id: enfant_2
+      paris_enfant: True
+    - id: enfant_3
+      paris_enfant: True
+    - id: conjoint
+  familles:
+    - parents:
+        - demandeur
+        - conjoint
+      enfants:
+        - enfant_0
+        - enfant_1
+        - enfant_2
+        - enfant_3
+      paris_base_ressources_commun:
+        2018-03: 5420
+      parisien: True
+  foyers_fiscaux:
+    - declarants:
+        - demandeur
+        - conjoint
+      personnes_a_charge:
+        - enfant_0
+        - enfant_1
+        - enfant_2
+        - enfant_3
+  menages:
+    - personne_de_reference: demandeur
+      conjoint: conjoint
+      enfants:
+        - enfant_0
+        - enfant_1
+        - enfant_2
+        - enfant_3
