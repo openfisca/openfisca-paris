@@ -63,7 +63,7 @@ class plf_handicap(Variable):
 
         # S'il a plus de 3 enfants
         supa3_enfant = where(nb_enfant > 3, nb_enfant - 3, 0)
-        suppl_enfant = where((br <= plafond)*(supa3_enfant > 0), P.montant_haut_enf_sup * supa3_enfant, 0)
+        suppl_enfant = where((br <= plafond) * (supa3_enfant > 0), P.montant_haut_enf_sup * supa3_enfant, 0)
 
         plf_handicap = plf_handicap + suppl_enfant
 
