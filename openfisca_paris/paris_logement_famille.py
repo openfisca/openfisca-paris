@@ -33,7 +33,7 @@ class plf_handicap(Variable):
     entity = Famille
     definition_period = MONTH
     label = u"Allocation Paris-Logement-Famille en cas d'enfant handicapé"
- 
+
     def formula(famille, period, legislation):
         last_month = period.last_month
 
@@ -120,29 +120,3 @@ class paris_logement_familles(Variable):
         result = where(result_montant > 0, result_montant, 0)
 
         return result
-
-class toto_test(Variable):
-    value_type = float
-    label = u"Allocation Paris Logement Famille"
-    entity = Individu
-    definition_period = MONTH
-    reference = "http://www.paris.fr/pratique/toutes-les-aides-et-allocations/aides-sociales/paris-logement-familles-prestation-ville-de-paris/rub_9737_stand_88805_port_24193"  # noqa
-
-    def formula(individu, period):
-        janvier=period.first_month
-        age=individu('age',janvier)
-        is_pac=individu.has_role(FoyerFiscal.PERSONNE_A_CHARGE)
- 
-        return is_pac*(age<18);
-
-class paris_logement_familles_test(Variable):
-    value_type = float
-    label = u"Allocation Paris Logement Famille"
-    entity = Famille
-    definition_period = MONTH
-    reference = "http://www.paris.fr/pratique/toutes-les-aides-et-allocations/aides-sociales/paris-logement-familles-prestation-ville-de-paris/rub_9737_stand_88805_port_24193"  # noqa
-
-    def formula(famille, period, legislation):
-        loyer = famille.demandeur.menage('loyer', period)
- 
-        return loyer;
