@@ -72,4 +72,3 @@ class paris_logement_psol_montant(Variable):
             [(plafond_seul_psol - ressources_mensuelles_min), (plafond_couple_psol - ressources_mensuelles_min), 0])
 
         return result
-        #return personne_handicap
