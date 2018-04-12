@@ -1,0 +1,953 @@
+- name: PSOL 
+  description: >-
+    personne handicapé
+  output_variables:
+    paris_logement_psol: 0
+  absolute_error_margin: 0.2
+  period: 'month:2018-03'
+  familles:
+    - parisien:
+        2017-11: true
+        2017-12: true
+        2017-01: true
+        2018-02: true
+      parents:
+        - demandeur
+      enfants: []
+      af:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      rsa:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      bourse_lycee:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      bourse_college:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      ass:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      ppa:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      paje_base:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      asf:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      cf:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      asi:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      acs:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      aspa:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+  foyers_fiscaux:
+    - declarants:
+        - demandeur
+      personnes_a_charge: []
+  individus:
+    - id: demandeur
+      echelon_bourse:
+        2017-09: -1
+        2017-10: -1
+        2017-11: -1
+        2017-12: -1
+        2018-01: -1
+        2018-02: -1    
+      enfant_a_charge:
+        '2017': false
+      enfant_place:
+        2017-11: false
+        2017-12: false
+        2018-01: false
+        2018-02: false
+      tns_autres_revenus_type_activite:
+        2017-11: bic
+        2017-12: bic
+        2018-01: bic
+        2018-02: bic
+      tns_micro_entreprise_type_activite:
+        2017-11: bic
+        2017-12: bic
+        2018-01: bic
+        2018-02: bic
+      tns_auto_entrepreneur_type_activite:
+        2017-11: bic
+        2017-12: bic
+        2018-01: bic
+        2018-02: bic
+      date_naissance:
+        2017-11: '1957-01-01'
+        2017-12: '1957-01-01'
+        2018-01: '1957-01-01'
+        2018-02: '1957-01-01'
+      statut_marital:
+        2017-11: celibataire
+        2017-12: celibataire
+        2018-01: celibataire
+        2018-02: celibataire
+      indemnite_fin_contrat_net:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      handicap:
+        2017-11: true
+        2017-12: true
+        2018-01: true
+        2018-02: true
+      inapte_travail:
+        2017-11: false
+        2017-12: false
+        2018-01: false
+        2018-02: false
+      salaire_net:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      aah:
+        2017-09: 915.0
+        2017-10: 915.0
+        2017-11: 915.0
+        2017-12: 915.0
+        2018-01: 915.0
+        2018-02: 915.0
+  menages:
+    - loyer:
+        2017-11: 450
+        2017-12: 450
+        2018-01: 450
+        2018-02: 450
+        2018-03: 450
+      charges_locatives:
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      depcom:
+        2017-11: '75114'
+        2017-12: '75114'
+        2018-01: '75114'
+        2018-02: '75114'
+      statut_occupation_logement:
+        2017-11: locataire_vide
+        2017-12: locataire_vide
+        2018-01: locataire_vide
+        2018-02: locataire_vide
+      personne_de_reference: demandeur
+      enfants: []
+
+
+- name: PSOL 
+  description: >-
+    personne agée
+  output_variables:
+    paris_logement_psol: 111
+  absolute_error_margin: 1
+  period: 'month:2018-03'
+  familles:
+    - parisien:
+        2017-11: true
+        2017-12: true
+        2017-01: true
+        2018-02: true
+      parents:
+        - demandeur
+      enfants: []
+      af:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      rsa:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      bourse_lycee:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      bourse_college:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      ass:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      ppa:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      paje_base:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      asf:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      cf:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      asi:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      acs:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      aspa:
+        2017-09: 803
+        2017-10: 803
+        2017-11: 803
+        2017-12: 803
+        2018-01: 803
+        2018-02: 803
+        2018-03: 803
+  foyers_fiscaux:
+    - declarants:
+        - demandeur
+      personnes_a_charge: []
+  individus:
+    - id: demandeur
+      echelon_bourse:
+        2017-09: -1
+        2017-10: -1
+        2017-11: -1
+        2017-12: -1
+        2018-01: -1
+        2018-02: -1    
+      enfant_a_charge:
+        '2017': false
+      enfant_place:
+        2017-11: false
+        2017-12: false
+        2018-01: false
+        2018-02: false
+      tns_autres_revenus_type_activite:
+        2017-11: bic
+        2017-12: bic
+        2018-01: bic
+        2018-02: bic
+      tns_micro_entreprise_type_activite:
+        2017-11: bic
+        2017-12: bic
+        2018-01: bic
+        2018-02: bic
+      tns_auto_entrepreneur_type_activite:
+        2017-11: bic
+        2017-12: bic
+        2018-01: bic
+        2018-02: bic
+      age:
+        2017-11: 68
+        2017-12: 68
+        2018-01: 68
+        2018-02: 68
+      statut_marital:
+        2017-11: celibataire
+        2017-12: celibataire
+        2018-01: celibataire
+        2018-02: celibataire
+      indemnite_fin_contrat_net:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      handicap:
+        2017-11: false
+        2017-12: false
+        2018-01: false
+        2018-02: false
+      inapte_travail:
+        2017-11: false
+        2017-12: false
+        2018-01: false
+        2018-02: false
+      salaire_net:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      aah:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+  menages:
+    - loyer:
+        2017-11: 450
+        2017-12: 450
+        2018-01: 450
+        2018-02: 450
+        2018-03: 450
+      charges_locatives:
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      depcom:
+        2017-11: '75114'
+        2017-12: '75114'
+        2018-01: '75114'
+        2018-02: '75114'
+      statut_occupation_logement:
+        2017-11: locataire_vide
+        2017-12: locataire_vide
+        2018-01: locataire_vide
+        2018-02: locataire_vide
+      personne_de_reference: demandeur
+      enfants: []
+
+- name: PSOL 
+  description: >-
+   couple de personnes handicapé
+  output_variables:
+    paris_logement_psol: 0
+  absolute_error_margin: 0.2
+  period: 'month:2018-03'
+  familles:
+    - parisien:
+        2017-11: true
+        2017-12: true
+        2017-01: true
+        2018-02: true
+      parents:
+        - demandeur
+        - conjoint
+      enfants: []
+      af:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      rsa:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      bourse_lycee:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      bourse_college:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      ass:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      ppa:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      paje_base:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      asf:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      cf:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      asi:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      acs:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      aspa:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+  foyers_fiscaux:
+    - declarants:
+        - demandeur
+        - conjoint
+      personnes_a_charge: []
+  individus:
+    - id: demandeur
+      echelon_bourse:
+        2017-09: -1
+        2017-10: -1
+        2017-11: -1
+        2017-12: -1
+        2018-01: -1
+        2018-02: -1    
+      enfant_a_charge:
+        '2017': false
+      enfant_place:
+        2017-11: false
+        2017-12: false
+        2018-01: false
+        2018-02: false
+      tns_autres_revenus_type_activite:
+        2017-11: bic
+        2017-12: bic
+        2018-01: bic
+        2018-02: bic
+      tns_micro_entreprise_type_activite:
+        2017-11: bic
+        2017-12: bic
+        2018-01: bic
+        2018-02: bic
+      tns_auto_entrepreneur_type_activite:
+        2017-11: bic
+        2017-12: bic
+        2018-01: bic
+        2018-02: bic
+      date_naissance:
+        2017-11: '1957-01-01'
+        2017-12: '1957-01-01'
+        2018-01: '1957-01-01'
+        2018-02: '1957-01-01'
+      statut_marital:
+        2017-11: marie
+        2017-12: marie
+        2018-01: marie
+        2018-02: marie
+      indemnite_fin_contrat_net:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      handicap:
+        2017-11: true
+        2017-12: true
+        2018-01: true
+        2018-02: true
+      inapte_travail:
+        2017-11: false
+        2017-12: false
+        2018-01: false
+        2018-02: false
+      salaire_net:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      aah:
+        2017-09: 803.0
+        2017-10: 803.0
+        2017-11: 803.0
+        2017-12: 803.0
+        2018-01: 803.0
+        2018-02: 803.0
+    - id: conjoint
+      echelon_bourse:
+        2017-09: -1
+        2017-10: -1
+        2017-11: -1
+        2017-12: -1
+        2018-01: -1
+        2018-02: -1    
+      enfant_a_charge:
+        '2017': false
+      enfant_place:
+        2017-11: false
+        2017-12: false
+        2018-01: false
+        2018-02: false
+      tns_autres_revenus_type_activite:
+        2017-11: bic
+        2017-12: bic
+        2018-01: bic
+        2018-02: bic
+      tns_micro_entreprise_type_activite:
+        2017-11: bic
+        2017-12: bic
+        2018-01: bic
+        2018-02: bic
+      tns_auto_entrepreneur_type_activite:
+        2017-11: bic
+        2017-12: bic
+        2018-01: bic
+        2018-02: bic
+      date_naissance:
+        2017-11: '1957-01-01'
+        2017-12: '1957-01-01'
+        2018-01: '1957-01-01'
+        2018-02: '1957-01-01'
+      statut_marital:
+        2017-11: marie
+        2017-12: marie
+        2018-01: marie
+        2018-02: marie
+      indemnite_fin_contrat_net:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      handicap:
+        2017-11: true
+        2017-12: true
+        2018-01: true
+        2018-02: true
+      inapte_travail:
+        2017-11: false
+        2017-12: false
+        2018-01: false
+        2018-02: false
+      salaire_net:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      aah:
+        2017-09: 803.0
+        2017-10: 803.0
+        2017-11: 803.0
+        2017-12: 803.0
+        2018-01: 803.0
+        2018-02: 803.0
+  menages:
+    - loyer:
+        2017-11: 450
+        2017-12: 450
+        2018-01: 450
+        2018-02: 450
+        2018-03: 450
+      charges_locatives:
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      depcom:
+        2017-11: '75114'
+        2017-12: '75114'
+        2018-01: '75114'
+        2018-02: '75114'
+      statut_occupation_logement:
+        2017-11: locataire_vide
+        2017-12: locataire_vide
+        2018-01: locataire_vide
+        2018-02: locataire_vide
+      personne_de_reference: demandeur
+      conjoint: conjoint
+      enfants: []
+
+- name: PSOL 
+  description: >-
+   couple de personnes handicapé
+  output_variables:
+    paris_logement_psol: 206
+  absolute_error_margin: 0.2
+  period: 'month:2018-03'
+  familles:
+    - parisien:
+        2017-11: true
+        2017-12: true
+        2017-01: true
+        2018-02: true
+      parents:
+        - demandeur
+        - conjoint
+      enfants: []
+      af:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      rsa:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      bourse_lycee:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      bourse_college:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      ass:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      ppa:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      paje_base:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      asf:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      cf:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      asi:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      acs:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      aspa:
+        2017-09: 1246
+        2017-10: 1246
+        2017-11: 1246
+        2017-12: 1246
+        2018-01: 1246
+        2018-02: 1246
+  foyers_fiscaux:
+    - declarants:
+        - demandeur
+        - conjoint
+      personnes_a_charge: []
+  individus:
+    - id: demandeur
+      echelon_bourse:
+        2017-09: -1
+        2017-10: -1
+        2017-11: -1
+        2017-12: -1
+        2018-01: -1
+        2018-02: -1    
+      enfant_a_charge:
+        '2017': false
+      enfant_place:
+        2017-11: false
+        2017-12: false
+        2018-01: false
+        2018-02: false
+      tns_autres_revenus_type_activite:
+        2017-11: bic
+        2017-12: bic
+        2018-01: bic
+        2018-02: bic
+      tns_micro_entreprise_type_activite:
+        2017-11: bic
+        2017-12: bic
+        2018-01: bic
+        2018-02: bic
+      tns_auto_entrepreneur_type_activite:
+        2017-11: bic
+        2017-12: bic
+        2018-01: bic
+        2018-02: bic
+      age:
+        2017-11: 69
+        2017-12: 69
+        2018-01: 69
+        2018-02: 69
+      statut_marital:
+        2017-11: marie
+        2017-12: marie
+        2018-01: marie
+        2018-02: marie
+      indemnite_fin_contrat_net:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      handicap:
+        2017-11: false
+        2017-12: false
+        2018-01: false
+        2018-02: false
+      inapte_travail:
+        2017-11: false
+        2017-12: false
+        2018-01: false
+        2018-02: false
+      salaire_net:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      aah:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+    - id: conjoint
+      echelon_bourse:
+        2017-09: -1
+        2017-10: -1
+        2017-11: -1
+        2017-12: -1
+        2018-01: -1
+        2018-02: -1    
+      enfant_a_charge:
+        '2017': false
+      enfant_place:
+        2017-11: false
+        2017-12: false
+        2018-01: false
+        2018-02: false
+      tns_autres_revenus_type_activite:
+        2017-11: bic
+        2017-12: bic
+        2018-01: bic
+        2018-02: bic
+      tns_micro_entreprise_type_activite:
+        2017-11: bic
+        2017-12: bic
+        2018-01: bic
+        2018-02: bic
+      tns_auto_entrepreneur_type_activite:
+        2017-11: bic
+        2017-12: bic
+        2018-01: bic
+        2018-02: bic
+      age:
+        2017-11: 68
+        2017-12: 68
+        2018-01: 68
+        2018-02: 68
+      statut_marital:
+        2017-11: marie
+        2017-12: marie
+        2018-01: marie
+        2018-02: marie
+      indemnite_fin_contrat_net:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      handicap:
+        2017-11: false
+        2017-12: false
+        2018-01: false
+        2018-02: false
+      inapte_travail:
+        2017-11: false
+        2017-12: false
+        2018-01: false
+        2018-02: false
+      salaire_net:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      aah:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+  menages:
+    - loyer:
+        2017-11: 450
+        2017-12: 450
+        2018-01: 450
+        2018-02: 450
+        2018-03: 450
+      charges_locatives:
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+      depcom:
+        2017-11: '75114'
+        2017-12: '75114'
+        2018-01: '75114'
+        2018-02: '75114'
+      statut_occupation_logement:
+        2017-11: locataire_vide
+        2017-12: locataire_vide
+        2018-01: locataire_vide
+        2018-02: locataire_vide
+      personne_de_reference: demandeur
+      conjoint: conjoint
+      enfants: []
