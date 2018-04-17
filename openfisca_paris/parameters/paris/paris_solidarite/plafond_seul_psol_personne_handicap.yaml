@@ -1,4 +1,4 @@
-description: plafond pour une personne seule
+description: plafond pour une personne handicapée seule
 unit: currency
 values:
   2012-01-01:
@@ -7,3 +7,5 @@ values:
     value: 905.0
   2018-01-01:
     value: 915.0
+  2018-04-01:
+    value: 945.0
