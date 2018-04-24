@@ -1,0 +1,5 @@
+description: Montant pour une personne handicapée seule.
+unit: currency
+values:
+  2012-01-01:
+    value: 96
