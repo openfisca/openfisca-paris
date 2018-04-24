@@ -2,9 +2,9 @@
   description: >-
     personne handicapé seule
   output_variables:
-    paris_logement_psol: 0
+    paris_logement_psol: 54
   absolute_error_margin: 0.2
-  period: 'month:2018-03'
+  period: 'month:2018-04'
   familles:
     - parisien:
         2017-11: true
@@ -35,25 +35,27 @@
         2017-12: true
         2018-01: true
         2018-02: true
+        2018-03: true
       inapte_travail:
         2017-11: false
         2017-12: false
         2018-01: false
         2018-02: false
       aah:
-        2017-09: 915.0
-        2017-10: 915.0
-        2017-11: 915.0
-        2017-12: 915.0
-        2018-01: 915.0
-        2018-02: 915.0
+        2017-09: 860.89
+        2017-10: 860.89
+        2017-11: 860.89
+        2017-12: 860.89
+        2018-01: 860.89
+        2018-02: 860.89
+        2018-03: 860.89
   menages:
     - loyer:
-        2017-11: 450
-        2017-12: 450
-        2018-01: 450
-        2018-02: 450
-        2018-03: 450
+        2017-11: 500
+        2017-12: 500
+        2018-01: 500
+        2018-02: 500
+        2018-03: 500
       depcom:
         2017-11: '75114'
         2017-12: '75114'
@@ -70,11 +72,11 @@
 
 - name: PSOL 
   description: >-
-    personne agée seule
+    personne agée seule avec ASPA
   output_variables:
-    paris_logement_psol: 111
+    paris_logement_psol: 111.80
   absolute_error_margin: 1
-  period: 'month:2018-03'
+  period: 'month:2018-04'
   familles:
     - parisien:
         2017-11: true
@@ -89,9 +91,10 @@
         2017-10: 803
         2017-11: 803
         2017-12: 803
-        2018-01: 803
-        2018-02: 803
-        2018-03: 803
+        2018-01: 833.20
+        2018-02: 833.20
+        2018-03: 833.20
+        2018-04: 833.20
   foyers_fiscaux:
     - declarants:
         - demandeur
@@ -103,11 +106,166 @@
         2017-12: 68
         2018-01: 68
         2018-02: 68
+        2018-04: 68
       statut_marital:
         2017-11: celibataire
         2017-12: celibataire
         2018-01: celibataire
         2018-02: celibataire
+        2018-04: celibataire
+  menages:
+    - loyer:
+        2017-11: 500
+        2017-12: 500
+        2018-01: 500
+        2018-02: 500
+        2018-03: 500
+        2018-04: 500
+      depcom:
+        2017-11: '75114'
+        2017-12: '75114'
+        2018-01: '75114'
+        2018-02: '75114'
+        2018-04: '75114'
+      statut_occupation_logement:
+        2017-11: locataire_vide
+        2017-12: locataire_vide
+        2018-01: locataire_vide
+        2018-02: locataire_vide
+        2018-04: locataire_vide
+      personne_de_reference: demandeur
+      enfants: []
+
+- name: PSOL 
+  description: >-
+    personne agée seule avec retraite
+  output_variables:
+    paris_logement_psol: 45
+  absolute_error_margin: 1
+  period: 'month:2018-04'
+  familles:
+    - parisien:
+        2017-11: true
+        2017-12: true
+        2017-01: true
+        2018-02: true
+      parents:
+        - demandeur
+      enfants: []
+      aspa:
+        2017-09: 0
+        2017-10: 0
+        2017-11: 0
+        2017-12: 0
+        2018-01: 0
+        2018-02: 0
+        2018-03: 0
+        2018-04: 0
+  foyers_fiscaux:
+    - declarants:
+        - demandeur
+      personnes_a_charge: []
+  individus:
+    - id: demandeur
+      age:
+        2017-11: 68
+        2017-12: 68
+        2018-01: 68
+        2018-02: 68
+        2018-03: 68
+      statut_marital:
+        2017-11: celibataire
+        2017-12: celibataire
+        2018-01: celibataire
+        2018-02: celibataire
+        2018-04: celibataire
+      retraite_nette :
+        2017-11: 900
+        2017-12: 900
+        2018-01: 900
+        2018-02: 900
+        2018-03: 900
+  menages:
+    - loyer:
+        2017-11: 500
+        2017-12: 500
+        2018-01: 500
+        2018-02: 500
+        2018-03: 500
+        2018-04: 500
+      depcom:
+        2017-11: '75114'
+        2017-12: '75114'
+        2018-01: '75114'
+        2018-02: '75114'
+        2018-04: '75114'
+      statut_occupation_logement:
+        2017-11: locataire_vide
+        2017-12: locataire_vide
+        2018-01: locataire_vide
+        2018-02: locataire_vide
+        2018-04: locataire_vide
+      personne_de_reference: demandeur
+      enfants: []
+
+- name: PSOL 
+  description: >-
+   couple de personnes (1 personne handicapé et son conjoint sans ressources)
+  output_variables:
+    paris_logement_psol: 204.46
+  absolute_error_margin: 0.2
+  period: 'month:2018-03'
+  familles:
+    - parisien:
+        2017-11: true
+        2017-12: true
+        2017-01: true
+        2018-02: true
+      parents:
+        - demandeur
+        - conjoint
+      enfants: []
+  foyers_fiscaux:
+    - declarants:
+        - demandeur
+        - conjoint
+      personnes_a_charge: []
+  individus:
+    - id: demandeur
+      date_naissance:
+        2017-11: '1957-01-01'
+        2017-12: '1957-01-01'
+        2018-01: '1957-01-01'
+        2018-02: '1957-01-01'
+      statut_marital:
+        2017-11: marie
+        2017-12: marie
+        2018-01: marie
+        2018-02: marie
+      handicap:
+        2017-11: true
+        2017-12: true
+        2018-01: true
+        2018-02: true
+      aah:
+        2017-09: 819.0
+        2017-10: 819.0
+        2017-11: 819.0
+        2017-12: 819.0
+        2018-01: 819.0
+        2018-02: 819.0
+        2018-03: 819.0
+    - id: conjoint
+      date_naissance:
+        2017-11: '1957-01-01'
+        2017-12: '1957-01-01'
+        2018-01: '1957-01-01'
+        2018-02: '1957-01-01'
+      statut_marital:
+        2017-11: marie
+        2017-12: marie
+        2018-01: marie
+        2018-02: marie
   menages:
     - loyer:
         2017-11: 450
@@ -126,11 +284,161 @@
         2018-01: locataire_vide
         2018-02: locataire_vide
       personne_de_reference: demandeur
+      conjoint: conjoint
       enfants: []
 
 - name: PSOL 
   description: >-
-   couple de personnes handicapé
+   couple de personnes agées avec ASPA
+  output_variables:
+    paris_logement_psol: 204.46
+  absolute_error_margin: 0.2
+  period: 'month:2018-04'
+  familles:
+    - parisien:
+        2017-11: true
+        2017-12: true
+        2017-01: true
+        2018-02: true
+      parents:
+        - demandeur
+        - conjoint
+      enfants: []
+      aspa:
+        2017-09: 1293.54
+        2017-10: 1293.54
+        2017-11: 1293.54
+        2017-12: 1293.54
+        2018-01: 1293.54
+        2018-02: 1293.54
+        2018-03: 1293.54
+  foyers_fiscaux:
+    - declarants:
+        - demandeur
+        - conjoint
+      personnes_a_charge: []
+  individus:
+    - id: demandeur
+      age:
+        2017-11: 69
+        2017-12: 69
+        2018-01: 69
+        2018-02: 69
+      statut_marital:
+        2017-11: marie
+        2017-12: marie
+        2018-01: marie
+        2018-02: marie
+    - id: conjoint
+      age:
+        2017-11: 68
+        2017-12: 68
+        2018-01: 68
+        2018-02: 68
+      statut_marital:
+        2017-11: marie
+        2017-12: marie
+        2018-01: marie
+        2018-02: marie
+  menages:
+    - loyer:
+        2017-11: 500
+        2017-12: 500
+        2018-01: 500
+        2018-02: 500
+        2018-03: 500
+      depcom:
+        2017-11: '75114'
+        2017-12: '75114'
+        2018-01: '75114'
+        2018-02: '75114'
+      statut_occupation_logement:
+        2017-11: locataire_vide
+        2017-12: locataire_vide
+        2018-01: locataire_vide
+        2018-02: locataire_vide
+      personne_de_reference: demandeur
+      conjoint: conjoint
+      enfants: []
+
+- name: PSOL 
+  description: >-
+   couple de personnes agées avec ASPA
+  output_variables:
+    paris_logement_psol: 204.46
+  absolute_error_margin: 0.2
+  period: 'month:2018-04'
+  familles:
+    - parisien:
+        2017-11: true
+        2017-12: true
+        2017-01: true
+        2018-02: true
+        2018-03: true
+      parents:
+        - demandeur
+        - conjoint
+      enfants: []
+      aspa:
+        2017-09: 1000
+        2017-10: 1000
+        2017-11: 1000
+        2017-12: 1000
+        2018-01: 1000
+        2018-02: 1000
+        2018-03: 1000
+  foyers_fiscaux:
+    - declarants:
+        - demandeur
+        - conjoint
+      personnes_a_charge: []
+  individus:
+    - id: demandeur
+      age:
+        2017-11: 69
+        2017-12: 69
+        2018-01: 69
+        2018-02: 69
+      statut_marital:
+        2017-11: marie
+        2017-12: marie
+        2018-01: marie
+        2018-02: marie
+    - id: conjoint
+      age:
+        2017-11: 68
+        2017-12: 68
+        2018-01: 68
+        2018-02: 68
+      statut_marital:
+        2017-11: marie
+        2017-12: marie
+        2018-01: marie
+        2018-02: marie
+  menages:
+    - loyer:
+        2017-11: 500
+        2017-12: 500
+        2018-01: 500
+        2018-02: 500
+        2018-03: 500
+      depcom:
+        2017-11: '75114'
+        2017-12: '75114'
+        2018-01: '75114'
+        2018-02: '75114'
+      statut_occupation_logement:
+        2017-11: locataire_vide
+        2017-12: locataire_vide
+        2018-01: locataire_vide
+        2018-02: locataire_vide
+      personne_de_reference: demandeur
+      conjoint: conjoint
+      enfants: []
+
+- name: PSOL 
+  description: >-
+   couple de personnes (1 personne handicapé et son conjoint avec ressources)
   output_variables:
     paris_logement_psol: 0
   absolute_error_margin: 0.2
@@ -168,12 +476,13 @@
         2018-01: true
         2018-02: true
       aah:
-        2017-09: 803.0
-        2017-10: 803.0
-        2017-11: 803.0
-        2017-12: 803.0
-        2018-01: 803.0
-        2018-02: 803.0
+        2017-09: 819.0
+        2017-10: 819.0
+        2017-11: 819.0
+        2017-12: 819.0
+        2018-01: 819.0
+        2018-02: 819.0
+        2018-03: 819.0
     - id: conjoint
       date_naissance:
         2017-11: '1957-01-01'
@@ -185,86 +494,14 @@
         2017-12: marie
         2018-01: marie
         2018-02: marie
-      aah:
-        2017-09: 803.0
-        2017-10: 803.0
-        2017-11: 803.0
-        2017-12: 803.0
-        2018-01: 803.0
-        2018-02: 803.0
-  menages:
-    - loyer:
-        2017-11: 450
-        2017-12: 450
-        2018-01: 450
-        2018-02: 450
-        2018-03: 450
-      depcom:
-        2017-11: '75114'
-        2017-12: '75114'
-        2018-01: '75114'
-        2018-02: '75114'
-      statut_occupation_logement:
-        2017-11: locataire_vide
-        2017-12: locataire_vide
-        2018-01: locataire_vide
-        2018-02: locataire_vide
-      personne_de_reference: demandeur
-      conjoint: conjoint
-      enfants: []
-
-- name: PSOL 
-  description: >-
-   couple de personnes handicapé
-  output_variables:
-    paris_logement_psol: 206
-  absolute_error_margin: 0.2
-  period: 'month:2018-03'
-  familles:
-    - parisien:
-        2017-11: true
-        2017-12: true
-        2017-01: true
-        2018-02: true
-      parents:
-        - demandeur
-        - conjoint
-      enfants: []
-      aspa:
-        2017-09: 1246
-        2017-10: 1246
-        2017-11: 1246
-        2017-12: 1246
-        2018-01: 1246
-        2018-02: 1246
-  foyers_fiscaux:
-    - declarants:
-        - demandeur
-        - conjoint
-      personnes_a_charge: []
-  individus:
-    - id: demandeur
-      age:
-        2017-11: 69
-        2017-12: 69
-        2018-01: 69
-        2018-02: 69
-      statut_marital:
-        2017-11: marie
-        2017-12: marie
-        2018-01: marie
-        2018-02: marie
-    - id: conjoint
-      age:
-        2017-11: 68
-        2017-12: 68
-        2018-01: 68
-        2018-02: 68
-      statut_marital:
-        2017-11: marie
-        2017-12: marie
-        2018-01: marie
-        2018-02: marie
+      salaire_net : 
+        2017-09: 200.0
+        2017-10: 200.0
+        2017-11: 200.0
+        2017-12: 200.0
+        2018-01: 200.0
+        2018-02: 200.0
+        2018-03: 200.0
   menages:
     - loyer:
         2017-11: 450
