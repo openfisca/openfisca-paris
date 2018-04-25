@@ -70,44 +70,15 @@ class paris_logement_psol_montant(Variable):
         )
 
         plancher_ressources = where(personnes_couple, montant_couple, montant_seul)
-        ressources_mensuelles_min = where(ressources_mensuelles < plancher_ressources, plancher_ressources,
-            ressources_mensuelles)
-
-        #result = select(
-        #    [
-        #        not_(personnes_couple) * (ressources_mensuelles_min <= plafond_psol),
-        #        personnes_couple * (ressources_mensuelles_min <= plafond_psol),
-        #        (not_(personnes_couple) + personnes_couple) * (ressources_mensuelles_min > plafond_psol)
-        #    ],
-        #    [(plafond_seul_psol - ressources_mensuelles_min), (plafond_couple_psol - ressources_mensuelles_min), 0])
-
-        montant_aide = select(
-            [
-                (not_(personnes_couple) * (nb_personne_handicap == 0) * (ressources_mensuelles_min <= plafond_psol)),
-                personnes_couple * (nb_personne_handicap == 0) * (ressources_mensuelles_min <= plafond_psol), 
-                (not_(personnes_couple) * (nb_personne_handicap == 1) * (ressources_mensuelles_min <= plafond_psol)),
-                (personnes_couple * (nb_personne_handicap == 1) * (ressources_conjoint == 0) * (ressources_mensuelles_min <= plafond_psol)),
-                (not_(personnes_couple) + personnes_couple) * (ressources_mensuelles_min > plafond_psol)
-            ],
-            [
-                (plafond_seul_psol - ressources_mensuelles_min), 
-                (plafond_couple_psol - ressources_mensuelles_min),
-                (plafond_seul_psol_personne_handicap - ressources_mensuelles_min), 
-                (plafond_couple_psol - ressources_mensuelles_min),
-                0
-            ])
+        ressources_mensuelles_min = max_(plancher_ressources, ressources_mensuelles)
+        montant_aide  = plafond_psol - ressources_mensuelles_min
 
         montant_max = select(
             [
-                ((personnes_couple) * (nb_personne_handicap == 0)), 
-                (not_(personnes_couple) * (nb_personne_handicap == 1)), 
-                (not_(personnes_couple) * (nb_personne_handicap == 0)),
-                ((personnes_couple) * (nb_personne_handicap == 1) * (ressources_conjoint == 0))
-            ], 
-            [
-                montant_aide_couple, montant_aide_seul_ph, montant_aide_seul_pa, montant_aide_couple
-            ])
+                (personnes_couple) * ((nb_personne_handicap == 0) + (nb_personne_handicap == 1) * (ressources_conjoint == 0)),
+                not_(personnes_couple) * (nb_personne_handicap == 1),
+                not_(personnes_couple) * (nb_personne_handicap == 0)
+            ],
+            [montant_aide_couple, montant_aide_seul_ph, montant_aide_seul_pa])
 
-        result = where(montant_aide < montant_max, montant_aide, montant_max)
-
-        return result
+        return max_(0, min_(montant_aide, montant_max))
