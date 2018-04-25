@@ -1,5 +1,5 @@
-- name: "Couple non éligible pour l'aide PSOL car statut handicapé"
-  description: Personne handicape
+- name: "Couple non éligible pour l'aide PSOL car les parents n'ont pas le statut handicapé"
+  description: Personne handicapée
   period: 2016-02
   familles:
     parents: ["couple1", "couple2"]
@@ -35,9 +35,9 @@
     chomage_net:
       2016-01: 600
   output_variables:
-    paris_logement_psol: 100
+    paris_logement_psol: 96
 
-- name: "Personne éligible pour l'aide PSOL car revenus < 900"
+- name: "Personne non éligible pour l'aide PSOL car revenus > 900"
   description: Personne agée
   period: 2016-02
   input_variables:
@@ -84,7 +84,7 @@
   output_variables:
     paris_logement_psol: 0
 
-- name: "Couple non éligible pour l'aide PSOL car statut handicapé"
+- name: "Couple non éligible pour l'aide PSOL car statut handicapé et revenus > 900"
   description: Personne handicape
   period: 2016-02
   familles:
@@ -151,7 +151,7 @@
     salaire_net:
       2016-01: 80
   output_variables:
-    paris_logement_psol: 100
+    paris_logement_psol: 96
 
 - name: "Personne non éligible pour l'aide PSOL car revenus > 900"
   description: Personne handicape
@@ -211,7 +211,7 @@
   output_variables:
     paris_logement_psol: 0
 
-- name: "Couple éligible pour l'aide PSOL car statut handicapé"
+- name: "Couple non éligible pour l'aide PSOL car statut handicapé"
   description: Personne handicape
   period: 2016-02
   familles:
@@ -230,7 +230,7 @@
     indemnites_stage:
       2016-01: 100
   output_variables:
-    paris_logement_psol: 188
+    paris_logement_psol: 0
 
 - name: "Personne éligible pour l'aide PSOL car statut personne âgée"
   description: Personne agée
@@ -298,7 +298,7 @@
   output_variables:
     paris_logement_psol: 188
 
-- name: "Couple éligible pour l'aide PSOL car trop jeune"
+- name: "Couple éligible pour l'aide PSOL"
   description: Personne agée
   period: 2016-02
   familles:
