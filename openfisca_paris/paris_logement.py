@@ -37,7 +37,7 @@ class paris_logement_pa_ph(Variable):
 
         paris_base_ressources_commun = famille('paris_base_ressources_commun', last_month)
         aspa = famille('aspa', last_month)
-        asi = famille('asi', last_month)
+        asi = famille.sum(famille.members('asi', last_month))
         aah = famille('paris_base_ressources_aah', last_month)
         aide_logement = famille('aide_logement', last_month)
         loyer_net = famille('paris_loyer_net', period)

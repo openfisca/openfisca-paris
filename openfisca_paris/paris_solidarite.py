@@ -44,7 +44,7 @@ class paris_logement_psol_base_ressources(Variable):
 
         paris_base_ressources_commun = famille('paris_base_ressources_commun', period)
         aspa = famille('aspa', period)
-        asi = famille('asi', period)
+        asi = famille.sum(famille.members('asi', period))
         aah = famille('paris_base_ressources_aah', period)
         caah = famille.sum(famille.members('caah', period))
 

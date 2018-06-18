@@ -28,7 +28,7 @@ class paris_complement_sante(Variable):
         cmu_c = famille('cmu_c', period)
         aspa = famille('aspa', last_month)
         ass = famille('ass', last_month)
-        asi = famille('asi', last_month)
+        asi = famille.sum(famille.members('asi', last_month))
         aide_logement = famille('aide_logement', last_month)
         acs_montant = famille('acs_montant', period)
         acs_plafond = famille('acs_plafond', period)
