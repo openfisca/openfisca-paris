@@ -325,3 +325,25 @@
       2018-03: 100
   output_variables:
     paris_logement_psol: 204.46
+
+- name: Famille monoparental éligible à PSOL car le parent est en situation de handicap
+  description: Non prise en compte des pensions_alimentaires_percues dans la base ressources
+  period: 2018-04
+  familles:
+    parents: ["parent"]
+    enfants: ["enfant1"]
+    parisien: True
+  menages:
+    statut_occupation_logement: locataire_vide
+  individus:
+  - id: "parent"
+    age: 35
+    handicap: True
+    aah:
+      2018-05: 819
+    pensions_alimentaires_percues:
+      2018-05: 300
+  - id: "enfant1"
+    age: 8    
+  output_variables:
+    paris_logement_psol: 96
