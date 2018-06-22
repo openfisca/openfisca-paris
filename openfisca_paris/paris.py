@@ -34,9 +34,6 @@ class paris_base_ressources_commun_i(Variable):
         indemnites_chomage_partiel = individu('indemnites_chomage_partiel', period)
         indemnites_volontariat = individu('indemnites_volontariat', period)
 
-        #pensions_alimentaires_percues = individu('pensions_alimentaires_percues', period)
-        #pensions_alimentaires_versees_individu = individu(
-        #    'pensions_alimentaires_versees_individu', period)
         prestation_compensatoire = individu('prestation_compensatoire', period)
         retraite_nette = individu('retraite_nette', period)
         pensions_invalidite = individu('pensions_invalidite', period)
@@ -53,7 +50,6 @@ class paris_base_ressources_commun_i(Variable):
 
         result = (
             salaire_net + indemnites_chomage_partiel + chomage_net + retraite_nette +
-            #pensions_alimentaires_percues - abs_(pensions_alimentaires_versees_individu) +
             allocation_securisation_professionnelle + prestation_compensatoire +
             pensions_invalidite + revenus_tns() + revenus_stage_formation_pro +
             indemnites_stage_imposable + indemnites_journalieres + indemnites_volontariat
