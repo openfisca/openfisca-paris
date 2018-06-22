@@ -198,3 +198,55 @@
     age: 9
   output_variables:
     paris_energie_famille: 275
+
+- name: "famille éligible pour l'aide paris energie famille"
+  period: 2016-02
+  familles:
+    parents: ["couple1"]
+    enfants: ["enfant1","enfant2"]
+    parisien: True
+  menages:
+    statut_occupation_logement: locataire_vide
+  individus:
+  - id: "couple1"
+    age: 35
+    salaire_net:
+      2015-11: 1000
+      2015-12: 1000
+      2016-01: 1000
+      year:2015-02: 22320
+  - id: "enfant1"
+    age: 9
+    handicap: True
+  - id: "enfant2"
+    age: 9
+  output_variables:
+    paris_energie_famille: 275
+
+- name: "famille éligible pour l'aide paris energie famille"
+  period: 2018-06
+  familles:
+    parents: ["couple1"]
+    enfants: ["enfant1","enfant2"]
+    parisien: True
+  menages:
+    statut_occupation_logement: loge_gratuitement
+    participation_frais: True
+  individus:
+  - id: "couple1"
+    age: 35
+    salaire_net:
+      2018-03: 850
+      2018-04: 850
+      2018-05: 850
+    pensions_alimentaires_percues:
+      2018-03: 200
+      2018-04: 200
+      2018-05: 200
+  - id: "enfant1"
+    age: 9
+  - id: "enfant2"
+    age: 9
+  output_variables:
+    paris_energie_famille: 138
+
