@@ -33,6 +33,23 @@ class paris_logement_psol(Variable):
 
         return result
 
+
+class paris_logement_psol_base_ressources(Variable):
+    value_type = float
+    label = u"Base ressources mensuelle pour PSOL"
+    entity = Famille
+    definition_period = MONTH
+
+    def formula(famille, period, legislation):
+
+        paris_base_ressources_commun = famille('paris_base_ressources_commun', period)
+        aspa = famille('aspa', period)
+        asi = famille('asi', period)
+        aah = famille('paris_base_ressources_aah', period)
+
+        return paris_base_ressources_commun + asi + aspa + aah
+
+
 class paris_logement_psol_montant(Variable):
     value_type = float
     label = u"Montant de l'aide PSOL"
@@ -56,13 +73,9 @@ class paris_logement_psol_montant(Variable):
         personnes_couple = famille('en_couple', period)
         personne_handicap_individu = famille.members('paris_personnes_handicap', period)
         nb_personne_handicap = famille.sum(personne_handicap_individu)
-        paris_base_ressources_commun = famille('paris_base_ressources_commun', last_month)
-        aspa = famille('aspa', last_month)
-        asi = famille('asi', last_month)
-        aah = famille('paris_base_ressources_aah', last_month)
         ressources_conjoint = famille.conjoint('paris_base_ressources_commun_i', last_month)
 
-        ressources_mensuelles = paris_base_ressources_commun + asi + aspa + aah
+        ressources_mensuelles = famille('paris_logement_psol_base_ressources', last_month)
 
         plafond_psol = select(
             [personnes_couple, nb_personne_handicap == 1, not_(personnes_couple) * (nb_personne_handicap == 0)],
