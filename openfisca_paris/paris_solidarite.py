@@ -33,6 +33,40 @@ class paris_logement_psol(Variable):
 
         return result
 
+
+class paris_logement_psol_base_ressources(Variable):
+    value_type = float
+    label = u"Base ressources mensuelle pour PSOL"
+    entity = Famille
+    definition_period = MONTH
+
+    def formula(famille, period, legislation):
+
+        paris_base_ressources_commun = famille('paris_base_ressources_commun', period)
+        aspa = famille('aspa', period)
+        asi = famille('asi', period)
+        aah = famille('paris_base_ressources_aah', period)
+
+        return paris_base_ressources_commun + asi + aspa + aah
+
+
+class paris_logement_psol_plancher_ressources(Variable):
+    value_type = float
+    label = u"Plancher de ressources mensuelles pour PSOL"
+    entity = Famille
+    definition_period = MONTH
+
+    def formula(famille, period, legislation):
+        montant_seul_annuel = legislation(period).prestations.minima_sociaux.aspa.montant_annuel_seul
+        montant_couple_annuel = legislation(period).prestations.minima_sociaux.aspa.montant_annuel_couple
+
+        montant_seul = montant_seul_annuel / 12
+        montant_couple = montant_couple_annuel / 12
+
+        personnes_couple = famille('en_couple', period)
+        return where(personnes_couple, montant_couple, montant_seul)
+
+
 class paris_logement_psol_montant(Variable):
     value_type = float
     label = u"Montant de l'aide PSOL"
@@ -42,8 +76,6 @@ class paris_logement_psol_montant(Variable):
     def formula(famille, period, legislation):
         last_month = period.last_month
 
-        montant_seul_annuel = legislation(period).prestations.minima_sociaux.aspa.montant_annuel_seul
-        montant_couple_annuel = legislation(period).prestations.minima_sociaux.aspa.montant_annuel_couple
         plafond_seul_psol = legislation(period).paris.paris_solidarite.plafond_seul_psol
         plafond_couple_psol = legislation(period).paris.paris_solidarite.plafond_couple_psol
         plafond_seul_psol_personne_handicap = legislation(period).paris.paris_solidarite.plafond_seul_psol_personne_handicap
@@ -51,25 +83,20 @@ class paris_logement_psol_montant(Variable):
         montant_aide_seul_ph = legislation(period).paris.paris_solidarite.montant_ph
         montant_aide_couple = legislation(period).paris.paris_solidarite.montant_couple
 
-        montant_seul = montant_seul_annuel / 12
-        montant_couple = montant_couple_annuel / 12
         personnes_couple = famille('en_couple', period)
+        plancher_ressources = famille('paris_logement_psol_plancher_ressources', period)
+
         personne_handicap_individu = famille.members('paris_personnes_handicap', period)
         nb_personne_handicap = famille.sum(personne_handicap_individu)
-        paris_base_ressources_commun = famille('paris_base_ressources_commun', last_month)
-        aspa = famille('aspa', last_month)
-        asi = famille('asi', last_month)
-        aah = famille('paris_base_ressources_aah', last_month)
         ressources_conjoint = famille.conjoint('paris_base_ressources_commun_i', last_month)
 
-        ressources_mensuelles = paris_base_ressources_commun + asi + aspa + aah
+        ressources_mensuelles = famille('paris_logement_psol_base_ressources', last_month)
 
         plafond_psol = select(
             [personnes_couple, nb_personne_handicap == 1, not_(personnes_couple) * (nb_personne_handicap == 0)],
             [plafond_couple_psol, plafond_seul_psol_personne_handicap, plafond_seul_psol]
         )
 
-        plancher_ressources = where(personnes_couple, montant_couple, montant_seul)
         ressources_mensuelles_min = max_(plancher_ressources, ressources_mensuelles)
         montant_aide  = plafond_psol - ressources_mensuelles_min
 
