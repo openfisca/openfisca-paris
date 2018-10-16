@@ -347,3 +347,17 @@
     age: 8    
   output_variables:
     paris_logement_psol: 96
+
+- name: "Personne non éligible pour l'aide PSOL car CAAH > 900"
+  description: Personne handicape
+  period: 2018-04
+  input_variables:
+    age: 55
+    parisien: True
+    statut_occupation_logement: locataire_vide
+    handicap: True
+    loyer: 600
+    caah:
+      2018-03: 1000
+  output_variables:
+    paris_logement_psol: 0
