@@ -276,29 +276,9 @@
   - id: "couple2"
     age: 66
   output_variables:
-    paris_logement_psol: 188
+    paris_logement_psol: 188 # 1430 - 1242
 
-- name: "Couple avec revenus inférieurs au plancher pour l'aide PSOL"
-  description: Personne agée
-  period: 2016-02
-  familles:
-    parents: ["couple1", "couple2"]
-    parisien: True
-    aspa:
-      2016-01: 850
-  menages:
-    statut_occupation_logement: locataire_vide
-  individus:
-  - id: "couple1"
-    age: 65
-    salaire_net:
-      2016-01: 100
-  - id: "couple2"
-    age: 66
-  output_variables:
-    paris_logement_psol: 188
-
-- name: "Couple éligible pour l'aide PSOL"
+- name: "Couple éligible à 100% pour PSOL car les revenus inférieurs au plancher"
   description: Personne agée
   period: 2016-02
   familles:
@@ -324,4 +304,4 @@
       2015-12: 100
       2016-01: 100
   output_variables:
-    paris_logement_psol: 188
+    paris_logement_psol: 204.46
