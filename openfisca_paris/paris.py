@@ -20,6 +20,8 @@ class paris_base_ressources_commun_i(Variable):
     def formula(individu, period, legislation):
         last_year = period.last_year
 
+        ass = individu('ass', period)
+
         salaire_net = individu('salaire_net', period)
         indemnites_stage = individu('indemnites_stage', period)
         smic = legislation(period).paris.smic_net_mensuel
@@ -49,7 +51,7 @@ class paris_base_ressources_commun_i(Variable):
             return revenus_auto_entrepreneur + tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole + tns_autres_revenus
 
         result = (
-            salaire_net + indemnites_chomage_partiel + chomage_net + retraite_nette +
+            ass + salaire_net + indemnites_chomage_partiel + chomage_net + retraite_nette +
             allocation_securisation_professionnelle + prestation_compensatoire +
             pensions_invalidite + revenus_tns() + revenus_stage_formation_pro +
             indemnites_stage_imposable + indemnites_journalieres + indemnites_volontariat
@@ -64,14 +66,8 @@ class paris_base_ressources_commun(Variable):
     definition_period = MONTH
 
     def formula(famille, period):
-
-        ass = famille('ass', period)
         paris_base_ressources_i = famille.members('paris_base_ressources_commun_i', period)
-        paris_base_ressources = famille.sum(paris_base_ressources_i)
-
-        result = paris_base_ressources + ass
-
-        return result
+        return famille.sum(paris_base_ressources_i)
 
 class paris_indemnite_enfant_i(Variable):
     value_type = float
