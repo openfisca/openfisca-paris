@@ -1,20 +1,43 @@
-defaults: &defaults
+python2: &python2
   working_directory: ~/openfisca-paris
   docker:
     - image: python:2.7.12
 
+python3: &python3
+  working_directory: ~/openfisca-paris
+  docker:
+    - image: python:3.6.7
+
+upgrade_pip: &upgrade_pip
+  run:
+    name: Upgrade pip
+    command: pip install --upgrade pip wheel
+
+install_dependencies: &install_dependencies
+  run:
+    name: Install dependencies
+    command: pip install . --upgrade && pip install ".[test]"
+
 version: 2
 jobs:
-  test:
-    <<: *defaults
+  test_python2:
+    <<: *python2
     steps:
       - checkout
+      - *upgrade_pip
+      - *install_dependencies
       - run:
-          name: Upgrade pip
-          command: pip install --upgrade pip wheel
+          name: Run unit tests
+          command: make utest
       - run:
-          name: Install dependencies
-          command: pip install . --upgrade && pip install ".[test]"
+          name: Run specific tests
+          command: make stest
+  test_python3:
+    <<: *python3
+    steps:
+      - checkout
+      - *upgrade_pip
+      - *install_dependencies
       - run:
           name: Run unit tests
           command: make utest
@@ -26,4 +49,5 @@ workflows:
   version: 2
   test:
     jobs:
-      - test
+      - test_python2
+      - test_python3
