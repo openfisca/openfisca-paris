@@ -1,170 +1,247 @@
 - name: "Famille non éligible pour l'aide Paris logement familles monoparentales "
   period: 2016-02
-  familles:
-    parents: ["parent1"]
-    enfants: ["enfant1"]
-    parisien: True
-  menages:
-    statut_occupation_logement: locataire_vide
-    personne_de_reference: "parent1"
-    enfants: ["enfant1"]
-    loyer: 400
-  individus:
-    - id: "parent1"
-      age: 55
-      salaire_net:
-        2016-01: 4100
-    - id: "enfant1"
-      age: 5
-  output_variables:
+  input:
+    famille:
+      parents: [parent1]
+      enfants: [enfant1]
+      parisien: true
+    menage:
+      statut_occupation_logement: locataire_vide
+      personne_de_reference: parent1
+      enfants: [enfant1]
+      loyer: 400
+    individus:
+      parent1:
+        age: 55
+        salaire_net:
+          2016-01: 4100
+      enfant1:
+        age: 5
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+      foyer_fiscal_1:
+        declarants:
+        - enfant1
+  output:
     paris_logement_plfm: 0
 
-- name: "Famille éligible pour l'aide Paris logement familles monoparentales"
+- name: Famille éligible pour l'aide Paris logement familles monoparentales
   period: 2016-02
-  familles:
-    parents: ["parent1"]
-    enfants: ["enfant1", "enfant2"]
-    parisien: True
-  menages:
-    statut_occupation_logement: locataire_vide
-    personne_de_reference: "parent1"
-    enfants: ["enfant1", "enfant2"]
-    loyer: 400
-  individus:
-    - id: "parent1"
-      age: 55
-      salaire_net:
-        2016-01: 1100
-    - id: "enfant1"
-      age: 5
-    - id: "enfant2"
-      age: 9
-  output_variables:
+  input:
+    famille:
+      parents: [parent1]
+      enfants: [enfant1, enfant2]
+      parisien: true
+    menage:
+      statut_occupation_logement: locataire_vide
+      personne_de_reference: parent1
+      enfants: [enfant1, enfant2]
+      loyer: 400
+    individus:
+      parent1:
+        age: 55
+        salaire_net:
+          2016-01: 1100
+      enfant1:
+        age: 5
+      enfant2:
+        age: 9
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+      foyer_fiscal_1:
+        declarants:
+        - enfant1
+      foyer_fiscal_2:
+        declarants:
+        - enfant2
+  output:
     paris_logement_plfm: 0
 
-- name: "Famille non éligible pour l'aide Paris logement familles monoparentales"
+- name: Famille non éligible pour l'aide Paris logement familles monoparentales
   period: 2016-02
-  familles:
-    parents: ["parent1", "parent2"]
-    enfants: ["enfant1", "enfant2"]
-    parisien: True
-  menages:
-    statut_occupation_logement: locataire_vide
-    personne_de_reference: "parent1"
-    conjoint: "parent2"
-    enfants: ["enfant1", "enfant2"]
-    loyer: 400
-  individus:
-    - id: "parent1"
-      age: 55
-      salaire_net:
-        2016-01: 4100
-    - id: "parent2"
-      age: 55
-      chomage_net:
-        2016-01: 400
-    - id: "enfant1"
-      age: 5
-    - id: "enfant2"
-      age: 9
-  output_variables:
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1, enfant2]
+      parisien: true
+    menage:
+      statut_occupation_logement: locataire_vide
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [enfant1, enfant2]
+      loyer: 400
+    individus:
+      parent1:
+        age: 55
+        salaire_net:
+          2016-01: 4100
+      parent2:
+        age: 55
+        chomage_net:
+          2016-01: 400
+      enfant1:
+        age: 5
+      enfant2:
+        age: 9
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+      foyer_fiscal_1:
+        declarants:
+        - parent2
+      foyer_fiscal_2:
+        declarants:
+        - enfant1
+      foyer_fiscal_3:
+        declarants:
+        - enfant2
+  output:
     paris_logement_plfm: 0
 
-- name: "Famille éligible pour l'aide Paris logement familles monoparentales"
+- name: Famille éligible pour l'aide Paris logement familles monoparentales
   period: 2016-02
-  familles:
-    parents: ["parent1"]
-    enfants: ["enfant1", "enfant2"]
-    parisien: True
-    aide_logement:
-      2016-01: 100
-  menages:
-    statut_occupation_logement: locataire_vide
-    personne_de_reference: "parent1"
-    enfants: ["enfant1", "enfant2"]
-    charges_locatives: 50
-  individus:
-    - id: "parent1"
-      age: 55
-      salaire_net:
-        2016-01: 1500
-    - id: "enfant1"
-      age: 5
-    - id: "enfant2"
-      age: 9
-  output_variables:
+  input:
+    famille:
+      parents: [parent1]
+      enfants: [enfant1, enfant2]
+      parisien: true
+      aide_logement:
+        2016-01: 100
+    menage:
+      statut_occupation_logement: locataire_vide
+      personne_de_reference: parent1
+      enfants: [enfant1, enfant2]
+      charges_locatives: 50
+    individus:
+      parent1:
+        age: 55
+        salaire_net:
+          2016-01: 1500
+      enfant1:
+        age: 5
+      enfant2:
+        age: 9
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+      foyer_fiscal_1:
+        declarants:
+        - enfant1
+      foyer_fiscal_2:
+        declarants:
+        - enfant2
+  output:
     paris_logement_plfm: 0
 
-- name: "Famille éligible pour l'aide Paris logement familles monoparentales"
+- name: Famille éligible pour l'aide Paris logement familles monoparentales
   period: 2016-02
-  familles:
-    parents: ["parent1"]
-    enfants: ["enfant1", "enfant2"]
-    parisien: True
-    aide_logement:
-      2016-01: 100
-  menages:
-    statut_occupation_logement: locataire_vide
-    personne_de_reference: "parent1"
-    enfants: ["enfant1", "enfant2"]
-    charges_locatives: 50
-    loyer : 500
-  individus:
-    - id: "parent1"
-      age: 55
-      salaire_net:
-        2016-01: 1500
-    - id: "enfant1"
-      age: 5
-    - id: "enfant2"
-      age: 9
-  output_variables:
+  input:
+    famille:
+      parents: [parent1]
+      enfants: [enfant1, enfant2]
+      parisien: true
+      aide_logement:
+        2016-01: 100
+    menage:
+      statut_occupation_logement: locataire_vide
+      personne_de_reference: parent1
+      enfants: [enfant1, enfant2]
+      charges_locatives: 50
+      loyer: 500
+    individus:
+      parent1:
+        age: 55
+        salaire_net:
+          2016-01: 1500
+      enfant1:
+        age: 5
+      enfant2:
+        age: 9
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+      foyer_fiscal_1:
+        declarants:
+        - enfant1
+      foyer_fiscal_2:
+        declarants:
+        - enfant2
+  output:
     paris_logement_plfm: 128
 
-- name: "Famille éligible pour l'aide Paris logement familles monoparentales"
+- name: Famille éligible pour l'aide Paris logement familles monoparentales
   period: 2016-02
-  familles:
-    parents: ["parent1"]
-    enfants: ["enfant1", "enfant2"]
-    parisien: True
-    aide_logement:
-      2016-01: 100
-  menages:
-    statut_occupation_logement: locataire_vide
-    personne_de_reference: "parent1"
-    enfants: ["enfant1", "enfant2"]
-  individus:
-    - id: "parent1"
-      age: 55
-      salaire_net:
-        2016-01: 1500
-    - id: "enfant1"
-      age: 5
-    - id: "enfant2"
-      age: 9
-  output_variables:
+  input:
+    famille:
+      parents: [parent1]
+      enfants: [enfant1, enfant2]
+      parisien: true
+      aide_logement:
+        2016-01: 100
+    menage:
+      statut_occupation_logement: locataire_vide
+      personne_de_reference: parent1
+      enfants: [enfant1, enfant2]
+    individus:
+      parent1:
+        age: 55
+        salaire_net:
+          2016-01: 1500
+      enfant1:
+        age: 5
+      enfant2:
+        age: 9
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+      foyer_fiscal_1:
+        declarants:
+        - enfant1
+      foyer_fiscal_2:
+        declarants:
+        - enfant2
+  output:
     paris_logement_plfm: 0
 
-- name: "Famille éligible pour l'aide Paris logement familles monoparentales"
+- name: Famille éligible pour l'aide Paris logement familles monoparentales
   period: 2016-02
-  familles:
-    parents: ["parent1"]
-    enfants: ["enfant1", "enfant2"]
-    parisien: True
-  menages:
-    statut_occupation_logement: proprietaire
-    personne_de_reference: "parent1"
-    enfants: ["enfant1", "enfant2"]
-    charges_locatives: 50
-    loyer : 500
-  individus:
-    - id: "parent1"
-      age: 55
-      salaire_net:
-        2016-01: 1500
-    - id: "enfant1"
-      age: 5
-    - id: "enfant2"
-      age: 9
-  output_variables:
+  input:
+    famille:
+      parents: [parent1]
+      enfants: [enfant1, enfant2]
+      parisien: true
+    menage:
+      statut_occupation_logement: proprietaire
+      personne_de_reference: parent1
+      enfants: [enfant1, enfant2]
+      charges_locatives: 50
+      loyer: 500
+    individus:
+      parent1:
+        age: 55
+        salaire_net:
+          2016-01: 1500
+      enfant1:
+        age: 5
+      enfant2:
+        age: 9
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+      foyer_fiscal_1:
+        declarants:
+        - enfant1
+      foyer_fiscal_2:
+        declarants:
+        - enfant2
+  output:
     paris_logement_plfm: 128

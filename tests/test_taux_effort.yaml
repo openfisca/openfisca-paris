@@ -1,14 +1,10 @@
 name: Personne en situation de handicap taux d'effort < minimum
 description: La personne n'est pas éligible à l'aide au logement de la ville de Paris car son taux d'effort pour le financement de son loyer est inférieur au minimum.
-output_variables:
-  paris_condition_taux_effort: false
-  paris_logement_elig_pa_ph: false
-  paris_logement_pa_ph: 0
-  paris_logement: 0
 absolute_error_margin: 0.1
-period: 'month:2017-05'
-familles:
-  - parisien:
+period: month:2017-05
+input:
+  famille:
+    parisien:
       2017-05: true
       2017-04: true
       2017-03: true
@@ -19,7 +15,7 @@ familles:
       2017-03: false
       2017-02: false
     parents:
-      - 592d092160ca897f11fed127
+    - 592d092160ca897f11fed127
     enfants: []
     paris_complement_sante:
       2017-04: 0
@@ -268,125 +264,125 @@ familles:
       2016-07: 0
       2016-06: 0
       2016-05: 0
-foyers_fiscaux:
-  - declarants:
-      - 592d092160ca897f11fed127
+  foyer_fiscal:
+    declarants:
+    - 592d092160ca897f11fed127
     personnes_a_charge: []
-individus:
-  - id: 592d092160ca897f11fed127
-    tns_auto_entrepreneur_type_activite:
-      2017-05: bic
-      2017-04: bic
-      2017-03: bic
-      2017-02: bic
-    date_naissance:
-      2017-05: '1963-09-22'
-      2017-04: '1963-09-22'
-      2017-03: '1963-09-22'
-      2017-02: '1963-09-22'
-    echelon_bourse:
-      2017-05: -1
-      2017-04: -1
-      2017-03: -1
-      2017-02: -1
-    tns_micro_entreprise_type_activite:
-      2017-05: bic
-      2017-04: bic
-      2017-03: bic
-      2017-02: bic
-    enfant_place:
-      2017-05: false
-      2017-04: false
-      2017-03: false
-      2017-02: false
-    tns_autres_revenus_type_activite:
-      2017-05: bic
-      2017-04: bic
-      2017-03: bic
-      2017-02: bic
-    enfant_a_charge:
-      '2017': false
-    boursier:
-      2017-05: false
-      2017-04: false
-      2017-03: false
-      2017-02: false
-    pensions_invalidite:
-      2017-04: 717.45
-      2017-03: 714.58
-      2017-02: 714.58
-      2017-01: 714.58
-      2016-12: 714.58
-      2016-11: 714.58
-      2016-10: 714.58
-      2016-09: 714.58
-      2016-08: 714.58
-      2016-07: 714.58
-      2016-06: 714.58
-      2016-05: 714.58
-      2017-05: 717.45
-      2015-01: 714.8191666666667
-      2015-02: 714.8191666666667
-      2015-03: 714.8191666666667
-      2015-04: 714.8191666666667
-      2015-05: 714.8191666666667
-      2015-06: 714.8191666666667
-      2015-07: 714.8191666666667
-      2015-08: 714.8191666666667
-      2015-09: 714.8191666666667
-      2015-10: 714.8191666666667
-      2015-11: 714.8191666666667
-      2015-12: 714.8191666666667
-    age:
-      2017-05: 53
-      2017-04: 53
-      2017-03: 53
-      2017-02: 53
-    age_en_mois:
-      2017-05: 644
-      2017-04: 644
-      2017-03: 644
-      2017-02: 644
-    date_arret_de_travail:
-      2017-05: '2017-07-28'
-      2017-04: '2017-07-28'
-      2017-03: '2017-07-28'
-      2017-02: '2017-07-28'
-    handicap:
-      2017-05: true
-      2017-04: true
-      2017-03: true
-      2017-02: true
-    taux_incapacite:
-      2017-05: 0.7
-      2017-04: 0.7
-      2017-03: 0.7
-      2017-02: 0.7
-    inapte_travail:
-      2017-05: false
-      2017-04: false
-      2017-03: false
-      2017-02: false
-    etudiant:
-      2017-05: false
-      2017-04: false
-      2017-03: false
-      2017-02: false
-    aah:
-      2017-04: 0
-      2017-03: 0
-      2017-02: 0
-      2017-01: 0
-      2016-12: 0
-      2016-11: 0
-      2016-10: 0
-      2016-09: 0
-      2016-08: 0
-      2016-07: 0
-      2016-06: 0
-      2016-05: 0
-menages:
-  - coloc:
+  individus:
+    592d092160ca897f11fed127:
+      tns_auto_entrepreneur_type_activite:
+        2017-05: bic
+        2017-04: bic
+        2017-03: bic
+        2017-02: bic
+      date_naissance:
+        2017-05: '1963-09-22'
+        2017-04: '1963-09-22'
+        2017-03: '1963-09-22'
+        2017-02: '1963-09-22'
+      echelon_bourse:
+        2017-05: -1
+        2017-04: -1
+        2017-03: -1
+        2017-02: -1
+      tns_micro_entreprise_type_activite:
+        2017-05: bic
+        2017-04: bic
+        2017-03: bic
+        2017-02: bic
+      enfant_place:
+        2017-05: false
+        2017-04: false
+        2017-03: false
+        2017-02: false
+      tns_autres_revenus_type_activite:
+        2017-05: bic
+        2017-04: bic
+        2017-03: bic
+        2017-02: bic
+      enfant_a_charge:
+        '2017': false
+      boursier:
+        2017-05: false
+        2017-04: false
+        2017-03: false
+        2017-02: false
+      pensions_invalidite:
+        2017-04: 717.45
+        2017-03: 714.58
+        2017-02: 714.58
+        2017-01: 714.58
+        2016-12: 714.58
+        2016-11: 714.58
+        2016-10: 714.58
+        2016-09: 714.58
+        2016-08: 714.58
+        2016-07: 714.58
+        2016-06: 714.58
+        2016-05: 714.58
+        2017-05: 717.45
+        2015-01: 714.8191666666667
+        2015-02: 714.8191666666667
+        2015-03: 714.8191666666667
+        2015-04: 714.8191666666667
+        2015-05: 714.8191666666667
+        2015-06: 714.8191666666667
+        2015-07: 714.8191666666667
+        2015-08: 714.8191666666667
+        2015-09: 714.8191666666667
+        2015-10: 714.8191666666667
+        2015-11: 714.8191666666667
+        2015-12: 714.8191666666667
+      age:
+        2017-05: 53
+        2017-04: 53
+        2017-03: 53
+        2017-02: 53
+      age_en_mois:
+        2017-05: 644
+        2017-04: 644
+        2017-03: 644
+        2017-02: 644
+      date_arret_de_travail:
+        2017-05: '2017-07-28'
+        2017-04: '2017-07-28'
+        2017-03: '2017-07-28'
+        2017-02: '2017-07-28'
+      handicap:
+        2017-05: true
+        2017-04: true
+        2017-03: true
+        2017-02: true
+      taux_incapacite:
+        2017-05: 0.7
+        2017-04: 0.7
+        2017-03: 0.7
+        2017-02: 0.7
+      inapte_travail:
+        2017-05: false
+        2017-04: false
+        2017-03: false
+        2017-02: false
+      etudiant:
+        2017-05: false
+        2017-04: false
+        2017-03: false
+        2017-02: false
+      aah:
+        2017-04: 0
+        2017-03: 0
+        2017-02: 0
+        2017-01: 0
+        2016-12: 0
+        2016-11: 0
+        2016-10: 0
+        2016-09: 0
+        2016-08: 0
+        2016-07: 0
+        2016-06: 0
+        2016-05: 0
+  menage:
+    coloc:
       2017-05: false
       2017-04: false
       2017-03: false
@@ -418,3 +414,8 @@ menages:
       2017-02: 136.34
     personne_de_reference: 592d092160ca897f11fed127
     enfants: []
+output:
+  paris_condition_taux_effort: false
+  paris_logement_elig_pa_ph: false
+  paris_logement_pa_ph: 0
+  paris_logement: 0

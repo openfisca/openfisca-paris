@@ -1,363 +1,442 @@
-- name: "Couple non éligible pour l'aide PSOL car les parents n'ont pas le statut handicapé"
+- name: Couple non éligible pour l'aide PSOL car les parents n'ont pas le statut handicapé
   description: Personne handicapée
   period: 2018-04
-  familles:
-    parents: ["couple1", "couple2"]
-    enfants: ["enfant1"]
-    parisien: True
-    en_couple: True
-  menages:
-    statut_occupation_logement: locataire_vide
-  individus:
-  - id: "couple1"
-    age: 35
-    salaire_net:
-      2018-03: 500
-  - id: "couple2"
-    age: 35
-    salaire_net:
-      2018-03: 10
-  - id: "enfant1"
-    age: 8
-    handicap: True
-  output_variables:
+  input:
+    famille:
+      parents: [couple1, couple2]
+      enfants: [enfant1]
+      parisien: true
+      en_couple: true
+    menage:
+      statut_occupation_logement: locataire_vide
+    individus:
+      couple1:
+        age: 35
+        salaire_net:
+          2018-03: 500
+      couple2:
+        age: 35
+        salaire_net:
+          2018-03: 10
+      enfant1:
+        age: 8
+        handicap: true
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - couple1
+      foyer_fiscal_1:
+        declarants:
+        - couple2
+      foyer_fiscal_2:
+        declarants:
+        - enfant1
+  output:
     paris_logement_psol: 0
 
-- name: "Personne éligible pour l'aide PSOL car revenus < 900"
+- name: Personne éligible pour l'aide PSOL car revenus < 900
   description: Personne handicape
   period: 2018-04
-  input_variables:
+  input:
     age: 55
-    parisien: True
+    parisien: true
     statut_occupation_logement: locataire_vide
-    handicap: True
+    handicap: true
     loyer: 600
     chomage_net:
       2018-04: 600
-  output_variables:
+  output:
     paris_logement_psol: 96
 
-- name: "Personne non éligible pour l'aide PSOL car revenus > 900"
+- name: Personne non éligible pour l'aide PSOL car revenus > 900
   description: Personne agée
   period: 2018-04
-  input_variables:
+  input:
     age: 65
-    parisien: True
+    parisien: true
     statut_occupation_logement: locataire_vide
     loyer: 600
     salaire_net:
       2018-03: 2500
-  output_variables:
+  output:
     paris_logement_psol: 0
 
-- name: "Couple non éligible pour l'aide PSOL"
+- name: Couple non éligible pour l'aide PSOL
   description: Personne agée
   period: 2018-04
-  familles:
-    parents: ["couple1", "couple2"]
-    parisien: True
-    aspa:
-      2018-01: 100
-      2018-02: 100
-      2018-03: 100
-  menages:
-    statut_occupation_logement: locataire_vide
-  individus:
-  - id: "couple1"
-    age: 65
-    handicap: True
-    salaire_net:
-      2018-01: 100
-      2018-02: 100
-      2018-03: 900
-    aah:
-      2018-03: 500
-  - id: "couple2"
-    age: 65
-    handicap: True
-    salaire_net:
-      2018-01: 100
-      2018-02: 100
-      2018-03: 5
-    aah:
-      2016-01: 5
-  output_variables:
+  input:
+    famille:
+      parents: [couple1, couple2]
+      parisien: true
+      aspa:
+        2018-01: 100
+        2018-02: 100
+        2018-03: 100
+    menage:
+      statut_occupation_logement: locataire_vide
+    individus:
+      couple1:
+        age: 65
+        handicap: true
+        salaire_net:
+          2018-01: 100
+          2018-02: 100
+          2018-03: 900
+        aah:
+          2018-03: 500
+      couple2:
+        age: 65
+        handicap: true
+        salaire_net:
+          2018-01: 100
+          2018-02: 100
+          2018-03: 5
+        aah:
+          2016-01: 5
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - couple1
+      foyer_fiscal_1:
+        declarants:
+        - couple2
+  output:
     paris_logement_psol: 0
 
-- name: "Couple non éligible pour l'aide PSOL car statut handicapé et revenus > 900"
+- name: Couple non éligible pour l'aide PSOL car statut handicapé et revenus > 900
   description: Personne handicape
   period: 2018-04
-  familles:
-    parents: ["couple1", "couple2"]
-    parisien: True
-  menages:
-    statut_occupation_logement: locataire_vide
-  individus:
-  - id: "couple1"
-    age: 55
-    aah:
-      2018-03: 900
-    salaire_net:
-      2018-03: 500
-    handicap: True
-  - id: "couple2"
-    age: 65
-    handicap: True
-    aah:
-      2018-03: 100
-    salaire_net:
-      2018-03: 10
-  output_variables:
+  input:
+    famille:
+      parents: [couple1, couple2]
+      parisien: true
+    menage:
+      statut_occupation_logement: locataire_vide
+    individus:
+      couple1:
+        age: 55
+        aah:
+          2018-03: 900
+        salaire_net:
+          2018-03: 500
+        handicap: true
+      couple2:
+        age: 65
+        handicap: true
+        aah:
+          2018-03: 100
+        salaire_net:
+          2018-03: 10
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - couple1
+      foyer_fiscal_1:
+        declarants:
+        - couple2
+  output:
     paris_logement_psol: 0
 
-- name: "Personne non éligible pour l'aide PSOL car revenus > 900"
+- name: Personne non éligible pour l'aide PSOL car revenus > 900
   description: Personne handicape
   period: 2018-04
-  input_variables:
+  input:
     age: 55
-    parisien: True
+    parisien: true
     statut_occupation_logement: locataire_vide
-    handicap: True
+    handicap: true
     aah:
       2018-03: 2000
-  output_variables:
+  output:
     paris_logement_psol: 0
 
-- name: "Personne non éligible pour l'aide PSOL car elle est pas une personne âgée"
+- name: Personne non éligible pour l'aide PSOL car elle est pas une personne âgée
   description: Personne handicape
   period: 2018-04
-  input_variables:
+  input:
     age: 55
-    parisien: True
+    parisien: true
     statut_occupation_logement: locataire_vide
-    handicap: False
+    handicap: false
     aah:
       2018-03: 500
     salaire_net:
       2018-03: 80
-  output_variables:
+  output:
     paris_logement_psol: 0
 
-- name: "Personne éligible pour l'aide PSOL car elle perçoit < 900"
+- name: Personne éligible pour l'aide PSOL car elle perçoit < 900
   description: Personne handicape
   period: 2018-04
-  input_variables:
+  input:
     age: 55
-    parisien: True
+    parisien: true
     statut_occupation_logement: locataire_vide
-    handicap: True
+    handicap: true
     aah:
       2018-03: 500
     salaire_net:
       2018-03: 80
-  output_variables:
+  output:
     paris_logement_psol: 96
 
-- name: "Personne non éligible pour l'aide PSOL car revenus > 900"
+- name: Personne non éligible pour l'aide PSOL car revenus > 900
   description: Personne handicape
   period: 2018-04
-  input_variables:
+  input:
     age: 55
-    parisien: True
+    parisien: true
     statut_occupation_logement: locataire_vide
-    handicap: True
+    handicap: true
     aah:
       2018-03: 500
     salaire_net:
       2018-03: 450
-  output_variables:
+  output:
     paris_logement_psol: 0
 
-- name: "Personne non éligible pour l'aide PSOL car revenus > 900"
+- name: Personne non éligible pour l'aide PSOL car revenus > 900
   description: Personne handicape
   period: 2018-04
-  input_variables:
+  input:
     age: 55
-    parisien: True
+    parisien: true
     statut_occupation_logement: locataire_vide
-    handicap: True
+    handicap: true
     aah:
       2018-03: 800
     salaire_net:
       2018-03: 600
-  output_variables:
+  output:
     paris_logement_psol: 0
 
-- name: "Couple non éligible pour l'aide PSOL car pas de statut handicapé"
+- name: Couple non éligible pour l'aide PSOL car pas de statut handicapé
   description: Personne handicape
   period: 2018-04
-  familles:
-    parents: ["couple1", "couple2"]
-    parisien: True
-  menages:
-    statut_occupation_logement: locataire_vide
-  individus:
-  - id: "couple1"
-    age: 55
-    chomage_net:
-      2018-01: 100
-      2018-02: 100
-      2018-03: 100
-  - id: "couple2"
-    age: 55
-    indemnites_stage:
-      2018-01: 100
-      2018-02: 100
-      2018-03: 100
-    salaire_net:
-      2018-01: 100
-      2018-02: 100
-      2018-03: 100
-  output_variables:
+  input:
+    famille:
+      parents: [couple1, couple2]
+      parisien: true
+    menage:
+      statut_occupation_logement: locataire_vide
+    individus:
+      couple1:
+        age: 55
+        chomage_net:
+          2018-01: 100
+          2018-02: 100
+          2018-03: 100
+      couple2:
+        age: 55
+        indemnites_stage:
+          2018-01: 100
+          2018-02: 100
+          2018-03: 100
+        salaire_net:
+          2018-01: 100
+          2018-02: 100
+          2018-03: 100
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - couple1
+      foyer_fiscal_1:
+        declarants:
+        - couple2
+  output:
     paris_logement_psol: 0
 
-- name: "Couple non éligible pour l'aide PSOL car statut handicapé"
+- name: Couple non éligible pour l'aide PSOL car statut handicapé
   description: Personne handicape
   period: 2018-04
-  familles:
-    parents: ["couple1", "couple2"]
-    parisien: True
-  menages:
-    statut_occupation_logement: locataire_vide
-  individus:
-  - id: "couple1"
-    age: 55
-    aah:
-      2018-03: 800
-    handicap: True
-  - id: "couple2"
-    age: 55
-    indemnites_stage:
-      2018-03: 100
-  output_variables:
+  input:
+    famille:
+      parents: [couple1, couple2]
+      parisien: true
+    menage:
+      statut_occupation_logement: locataire_vide
+    individus:
+      couple1:
+        age: 55
+        aah:
+          2018-03: 800
+        handicap: true
+      couple2:
+        age: 55
+        indemnites_stage:
+          2018-03: 100
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - couple1
+      foyer_fiscal_1:
+        declarants:
+        - couple2
+  output:
     paris_logement_psol: 0
 
-- name: "Personne éligible pour l'aide PSOL car statut personne âgée"
+- name: Personne éligible pour l'aide PSOL car statut personne âgée
   description: Personne agée
   period: 2018-04
-  input_variables:
+  input:
     age: 65
-    parisien: True
+    parisien: true
     statut_occupation_logement: locataire_vide
-  output_variables:
+  output:
     paris_logement_psol: 111.80
 
-- name: "Personne non éligible pour l'aide PSOL car revenus = 915"
+- name: Personne non éligible pour l'aide PSOL car revenus = 915
   description: Personne agée
   period: 2018-04
-  familles:
-    parents: ["couple1"]
-    parisien: True
-  menages:
-    statut_occupation_logement: locataire_vide
-  individus:
-  - id: "couple1"
-    age: 65
-    chomage_net:
-      2018-01: 100
-      2018-02: 100
-      2018-03: 915
-  output_variables:
+  input:
+    famille:
+      parents: [couple1]
+      parisien: true
+    menage:
+      statut_occupation_logement: locataire_vide
+    individus:
+      couple1:
+        age: 65
+        chomage_net:
+          2018-01: 100
+          2018-02: 100
+          2018-03: 915
+    foyer_fiscal:
+      declarants:
+      - couple1
+  output:
     paris_logement_psol: 0
 
-- name: "Couple avec revenus inférieurs au plancher pour l'aide PSOL"
+- name: Couple avec revenus inférieurs au plancher pour l'aide PSOL
   description: Personne agée
   period: 2018-04
-  familles:
-    parents: ["couple1", "couple2"]
-    parisien: True
-    aspa:
-      2018-03: 1242
-  menages:
-    statut_occupation_logement: locataire_vide
-  individus:
-  - id: "couple1"
-    age: 65
-  - id: "couple2"
-    age: 66
-  output_variables:
+  input:
+    famille:
+      parents: [couple1, couple2]
+      parisien: true
+      aspa:
+        2018-03: 1242
+    menage:
+      statut_occupation_logement: locataire_vide
+    individus:
+      couple1:
+        age: 65
+      couple2:
+        age: 66
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - couple1
+      foyer_fiscal_1:
+        declarants:
+        - couple2
+  output:
     paris_logement_psol: 204.46
 
-- name: "Couple avec revenus inférieurs au plancher pour l'aide PSOL"
+- name: Couple avec revenus inférieurs au plancher pour l'aide PSOL
   description: Personne agée
   period: 2018-04
-  familles:
-    parents: ["couple1", "couple2"]
-    parisien: True
-    aspa:
-      2018-03: 850
-  menages:
-    statut_occupation_logement: locataire_vide
-  individus:
-  - id: "couple1"
-    age: 65
-    salaire_net:
-      2018-03: 100
-  - id: "couple2"
-    age: 66
-  output_variables:
+  input:
+    famille:
+      parents: [couple1, couple2]
+      parisien: true
+      aspa:
+        2018-03: 850
+    menage:
+      statut_occupation_logement: locataire_vide
+    individus:
+      couple1:
+        age: 65
+        salaire_net:
+          2018-03: 100
+      couple2:
+        age: 66
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - couple1
+      foyer_fiscal_1:
+        declarants:
+        - couple2
+  output:
     paris_logement_psol: 204.46
 
-- name: "Couple éligible pour l'aide PSOL"
+- name: Couple éligible pour l'aide PSOL
   description: Personne agée
   period: 2018-04
-  familles:
-    parents: ["couple1", "couple2"]
-    parisien: True
-    aspa:
-      2018-01: 100
-      2018-02: 100
-      2018-03: 100
-  menages:
-    statut_occupation_logement: locataire_vide
-  individus:
-  - id: "couple1"
-    age: 65
-  - id: "couple2"
-    age: 55
-    indemnites_stage:
-      2018-01: 100
-      2018-02: 100
-      2018-03: 100
-    salaire_net:
-      2018-01: 100
-      2018-02: 100
-      2018-03: 100
-  output_variables:
+  input:
+    famille:
+      parents: [couple1, couple2]
+      parisien: true
+      aspa:
+        2018-01: 100
+        2018-02: 100
+        2018-03: 100
+    menage:
+      statut_occupation_logement: locataire_vide
+    individus:
+      couple1:
+        age: 65
+      couple2:
+        age: 55
+        indemnites_stage:
+          2018-01: 100
+          2018-02: 100
+          2018-03: 100
+        salaire_net:
+          2018-01: 100
+          2018-02: 100
+          2018-03: 100
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - couple1
+      foyer_fiscal_1:
+        declarants:
+        - couple2
+  output:
     paris_logement_psol: 204.46
 
 - name: Famille monoparental éligible à PSOL car le parent est en situation de handicap
   description: Non prise en compte des pensions_alimentaires_percues dans la base ressources
   period: 2018-04
-  familles:
-    parents: ["parent"]
-    enfants: ["enfant1"]
-    parisien: True
-  menages:
-    statut_occupation_logement: locataire_vide
-  individus:
-  - id: "parent"
-    age: 35
-    handicap: True
-    aah:
-      2018-05: 819
-    pensions_alimentaires_percues:
-      2018-05: 300
-  - id: "enfant1"
-    age: 8    
-  output_variables:
+  input:
+    famille:
+      parents: [parent]
+      enfants: [enfant1]
+      parisien: true
+    menage:
+      statut_occupation_logement: locataire_vide
+    individus:
+      parent:
+        age: 35
+        handicap: true
+        aah:
+          2018-05: 819
+        pensions_alimentaires_percues:
+          2018-05: 300
+      enfant1:
+        age: 8
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent
+      foyer_fiscal_1:
+        declarants:
+        - enfant1
+  output:
     paris_logement_psol: 96
 
-- name: "Personne non éligible pour l'aide PSOL car CAAH > 900"
+- name: Personne non éligible pour l'aide PSOL car CAAH > 900
   description: Personne handicape
   period: 2018-04
-  input_variables:
+  input:
     age: 55
-    parisien: True
+    parisien: true
     statut_occupation_logement: locataire_vide
-    handicap: True
+    handicap: true
     loyer: 600
     caah:
       2018-03: 1000
-  output_variables:
+  output:
     paris_logement_psol: 0

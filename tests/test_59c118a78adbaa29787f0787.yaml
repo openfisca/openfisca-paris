@@ -2,12 +2,11 @@ name: PL respect du taux d'effort
 description: >-
   Le taux d'effort est ici inférieur à 30 % (environ 18%). Le PL ne devrait pas
   être proposé à la fin de la simulation.
-output_variables:
-  paris_logement: 0
 absolute_error_margin: 10
-period: 'month:2017-09'
-familles:
-  - proprietaire_proche_famille:
+period: month:2017-09
+input:
+  famille:
+    proprietaire_proche_famille:
       2017-09: false
       2017-08: false
       2017-07: false
@@ -18,7 +17,7 @@ familles:
       2017-07: true
       2017-06: true
     parents:
-      - demandeur
+    - demandeur
     enfants: []
     aide_logement:
       2016-09: 309
@@ -293,89 +292,89 @@ familles:
       2016-11: 0
       2016-10: 0
       2016-09: 0
-foyers_fiscaux:
-  - declarants:
-      - demandeur
+  foyer_fiscal:
+    declarants:
+    - demandeur
     personnes_a_charge: []
-individus:
-  - id: demandeur
-    echelon_bourse:
-      2017-09: -1
-      2017-08: -1
-      2017-07: -1
-      2017-06: -1
-    enfant_a_charge:
-      '2017': false
-    enfant_place:
-      2017-09: false
-      2017-08: false
-      2017-07: false
-      2017-06: false
-    tns_autres_revenus_type_activite:
-      2017-09: bic
-      2017-08: bic
-      2017-07: bic
-      2017-06: bic
-    tns_micro_entreprise_type_activite:
-      2017-09: bic
-      2017-08: bic
-      2017-07: bic
-      2017-06: bic
-    tns_auto_entrepreneur_type_activite:
-      2017-09: bic
-      2017-08: bic
-      2017-07: bic
-      2017-06: bic
-    date_naissance:
-      2017-09: '1991-08-26'
-      2017-08: '1991-08-26'
-      2017-07: '1991-08-26'
-      2017-06: '1991-08-26'
-    statut_marital:
-      2017-09: celibataire
-      2017-08: celibataire
-      2017-07: celibataire
-      2017-06: celibataire
-    age:
-      2017-09: 26
-      2017-08: 26
-      2017-07: 26
-      2017-06: 26
-    age_en_mois:
-      2017-09: 312
-      2017-08: 312
-      2017-07: 312
-      2017-06: 312
-    handicap:
-      2017-09: false
-      2017-08: false
-      2017-07: false
-      2017-06: false
-    taux_incapacite:
-      2017-09: false
-      2017-08: false
-      2017-07: false
-      2017-06: false
-    inapte_travail:
-      2017-09: false
-      2017-08: false
-      2017-07: false
-      2017-06: false
-    aah:
-      2017-08: 0
-      2017-07: 0
-      2017-06: 0
-      2017-05: 0
-      2017-04: 0
-      2017-03: 0
-      2017-02: 0
-      2017-01: 0
-      2016-12: 0
-      2016-11: 0
-      2016-10: 0
-      2016-09: 0
-menages:
-  - loyer:
+  individus:
+    demandeur:
+      echelon_bourse:
+        2017-09: -1
+        2017-08: -1
+        2017-07: -1
+        2017-06: -1
+      enfant_a_charge:
+        '2017': false
+      enfant_place:
+        2017-09: false
+        2017-08: false
+        2017-07: false
+        2017-06: false
+      tns_autres_revenus_type_activite:
+        2017-09: bic
+        2017-08: bic
+        2017-07: bic
+        2017-06: bic
+      tns_micro_entreprise_type_activite:
+        2017-09: bic
+        2017-08: bic
+        2017-07: bic
+        2017-06: bic
+      tns_auto_entrepreneur_type_activite:
+        2017-09: bic
+        2017-08: bic
+        2017-07: bic
+        2017-06: bic
+      date_naissance:
+        2017-09: '1991-08-26'
+        2017-08: '1991-08-26'
+        2017-07: '1991-08-26'
+        2017-06: '1991-08-26'
+      statut_marital:
+        2017-09: celibataire
+        2017-08: celibataire
+        2017-07: celibataire
+        2017-06: celibataire
+      age:
+        2017-09: 26
+        2017-08: 26
+        2017-07: 26
+        2017-06: 26
+      age_en_mois:
+        2017-09: 312
+        2017-08: 312
+        2017-07: 312
+        2017-06: 312
+      handicap:
+        2017-09: false
+        2017-08: false
+        2017-07: false
+        2017-06: false
+      taux_incapacite:
+        2017-09: false
+        2017-08: false
+        2017-07: false
+        2017-06: false
+      inapte_travail:
+        2017-09: false
+        2017-08: false
+        2017-07: false
+        2017-06: false
+      aah:
+        2017-08: 0
+        2017-07: 0
+        2017-06: 0
+        2017-05: 0
+        2017-04: 0
+        2017-03: 0
+        2017-02: 0
+        2017-01: 0
+        2016-12: 0
+        2016-11: 0
+        2016-10: 0
+        2016-09: 0
+  menage:
+    loyer:
       2017-09: 342.21
       2017-08: 342.21
       2017-07: 342.21
@@ -407,3 +406,5 @@ menages:
       2017-06: locataire_vide
     personne_de_reference: demandeur
     enfants: []
+output:
+  paris_logement: 0

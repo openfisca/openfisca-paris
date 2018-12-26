@@ -1,517 +1,611 @@
-- name: "Famille éligible pour l'aide Paris logement car un couple avec deux enfant et ressources < 1600"
+- name: Famille éligible pour l'aide Paris logement car un couple avec deux enfant et ressources < 1600
   description: Paris Logement Couple avec enfants
   period: 2016-02
-  familles:
-    parents: ["parent1", "parent2"]
-    enfants: ["enfant1", "enfant2"]
-    parisien: True
-  menages:
-    statut_occupation_logement: locataire_vide
-    personne_de_reference: "parent1"
-    conjoint: "parent2"
-    enfants: ["enfant1", "enfant2"]
-    loyer: 550
-  individus:
-    - id: "parent1"
-      age: 55
-      salaire_net:
-        2016-01: 1000
-    - id: "parent2"
-      age: 55
-    - id: "enfant1"
-      age: 5
-    - id: "enfant2"
-      age: 9
-      handicap: True
-  output_variables:
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1, enfant2]
+      parisien: true
+    menage:
+      statut_occupation_logement: locataire_vide
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [enfant1, enfant2]
+      loyer: 550
+    individus:
+      parent1:
+        age: 55
+        salaire_net:
+          2016-01: 1000
+      parent2:
+        age: 55
+      enfant1:
+        age: 5
+      enfant2:
+        age: 9
+        handicap: true
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+      foyer_fiscal_1:
+        declarants:
+        - parent2
+      foyer_fiscal_2:
+        declarants:
+        - enfant1
+      foyer_fiscal_3:
+        declarants:
+        - enfant2
+  output:
     paris_logement: 0
 
-- name: "Personne  éligible car en situation de handicap"
+- name: Personne  éligible car en situation de handicap
   description: Paris Logement PA et PH
   period: 2016-02
-  input_variables:
+  input:
     age: 55
-    parisien: True
-    handicap: True
+    parisien: true
+    handicap: true
     statut_occupation_logement: locataire_vide
     loyer: 550
     salaire_net:
       2016-01: 600
-  output_variables:
+  output:
     paris_logement: 84
 
-- name: "Personne  éligible car en situation de handicap"
+- name: Personne  éligible car en situation de handicap
   description: Paris Logement PA et PH
   period: 2016-02
-  input_variables:
+  input:
     age: 55
-    parisien: True
-    handicap: True
+    parisien: true
+    handicap: true
     statut_occupation_logement: locataire_vide
     loyer: 550
     salaire_net:
       2016-01: 800
-  output_variables:
+  output:
     paris_logement: 84
 
-- name: "Personne agée qui es eligible à PL"
+- name: Personne agée qui es eligible à PL
   description: Paris Logement PA et PH
   period: 2016-02
-  input_variables:
+  input:
     age: 65
-    parisien: True
+    parisien: true
     statut_occupation_logement: locataire_vide
     loyer: 750
     aspa:
       2016-01: 800
-  output_variables:
+  output:
     paris_logement: 84
 
 
-- name: "Personne agée non éligible car n'habite pas à Paris"
+- name: Personne agée non éligible car n'habite pas à Paris
   description: Paris Logement PA et PH
   period: 2016-02
-  input_variables:
+  input:
     age: 65
     statut_occupation_logement: locataire_vide
     loyer: 350
-  output_variables:
+  output:
     paris_logement: 0
 
 
-- name: "Personne agée non éligible car propriétaire"
+- name: Personne agée non éligible car propriétaire
   description: Paris Logement PA et PH
   period: 2016-02
-  input_variables:
+  input:
     age: 65
-    parisien: True
+    parisien: true
     statut_occupation_logement: proprietaire
-  output_variables:
+  output:
     paris_logement: 0
 
 
-- name: "eligible au PL aide aux parisiens en difficulté"
+- name: eligible au PL aide aux parisiens en difficulté
   relative_error_margin: 0.02
   description: Paris Logement parisiens en difficulté
   period: 2016-02
-  input_variables:
+  input:
     age: 55
-    parisien: True
+    parisien: true
     statut_occupation_logement: locataire_vide
     loyer: 350
-  output_variables:
+  output:
     paris_logement: 77.839
 
 
-- name: "Personne  éligible car en situation de handicap"
+- name: Personne  éligible car en situation de handicap
   description: Paris Logement PA et PH
   period: 2016-02
-  input_variables:
+  input:
     age: 55
-    parisien: True
-    handicap: True
+    parisien: true
+    handicap: true
     statut_occupation_logement: locataire_vide
     loyer: 550
-  output_variables:
+  output:
     paris_logement: 84
 
-- name: "Personne  éligible car en situation de handicap et en couple"
+- name: Personne  éligible car en situation de handicap et en couple
   description: Paris Logement PA et PH
   period: 2016-02
-  input_variables:
+  input:
     age: 55
-    parisien: True
-    en_couple: True
-    handicap: True
+    parisien: true
+    en_couple: true
+    handicap: true
     statut_occupation_logement: locataire_vide
     loyer: 550
     aah:
       2016-01: 800
-    en_couple: True
-  output_variables:
+  output:
     paris_logement: 95
 
-- name: "Personne  éligible car en situation de handicap, en couple avec 1 enfant"
+- name: Personne  éligible car en situation de handicap, en couple avec 1 enfant
   description: Paris Logement PA et PH
   period: 2016-02
-  input_variables:
+  input:
     age: 55
-    parisien: True
-    handicap: True
+    parisien: true
+    handicap: true
     statut_occupation_logement: locataire_vide
     aah:
       2016-01: 800
-    en_couple: True
+    en_couple: true
     paris_nb_enfants: 1
     loyer: 550
-  output_variables:
+  output:
     paris_logement: 116
 
-- name: "Personne  éligible avec charges logement >= 30% des ressources"
+- name: Personne  éligible avec charges logement >= 30% des ressources
   description: Paris Logement PA et PH
   period: 2016-02
-  input_variables:
+  input:
     age: 55
-    parisien: True
-    handicap: True
+    parisien: true
+    handicap: true
     statut_occupation_logement: locataire_vide
     aah:
       2016-01: 800
     loyer: 550
-  output_variables:
+  output:
     paris_logement: 84
 
-- name: "Personne éligible avec charges logement >= 30% des ressources"
+- name: Personne éligible avec charges logement >= 30% des ressources
   description: Paris Logement PA et PH
   period: 2016-02
-  input_variables:
+  input:
     age: 55
-    parisien: True
-    handicap: True
+    parisien: true
+    handicap: true
     statut_occupation_logement: locataire_vide
     aah:
       2016-01: 800
     loyer: 250
-  output_variables:
+  output:
     paris_logement: 0
 
-- name: "Personne éligible car personne qui bénéficie d’un avantage vieillesse au titre de l’inaptitude au travail "
+- name: 'Personne éligible car personne qui bénéficie d’un avantage vieillesse au titre de l’inaptitude au travail '
   description: Paris Logement PA et PH
   period: 2016-02
-  input_variables:
+  input:
     age: 60
-    parisien: True
-    aspa_eligibilite: True
+    parisien: true
+    aspa_eligibilite: true
     statut_occupation_logement: locataire_vide
     loyer: 550
-  output_variables:
+  output:
     paris_logement: 84
 
-- name: "Personne non éligible car parent mono"
+- name: Personne non éligible car parent mono
   description: Paris Logement PA et PH
   period: 2016-02
-  familles:
-    parents: ["parent1"]
-    enfants: ["enfant1", "enfant2"]
-    parisien: True
-  menages:
-    statut_occupation_logement: locataire_vide
-    personne_de_reference: "parent1"
-    enfants: ["enfant1", "enfant2"]
-    loyer: 550
-  individus:
-    - id: "parent1"
-      age: 55
-      handicap: True
-    - id: "enfant1"
-      age: 5
-    - id: "enfant2"
-      age: 9
-  output_variables:
+  input:
+    famille:
+      parents: [parent1]
+      enfants: [enfant1, enfant2]
+      parisien: true
+    menage:
+      statut_occupation_logement: locataire_vide
+      personne_de_reference: parent1
+      enfants: [enfant1, enfant2]
+      loyer: 550
+    individus:
+      parent1:
+        age: 55
+        handicap: true
+      enfant1:
+        age: 5
+      enfant2:
+        age: 9
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+      foyer_fiscal_1:
+        declarants:
+        - enfant1
+      foyer_fiscal_2:
+        declarants:
+        - enfant2
+  output:
     paris_logement: 0
 
-- name: "Personne agée qui es eligible à PL"
+- name: Personne agée qui es eligible à PL
   description: Paris Logement PA et PH
   period: 2016-02
-  menages:
-    personne_de_reference: "parent1"
-    loyer: 550
+  input:
+    menage:
+      personne_de_reference: parent1
+      loyer: 550
+      statut_occupation_logement: locataire_vide
+    famille:
+      parents: [parent1]
+      parisien: true
+      apl:
+        2016-01: 200
+        year:2015-02: 5000
+      aspa:
+        year:2015-02: 9600
+    individus:
+      parent1:
+        age: 65
+    foyer_fiscal:
+      declarants:
+      - parent1
+  output:
+    paris_logement: 84
+
+- name: Personne handicapé qui n'es pas eligible à PL car revenus trop important
+  description: Paris Logement PA et PH
+  period: 2016-02
+  input:
+    menage:
+      personne_de_reference: parent1
+      loyer: 550
+      statut_occupation_logement: locataire_vide
+    famille:
+      parents: [parent1]
+      parisien: true
+    individus:
+      parent1:
+        age: 55
+        handicap: true
+        chomage_net:
+          2016-01: 2000
+    foyer_fiscal:
+      declarants:
+      - parent1
+  output:
+    paris_logement: 0
+
+- name: Personne agée qui es eligible à PL
+  description: Paris Logement PA et PH
+  period: 2016-02
+  input:
+    menage:
+      personne_de_reference: parent1
+      loyer: 500
+      statut_occupation_logement: locataire_vide
+    famille:
+      parents: [parent1]
+      parisien: true
+      aspa:
+        2016-01: 850
+    individus:
+      parent1:
+        age: 65
+    foyer_fiscal:
+      declarants:
+      - parent1
+  output:
+    paris_logement: 84
+
+- name: Personne éligible car personne qui bénéficie d’un avantage vieillesse au titre de l’inaptitude au travail et 200e d'apl
+  description: Paris Logement PA et PH
+  period: 2016-02
+  input:
+    age: 60
+    parisien: true
+    aspa_eligibilite: true
     statut_occupation_logement: locataire_vide
-  familles:
-    parents: ["parent1"]
-    parisien: True
+    loyer: 550
     apl:
       2016-01: 200
-      year:2015-02: 5000
-    aspa:
-      year:2015-02: 9600
-  individus:
-    - id: "parent1"
-      age: 65
-  output_variables:
-    paris_logement: 84
-
-- name: "Personne handicapé qui n'es pas eligible à PL car revenus trop important"
-  description: Paris Logement PA et PH
-  period: 2016-02
-  menages:
-    personne_de_reference: "parent1"
-    loyer: 550
-    statut_occupation_logement: locataire_vide
-  familles:
-    parents: ["parent1"]
-    parisien: True
-  individus:
-    - id: "parent1"
-      age: 55
-      handicap: True
-      chomage_net:
-        2016-01: 2000
-  output_variables:
-    paris_logement: 0
-
-- name: "Personne agée qui es eligible à PL"
-  description: Paris Logement PA et PH
-  period: 2016-02
-  menages:
-    personne_de_reference: "parent1"
-    loyer: 500
-    statut_occupation_logement: locataire_vide
-  familles:
-    parents: ["parent1"]
-    parisien: True
     aspa:
       2016-01: 850
-  individus:
-    - id: "parent1"
-      age: 65
-  output_variables:
+  output:
     paris_logement: 84
 
-- name: "Personne éligible car personne qui bénéficie d’un avantage vieillesse au titre de l’inaptitude au travail et 200e d'apl"
+- name: 'Personne éligible car charges < taux effort '
   description: Paris Logement PA et PH
   period: 2016-02
-  input_variables:
+  input:
     age: 60
-    parisien: True
-    aspa_eligibilite: True
-    statut_occupation_logement: locataire_vide
-    loyer: 550
-    apl:
-      2016-01: 200
-    aspa:
-      2016-01: 850
-  output_variables:
-    paris_logement: 84
-
-- name: "Personne éligible car charges < taux effort "
-  description: Paris Logement PA et PH
-  period: 2016-02
-  input_variables:
-    age: 60
-    parisien: True
-    aspa_eligibilite: True
+    parisien: true
+    aspa_eligibilite: true
     statut_occupation_logement: locataire_vide
     loyer: 500
     apl:
       2016-01: 320
     aspa:
       2016-01: 850
-  output_variables:
+  output:
     paris_logement: 0
 
-- name: "Famille éligible pour l'aide Paris logement car un couple avec deux enfant et ressources < 1600"
+- name: Famille éligible pour l'aide Paris logement car un couple avec deux enfant et ressources < 1600
   relative_error_margin: 0.02
   description: Paris Logement PA et PH
   period: 2016-02
-  familles:
-    parents: ["parent1", "parent2"]
-    enfants: ["enfant1", "enfant2"]
-    parisien: True
-  menages:
-    statut_occupation_logement: locataire_vide
-    personne_de_reference: "parent1"
-    conjoint: "parent2"
-    enfants: ["enfant1", "enfant2"]
-    loyer: 550
-  individus:
-    - id: "parent1"
-      age: 55
-      salaire_net:
-        2016-01: 1000
-    - id: "parent2"
-      age: 55
-      handicap: True
-      aah:
-        2016-01: 350
-    - id: "enfant1"
-      age: 5
-    - id: "enfant2"
-      age: 9
-  output_variables:
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1, enfant2]
+      parisien: true
+    menage:
+      statut_occupation_logement: locataire_vide
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [enfant1, enfant2]
+      loyer: 550
+    individus:
+      parent1:
+        age: 55
+        salaire_net:
+          2016-01: 1000
+      parent2:
+        age: 55
+        handicap: true
+        aah:
+          2016-01: 350
+      enfant1:
+        age: 5
+      enfant2:
+        age: 9
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+      foyer_fiscal_1:
+        declarants:
+        - parent2
+      foyer_fiscal_2:
+        declarants:
+        - enfant1
+      foyer_fiscal_3:
+        declarants:
+        - enfant2
+  output:
     paris_logement: 113.25
 
-- name: "Couple non éligible pour l'aide Paris logement car un couple avec ressources > 1140"
+- name: Couple non éligible pour l'aide Paris logement car un couple avec ressources > 1140
   description: Paris Logement PA et PH
   period: 2016-02
-  familles:
-    parents: ["parent1", "parent2"]
-    parisien: True
-  menages:
-    statut_occupation_logement: locataire_vide
-    personne_de_reference: "parent1"
-    conjoint: "parent2"
-    loyer: 500
-  individus:
-    - id: "parent1"
-      age: 65
-      salaire_net:
-        2016-01: 1000
-    - id: "parent2"
-      age: 55
-      handicap: True
-      aah:
-        2016-01: 350
-  output_variables:
+  input:
+    famille:
+      parents: [parent1, parent2]
+      parisien: true
+    menage:
+      statut_occupation_logement: locataire_vide
+      personne_de_reference: parent1
+      conjoint: parent2
+      loyer: 500
+    individus:
+      parent1:
+        age: 65
+        salaire_net:
+          2016-01: 1000
+      parent2:
+        age: 55
+        handicap: true
+        aah:
+          2016-01: 350
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+      foyer_fiscal_1:
+        declarants:
+        - parent2
+  output:
     paris_logement: 0
 
-- name: "couple éligible pour l'aide Paris logement car un couple handicapé"
+- name: couple éligible pour l'aide Paris logement car un couple handicapé
   description: Paris Logement PA et PH
   period: 2016-02
-  familles:
-    parents: ["parent1", "parent2"]
-    parisien: True
-  menages:
-    statut_occupation_logement: locataire_vide
-    personne_de_reference: "parent1"
-    conjoint: "parent2"
-    loyer: 550
-  individus:
-    - id: "parent1"
-      age: 55
-      salaire_net:
-        2016-01: 500
-      handicap: True
-      aah:
-        2016-01: 250
-    - id: "parent2"
-      age: 55
-      handicap: True
-      aah:
-        2016-01: 150
-  output_variables:
+  input:
+    famille:
+      parents: [parent1, parent2]
+      parisien: true
+    menage:
+      statut_occupation_logement: locataire_vide
+      personne_de_reference: parent1
+      conjoint: parent2
+      loyer: 550
+    individus:
+      parent1:
+        age: 55
+        salaire_net:
+          2016-01: 500
+        handicap: true
+        aah:
+          2016-01: 250
+      parent2:
+        age: 55
+        handicap: true
+        aah:
+          2016-01: 150
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+      foyer_fiscal_1:
+        declarants:
+        - parent2
+  output:
     paris_logement: 95
 
-- name: "Famille éligible pour l'aide Paris logement car un couple avec deux enfant et ressources < 1600"
+- name: Famille éligible pour l'aide Paris logement car un couple avec deux enfant et ressources < 1600
   relative_error_margin: 0.02
   description: Paris Logement Couple avec enfants
   period: 2016-02
-  familles:
-    parents: ["parent1", "parent2"]
-    enfants: ["enfant1", "enfant2"]
-    parisien: True
-  menages:
-    statut_occupation_logement: locataire_vide
-    personne_de_reference: "parent1"
-    conjoint: "parent2"
-    enfants: ["enfant1", "enfant2"]
-    loyer: 550
-  individus:
-    - id: "parent1"
-      age: 55
-      salaire_net:
-        2016-01: 1000
-    - id: "parent2"
-      age: 55
-    - id: "enfant1"
-      age: 5
-    - id: "enfant2"
-      age: 9
-  output_variables:
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1, enfant2]
+      parisien: true
+    menage:
+      statut_occupation_logement: locataire_vide
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [enfant1, enfant2]
+      loyer: 550
+    individus:
+      parent1:
+        age: 55
+        salaire_net:
+          2016-01: 1000
+      parent2:
+        age: 55
+      enfant1:
+        age: 5
+      enfant2:
+        age: 9
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+      foyer_fiscal_1:
+        declarants:
+        - parent2
+      foyer_fiscal_2:
+        declarants:
+        - enfant1
+      foyer_fiscal_3:
+        declarants:
+        - enfant2
+  output:
     paris_logement: 113.25
 
-- name: "Famille non éligible pour l'aide Paris logement car un couple avec deux enfant et ressources > 1600"
+- name: Famille non éligible pour l'aide Paris logement car un couple avec deux enfant et ressources > 1600
   description: Paris Logement Couple avec enfants
   period: 2016-02
-  familles:
-    parents: ["parent1", "parent2"]
-    enfants: ["enfant1", "enfant2"]
-    parisien: True
-    aide_logement: 200
-  menages:
-    statut_occupation_logement: locataire_vide
-    personne_de_reference: "parent1"
-    conjoint: "parent2"
-    enfants: ["enfant1", "enfant2"]
-    loyer: 550
-  individus:
-    - id: "parent1"
-      age: 55
-      salaire_net:
-        2016-01: 1000
-    - id: "parent2"
-      age: 55
-      salaire_net:
-        2016-01: 1000
-    - id: "enfant1"
-      age: 5
-    - id: "enfant2"
-      age: 9
-  output_variables:
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1, enfant2]
+      parisien: true
+      aide_logement: 200
+    menage:
+      statut_occupation_logement: locataire_vide
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [enfant1, enfant2]
+      loyer: 550
+    individus:
+      parent1:
+        age: 55
+        salaire_net:
+          2016-01: 1000
+      parent2:
+        age: 55
+        salaire_net:
+          2016-01: 1000
+      enfant1:
+        age: 5
+      enfant2:
+        age: 9
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+      foyer_fiscal_1:
+        declarants:
+        - parent2
+      foyer_fiscal_2:
+        declarants:
+        - enfant1
+      foyer_fiscal_3:
+        declarants:
+        - enfant2
+  output:
     paris_logement: 0
 
-- name: "Personne éligible au PL car ressources trop bas"
+- name: Personne éligible au PL car ressources trop bas
   description: Paris Logement Parisien en difficulté
   period: 2016-02
-  input_variables:
+  input:
     age: 45
-    parisien: True
+    parisien: true
     statut_occupation_logement: locataire_vide
     loyer: 550
     aide_logement:
       2016-01: 200
     salaire_net:
       2016-01: 850
-  output_variables:
+  output:
     paris_logement: 84
 
-- name: "Personne éligible au PL car ressources trop bas"
+- name: Personne éligible au PL car ressources trop bas
   description: Paris Logement Parisien en difficulté
   period: 2016-02
-  input_variables:
+  input:
     age: 45
-    parisien: True
+    parisien: true
     statut_occupation_logement: locataire_vide
     loyer: 550
     aide_logement:
       2016-01: 200
     rsa:
       2016-01: 450
-  output_variables:
+  output:
     paris_logement: 84
 
-- name: "Personne non éligible au PL car ressources trop haut"
+- name: Personne non éligible au PL car ressources trop haut
   description: Paris Logement Parisien en difficulté
   period: 2016-02
-  input_variables:
+  input:
     age: 45
-    parisien: True
+    parisien: true
     statut_occupation_logement: locataire_vide
     loyer: 550
     aide_logement:
       2016-01: 200
     salaire_net:
       2016-01: 1450
-  output_variables:
+  output:
     paris_logement: 0
 
-- name: "Couple éligible au PL car ressources trop bas"
+- name: Couple éligible au PL car ressources trop bas
   description: Paris Logement Parisien en difficulté
   period: 2016-02
-  input_variables:
+  input:
     age: 45
-    parisien: True
-    en_couple: True
+    parisien: true
+    en_couple: true
     statut_occupation_logement: locataire_vide
     loyer: 550
     aide_logement:
       2016-01: 200
     rsa:
       2016-01: 850
-  output_variables:
+  output:
     paris_logement: 95
 
-- name: "Personne éligible car personne agé plus de 65 ans"
+- name: Personne éligible car personne agé plus de 65 ans
   description: Paris Logement PA et PH
   period: 2016-02
-  input_variables:
+  input:
     age: 66
-    parisien: True
+    parisien: true
     statut_occupation_logement: locataire_vide
     loyer: 550
     apl:
       2016-01: 200
     salaire_net:
       2016-01: 850
-  output_variables:
+  output:
     paris_logement: 0
