@@ -9,6 +9,9 @@
       en_couple: true
     menage:
       statut_occupation_logement: locataire_vide
+      personne_de_reference: couple1
+      conjoint: couple2
+      enfants: [enfant1]
     individus:
       couple1:
         age: 35
@@ -25,11 +28,8 @@
       foyer_fiscal_0:
         declarants:
         - couple1
-      foyer_fiscal_1:
-        declarants:
         - couple2
-      foyer_fiscal_2:
-        declarants:
+        personnes_a_charge:
         - enfant1
   output:
     paris_logement_psol: 0
@@ -74,6 +74,8 @@
         2016-01: 100
     menage:
       statut_occupation_logement: locataire_vide
+      personne_de_reference: couple1
+      conjoint: couple2
     individus:
       couple1:
         age: 65
@@ -97,8 +99,6 @@
       foyer_fiscal_0:
         declarants:
         - couple1
-      foyer_fiscal_1:
-        declarants:
         - couple2
   output:
     paris_logement_psol: 0
@@ -112,6 +112,8 @@
       parisien: true
     menage:
       statut_occupation_logement: locataire_vide
+      personne_de_reference: couple1
+      conjoint: couple2
     individus:
       couple1:
         age: 55
@@ -131,8 +133,6 @@
       foyer_fiscal_0:
         declarants:
         - couple1
-      foyer_fiscal_1:
-        declarants:
         - couple2
   output:
     paris_logement_psol: 0
@@ -219,6 +219,8 @@
       parisien: true
     menage:
       statut_occupation_logement: locataire_vide
+      personne_de_reference: couple1
+      conjoint: couple2
     individus:
       couple1:
         age: 55
@@ -240,8 +242,6 @@
       foyer_fiscal_0:
         declarants:
         - couple1
-      foyer_fiscal_1:
-        declarants:
         - couple2
   output:
     paris_logement_psol: 0
@@ -255,6 +255,8 @@
       parisien: true
     menage:
       statut_occupation_logement: locataire_vide
+      personne_de_reference: couple1
+      conjoint: couple2
     individus:
       couple1:
         age: 55
@@ -269,8 +271,6 @@
       foyer_fiscal_0:
         declarants:
         - couple1
-      foyer_fiscal_1:
-        declarants:
         - couple2
   output:
     paris_logement_psol: 0
@@ -294,6 +294,7 @@
       parisien: true
     menage:
       statut_occupation_logement: locataire_vide
+      personne_de_reference: couple1
     individus:
       couple1:
         age: 65
@@ -318,6 +319,8 @@
         2016-01: 1242
     menage:
       statut_occupation_logement: locataire_vide
+      personne_de_reference: couple1
+      conjoint: couple2
     individus:
       couple1:
         age: 65
@@ -327,8 +330,6 @@
       foyer_fiscal_0:
         declarants:
         - couple1
-      foyer_fiscal_1:
-        declarants:
         - couple2
   output:
     paris_logement_psol: 188 # 1430 - 1242
@@ -346,6 +347,8 @@
         2016-01: 100
     menage:
       statut_occupation_logement: locataire_vide
+      personne_de_reference: couple1
+      conjoint: couple2
     individus:
       couple1:
         age: 65
@@ -363,8 +366,6 @@
       foyer_fiscal_0:
         declarants:
         - couple1
-      foyer_fiscal_1:
-        declarants:
         - couple2
   output:
     paris_logement_psol: 204.46

@@ -26,6 +26,8 @@
         2016-01: 422
     menage:
       statut_occupation_logement: locataire_vide
+      personne_de_reference: Couple1
+      enfants: [enfant1]
     individus:
       Couple1:
         age: 33

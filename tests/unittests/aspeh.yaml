@@ -7,6 +7,9 @@
       parisien: true
     menage:
       statut_occupation_logement: locataire_vide
+      personne_de_reference: couple1
+      conjoint: couple2
+      enfants: [enfant1, enfant2, enfant3]
     individus:
       couple1:
         age: 55
@@ -27,17 +30,10 @@
       foyer_fiscal_0:
         declarants:
         - couple1
-      foyer_fiscal_1:
-        declarants:
         - couple2
-      foyer_fiscal_2:
-        declarants:
+        personnes_a_charge:
         - enfant1
-      foyer_fiscal_3:
-        declarants:
         - enfant2
-      foyer_fiscal_4:
-        declarants:
         - enfant3
   output:
     paris_logement_aspeh: 153
@@ -52,6 +48,9 @@
       paje_clca: 1000
     menage:
       statut_occupation_logement: locataire_vide
+      personne_de_reference: couple1
+      conjoint: couple2
+      enfants: [enfant1]
     individus:
       couple1:
         age: 55
@@ -67,11 +66,8 @@
       foyer_fiscal_0:
         declarants:
         - couple1
-      foyer_fiscal_1:
-        declarants:
         - couple2
-      foyer_fiscal_2:
-        declarants:
+        personnes_a_charge:
         - enfant1
   output:
     paris_logement_aspeh: 0
@@ -86,6 +82,9 @@
       paje_clca: 100
     menage:
       statut_occupation_logement: locataire_vide
+      personne_de_reference: couple1
+      conjoint: couple2
+      enfants: [enfant1, enfant2]
     individus:
       couple1:
         age: 55
@@ -104,14 +103,9 @@
       foyer_fiscal_0:
         declarants:
         - couple1
-      foyer_fiscal_1:
-        declarants:
         - couple2
-      foyer_fiscal_2:
-        declarants:
+        personnes_a_charge:
         - enfant1
-      foyer_fiscal_3:
-        declarants:
         - enfant2
   output:
     paris_logement_aspeh: 153
@@ -126,6 +120,9 @@
       paje_clca: 100
     menage:
       statut_occupation_logement: locataire_vide
+      personne_de_reference: couple1
+      conjoint: couple2
+      enfants: [enfant1, enfant2]
     individus:
       couple1:
         age: 55
@@ -146,14 +143,9 @@
       foyer_fiscal_0:
         declarants:
         - couple1
-      foyer_fiscal_1:
-        declarants:
         - couple2
-      foyer_fiscal_2:
-        declarants:
+        personnes_a_charge:
         - enfant1
-      foyer_fiscal_3:
-        declarants:
         - enfant2
   output:
     paris_logement_aspeh: 306

@@ -21,8 +21,7 @@
       foyer_fiscal_0:
         declarants:
         - parent1
-      foyer_fiscal_1:
-        declarants:
+        personnes_a_charge:
         - enfant1
   output:
     paris_logement_plfm: 0
@@ -52,11 +51,8 @@
       foyer_fiscal_0:
         declarants:
         - parent1
-      foyer_fiscal_1:
-        declarants:
+        personnes_a_charge:
         - enfant1
-      foyer_fiscal_2:
-        declarants:
         - enfant2
   output:
     paris_logement_plfm: 0
@@ -91,14 +87,9 @@
       foyer_fiscal_0:
         declarants:
         - parent1
-      foyer_fiscal_1:
-        declarants:
         - parent2
-      foyer_fiscal_2:
-        declarants:
+        personnes_a_charge:
         - enfant1
-      foyer_fiscal_3:
-        declarants:
         - enfant2
   output:
     paris_logement_plfm: 0
@@ -130,11 +121,8 @@
       foyer_fiscal_0:
         declarants:
         - parent1
-      foyer_fiscal_1:
-        declarants:
+        personnes_a_charge:
         - enfant1
-      foyer_fiscal_2:
-        declarants:
         - enfant2
   output:
     paris_logement_plfm: 0
@@ -167,11 +155,8 @@
       foyer_fiscal_0:
         declarants:
         - parent1
-      foyer_fiscal_1:
-        declarants:
+        personnes_a_charge:
         - enfant1
-      foyer_fiscal_2:
-        declarants:
         - enfant2
   output:
     paris_logement_plfm: 128
@@ -202,11 +187,8 @@
       foyer_fiscal_0:
         declarants:
         - parent1
-      foyer_fiscal_1:
-        declarants:
+        personnes_a_charge:
         - enfant1
-      foyer_fiscal_2:
-        declarants:
         - enfant2
   output:
     paris_logement_plfm: 0
@@ -237,11 +219,8 @@
       foyer_fiscal_0:
         declarants:
         - parent1
-      foyer_fiscal_1:
-        declarants:
+        personnes_a_charge:
         - enfant1
-      foyer_fiscal_2:
-        declarants:
         - enfant2
   output:
     paris_logement_plfm: 128

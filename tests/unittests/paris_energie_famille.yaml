@@ -7,6 +7,9 @@
       parisien: true
     menage:
       statut_occupation_logement: sans_domicile
+      personne_de_reference: couple1
+      conjoint: couple2
+      enfants: [enfant1, enfant2, enfant3]
     individus:
       couple1:
         age: 55
@@ -26,17 +29,10 @@
       foyer_fiscal_0:
         declarants:
         - couple1
-      foyer_fiscal_1:
-        declarants:
         - couple2
-      foyer_fiscal_2:
-        declarants:
+        personnes_a_charge:
         - enfant1
-      foyer_fiscal_3:
-        declarants:
         - enfant2
-      foyer_fiscal_4:
-        declarants:
         - enfant3
   output:
     paris_energie_famille: 0
@@ -50,6 +46,9 @@
       parisien: true
     menage:
       statut_occupation_logement: locataire_vide
+      personne_de_reference: couple1
+      conjoint: couple2
+      enfants: [enfant1, enfant2, enfant3]
     individus:
       couple1:
         age: 55
@@ -69,17 +68,10 @@
       foyer_fiscal_0:
         declarants:
         - couple1
-      foyer_fiscal_1:
-        declarants:
         - couple2
-      foyer_fiscal_2:
-        declarants:
+        personnes_a_charge:
         - enfant1
-      foyer_fiscal_3:
-        declarants:
         - enfant2
-      foyer_fiscal_4:
-        declarants:
         - enfant3
   output:
     paris_energie_famille: 275
@@ -93,6 +85,9 @@
       parisien: true
     menage:
       statut_occupation_logement: locataire_vide
+      personne_de_reference: couple1
+      conjoint: couple2
+      enfants: [enfant1]
     individus:
       couple1:
         age: 55
@@ -108,11 +103,8 @@
       foyer_fiscal_0:
         declarants:
         - couple1
-      foyer_fiscal_1:
-        declarants:
         - couple2
-      foyer_fiscal_2:
-        declarants:
+        personnes_a_charge:
         - enfant1
   output:
     paris_energie_famille: 138
@@ -126,6 +118,9 @@
       parisien: true
     menage:
       statut_occupation_logement: locataire_vide
+      personne_de_reference: couple1
+      conjoint: couple2
+      enfants: [enfant1, enfant2]
     individus:
       couple1:
         age: 55
@@ -143,14 +138,9 @@
       foyer_fiscal_0:
         declarants:
         - couple1
-      foyer_fiscal_1:
-        declarants:
         - couple2
-      foyer_fiscal_2:
-        declarants:
+        personnes_a_charge:
         - enfant1
-      foyer_fiscal_3:
-        declarants:
         - enfant2
   output:
     paris_energie_famille: 138
@@ -164,6 +154,9 @@
       parisien: true
     menage:
       statut_occupation_logement: locataire_vide
+      personne_de_reference: couple1
+      conjoint: couple2
+      enfants: [enfant1, enfant2]
     individus:
       couple1:
         age: 55
@@ -183,14 +176,9 @@
       foyer_fiscal_0:
         declarants:
         - couple1
-      foyer_fiscal_1:
-        declarants:
         - couple2
-      foyer_fiscal_2:
-        declarants:
+        personnes_a_charge:
         - enfant1
-      foyer_fiscal_3:
-        declarants:
         - enfant2
   output:
     paris_energie_famille: 275
@@ -204,6 +192,9 @@
       parisien: true
     menage:
       statut_occupation_logement: locataire_vide
+      personne_de_reference: couple1
+      conjoint: couple2
+      enfants: [enfant1, enfant2]
     individus:
       couple1:
         age: 55
@@ -224,14 +215,9 @@
       foyer_fiscal_0:
         declarants:
         - couple1
-      foyer_fiscal_1:
-        declarants:
         - couple2
-      foyer_fiscal_2:
-        declarants:
+        personnes_a_charge:
         - enfant1
-      foyer_fiscal_3:
-        declarants:
         - enfant2
   output:
     paris_energie_famille: 0
@@ -245,6 +231,9 @@
       parisien: true
     menage:
       statut_occupation_logement: locataire_vide
+      personne_de_reference: couple1
+      conjoint: couple2
+      enfants: [enfant1]
     individus:
       couple1:
         age: 35
@@ -262,11 +251,8 @@
       foyer_fiscal_0:
         declarants:
         - couple1
-      foyer_fiscal_1:
-        declarants:
         - couple2
-      foyer_fiscal_2:
-        declarants:
+        personnes_a_charge:
         - enfant1
   output:
     paris_energie_famille: 275
@@ -280,6 +266,9 @@
       parisien: true
     menage:
       statut_occupation_logement: locataire_vide
+      personne_de_reference: couple1
+      conjoint: couple2
+      enfants: [enfant1, enfant2]
     individus:
       couple1:
         age: 35
@@ -299,14 +288,9 @@
       foyer_fiscal_0:
         declarants:
         - couple1
-      foyer_fiscal_1:
-        declarants:
         - couple2
-      foyer_fiscal_2:
-        declarants:
+        personnes_a_charge:
         - enfant1
-      foyer_fiscal_3:
-        declarants:
         - enfant2
   output:
     paris_energie_famille: 275
@@ -320,6 +304,8 @@
       parisien: true
     menage:
       statut_occupation_logement: locataire_vide
+      personne_de_reference: couple1
+      enfants: [enfant1, enfant2]
     individus:
       couple1:
         age: 35
@@ -337,11 +323,8 @@
       foyer_fiscal_0:
         declarants:
         - couple1
-      foyer_fiscal_1:
-        declarants:
+        personnes_a_charge:
         - enfant1
-      foyer_fiscal_2:
-        declarants:
         - enfant2
   output:
     paris_energie_famille: 275
@@ -356,6 +339,8 @@
     menage:
       statut_occupation_logement: loge_gratuitement
       participation_frais: true
+      personne_de_reference: couple1
+      enfants: [enfant1, enfant2]
     individus:
       couple1:
         age: 35
@@ -375,11 +360,8 @@
       foyer_fiscal_0:
         declarants:
         - couple1
-      foyer_fiscal_1:
-        declarants:
+        personnes_a_charge:
         - enfant1
-      foyer_fiscal_2:
-        declarants:
         - enfant2
   output:
     paris_energie_famille: 138
