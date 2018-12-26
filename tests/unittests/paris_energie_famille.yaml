@@ -1,252 +1,368 @@
-- name: "Famille éligible pour l'aide paris energie famille"
+- name: Famille éligible pour l'aide paris energie famille
   period: 2016-02
-  familles:
-    parents: ["couple1", "couple2"]
-    enfants: ["enfant1", "enfant2","enfant3"]
-    parisien: True
-  menages:
-    statut_occupation_logement: sans_domicile
-  individus:
-  - id: "couple1"
-    age: 55
-    salaire_net:
-      2016-01: 3100
-  - id: "couple2"
-    age: 45
-    chomage_net:
-      2016-01: 1400
-  - id: "enfant1"
-    age: 5
-  - id: "enfant2"
-    age: 7
-  - id: "enfant3"
-    age: 9
-  output_variables:
+  input:
+    famille:
+      parents: [couple1, couple2]
+      enfants: [enfant1, enfant2, enfant3]
+      parisien: true
+    menage:
+      statut_occupation_logement: sans_domicile
+      personne_de_reference: couple1
+      conjoint: couple2
+      enfants: [enfant1, enfant2, enfant3]
+    individus:
+      couple1:
+        age: 55
+        salaire_net:
+          2016-01: 3100
+      couple2:
+        age: 45
+        chomage_net:
+          2016-01: 1400
+      enfant1:
+        age: 5
+      enfant2:
+        age: 7
+      enfant3:
+        age: 9
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - couple1
+        - couple2
+        personnes_a_charge:
+        - enfant1
+        - enfant2
+        - enfant3
+  output:
     paris_energie_famille: 0
 
-- name: "Famille éligible pour l'aide paris energie famille"
+- name: Famille éligible pour l'aide paris energie famille
   period: 2016-02
-  familles:
-    parents: ["couple1", "couple2"]
-    enfants: ["enfant1", "enfant2","enfant3"]
-    parisien: True
-  menages:
-    statut_occupation_logement: locataire_vide
-  individus:
-  - id: "couple1"
-    age: 55
-    salaire_net:
-      2016-01: 3100
-  - id: "couple2"
-    age: 45
-    chomage_net:
-      2016-01: 1400
-  - id: "enfant1"
-    age: 5
-  - id: "enfant2"
-    age: 7
-  - id: "enfant3"
-    age: 9
-  output_variables:
+  input:
+    famille:
+      parents: [couple1, couple2]
+      enfants: [enfant1, enfant2, enfant3]
+      parisien: true
+    menage:
+      statut_occupation_logement: locataire_vide
+      personne_de_reference: couple1
+      conjoint: couple2
+      enfants: [enfant1, enfant2, enfant3]
+    individus:
+      couple1:
+        age: 55
+        salaire_net:
+          2016-01: 3100
+      couple2:
+        age: 45
+        chomage_net:
+          2016-01: 1400
+      enfant1:
+        age: 5
+      enfant2:
+        age: 7
+      enfant3:
+        age: 9
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - couple1
+        - couple2
+        personnes_a_charge:
+        - enfant1
+        - enfant2
+        - enfant3
+  output:
     paris_energie_famille: 275
 
-- name: "Famille éligible pour l'aide paris energie famille"
+- name: Famille éligible pour l'aide paris energie famille
   period: 2016-02
-  familles:
-    parents: ["couple1", "couple2"]
-    enfants: ["enfant1"]
-    parisien: True
-  menages:
-    statut_occupation_logement: locataire_vide
-  individus:
-  - id: "couple1"
-    age: 55
-    salaire_net:
-      2016-01: 1100
-  - id: "couple2"
-    age: 55
-    chomage_net:
-      2016-01: 400
-  - id: "enfant1"
-    age: 5
-  output_variables:
+  input:
+    famille:
+      parents: [couple1, couple2]
+      enfants: [enfant1]
+      parisien: true
+    menage:
+      statut_occupation_logement: locataire_vide
+      personne_de_reference: couple1
+      conjoint: couple2
+      enfants: [enfant1]
+    individus:
+      couple1:
+        age: 55
+        salaire_net:
+          2016-01: 1100
+      couple2:
+        age: 55
+        chomage_net:
+          2016-01: 400
+      enfant1:
+        age: 5
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - couple1
+        - couple2
+        personnes_a_charge:
+        - enfant1
+  output:
     paris_energie_famille: 138
 
-- name: "Famille éligible pour l'aide paris energie famille"
+- name: Famille éligible pour l'aide paris energie famille
   period: 2016-02
-  familles:
-    parents: ["couple1", "couple2"]
-    enfants: ["enfant1", "enfant2"]
-    parisien: True
-  menages:
-    statut_occupation_logement: locataire_vide
-  individus:
-  - id: "couple1"
-    age: 55
-    salaire_net:
-      2016-01: 2100
-  - id: "couple2"
-    age: 55
-    chomage_net:
-      2016-01: 400
-  - id: "enfant1"
-    age: 5
-  - id: "enfant2"
-    age: 9
-  output_variables:
+  input:
+    famille:
+      parents: [couple1, couple2]
+      enfants: [enfant1, enfant2]
+      parisien: true
+    menage:
+      statut_occupation_logement: locataire_vide
+      personne_de_reference: couple1
+      conjoint: couple2
+      enfants: [enfant1, enfant2]
+    individus:
+      couple1:
+        age: 55
+        salaire_net:
+          2016-01: 2100
+      couple2:
+        age: 55
+        chomage_net:
+          2016-01: 400
+      enfant1:
+        age: 5
+      enfant2:
+        age: 9
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - couple1
+        - couple2
+        personnes_a_charge:
+        - enfant1
+        - enfant2
+  output:
     paris_energie_famille: 138
 
-- name: "Famille éligible pour l'aide paris energie famille"
+- name: Famille éligible pour l'aide paris energie famille
   period: 2016-02
-  familles:
-    parents: ["couple1", "couple2"]
-    enfants: ["enfant1", "enfant2"]
-    parisien: True
-  menages:
-    statut_occupation_logement: locataire_vide
-  individus:
-  - id: "couple1"
-    age: 55
-    salaire_net:
-      2016-01: 4100
-  - id: "couple2"
-    age: 55
-    chomage_net:
-      2016-01: 400
-  - id: "enfant1"
-    age: 5
-    handicap: True
-  - id: "enfant2"
-    age: 9
-    handicap: True
-  output_variables:
+  input:
+    famille:
+      parents: [couple1, couple2]
+      enfants: [enfant1, enfant2]
+      parisien: true
+    menage:
+      statut_occupation_logement: locataire_vide
+      personne_de_reference: couple1
+      conjoint: couple2
+      enfants: [enfant1, enfant2]
+    individus:
+      couple1:
+        age: 55
+        salaire_net:
+          2016-01: 4100
+      couple2:
+        age: 55
+        chomage_net:
+          2016-01: 400
+      enfant1:
+        age: 5
+        handicap: true
+      enfant2:
+        age: 9
+        handicap: true
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - couple1
+        - couple2
+        personnes_a_charge:
+        - enfant1
+        - enfant2
+  output:
     paris_energie_famille: 275
 
-- name: "Famille non éligible pour l'aide paris energie famille"
+- name: Famille non éligible pour l'aide paris energie famille
   period: 2016-02
-  familles:
-    parents: ["couple1", "couple2"]
-    enfants: ["enfant1", "enfant2"]
-    parisien: True
-  menages:
-    statut_occupation_logement: locataire_vide
-  individus:
-  - id: "couple1"
-    age: 55
-    handicap: True
-    salaire_net:
-      2016-01: 4100
-  - id: "couple2"
-    age: 55
-    chomage_net:
-      2016-01: 1400
-  - id: "enfant1"
-    age: 5
-    handicap: True
-  - id: "enfant2"
-    age: 9
-    handicap: True
-  output_variables:
+  input:
+    famille:
+      parents: [couple1, couple2]
+      enfants: [enfant1, enfant2]
+      parisien: true
+    menage:
+      statut_occupation_logement: locataire_vide
+      personne_de_reference: couple1
+      conjoint: couple2
+      enfants: [enfant1, enfant2]
+    individus:
+      couple1:
+        age: 55
+        handicap: true
+        salaire_net:
+          2016-01: 4100
+      couple2:
+        age: 55
+        chomage_net:
+          2016-01: 1400
+      enfant1:
+        age: 5
+        handicap: true
+      enfant2:
+        age: 9
+        handicap: true
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - couple1
+        - couple2
+        personnes_a_charge:
+        - enfant1
+        - enfant2
+  output:
     paris_energie_famille: 0
 
-- name: "Famille éligible pour l'aide paris energie famille"
+- name: Famille éligible pour l'aide paris energie famille
   period: 2016-02
-  familles:
-    parents: ["couple1", "couple2"]
-    enfants: ["enfant1"]
-    parisien: True
-  menages:
-    statut_occupation_logement: locataire_vide
-  individus:
-  - id: "couple1"
-    age: 35
-    salaire_net:
-      2015-11: 1860
-      2015-12: 1860
-      2016-01: 1860
-      year:2015-02: 22320
-  - id: "couple2"
-    age: 55
-  - id: "enfant1"
-    age: 9
-    handicap: True
-  output_variables:
+  input:
+    famille:
+      parents: [couple1, couple2]
+      enfants: [enfant1]
+      parisien: true
+    menage:
+      statut_occupation_logement: locataire_vide
+      personne_de_reference: couple1
+      conjoint: couple2
+      enfants: [enfant1]
+    individus:
+      couple1:
+        age: 35
+        salaire_net:
+          2015-11: 1860
+          2015-12: 1860
+          2016-01: 1860
+          year:2015-02: 22320
+      couple2:
+        age: 55
+      enfant1:
+        age: 9
+        handicap: true
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - couple1
+        - couple2
+        personnes_a_charge:
+        - enfant1
+  output:
     paris_energie_famille: 275
 
-- name: "Famille éligible pour l'aide paris energie famille"
+- name: Famille éligible pour l'aide paris energie famille
   period: 2016-02
-  familles:
-    parents: ["couple1", "couple2"]
-    enfants: ["enfant1","enfant2"]
-    parisien: True
-  menages:
-    statut_occupation_logement: locataire_vide
-  individus:
-  - id: "couple1"
-    age: 35
-    salaire_net:
-      2015-11: 1000
-      2015-12: 1000
-      2016-01: 1000
-      year:2015-02: 22320
-  - id: "couple2"
-    age: 55
-  - id: "enfant1"
-    age: 9
-    handicap: True
-  - id: "enfant2"
-    age: 9
-  output_variables:
+  input:
+    famille:
+      parents: [couple1, couple2]
+      enfants: [enfant1, enfant2]
+      parisien: true
+    menage:
+      statut_occupation_logement: locataire_vide
+      personne_de_reference: couple1
+      conjoint: couple2
+      enfants: [enfant1, enfant2]
+    individus:
+      couple1:
+        age: 35
+        salaire_net:
+          2015-11: 1000
+          2015-12: 1000
+          2016-01: 1000
+          year:2015-02: 22320
+      couple2:
+        age: 55
+      enfant1:
+        age: 9
+        handicap: true
+      enfant2:
+        age: 9
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - couple1
+        - couple2
+        personnes_a_charge:
+        - enfant1
+        - enfant2
+  output:
     paris_energie_famille: 275
 
-- name: "famille éligible pour l'aide paris energie famille"
+- name: famille éligible pour l'aide paris energie famille
   period: 2016-02
-  familles:
-    parents: ["couple1"]
-    enfants: ["enfant1","enfant2"]
-    parisien: True
-  menages:
-    statut_occupation_logement: locataire_vide
-  individus:
-  - id: "couple1"
-    age: 35
-    salaire_net:
-      2015-11: 1000
-      2015-12: 1000
-      2016-01: 1000
-      year:2015-02: 22320
-  - id: "enfant1"
-    age: 9
-    handicap: True
-  - id: "enfant2"
-    age: 9
-  output_variables:
+  input:
+    famille:
+      parents: [couple1]
+      enfants: [enfant1, enfant2]
+      parisien: true
+    menage:
+      statut_occupation_logement: locataire_vide
+      personne_de_reference: couple1
+      enfants: [enfant1, enfant2]
+    individus:
+      couple1:
+        age: 35
+        salaire_net:
+          2015-11: 1000
+          2015-12: 1000
+          2016-01: 1000
+          year:2015-02: 22320
+      enfant1:
+        age: 9
+        handicap: true
+      enfant2:
+        age: 9
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - couple1
+        personnes_a_charge:
+        - enfant1
+        - enfant2
+  output:
     paris_energie_famille: 275
 
-- name: "famille éligible pour l'aide paris energie famille"
+- name: famille éligible pour l'aide paris energie famille
   period: 2018-06
-  familles:
-    parents: ["couple1"]
-    enfants: ["enfant1","enfant2"]
-    parisien: True
-  menages:
-    statut_occupation_logement: loge_gratuitement
-    participation_frais: True
-  individus:
-  - id: "couple1"
-    age: 35
-    salaire_net:
-      2018-03: 850
-      2018-04: 850
-      2018-05: 850
-    pensions_alimentaires_percues:
-      2018-03: 200
-      2018-04: 200
-      2018-05: 200
-  - id: "enfant1"
-    age: 9
-  - id: "enfant2"
-    age: 9
-  output_variables:
+  input:
+    famille:
+      parents: [couple1]
+      enfants: [enfant1, enfant2]
+      parisien: true
+    menage:
+      statut_occupation_logement: loge_gratuitement
+      participation_frais: true
+      personne_de_reference: couple1
+      enfants: [enfant1, enfant2]
+    individus:
+      couple1:
+        age: 35
+        salaire_net:
+          2018-03: 850
+          2018-04: 850
+          2018-05: 850
+        pensions_alimentaires_percues:
+          2018-03: 200
+          2018-04: 200
+          2018-05: 200
+      enfant1:
+        age: 9
+      enfant2:
+        age: 9
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - couple1
+        personnes_a_charge:
+        - enfant1
+        - enfant2
+  output:
     paris_energie_famille: 138
 

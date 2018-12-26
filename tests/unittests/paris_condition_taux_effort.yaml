@@ -1,10 +1,10 @@
-- name: "Taux d'effort trop faible à 26%"
+- name: Taux d'effort trop faible à 26%
   period: 2017-07
-  input_variables:
+  input:
     loyer: 380
     aide_logement: 309
     paris_base_ressources_commun: 466
-  output_variables:
+  output:
     aide_logement_charges: 53.27
     paris_condition_taux_effort: false
     paris_logement: 0
