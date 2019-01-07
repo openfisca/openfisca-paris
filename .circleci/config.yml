@@ -17,10 +17,10 @@ jobs:
           command: pip install . --upgrade && pip install ".[test]"
       - run:
           name: Run unit tests
-          command: openfisca-run-test tests/unittests/*.yaml --extensions openfisca_paris
+          command: make utest
       - run:
           name: Run specific tests
-          command: openfisca-run-test tests/*.yaml --extensions openfisca_paris
+          command: make stest
 
 workflows:
   version: 2
