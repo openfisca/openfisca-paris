@@ -9,7 +9,7 @@
 Ce paquet requiert [Python 3](https://www.python.org/downloads/) et [pip](https://pip.pypa.io/en/stable/installing/).
 
 ```sh
-python --version  # Devrait afficher "Python 3.6.xx".
+python --version  # Devrait afficher "Python 3.x.x".
 ```
 
 ## Contribuer à OpenFisca-Paris
