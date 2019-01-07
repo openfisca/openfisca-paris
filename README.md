@@ -6,13 +6,11 @@
 
 ## Installation
 
-Ce paquet requiert [Python 3.7](https://www.python.org/downloads/release/python-370/) et [pip](https://pip.pypa.io/en/stable/installing/).
+Ce paquet requiert [Python 3](https://www.python.org/downloads/) et [pip](https://pip.pypa.io/en/stable/installing/).
 
 ```sh
-python --version  # Devrait afficher "Python 3.7.xx".
+python --version  # Devrait afficher "Python 3.6.xx".
 ```
-
-> La rétro-compatibilité avec Python 2.7 est maintenue pour le moment, mais cessera au 1er janvier 2019.
 
 ## Contribuer à OpenFisca-Paris
 
