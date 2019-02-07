@@ -32,7 +32,7 @@ class paris_logement_est_monoparentale(Variable):
         return  parent_solo * (nb_enfants >= 1) * (nb_enfants < 4) * parisien * statut_occupation_plfm
 
 
-class paris_logement_plfm(Variable):
+class paris_logement_plfm_montant(Variable):
     value_type = float
     label = u"Famille monoparentale qui est eligible à Paris logement familles monoparentales"
     entity = Famille
@@ -46,23 +46,24 @@ class paris_logement_plfm(Variable):
         aide_1er_plafond_plfm = legislation(period).paris.plfm.aide_1er_plafond_plfm
         aide_2eme_plafond_plfm = legislation(period).paris.plfm.aide_2eme_plafond_plfm
 
-        loyer = famille.demandeur.menage('loyer', period)
-        charges_locatives = famille.demandeur.menage('charges_locatives', period)
-        paris_base_ressources_commun = famille('paris_base_ressources_commun', last_month)
-        aide_logement = famille('aide_logement', last_month)
-        loyer_net = famille('paris_loyer_net', period)
+        base_ressources = famille('paris_base_ressources_commun', last_month)
 
+        return select([(base_ressources <= premier_plafond_plfm),
+            (base_ressources <= deuxieme_plafond_plfm)], [aide_1er_plafond_plfm, aide_2eme_plafond_plfm])
+
+
+class paris_logement_plfm(Variable):
+    value_type = float
+    label = u"Famille monoparentale qui est eligible à Paris logement familles monoparentales"
+    entity = Famille
+    definition_period = MONTH
+
+    def formula(famille, period, legislation):
+        last_month = period.last_month
+
+        loyer_net = famille('paris_loyer_net', period)
         est_monoparentale = famille('paris_logement_est_monoparentale', period)
 
-        ressources_mensuelles_famille = paris_base_ressources_commun + aide_logement
+        montant_aide_max = famille('paris_logement_plfm_montant', period)
 
-        montant_aide = select([(ressources_mensuelles_famille <= premier_plafond_plfm),
-            (ressources_mensuelles_famille <= deuxieme_plafond_plfm)], [aide_1er_plafond_plfm, aide_2eme_plafond_plfm])
-
-        condition_plfm = where((montant_aide > loyer_net), (montant_aide - (montant_aide - loyer_net)), montant_aide)
-
-        result_montant = condition_plfm * ((loyer > 0) + (charges_locatives > 0)) * est_monoparentale
-
-        result = where(result_montant > 0, result_montant, 0)
-
-        return result
+        return est_monoparentale * min_(montant_aide_max, loyer_net)
