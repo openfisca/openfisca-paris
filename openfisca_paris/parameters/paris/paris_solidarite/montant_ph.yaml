@@ -3,3 +3,5 @@ unit: currency
 values:
   2012-01-01:
     value: 96
+  2019-01-01:
+    value: 105

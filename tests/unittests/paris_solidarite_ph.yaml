@@ -1,0 +1,9 @@
+- name: Perçois l'AAH uniquement
+  period: 2019-02
+  input:
+    paris_personnes_handicap: true
+    handicap: true
+    paris_logement_psol_base_ressources:
+      2019-01: 860
+  output:
+    paris_logement_psol_montant: 105
