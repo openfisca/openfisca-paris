@@ -51,6 +51,34 @@ class paris_logement_psol_base_ressources(Variable):
         return paris_base_ressources_commun + asi + aspa + aah + caah
 
 
+class paris_logement_psol_montant_max(Variable):
+    value_type = float
+    label = u"Montant de l'aide PSOL"
+    entity = Famille
+    definition_period = MONTH
+
+    def formula(famille, period, legislation):
+        last_month = period.last_month
+
+        montant_aide_seul_pa = legislation(period).paris.paris_solidarite.montant_pa
+        montant_aide_seul_ph = legislation(period).paris.paris_solidarite.montant_ph
+        montant_aide_couple = legislation(period).paris.paris_solidarite.montant_couple
+
+        personnes_couple = famille('en_couple', period)
+
+        personne_handicap_individu = famille.members('paris_personnes_handicap', period)
+        nb_personne_handicap = famille.sum(personne_handicap_individu)
+        ressources_conjoint = famille.conjoint('paris_base_ressources_commun_i', last_month)
+
+        return select(
+            [
+                (personnes_couple) * ((nb_personne_handicap == 0) + (nb_personne_handicap == 1) * (ressources_conjoint == 0)),
+                not_(personnes_couple) * (nb_personne_handicap == 1),
+                not_(personnes_couple) * (nb_personne_handicap == 0)
+            ],
+            [montant_aide_couple, montant_aide_seul_ph, montant_aide_seul_pa])
+
+
 class paris_logement_psol_montant(Variable):
     value_type = float
     label = u"Montant de l'aide PSOL"
@@ -82,12 +110,6 @@ class paris_logement_psol_montant(Variable):
 
         montant_aide  = plafond_psol - ressources_mensuelles
 
-        montant_max = select(
-            [
-                (personnes_couple) * ((nb_personne_handicap == 0) + (nb_personne_handicap == 1) * (ressources_conjoint == 0)),
-                not_(personnes_couple) * (nb_personne_handicap == 1),
-                not_(personnes_couple) * (nb_personne_handicap == 0)
-            ],
-            [montant_aide_couple, montant_aide_seul_ph, montant_aide_seul_pa])
+        montant_max = famille('paris_logement_psol_montant_max', period)
 
         return max_(0, min_(montant_aide, montant_max))
