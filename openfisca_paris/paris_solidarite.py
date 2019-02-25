@@ -17,9 +17,6 @@ class paris_logement_psol(Variable):
 
         parisien = famille('parisien', period)
 
-        personnes_agees = famille.members('paris_personnes_agees', period)
-        personnes_agees_famille = famille.any(personnes_agees)
-
         personne_handicap_individu = famille.members('paris_personnes_handicap', period)
         personne_handicap = famille.sum(personne_handicap_individu)
 
@@ -29,7 +26,10 @@ class paris_logement_psol(Variable):
 
         adulte_handicape = (personne_handicap - nb_enfant) >= 1
 
-        result = parisien * (personnes_agees_famille + adulte_handicape) * montant_aide
+        psol_agregee = adulte_handicape * montant_aide
+        psol_pa = famille('paris_solidarite_pa', period)
+
+        result = parisien * max_(psol_agregee, psol_pa)
 
         return result
 
@@ -60,7 +60,6 @@ class paris_logement_psol_montant_max(Variable):
     def formula(famille, period, legislation):
         last_month = period.last_month
 
-        montant_aide_seul_pa = legislation(period).paris.paris_solidarite.montant_pa
         montant_aide_seul_ph = legislation(period).paris.paris_solidarite.montant_ph
         montant_aide_couple = legislation(period).paris.paris_solidarite.montant_couple
 
@@ -73,10 +72,9 @@ class paris_logement_psol_montant_max(Variable):
         return select(
             [
                 (personnes_couple) * ((nb_personne_handicap == 0) + (nb_personne_handicap == 1) * (ressources_conjoint == 0)),
-                not_(personnes_couple) * (nb_personne_handicap == 1),
-                not_(personnes_couple) * (nb_personne_handicap == 0)
+                not_(personnes_couple) * (nb_personne_handicap == 1)
             ],
-            [montant_aide_couple, montant_aide_seul_ph, montant_aide_seul_pa])
+            [montant_aide_couple, montant_aide_seul_ph])
 
 
 class paris_logement_psol_montant(Variable):
@@ -86,12 +84,8 @@ class paris_logement_psol_montant(Variable):
     definition_period = MONTH
 
     def formula(famille, period, legislation):
-        last_month = period.last_month
-
-        plafond_seul_psol = legislation(period).paris.paris_solidarite.plafond_seul_psol
         plafond_couple_psol = legislation(period).paris.paris_solidarite.plafond_couple_psol
         plafond_seul_psol_personne_handicap = legislation(period).paris.paris_solidarite.plafond_seul_psol_personne_handicap
-        montant_aide_seul_pa = legislation(period).paris.paris_solidarite.montant_pa
         montant_aide_seul_ph = legislation(period).paris.paris_solidarite.montant_ph
         montant_aide_couple = legislation(period).paris.paris_solidarite.montant_couple
 
@@ -99,13 +93,13 @@ class paris_logement_psol_montant(Variable):
 
         personne_handicap_individu = famille.members('paris_personnes_handicap', period)
         nb_personne_handicap = famille.sum(personne_handicap_individu)
-        ressources_conjoint = famille.conjoint('paris_base_ressources_commun_i', last_month)
+        ressources_conjoint = famille.conjoint('paris_base_ressources_commun_i', period)
 
-        ressources_mensuelles = famille('paris_logement_psol_base_ressources', last_month)
+        ressources_mensuelles = famille('paris_logement_psol_base_ressources', period)
 
         plafond_psol = select(
-            [personnes_couple, nb_personne_handicap == 1, not_(personnes_couple) * (nb_personne_handicap == 0)],
-            [plafond_couple_psol, plafond_seul_psol_personne_handicap, plafond_seul_psol]
+            [personnes_couple, nb_personne_handicap == 1],
+            [plafond_couple_psol, plafond_seul_psol_personne_handicap]
         )
 
         montant_aide  = plafond_psol - ressources_mensuelles

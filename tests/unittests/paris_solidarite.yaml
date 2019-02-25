@@ -15,12 +15,10 @@
     individus:
       couple1:
         age: 35
-        salaire_net:
-          2016-01: 500
+        salaire_net: 500
       couple2:
         age: 35
-        salaire_net:
-          2016-01: 10
+        salaire_net: 10
       enfant1:
         age: 8
         handicap: true
@@ -43,8 +41,7 @@
     statut_occupation_logement: locataire_vide
     handicap: true
     loyer: 600
-    chomage_net:
-      2016-01: 600
+    chomage_net: 600
   output:
     paris_logement_psol: 96
 
@@ -56,8 +53,7 @@
     parisien: true
     statut_occupation_logement: locataire_vide
     loyer: 600
-    salaire_net:
-      2016-01: 2500
+    salaire_net: 2500
   output:
     paris_logement_psol: 0
 
@@ -68,10 +64,7 @@
     famille:
       parents: [couple1, couple2]
       parisien: true
-      aspa:
-        2015-11: 100
-        2015-12: 100
-        2016-01: 100
+      aspa: 100
     menage:
       statut_occupation_logement: locataire_vide
       personne_de_reference: couple1
@@ -80,19 +73,12 @@
       couple1:
         age: 65
         handicap: true
-        salaire_net:
-          2015-11: 100
-          2015-12: 100
-          2016-01: 900
-        aah:
-          2016-01: 500
+        salaire_net: 900
+        aah: 500
       couple2:
         age: 65
         handicap: true
-        salaire_net:
-          2015-11: 100
-          2015-12: 100
-          2016-01: 5
+        salaire_net: 5
         aah:
           2016-01: 5
     foyers_fiscaux:
@@ -117,18 +103,14 @@
     individus:
       couple1:
         age: 55
-        aah:
-          2016-01: 900
-        salaire_net:
-          2016-01: 500
+        aah: 900
+        salaire_net: 500
         handicap: true
       couple2:
         age: 65
         handicap: true
-        aah:
-          2016-01: 100
-        salaire_net:
-          2016-01: 10
+        aah: 100
+        salaire_net: 10
     foyers_fiscaux:
       foyer_fiscal_0:
         declarants:
@@ -145,8 +127,7 @@
     parisien: true
     statut_occupation_logement: locataire_vide
     handicap: true
-    aah:
-      2016-01: 2000
+    aah: 2000
   output:
     paris_logement_psol: 0
 
@@ -158,10 +139,8 @@
     parisien: true
     statut_occupation_logement: locataire_vide
     handicap: false
-    aah:
-      2016-01: 500
-    salaire_net:
-      2016-01: 80
+    aah: 500
+    salaire_net: 80
   output:
     paris_logement_psol: 0
 
@@ -173,10 +152,8 @@
     parisien: true
     statut_occupation_logement: locataire_vide
     handicap: true
-    aah:
-      2016-01: 500
-    salaire_net:
-      2016-01: 80
+    aah: 500
+    salaire_net: 80
   output:
     paris_logement_psol: 96
 
@@ -188,10 +165,8 @@
     parisien: true
     statut_occupation_logement: locataire_vide
     handicap: true
-    aah:
-      2016-01: 500
-    salaire_net:
-      2016-01: 450
+    aah: 500
+    salaire_net: 450
   output:
     paris_logement_psol: 0
 
@@ -203,10 +178,8 @@
     parisien: true
     statut_occupation_logement: locataire_vide
     handicap: true
-    aah:
-      2016-01: 800
-    salaire_net:
-      2016-01: 600
+    aah: 800
+    salaire_net: 600
   output:
     paris_logement_psol: 0
 
@@ -224,49 +197,11 @@
     individus:
       couple1:
         age: 55
-        chomage_net:
-          2015-11: 100
-          2015-12: 100
-          2016-01: 100
+        chomage_net: 100
       couple2:
         age: 55
-        indemnites_stage:
-          2015-11: 100
-          2015-12: 100
-          2016-01: 100
-        salaire_net:
-          2015-11: 100
-          2015-12: 100
-          2016-01: 100
-    foyers_fiscaux:
-      foyer_fiscal_0:
-        declarants:
-        - couple1
-        - couple2
-  output:
-    paris_logement_psol: 0
-
-- name: Couple non éligible pour l'aide PSOL car statut handicapé
-  description: Personne handicape
-  period: 2016-02
-  input:
-    famille:
-      parents: [couple1, couple2]
-      parisien: true
-    menage:
-      statut_occupation_logement: locataire_vide
-      personne_de_reference: couple1
-      conjoint: couple2
-    individus:
-      couple1:
-        age: 55
-        aah:
-          2016-01: 800
-        handicap: true
-      couple2:
-        age: 55
-        indemnites_stage:
-          2016-01: 100
+        indemnites_stage: 100
+        salaire_net: 100
     foyers_fiscaux:
       foyer_fiscal_0:
         declarants:
@@ -298,10 +233,7 @@
     individus:
       couple1:
         age: 65
-        chomage_net:
-          2015-11: 100
-          2015-12: 100
-          2016-01: 900
+        chomage_net: 900
     foyer_fiscal:
       declarants:
       - couple1
@@ -315,8 +247,7 @@
     famille:
       parents: [couple1, couple2]
       parisien: true
-      aspa:
-        2016-01: 1242
+      aspa: 1242
     menage:
       statut_occupation_logement: locataire_vide
       personne_de_reference: couple1
@@ -341,10 +272,7 @@
     famille:
       parents: [couple1, couple2]
       parisien: true
-      aspa:
-        2015-11: 100
-        2015-12: 100
-        2016-01: 100
+      aspa: 100
     menage:
       statut_occupation_logement: locataire_vide
       personne_de_reference: couple1
@@ -354,18 +282,12 @@
         age: 65
       couple2:
         age: 55
-        indemnites_stage:
-          2015-11: 100
-          2015-12: 100
-          2016-01: 100
-        salaire_net:
-          2015-11: 100
-          2015-12: 100
-          2016-01: 100
+        indemnites_stage: 100
+        salaire_net: 100
     foyers_fiscaux:
       foyer_fiscal_0:
         declarants:
         - couple1
         - couple2
   output:
-    paris_logement_psol: 204.46
+    paris_logement_psol: 188
