@@ -1,0 +1,16 @@
+- name: Perçois 5000 €
+  period: 2019-02
+  input:
+    paris_solidarite_pa_base_ressources_initiale: 5000
+  output:
+    paris_solidarite_pa_base_ressources: 5000
+    paris_solidarite_pa_montant: 0
+
+- name: Perçois 500 €
+  period: 2019-02
+  absolute_error_margin: 0.005
+  input:
+    paris_solidarite_pa_base_ressources_initiale: 500
+  output:
+    paris_solidarite_pa_base_ressources: 868.2 # prestations.minima_sociaux.aspa.montant_annuel_seul / 12
+    paris_solidarite_pa_montant: 111.80 # plafond - prestations.minima_sociaux.aspa.montant_annuel_seul / 12
