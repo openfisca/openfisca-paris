@@ -1,7 +1,7 @@
 defaults: &defaults
   working_directory: ~/openfisca-paris
   docker:
-    - image: python:2.7.12
+    - image: python:3.6.7
 
 version: 2
 jobs:
