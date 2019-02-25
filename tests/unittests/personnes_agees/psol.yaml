@@ -34,3 +34,17 @@
     paris_solidarite_pa_base_ressources: 1347.88 # prestations.minima_sociaux.aspa.montant_annuel_couple / 12
     paris_solidarite_pa_montant: 205.12 # plafond - prestations.minima_sociaux.aspa.montant_annuel_couple / 12
 
+- name: Personne de 85 ans
+  period: 2019-02
+  input:
+    age: 85
+  output:
+    paris_solidarite_pa_eligibilite: true
+
+- name: Personne éligible à PSOL PA pour un montant de 100 euros
+  period: 2019-02
+  input:
+    paris_solidarite_pa_eligibilite: true
+    paris_solidarite_pa_montant: 100
+  output:
+    paris_solidarite_pa: 100
