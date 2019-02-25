@@ -5,13 +5,6 @@ from numpy import (maximum as max_, logical_not as not_, absolute as abs_, minim
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
-class paris_solidarite_pa_base_ressources_initiale(Variable):
-    value_type = float
-    entity = Famille
-    definition_period = MONTH
-    label = u"Base ressources mensuelles pour Paris Solidarité pour les personnes âgées"
-    reference = "article II.1.1.b.4 du règlement municipal du CASVP"
-
 
 class paris_solidarite_pa_base_ressources(Variable):
     value_type = float
@@ -22,7 +15,7 @@ class paris_solidarite_pa_base_ressources(Variable):
 
     def formula(famille, period, parameters):
 
-        base_ressource = famille('paris_solidarite_pa_base_ressources_initiale', period)
+        base_ressource = famille('paris_logement_psol_base_ressources', period)
         aspa  = parameters(period).prestations.minima_sociaux.aspa
 
         en_couple = famille('en_couple', period)
@@ -70,6 +63,6 @@ class paris_solidarite_pa(Variable):
     def formula(famille, period, parameters):
 
         montant = famille('paris_solidarite_pa_montant', period)
-        pa_eligibilite = famille.members('paris_solidarite_pa_eligibilite', period)
+        pa_eligibilite = famille('paris_solidarite_pa_eligibilite', period)
         
         return pa_eligibilite * montant
