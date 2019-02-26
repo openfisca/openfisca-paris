@@ -1,0 +1,45 @@
+- name: Une personne âgée seule avec 980 € de ressources est éligible
+  period: 2019-02
+  input:
+    paris_complement_sante_pa_base_ressources: 980
+  output:
+    paris_complement_sante_pa_eligibilite: true
+
+- name: Une personne âgée seule avec 981 € de ressources est non éligible
+  period: 2019-02
+  input:
+    paris_complement_sante_pa_base_ressources: 981
+  output:
+    paris_complement_sante_pa_eligibilite: false
+
+- name: Une personne âgée en couple avec 1553 € de ressources est éligible
+  period: 2019-02
+  input:
+    en_couple: true
+    paris_complement_sante_pa_base_ressources: 1553
+  output:
+    paris_complement_sante_pa_eligibilite: true
+
+- name: Une personne âgée en couple avec 1554 € de ressources est non éligible
+  period: 2019-02
+  input:
+    en_couple: true
+    paris_complement_sante_pa_base_ressources: 1554
+  output:
+    paris_complement_sante_pa_eligibilite: false
+
+- name: Une personne éligible et sans cumul avec l'ACS reçoit un montant de 468 €
+  period: 2019-02
+  input:
+    paris_complement_sante_pa_eligibilite: true
+    acs: 0
+  output:
+    paris_complement_sante_pa: 468
+
+- name: Une personne éligible et qui cumule avec 20 € d'ACS reçoit un montant de 448 €
+  period: 2019-02
+  input:
+    paris_complement_sante_pa_eligibilite: true
+    acs: 20
+  output:
+    paris_complement_sante_pa_montant: 448
