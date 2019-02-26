@@ -1,0 +1,25 @@
+plafond:
+  personne_seule:
+    unit: currency
+    values:
+      2012-01-01:
+        value: 900.0
+      2017-04-01:
+        value: 905.0
+      2018-01-01:
+        value: 915.0
+      2019-01-01:
+        value: 965.0
+  couple:
+    unit: currency
+    values:
+      2012-01-01:
+        value: 1430.0
+      2017-04-01:
+        value: 1438.0
+      2018-01-01:
+        value: 1453.0
+      2018-04-01:
+        value: 1498.0
+      2019-01-01:
+        value: 1553.0
