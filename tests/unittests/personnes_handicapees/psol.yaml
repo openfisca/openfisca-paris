@@ -1,0 +1,52 @@
+# - name: Personne seule perçoit 5000 € de ressources
+#   period: 2019-02
+#   input:
+#     paris_solidarite_ph_base_ressources_initiale: 5000
+#   output:
+#     paris_solidarite_ph_base_ressources: 5000
+#     paris_solidarite_ph_montant: 0
+
+# - name: Personne seule perçoit 500 €
+#   period: 2019-02
+#   absolute_error_margin: 0.005
+#   input:
+#     en_couple: false
+#     paris_solidarite_ph_base_ressources_initiale: 500
+#   output:
+#     paris_solidarite_ph_base_ressources: 860 # prestations.minima_sociaux.aah.montant
+#     paris_solidarite_ph_montant: 105 # plafond.personne_seule - prestations.minima_sociaux.aah.montant
+
+# - name: Couple perçoit 6000 €
+#   period: 2019-02
+#   input:
+#     en_couple: true
+#     paris_solidarite_ph_base_ressources_initiale: 6000
+#   output:
+#     paris_solidarite_ph_base_ressources: 6000
+#     paris_solidarite_ph_montant: 0
+
+# - name: Couple perçoit 1000 €
+#   period: 2019-02
+#   absolute_error_margin: 0.005
+#   input:
+#     en_couple: true
+#     paris_solidarite_ph_base_ressources_initiale: 1000
+#   output:
+#     paris_solidarite_ph_base_ressources: 1347.88 # prestations.minima_sociaux.aspa.montant_annuel_couple / 12
+#     paris_solidarite_ph_montant: 205.12 # plafond - prestations.minima_sociaux.aspa.montant_annuel_couple / 12
+
+# - name: Personne handicapée
+#   period: 2019-02
+#   input:
+#     age: 65
+#     handicap: true
+#   output:
+#     paris_solidarite_pa_eligibilite: true
+
+- name: Personne éligible à PSOL PH pour un montant de 100 euros
+  period: 2019-02
+  input:
+    paris_solidarite_ph_eligibilite: true
+    paris_solidarite_ph_montant: 100
+  output:
+    paris_solidarite_ph: 100
