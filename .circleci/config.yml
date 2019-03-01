@@ -1,7 +1,7 @@
 defaults: &defaults
   working_directory: ~/openfisca-paris
   docker:
-    - image: python:2.7.12
+    - image: python:3.6.7
 
 version: 2
 jobs:
@@ -17,10 +17,10 @@ jobs:
           command: pip install . --upgrade && pip install ".[test]"
       - run:
           name: Run unit tests
-          command: make utest
+          command: openfisca-run-test `circleci tests glob "tests/unittests/**/*.{yaml,yml}" | circleci tests split` --country-package openfisca_france --extensions openfisca_paris
       - run:
           name: Run specific tests
-          command: make stest
+          command: openfisca-run-test `circleci tests glob "tests/*.{yaml,yml}" | circleci tests split` --country-package openfisca_france --extensions openfisca_paris
 
 workflows:
   version: 2
