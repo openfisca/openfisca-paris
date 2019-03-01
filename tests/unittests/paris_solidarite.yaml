@@ -35,6 +35,7 @@
 - name: Personne éligible pour l'aide PSOL car revenus < 900
   description: Personne handicape
   period: 2016-02
+  absolute_error_margin: 0.005
   input:
     age: 55
     parisien: true
@@ -43,7 +44,7 @@
     loyer: 600
     chomage_net: 600
   output:
-    paris_logement_psol: 96
+    paris_logement_psol: 92.35
 
 - name: Personne non éligible pour l'aide PSOL car revenus > 900
   description: Personne agée
@@ -147,6 +148,7 @@
 - name: Personne éligible pour l'aide PSOL car elle perçoit < 900
   description: Personne handicape
   period: 2016-02
+  absolute_error_margin: 0.005
   input:
     age: 55
     parisien: true
@@ -155,7 +157,7 @@
     aah: 500
     salaire_net: 80
   output:
-    paris_logement_psol: 96
+    paris_logement_psol: 92.35
 
 - name: Personne non éligible pour l'aide PSOL car revenus > 900
   description: Personne handicape
