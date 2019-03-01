@@ -5,13 +5,6 @@ from numpy import (maximum as max_, logical_not as not_, absolute as abs_, minim
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
-class paris_solidarite_ph_base_ressources_initiale(Variable):
-    value_type = float
-    entity = Famille
-    definition_period = MONTH
-    label = u"Base ressources mensuelles pour Paris Solidarité pour les personnes handicapées"
-    reference = "article III.1.1.b.4 du règlement municipal du CASVP"
-
 
 class paris_solidarite_ph_base_ressources(Variable):
     value_type = float
@@ -22,11 +15,14 @@ class paris_solidarite_ph_base_ressources(Variable):
 
     def formula(famille, period, parameters):
 
-        base_ressource = famille('paris_solidarite_ph_base_ressources_initiale', period)
+        base_ressource = famille('paris_logement_psol_base_ressources', period)
         
         aspa  = parameters(period).prestations.minima_sociaux.aspa
         aah = parameters(period).prestations.minima_sociaux.aah
         en_couple = famille('en_couple', period)
+        # ASPA est utilisé comme seuil de ressources pour
+        # les couples avec personne en situation de handicap
+        # faute d'AAH pour couple
         montant_psol_handicap = ((en_couple * aspa.montant_annuel_couple) / 12 + not_(en_couple) * aah.montant)
 
         return max_(montant_psol_handicap, base_ressource)
@@ -56,10 +52,10 @@ class paris_solidarite_ph_eligibilite(Variable):
     definition_period = MONTH
     label = u"Éligibilité à Paris Solidarité pour les personnes handicapées"
     
-    def formula(Famille, period, parameters):
+    def formula(famille, period, parameters):
 
         personnes_handicapees = famille.members('paris_personnes_handicap', period)
-        return famille.any(personnes_handicapees)
+        return famille.any(personnes_handicapees, role = famille.PARENT)
 
 
 class paris_solidarite_ph(Variable):
@@ -71,6 +67,6 @@ class paris_solidarite_ph(Variable):
     def formula(famille, period, parameters):
 
         montant = famille('paris_solidarite_ph_montant', period)
-        ph_eligibilite = famille.members('paris_solidarite_ph_eligibilite', period)
+        ph_eligibilite = famille('paris_solidarite_ph_eligibilite', period)
         
         return ph_eligibilite * montant
