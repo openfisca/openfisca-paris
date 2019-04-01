@@ -32,8 +32,8 @@ class paris_complement_sante(Variable):
         acs_montant = famille('acs_montant', period)
         acs_plafond = famille('acs_plafond', period)
 
-        ressources_demandeur = famille.demandeur('paris_complement_sante_i', last_month)
-        ressources_conjoint = famille.conjoint('paris_complement_sante_i', last_month)
+        ressources_demandeur = famille.demandeur('paris_complement_sante_i', period)
+        ressources_conjoint = famille.conjoint('paris_complement_sante_i', period)
 
         ressources_pers_isol = ressources_demandeur + aspa + ass + asi + aide_logement
 
@@ -71,8 +71,8 @@ class paris_complement_sante_i(Variable):
     def formula(individu, period):
         last_month = period.last_month
 
-        paris_base_ressources_commun_i = individu('paris_base_ressources_commun_i', last_month)
-        aah = individu('aah', last_month)
+        paris_base_ressources_commun_i = individu('paris_base_ressources_commun_i', period)
+        aah = individu('aah', period)
 
         ressources_demandeur = paris_base_ressources_commun_i + aah
 

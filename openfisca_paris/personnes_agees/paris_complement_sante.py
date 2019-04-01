@@ -17,9 +17,7 @@ class paris_complement_sante_pa_base_ressources(Variable):
 		last_month = period.last_month
 		aspa = famille('aspa', last_month)
 		asi = famille.sum(famille.members('asi', last_month))
-		ass = famille.sum(famille.members('ass', last_month))
-		aide_logement = famille('aide_logement', last_month)
-		aides_famille = aspa + asi + ass + aide_logement
+		aides_famille = aspa + asi
 
 		en_couple = famille('en_couple', period)
 		ressources_demandeur = famille.demandeur('paris_complement_sante_i', last_month)

@@ -1,4 +1,69 @@
-# Tests pour paris_complement_sante_pa_eligibilite
+# === Tests pour paris_complement_sante_pa_base_ressources ===
+- name: 000 Somme des ressources
+  period: 2019-02
+  input:
+    famille:
+      parents: [parent1, parent2]
+      enfants: [enfant1]
+      en_couple: true
+      aspa:
+        2019-01: 10
+      aide_logement: # ne doit pas être pris en compte
+        2019-01: 15
+    individus:
+      parent1:
+        ass:
+          2019-01: 20
+        aah:
+          2019-01: 30
+        retraite_nette:
+          2019-01: 50
+        allocation_securisation_professionnelle:
+          2019-01: 55
+        prestation_compensatoire:
+          2019-01: 60
+        pensions_invalidite:
+          2019-01: 65
+        revenus_stage_formation_pro:
+          2019-01: 70
+        indemnites_stage:
+          2019-01: 75
+        indemnites_journalieres:
+          2019-01: 80
+        indemnites_volontariat:
+          2019-01: 85
+      parent2:
+        asi:
+          2019-01: 25
+        salaire_net:
+          2019-01: 35
+        indemnites_chomage_partiel:
+          2019-01: 40
+        chomage_net:
+          2019-01: 45
+      enfant1:
+        age: 8
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+        - parent1
+      foyer_fiscal_1:
+        declarants:
+        - parent2
+      foyer_fiscal_2:
+        declarants:
+        - enfant1
+    menage:
+      statut_occupation_logement: locataire_vide
+      personne_de_reference: parent1
+      conjoint: parent2
+      enfants: [enfant1]
+  output:
+    paris_complement_sante_i:
+      2019-01: [590, 120, 0]
+    paris_complement_sante_pa_base_ressources: 745
+
+# === Tests pour paris_complement_sante_pa_eligibilite ===
 # Tests sur l'âge
 - name: Une personne de 65 ans avec 500€ de ressources est éligible
   period: 2019-02
@@ -69,7 +134,7 @@
   output:
     paris_complement_sante_pa_eligibilite: false
 
-# Tests pour paris_complement_sante_pa_montant
+# === Tests pour paris_complement_sante_pa_montant ===
 - name: Une personne éligible et sans cumul avec l'ACS reçoit un montant de 468 €
   period: 2019-02
   input:
