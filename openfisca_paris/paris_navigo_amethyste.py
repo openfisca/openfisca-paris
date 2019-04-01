@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-from __future__ import division
-from numpy import (maximum as max_, logical_not as not_, absolute as abs_, minimum as min_, select, where)
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
@@ -21,6 +19,7 @@ class paris_navigo_amethyste_eligibilite_financiere(Variable):
         return elig + elig_renouvellement
 
 
+# Pass Paris Seniors est le nouveau nom du Navigo Emeraude Améthyste pour les personnes âgées
 class paris_pass_seniors(Variable):
     value_type = bool
     label = u"Éligibité au Pass Paris Seniors"
@@ -35,6 +34,7 @@ class paris_pass_seniors(Variable):
         )
 
 
+# Pass Paris Access' est le nouveau nom du Navigo Emeraude Améthyste pour les personnes en situation de handicap
 class paris_pass_access(Variable):
     value_type = bool
     label = u"Éligibité au Pass Paris Access'"
