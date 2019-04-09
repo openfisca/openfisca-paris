@@ -50,7 +50,7 @@ class paris_energie_famille(Variable):
         nb_enfant = famille('paris_nb_enfants', period)
         enfant_handicape = famille.members('paris_enfant_handicape', period)
         nb_enfant_handicape = famille.sum(enfant_handicape)
-        ressources_familliales = famille('paris_base_ressources_commun', last_month)
+        ressources_familliales = famille('paris_base_ressources', last_month)
 
         result = select([((nb_enfant == 1) * (nb_enfant_handicape == 0)) * (ressources_familliales <= premier_plafond_pef),
             ((nb_enfant == 2) * (nb_enfant_handicape == 0)) * (ressources_familliales <= deuxieme_plafond_pef),

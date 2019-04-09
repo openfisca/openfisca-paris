@@ -46,7 +46,7 @@ class paris_logement_plfm_montant(Variable):
         aide_1er_plafond_plfm = legislation(period).paris.plfm.aide_1er_plafond_plfm
         aide_2eme_plafond_plfm = legislation(period).paris.plfm.aide_2eme_plafond_plfm
 
-        base_ressources = famille('paris_base_ressources_commun', last_month)
+        base_ressources = famille('paris_base_ressources', last_month)
 
         return select([(base_ressources <= premier_plafond_plfm),
             (base_ressources <= deuxieme_plafond_plfm)], [aide_1er_plafond_plfm, aide_2eme_plafond_plfm])

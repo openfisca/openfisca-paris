@@ -11,9 +11,9 @@ class parisien(Variable):
     definition_period = MONTH
     label = u"Résident à Paris au moins 3 ans dans les 5 dernières années"
 
-class paris_base_ressources_commun_i(Variable):
+class paris_base_ressources_i(Variable):
     value_type = float
-    label = u"Base de ressources individuelle"
+    label = u"Base de ressources pour un individu, pour l'ensemble des aides de Paris"
     entity = Individu
     definition_period = MONTH
 
@@ -21,6 +21,9 @@ class paris_base_ressources_commun_i(Variable):
         last_year = period.last_year
 
         ass = individu('ass', period)
+        aah = individu('aah', period)
+        asi = individu('asi', period)
+        caah = individu('caah', period)
 
         salaire_net = individu('salaire_net', period)
         indemnites_stage = individu('indemnites_stage', period)
@@ -29,9 +32,7 @@ class paris_base_ressources_commun_i(Variable):
         revenus_stage_formation_pro = individu('revenus_stage_formation_pro', period)
 
         chomage_net = individu('chomage_net', period)
-        allocation_securisation_professionnelle = individu(
-            'allocation_securisation_professionnelle', period)
-
+        allocation_securisation_professionnelle = individu('allocation_securisation_professionnelle', period)
         indemnites_journalieres = individu('indemnites_journalieres', period)
         indemnites_chomage_partiel = individu('indemnites_chomage_partiel', period)
         indemnites_volontariat = individu('indemnites_volontariat', period)
@@ -51,7 +52,7 @@ class paris_base_ressources_commun_i(Variable):
             return revenus_auto_entrepreneur + tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole + tns_autres_revenus
 
         result = (
-            ass + salaire_net + indemnites_chomage_partiel + chomage_net + retraite_nette +
+            ass + aah + asi + caah + salaire_net + indemnites_chomage_partiel + chomage_net + retraite_nette +
             allocation_securisation_professionnelle + prestation_compensatoire +
             pensions_invalidite + revenus_tns() + revenus_stage_formation_pro +
             indemnites_stage_imposable + indemnites_journalieres + indemnites_volontariat
@@ -59,15 +60,21 @@ class paris_base_ressources_commun_i(Variable):
 
         return result
 
-class paris_base_ressources_commun(Variable):
+class paris_base_ressources(Variable):
     value_type = float
-    label = u"Base de ressource"
+    label = u"Base de ressources pour une famille, pour l'ensemble des aides de Paris"
     entity = Famille
     definition_period = MONTH
 
     def formula(famille, period):
-        paris_base_ressources_commun_i = famille.members('paris_base_ressources_commun_i', period)
-        return famille.sum(paris_base_ressources_commun_i)
+        en_couple = famille('en_couple', period)
+        ressources_demandeur = famille.demandeur('paris_base_ressources_i', period)
+        ressources_conjoint = famille.conjoint('paris_base_ressources_i', period)
+        ressources_famille = aspa = famille('aspa', period)
+
+        return where(en_couple, 
+            ressources_demandeur + ressources_conjoint + ressources_famille, 
+            ressources_demandeur + ressources_famille)
 
 class paris_indemnite_enfant_i(Variable):
     value_type = float
@@ -171,7 +178,6 @@ class paris_personnes_agees(Variable):
     definition_period = MONTH
 
     def formula(individu, period, legislation):
-
         age_min = legislation(period).paris.age_pers_agee
         age = individu('age', period)
         aspa_eligibilite = individu('aspa_eligibilite', period)
@@ -219,7 +225,7 @@ class paris_condition_taux_effort(Variable):
         loyer = famille.demandeur.menage('loyer', period)
         aide_logement = famille('aide_logement', period)
 
-        ressources_mensuelles = famille('paris_base_ressources_commun', period)
+        ressources_mensuelles = famille('paris_base_ressources', period)
         rsa = famille('rsa', last_month)
         aah = famille('paris_base_ressources_aah', last_month)
         charges_forfaitaire_logement = famille('aide_logement_charges', period)

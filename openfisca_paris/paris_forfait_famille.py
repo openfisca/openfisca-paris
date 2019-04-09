@@ -44,7 +44,7 @@ class paris_forfait_famille(Variable):
 
         nb_enfants = famille('paris_nb_enfants', period)
         elig = famille('paris_forfait_famille_elig', period)
-        ressources_mensuelles_famille = famille('paris_base_ressources_commun', last_month)
+        ressources_mensuelles_famille = famille('paris_base_ressources', last_month)
         montant_aide = select([(ressources_mensuelles_famille <= premier_plafond),
             (ressources_mensuelles_famille <= deuxieme_plafond)], [aide_1er_plafond, aide_2eme_plafond])
         result = (select([(nb_enfants >= 3), (nb_enfants < 3)], [montant_aide, 0])) * elig

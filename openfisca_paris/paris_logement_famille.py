@@ -37,7 +37,7 @@ class plf_handicap(Variable):
     def formula(famille, period, legislation):
         last_month = period.last_month
 
-        br = famille('paris_base_ressources_commun', last_month)
+        br = famille('paris_base_ressources', last_month)
         P = legislation(period).paris.paris_logement_familles
         plafond_plfm = legislation(period).paris.plfm.deuxieme_plafond_plfm
         personnes_couple = famille('en_couple', period)
@@ -76,7 +76,7 @@ class paris_logement_familles(Variable):
         last_month = period.last_month
 
         elig = famille('paris_logement_familles_elig', period)
-        br = famille('paris_base_ressources_commun', last_month)
+        br = famille('paris_base_ressources', last_month)
         personnes_couple = famille('en_couple', period)
         paris_enfant = famille.members('paris_enfant', period)
         nbenf = famille.sum(paris_enfant)
