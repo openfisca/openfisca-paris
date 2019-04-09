@@ -31,6 +31,7 @@ class paris_base_ressources_i(Variable):
         indemnites_stage_imposable = where((smic >= indemnites_stage), indemnites_stage, 0)
         revenus_stage_formation_pro = individu('revenus_stage_formation_pro', period)
 
+        rsa = individu('rsa', period)
         chomage_net = individu('chomage_net', period)
         allocation_securisation_professionnelle = individu('allocation_securisation_professionnelle', period)
         indemnites_journalieres = individu('indemnites_journalieres', period)
@@ -52,10 +53,11 @@ class paris_base_ressources_i(Variable):
             return revenus_auto_entrepreneur + tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole + tns_autres_revenus
 
         result = (
-            ass + aah + asi + caah + salaire_net + indemnites_chomage_partiel + chomage_net + retraite_nette +
-            allocation_securisation_professionnelle + prestation_compensatoire +
-            pensions_invalidite + revenus_tns() + revenus_stage_formation_pro +
-            indemnites_stage_imposable + indemnites_journalieres + indemnites_volontariat
+            ass + aah + asi + caah
+            + salaire_net + indemnites_stage_imposable + revenus_stage_formation_pro
+            + rsa + chomage_net + allocation_securisation_professionnelle + indemnites_journalieres + indemnites_chomage_partiel + indemnites_volontariat
+            + prestation_compensatoire + retraite_nette + pensions_invalidite
+            + revenus_tns()
             )
 
         return result
@@ -105,18 +107,18 @@ class paris_indemnite_enfant(Variable):
 
         return paris_indemnite_enfant
 
-class paris_base_ressources_aah(Variable):
-    value_type = float
-    label = u"Le montant de l'AAH s'il y a plusieurs personnes handicapés dans la famille"
-    entity = Famille
-    definition_period = MONTH
+# class paris_base_ressources_aah(Variable):
+#     value_type = float
+#     label = u"Le montant de l'AAH s'il y a plusieurs personnes handicapés dans la famille"
+#     entity = Famille
+#     definition_period = MONTH
 
-    def formula(famille, period):
+#     def formula(famille, period):
 
-        aah = famille.members('aah', period)
-        aah_famille = famille.sum(aah)
+#         aah = famille.members('aah', period)
+#         aah_famille = famille.sum(aah)
 
-        return aah_famille
+#         return aah_famille
 
 class paris_enfant_handicape(Variable):
     value_type = bool
@@ -226,10 +228,8 @@ class paris_condition_taux_effort(Variable):
         aide_logement = famille('aide_logement', period)
 
         ressources_mensuelles = famille('paris_base_ressources', period)
-        rsa = famille('rsa', last_month)
-        aah = famille('paris_base_ressources_aah', last_month)
         charges_forfaitaire_logement = famille('aide_logement_charges', period)
-        calcul_taux_effort = (loyer + charges_forfaitaire_logement - aide_logement) / (ressources_mensuelles + rsa + aah)
+        calcul_taux_effort = (loyer + charges_forfaitaire_logement - aide_logement) / ressources_mensuelles
         condition_loyer = calcul_taux_effort >= taux_effort
         return condition_loyer
 

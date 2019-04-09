@@ -100,11 +100,8 @@ class paris_logement_fam(Variable):
         aide_pl_fam = legislation(period).paris.paris_logement.aide_pl_fam
 
         paris_base_ressources = famille('paris_base_ressources', last_month)
-        rsa = famille('rsa', last_month)
-        aah = famille('paris_base_ressources_aah', last_month)
-        aide_logement = famille('aide_logement', last_month)
         loyer_net = famille('paris_loyer_net', period)
-        ressources_familiale = paris_base_ressources + rsa + aah + aide_logement
+        ressources_familiale = paris_base_ressources
 
         personnes_couple = famille('en_couple', period)
         nb_enfants = famille('paris_nb_enfants', period)
@@ -159,12 +156,9 @@ class paris_logement_apd(Variable):
 
         paris_base_ressources = famille('paris_base_ressources', last_month)
 
-        rsa = famille('rsa', last_month)
         indemnite = famille('paris_indemnite_enfant', last_month)
-        aah = famille('paris_base_ressources_aah', last_month)
-        aide_logement = famille('aide_logement', last_month)
         loyer_net = famille('paris_loyer_net', period)
-        ressources_familiale = paris_base_ressources + aah + aide_logement + rsa - indemnite
+        ressources_familiale = paris_base_ressources - indemnite
 
         personnes_couple = famille('en_couple', period)
         paris_logement_elig_apd = famille('paris_logement_elig_apd', period)

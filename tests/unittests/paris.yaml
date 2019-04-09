@@ -16,7 +16,7 @@
         aah:
           2019-01: 30
         caah:
-          2019-01: 32
+          2019-01: 14
         retraite_nette:
           2019-01: 50
         allocation_securisation_professionnelle:
@@ -42,6 +42,8 @@
           2019-01: 40
         chomage_net:
           2019-01: 45
+        rsa:
+          2019-01: 18
       enfant1:
         age: 8
     foyers_fiscaux:
