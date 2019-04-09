@@ -4,7 +4,7 @@
   input:
     parisien: false
     paris_personnes_agees: true
-    paris_base_ressources: 
+    paris_base_ressources_couple: 
       2019-01: 980
   output:
     paris_complement_sante_pa_eligibilite: false
@@ -14,7 +14,7 @@
   input:
     parisien: true
     paris_personnes_agees: true
-    paris_base_ressources: 
+    paris_base_ressources_couple: 
       2019-01: 980
   output:
     paris_complement_sante_pa_eligibilite: true
@@ -24,7 +24,7 @@
   input:
     parisien: true
     paris_personnes_agees: true
-    paris_base_ressources: 
+    paris_base_ressources_couple: 
       2019-01: 981
   output:
     paris_complement_sante_pa_eligibilite: false
@@ -35,7 +35,7 @@
     parisien: true
     paris_personnes_agees: true
     en_couple: true
-    paris_base_ressources: 
+    paris_base_ressources_couple: 
       2019-01: 1553
   output:
     paris_complement_sante_pa_eligibilite: true
@@ -46,7 +46,7 @@
     parisien: true
     paris_personnes_agees: true
     en_couple: true
-    paris_base_ressources: 
+    paris_base_ressources_couple: 
       2019-01: 1554
   output:
     paris_complement_sante_pa_eligibilite: false

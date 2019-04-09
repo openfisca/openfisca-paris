@@ -24,10 +24,10 @@ class paris_logement_aspeh(Variable):
         enfant_handicape = famille.members('paris_enfant_handicape', period)
         nb_enfant = famille.sum(enfant_handicape)
 
-        paris_base_ressources = famille('paris_base_ressources', last_month)
+        base_ressources = famille('paris_base_ressources_couple', last_month)
         clca = famille('paje_clca', last_month)
 
-        ressources_mensuelles_famille = paris_base_ressources + clca
+        ressources_mensuelles_famille = base_ressources + clca
 
         result = select([ressources_mensuelles_famille <= plafond_aspeh],
             [aide_aspeh]) * parisien

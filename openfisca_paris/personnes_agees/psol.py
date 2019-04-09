@@ -15,7 +15,7 @@ class paris_solidarite_pa_base_ressources(Variable):
 
     def formula(famille, period, parameters):
 
-        base_ressource = famille('paris_base_ressources', period)
+        base_ressource = famille('paris_base_ressources_couple', period)
         aspa  = parameters(period).prestations.minima_sociaux.aspa
 
         en_couple = famille('en_couple', period)

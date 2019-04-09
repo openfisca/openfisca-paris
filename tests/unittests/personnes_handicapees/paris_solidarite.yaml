@@ -1,7 +1,7 @@
 - name: Personne seule perçoit 5000 € de ressources
   period: 2019-02
   input:
-    paris_base_ressources: 5000
+    paris_base_ressources_couple: 5000
   output:
     paris_solidarite_ph_base_ressources: 5000
     paris_solidarite_ph_montant: 0
@@ -11,7 +11,7 @@
   absolute_error_margin: 0.005
   input:
     en_couple: false
-    paris_base_ressources: 500
+    paris_base_ressources_couple: 500
   output:
     paris_solidarite_ph_base_ressources: 860 # prestations.minima_sociaux.aah.montant
     paris_solidarite_ph_montant: 105 # plafond.personne_seule - prestations.minima_sociaux.aah.montant
@@ -20,7 +20,7 @@
   period: 2019-02
   input:
     en_couple: true
-    paris_base_ressources: 6000
+    paris_base_ressources_couple: 6000
   output:
     paris_solidarite_ph_base_ressources: 6000
     paris_solidarite_ph_montant: 0
@@ -30,7 +30,7 @@
   absolute_error_margin: 0.005
   input:
     en_couple: true
-    paris_base_ressources: 1000
+    paris_base_ressources_couple: 1000
   output:
     paris_solidarite_ph_base_ressources: 1347.88 # prestations.minima_sociaux.aspa.montant_annuel_couple / 12
     paris_solidarite_ph_montant: 205.12 # plafond - prestations.minima_sociaux.aspa.montant_annuel_couple / 12

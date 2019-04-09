@@ -31,7 +31,6 @@ class paris_base_ressources_i(Variable):
         indemnites_stage_imposable = where((smic >= indemnites_stage), indemnites_stage, 0)
         revenus_stage_formation_pro = individu('revenus_stage_formation_pro', period)
 
-        rsa = individu('rsa', period)
         chomage_net = individu('chomage_net', period)
         allocation_securisation_professionnelle = individu('allocation_securisation_professionnelle', period)
         indemnites_journalieres = individu('indemnites_journalieres', period)
@@ -55,16 +54,27 @@ class paris_base_ressources_i(Variable):
         result = (
             ass + aah + asi + caah
             + salaire_net + indemnites_stage_imposable + revenus_stage_formation_pro
-            + rsa + chomage_net + allocation_securisation_professionnelle + indemnites_journalieres + indemnites_chomage_partiel + indemnites_volontariat
+            + chomage_net + allocation_securisation_professionnelle + indemnites_journalieres + indemnites_chomage_partiel + indemnites_volontariat
             + prestation_compensatoire + retraite_nette + pensions_invalidite
             + revenus_tns()
             )
 
         return result
 
-class paris_base_ressources(Variable):
+class paris_base_ressources_famille(Variable):
     value_type = float
     label = u"Base de ressources pour une famille, pour l'ensemble des aides de Paris"
+    entity = Famille
+    definition_period = MONTH
+
+    def formula(famille, period):
+        aspa = famille('aspa', period)
+        rsa = famille('rsa', period.last_month)
+        return aspa + rsa
+
+class paris_base_ressources_couple(Variable):
+    value_type = float
+    label = u"Base de ressources pour un couple, pour l'ensemble des aides de Paris"
     entity = Famille
     definition_period = MONTH
 
@@ -72,11 +82,23 @@ class paris_base_ressources(Variable):
         en_couple = famille('en_couple', period)
         ressources_demandeur = famille.demandeur('paris_base_ressources_i', period)
         ressources_conjoint = famille.conjoint('paris_base_ressources_i', period)
-        ressources_famille = aspa = famille('aspa', period)
+        ressources_famille = famille('paris_base_ressources_famille', period)
 
-        return where(en_couple, 
-            ressources_demandeur + ressources_conjoint + ressources_famille, 
+        return where(en_couple,
+            ressources_demandeur + ressources_conjoint + ressources_famille,
             ressources_demandeur + ressources_famille)
+
+class paris_base_ressources_foyer(Variable):
+    value_type = float
+    label = u"Base de ressources pour un foyer, pour l'ensemble des aides de Paris"
+    entity = Famille
+    definition_period = MONTH
+
+    def formula(famille, period):
+        ressources = famille.members('paris_base_ressources_i', period)
+        ressources_famille = famille('paris_base_ressources_famille', period)
+
+        return famille.sum(ressources) + ressources_famille
 
 class paris_indemnite_enfant_i(Variable):
     value_type = float
@@ -106,19 +128,6 @@ class paris_indemnite_enfant(Variable):
         paris_indemnite_enfant = famille.sum(paris_indemnite_enfant_i)
 
         return paris_indemnite_enfant
-
-# class paris_base_ressources_aah(Variable):
-#     value_type = float
-#     label = u"Le montant de l'AAH s'il y a plusieurs personnes handicapés dans la famille"
-#     entity = Famille
-#     definition_period = MONTH
-
-#     def formula(famille, period):
-
-#         aah = famille.members('aah', period)
-#         aah_famille = famille.sum(aah)
-
-#         return aah_famille
 
 class paris_enfant_handicape(Variable):
     value_type = bool
@@ -227,11 +236,11 @@ class paris_condition_taux_effort(Variable):
         loyer = famille.demandeur.menage('loyer', period)
         aide_logement = famille('aide_logement', period)
 
-        ressources_mensuelles = famille('paris_base_ressources', period)
+        ressources_mensuelles = famille('paris_base_ressources_foyer', period)
         charges_forfaitaire_logement = famille('aide_logement_charges', period)
         calcul_taux_effort = (loyer + charges_forfaitaire_logement - aide_logement) / ressources_mensuelles
-        condition_loyer = calcul_taux_effort >= taux_effort
-        return condition_loyer
+        condition_taux_effort = calcul_taux_effort >= taux_effort
+        return condition_taux_effort
 
 class paris_loyer_net(Variable):
     value_type = float
