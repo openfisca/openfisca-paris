@@ -1,6 +1,40 @@
-#TODO : Tests pour paris_complement_sante_pa_base_ressources
-
 # Tests pour paris_complement_sante_pa_eligibilite
+# Tests sur l'âge
+- name: Une personne de 65 ans avec 500€ de ressources est éligible
+  period: 2019-02
+  input:
+    age: 65
+    paris_complement_sante_pa_base_ressources: 500
+  output:
+    paris_complement_sante_pa_eligibilite: true
+
+- name: Une personne de 64 ans avec 500€ de ressources n'est pas éligible
+  period: 2019-02
+  input:
+    age: 64
+    aspa_eligibilite: false
+    paris_complement_sante_pa_base_ressources: 500
+  output:
+    paris_complement_sante_pa_eligibilite: false
+
+- name: Une personne de 64 ans avec 500€ de ressources, éligible à l'ASPA, est éligible
+  period: 2019-02
+  input:
+    age: 64
+    aspa_eligibilite: true
+    paris_complement_sante_pa_base_ressources: 500
+  output:
+    paris_complement_sante_pa_eligibilite: true
+
+- name: Une personne de 59 ans avec 500€ de ressources n'est pas éligible
+  period: 2019-02
+  input:
+    age: 59
+    paris_complement_sante_pa_base_ressources: 500
+  output:
+    paris_complement_sante_pa_eligibilite: false
+
+# Tests sur les ressources
 - name: Une personne âgée seule avec 980 € de ressources est éligible
   period: 2019-02
   input:
@@ -35,7 +69,7 @@
   output:
     paris_complement_sante_pa_eligibilite: false
 
-# Tests pour paris_complement_sante_pa_montant et paris_complement_sante_pa
+# Tests pour paris_complement_sante_pa_montant
 - name: Une personne éligible et sans cumul avec l'ACS reçoit un montant de 468 €
   period: 2019-02
   input:
@@ -43,7 +77,7 @@
     paris_complement_sante_pa_eligibilite: true
     acs: 0
   output:
-    paris_complement_sante_pa: 468
+    paris_complement_sante_pa_montant: 468
 
 - name: Une personne éligible et qui cumule avec 23 € d'ACS reçoit un montant de 445 €
   period: 2019-02

@@ -14,18 +14,10 @@ class paris_complement_sante_pa_base_ressources(Variable):
 	reference = "article II.1.2.b.3 du règlement municipal du CASVP"
 
 	def formula(famille, period, parameters):
-		# TODO: Calculer cette base ressource proprement dans paris.py ou paris_complement_sante.py par exemple ?
-		# "Toutes les ressources du demandeur, et, le cas échéant de son conjoint, de son partenaire civil de solidarité ou de la
-		# personne avec laquelle il déclare être en situation de vie maritale, sont prises en compte à l’exclusion de celles mentionnées dans les
-		# dispositions générales."
-		# base_ressources = famille('paris_base_ressources_commun', period) << probablement à utiliser
-
 		last_month = period.last_month
 		aspa = famille('aspa', last_month)
 		asi = famille.sum(famille.members('asi', last_month))
-		# TODO: Enlever l'ass, qui est déjà compté dans les ressources de base individuelles (paris_base_ressources_commun_i)
 		ass = famille.sum(famille.members('ass', last_month))
-		# TODO: Enlever les aides au logement (cf. dispositions générales)
 		aide_logement = famille('aide_logement', last_month)
 		aides_famille = aspa + asi + ass + aide_logement
 
@@ -47,9 +39,6 @@ class paris_complement_sante_pa_eligibilite(Variable):
 	reference = "article II.1.2.b.3 du règlement municipal du CASVP"
 
 	def formula(famille, period, parameters):
-		# TODO: Prendre en compte la parisianité quelque part pour toutes les aides Openfisca Paris
-		# is_parisien = famille('parisien', period)
-		
 		personnes_agees_i = famille.members('paris_personnes_agees', period)
 		personnes_agees = famille.any(personnes_agees_i)
 

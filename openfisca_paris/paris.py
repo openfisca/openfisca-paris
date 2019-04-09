@@ -9,7 +9,7 @@ class parisien(Variable):
     value_type = bool
     entity = Famille
     definition_period = MONTH
-    label = u"Résidant à Paris au moins 3 ans dans les 5 dernières années"
+    label = u"Résident à Paris au moins 3 ans dans les 5 dernières années"
 
 class paris_base_ressources_commun_i(Variable):
     value_type = float
@@ -66,8 +66,8 @@ class paris_base_ressources_commun(Variable):
     definition_period = MONTH
 
     def formula(famille, period):
-        paris_base_ressources_i = famille.members('paris_base_ressources_commun_i', period)
-        return famille.sum(paris_base_ressources_i)
+        paris_base_ressources_commun_i = famille.members('paris_base_ressources_commun_i', period)
+        return famille.sum(paris_base_ressources_commun_i)
 
 class paris_indemnite_enfant_i(Variable):
     value_type = float
