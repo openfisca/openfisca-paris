@@ -28,6 +28,18 @@ class paris_solidarite_ph_base_ressources(Variable):
         return max_(montant_psol_handicap, base_ressource)
 
 
+class paris_solidarite_ph_eligibilite(Variable):
+    value_type = bool
+    entity = Famille
+    definition_period = MONTH
+    label = u"Éligibilité à Paris Solidarité pour les personnes handicapées"
+    
+    def formula(famille, period, parameters):
+
+        personnes_handicapees = famille.members('paris_personnes_handicap', period)
+        return famille.any(personnes_handicapees, role = famille.PARENT)
+
+
 class paris_solidarite_ph_montant(Variable):
     value_type = float
     entity = Famille
@@ -44,18 +56,6 @@ class paris_solidarite_ph_montant(Variable):
         plafond = (en_couple * plafond_psol.couple + not_(en_couple) * plafond_psol.personne_seule)
 
         return max_(0, plafond - base_ressource)
-
-
-class paris_solidarite_ph_eligibilite(Variable):
-    value_type = bool
-    entity = Famille
-    definition_period = MONTH
-    label = u"Éligibilité à Paris Solidarité pour les personnes handicapées"
-    
-    def formula(famille, period, parameters):
-
-        personnes_handicapees = famille.members('paris_personnes_handicap', period)
-        return famille.any(personnes_handicapees, role = famille.PARENT)
 
 
 class paris_solidarite_ph(Variable):

@@ -5,6 +5,7 @@ from numpy import (maximum as max_, logical_not as not_, absolute as abs_, minim
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
+
 class paris_complement_sante(Variable):
     value_type = float
     label = u"L'aide Complémentaire Santé Paris"
@@ -20,8 +21,6 @@ class paris_complement_sante(Variable):
         montant_aide_cs = P.paris.complement_sante.montant_aide_cs
 
         parisien = famille('parisien', period)
-        personnes_agees_i = famille.members('paris_personnes_agees', period)
-        personnes_agees = famille.any(personnes_agees_i)
         personnes_handicape_i = famille.members('paris_personnes_handicap', period)
         personnes_handicap = famille.any(personnes_handicape_i)
         en_couple = famille('en_couple', period)
@@ -51,14 +50,17 @@ class paris_complement_sante(Variable):
             (ressources_pers_isol <= plafond) * (montant_aide_cs >= acs_isole) * (cmu_c != 1),
             montant_aide_cs - acs_isole, 0)
 
-        montant_couple = where(parisien * en_couple * (personnes_handicap + personnes_agees) *
+        montant_couple = where(parisien * en_couple * personnes_handicap *
          (ressources_couple <= plafond) * (montant_aide_cs >= acs_couple) *
          (acs_couple > 0) * (cmu_c != 1), montant_aide_cs - acs_couple, 0)
 
-        montant_couple_ss_acs = where(parisien * en_couple * (personnes_handicap + personnes_agees) *
+        montant_couple_ss_acs = where(parisien * en_couple * personnes_handicap *
             (acs_couple == 0) * (cmu_c != 1) * (ressources_couple <= plafond), montant_aide_cs, 0)
 
-        return montant_pers_handicap + montant_couple + montant_couple_ss_acs
+        montant_agrege = montant_pers_handicap + montant_couple + montant_couple_ss_acs
+
+        montant_pa = famille('paris_complement_sante_pa', period)
+        return max_(montant_agrege, montant_pa)
 
 class paris_complement_sante_i(Variable):
     value_type = float

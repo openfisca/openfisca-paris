@@ -1,4 +1,4 @@
-- name: Personne éligible au CSP
+- name: 1/ Personne éligible au CSP
   description: Paris Complementaire Santé
   period: 2016-02
   input:
@@ -14,7 +14,7 @@
   output:
     paris_complement_sante: 268
 
-- name: Famille éligible pour l'aide complementaire sante paris
+- name: 2/ Famille éligible pour l'aide complementaire sante paris
   period: 2016-02
   input:
     famille:
@@ -46,7 +46,7 @@
   output:
     paris_complement_sante: 0
 
-- name: Famille éligible pour l'aide complementaire sante paris
+- name: 3/ Famille éligible pour l'aide complementaire sante paris
   period: 2016-02
   input:
     famille:
@@ -79,7 +79,7 @@
   output:
     paris_complement_sante: 0
 
-- name: Famille éligible pour l'aide complementaire sante paris
+- name: 4/ Famille éligible pour l'aide complementaire sante paris
   period: 2016-02
   input:
     famille:
@@ -112,7 +112,7 @@
   output:
     paris_complement_sante: 0
 
-- name: Famille éligible pour l'aide complementaire sante paris
+- name: 5/ Famille éligible pour l'aide complementaire sante paris
   period: 2016-02
   input:
     famille:
@@ -142,7 +142,7 @@
   output:
     paris_complement_sante: 0
 
-- name: Personne éligible au CSP
+- name: 6/ Personne éligible au CSP
   description: Paris Complementaire Santé
   period: 2016-02
   input:
@@ -157,7 +157,7 @@
   output:
     paris_complement_sante: 0
 
-- name: Personne éligible au CSP
+- name: 7/ Personne éligible au CSP
   description: Paris Complementaire Santé
   period: 2016-02
   input:
@@ -172,7 +172,7 @@
   output:
     paris_complement_sante: 0
 
-- name: Personne éligible au CSP
+- name: 8/ Personne éligible au CSP
   description: Paris Complementaire Santé
   period: 2016-02
   input:
@@ -188,7 +188,7 @@
   output:
     paris_complement_sante: 268
 
-- name: Personne éligible au CSP
+- name: 9/ Personne éligible au CSP
   description: Paris Complementaire Santé
   period: 2016-02
   input:
@@ -203,7 +203,7 @@
   output:
     paris_complement_sante: 0
 
-- name: Personne non éligible au CSP
+- name: 10/ Personne non éligible au CSP
   description: Paris Complementaire Santé
   period: 2016-02
   input:
@@ -218,7 +218,7 @@
   output:
     paris_complement_sante: 0
 
-- name: Famille éligible pour l'aide complementaire sante paris
+- name: 11/ Famille éligible pour l'aide complementaire sante paris >> fail
   period: 2016-02
   input:
     famille:
@@ -251,7 +251,7 @@
   output:
     paris_complement_sante: 0
 
-- name: Famille éligible pour l'aide paris energie famille avec une aide ACS
+- name: 12/ Famille éligible pour l'aide paris energie famille avec une aide ACS
   period: 2016-02
   input:
     famille:
@@ -284,7 +284,7 @@
   output:
     paris_complement_sante: 0
 
-- name: Famille éligible pour l'aide paris energie famille avec une aide ACS
+- name: 13/ Famille éligible pour l'aide paris energie famille avec une aide ACS
   period: 2016-02
   input:
     famille:
@@ -317,7 +317,7 @@
   output:
     paris_complement_sante: 0
 
-- name: Famille éligible pour l'aide paris energie famille avec une aide ACS
+- name: 14/ Famille éligible pour l'aide paris energie famille avec une aide ACS
   period: 2016-02
   input:
     famille:
