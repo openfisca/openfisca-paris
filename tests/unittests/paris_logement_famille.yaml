@@ -475,7 +475,7 @@
       - enfant_1
       - enfant_2
       - enfant_3
-      paris_base_ressources_commun:
+      paris_base_ressources_foyer:
         2018-03: 5420
       parisien: true
     foyer_fiscal:

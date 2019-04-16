@@ -6,31 +6,6 @@ from numpy import (maximum as max_, logical_not as not_, absolute as abs_, minim
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
-class paris_complement_sante_pa_base_ressources(Variable):
-	value_type = float
-	entity = Famille
-	definition_period = MONTH
-	label = u"Base ressources mensuelles pour le Complément Santé Paris pour les personnes âgées"
-	reference = "article II.1.2.b.3 du règlement municipal du CASVP"
-
-	def formula(famille, period, parameters):
-		last_month = period.last_month
-		aspa = famille('aspa', last_month)
-		asi = famille.sum(famille.members('asi', last_month))
-		ass = famille.sum(famille.members('ass', last_month))
-		aide_logement = famille('aide_logement', last_month)
-		aides_famille = aspa + asi + ass + aide_logement
-
-		en_couple = famille('en_couple', period)
-		ressources_demandeur = famille.demandeur('paris_complement_sante_i', last_month)
-		ressources_conjoint = famille.conjoint('paris_complement_sante_i', last_month)
-
-		ressources_pers_isol = ressources_demandeur + aides_famille
-		ressources_couple = ressources_demandeur + ressources_conjoint + aides_famille
-
-		return where(en_couple, ressources_couple, ressources_pers_isol)
-
-
 class paris_complement_sante_pa_eligibilite(Variable):
 	value_type = bool
 	entity = Famille
@@ -39,15 +14,17 @@ class paris_complement_sante_pa_eligibilite(Variable):
 	reference = "article II.1.2.b.3 du règlement municipal du CASVP"
 
 	def formula(famille, period, parameters):
+		parisien = famille('parisien', period)
+		
 		personnes_agees_i = famille.members('paris_personnes_agees', period)
 		personnes_agees = famille.any(personnes_agees_i)
 
-		base_ressources = famille('paris_complement_sante_pa_base_ressources', period)
+		base_ressources = famille('paris_base_ressources_couple', period.last_month)
 		param_plafond = parameters(period).paris.personnes_agees.paris_complement_sante.plafond
 		en_couple = famille('en_couple', period)
 		plafond = where(en_couple, param_plafond.en_couple, param_plafond.personne_isolee)
 
-		return personnes_agees * (base_ressources <= plafond)
+		return parisien * personnes_agees * (base_ressources <= plafond)
 
 
 class paris_complement_sante_pa_montant(Variable):

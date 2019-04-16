@@ -2,7 +2,7 @@
   period: 2016-02
   input:
     loyer: 400
-    paris_base_ressources_commun:
+    paris_base_ressources_foyer:
       2016-01: 4100
     paris_logement_est_monoparentale: true
   output:
@@ -12,7 +12,7 @@
   period: 2016-02
   input:
     loyer: 400
-    paris_base_ressources_commun:
+    paris_base_ressources_foyer:
       2016-01: 100
     paris_logement_est_monoparentale: true
   output:
@@ -22,7 +22,7 @@
   period: 2016-02
   input:
     loyer: 400
-    paris_base_ressources_commun:
+    paris_base_ressources_foyer:
       2016-01: 1300
     paris_logement_est_monoparentale: true
   output:

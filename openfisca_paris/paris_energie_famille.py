@@ -48,13 +48,12 @@ class paris_energie_famille(Variable):
 
         elig = famille('paris_energie_famille_elig', period)
         nb_enfant = famille('paris_nb_enfants', period)
-        enfant_handicape = famille.members('paris_enfant_handicape', period)
-        nb_enfant_handicape = famille.sum(enfant_handicape)
-        ressources_familliales = famille('paris_base_ressources_commun', last_month)
+        nb_enfants_handicapes = famille('paris_nb_enfants_handicapes', period)
+        ressources_familliales = famille('paris_base_ressources_couple', last_month)
 
-        result = select([((nb_enfant == 1) * (nb_enfant_handicape == 0)) * (ressources_familliales <= premier_plafond_pef),
-            ((nb_enfant == 2) * (nb_enfant_handicape == 0)) * (ressources_familliales <= deuxieme_plafond_pef),
-            ((nb_enfant >= 3) + (nb_enfant_handicape >= 1)) * (ressources_familliales <= troisieme_plafond_pef)],
+        result = select([((nb_enfant == 1) * (nb_enfants_handicapes == 0)) * (ressources_familliales <= premier_plafond_pef),
+            ((nb_enfant == 2) * (nb_enfants_handicapes == 0)) * (ressources_familliales <= deuxieme_plafond_pef),
+            ((nb_enfant >= 3) + (nb_enfants_handicapes >= 1)) * (ressources_familliales <= troisieme_plafond_pef)],
             [aide_1er_plafond_pef, aide_2eme_plafond_pef, aide_3eme_plafond_pef]) * elig
 
         return result

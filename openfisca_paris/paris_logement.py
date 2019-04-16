@@ -35,13 +35,9 @@ class paris_logement_pa_ph(Variable):
         aide_couple_ss_enf = legislation(period).paris.paris_logement.aide_couple_ss_enf
         aide_couple_avec_enf = legislation(period).paris.paris_logement.aide_couple_avec_enf
 
-        paris_base_ressources_commun = famille('paris_base_ressources_commun', last_month)
-        aspa = famille('aspa', last_month)
-        asi = famille.sum(famille.members('asi', last_month))
-        aah = famille('paris_base_ressources_aah', last_month)
-        aide_logement = famille('aide_logement', last_month)
+        base_ressources = famille('paris_base_ressources_foyer', last_month)
         loyer_net = famille('paris_loyer_net', period)
-        ressources_familiale = paris_base_ressources_commun + aspa + asi + aah + aide_logement
+        ressources_familiale = base_ressources
 
         personnes_couple = famille('en_couple', period)
         nb_enfants = famille('paris_nb_enfants', period)
@@ -84,11 +80,11 @@ class paris_logement_elig_pa_ph(Variable):
             (statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble) +
             (statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer)
         )
-        charges_logement = famille('paris_condition_taux_effort', period)
+        condition_taux_effort = famille('paris_condition_taux_effort', period)
 
         adulte_handicape = (personne_handicap - nb_enfant) >= 1
 
-        result = parisien * statut_occupation_elig * (personnes_agees_famille + adulte_handicape) * charges_logement
+        result = parisien * statut_occupation_elig * (personnes_agees_famille + adulte_handicape) * condition_taux_effort
         return result
 
 class paris_logement_fam(Variable):
@@ -103,12 +99,9 @@ class paris_logement_fam(Variable):
         plafond_pl_fam = legislation(period).paris.paris_logement.plafond_pl_fam
         aide_pl_fam = legislation(period).paris.paris_logement.aide_pl_fam
 
-        paris_base_ressources_commun = famille('paris_base_ressources_commun', last_month)
-        rsa = famille('rsa', last_month)
-        aah = famille('paris_base_ressources_aah', last_month)
-        aide_logement = famille('aide_logement', last_month)
+        base_ressources = famille('paris_base_ressources_foyer', last_month)
         loyer_net = famille('paris_loyer_net', period)
-        ressources_familiale = paris_base_ressources_commun + rsa + aah + aide_logement
+        ressources_familiale = base_ressources
 
         personnes_couple = famille('en_couple', period)
         nb_enfants = famille('paris_nb_enfants', period)
@@ -144,8 +137,8 @@ class paris_logement_elig_fam(Variable):
             (statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble) +
             (statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer)
         )
-        charges_logement = famille('paris_condition_taux_effort', period)
-        result = parisien * statut_occupation_elig * (personnes_agees_famille != 1) * (personne_handicap_famille != 1) * charges_logement
+        condition_taux_effort = famille('paris_condition_taux_effort', period)
+        result = parisien * statut_occupation_elig * (personnes_agees_famille != 1) * (personne_handicap_famille != 1) * condition_taux_effort
         return result
 
 class paris_logement_apd(Variable):
@@ -161,14 +154,11 @@ class paris_logement_apd(Variable):
         aide_pl_apd_pers_isol = legislation(period).paris.paris_logement.aide_pl_apd_pers_isol
         aide_pl_apd_couple = legislation(period).paris.paris_logement.aide_pl_apd_couple
 
-        paris_base_ressources_commun = famille('paris_base_ressources_commun', last_month)
+        base_ressources = famille('paris_base_ressources_foyer', last_month)
 
-        rsa = famille('rsa', last_month)
         indemnite = famille('paris_indemnite_enfant', last_month)
-        aah = famille('paris_base_ressources_aah', last_month)
-        aide_logement = famille('aide_logement', last_month)
         loyer_net = famille('paris_loyer_net', period)
-        ressources_familiale = paris_base_ressources_commun + aah + aide_logement + rsa - indemnite
+        ressources_familiale = base_ressources - indemnite
 
         personnes_couple = famille('en_couple', period)
         paris_logement_elig_apd = famille('paris_logement_elig_apd', period)
@@ -206,8 +196,8 @@ class paris_logement_elig_apd(Variable):
             (statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble) +
             (statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer)
         )
-        charges_logement = famille('paris_condition_taux_effort', period)
+        condition_taux_effort = famille('paris_condition_taux_effort', period)
 
-        result = parisien * statut_occupation_elig * (personnes_agees_famille != 1) * (personne_handicap_famille != 1) * charges_logement * (loyer > 0) * (nb_enfants == 0)
+        result = parisien * statut_occupation_elig * (personnes_agees_famille != 1) * (personne_handicap_famille != 1) * condition_taux_effort * (loyer > 0) * (nb_enfants == 0)
 
         return result
