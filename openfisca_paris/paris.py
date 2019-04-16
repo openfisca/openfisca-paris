@@ -223,6 +223,18 @@ class paris_nb_enfants(Variable):
 
         return paris_nb_enfants
 
+
+class paris_nb_enfants_handicapes(Variable):
+    value_type = float
+    label = u"Nombre d'enfants handicapés dans la famille"
+    entity = Famille
+    definition_period = MONTH
+
+    def formula(famille, period):
+        nb_enfants = famille.members('paris_enfant_handicape', period)
+        return famille.sum(nb_enfants)
+
+
 class paris_condition_taux_effort(Variable):
     value_type = bool
     label = u"condition du taux d'effort"

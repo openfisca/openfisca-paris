@@ -1,368 +1,104 @@
-- name: Famille éligible pour l'aide paris energie famille
+- name: Famille sans domicile non éligible pour l'aide paris energie famille
   period: 2016-02
   input:
-    famille:
-      parents: [couple1, couple2]
-      enfants: [enfant1, enfant2, enfant3]
-      parisien: true
-    menage:
-      statut_occupation_logement: sans_domicile
-      personne_de_reference: couple1
-      conjoint: couple2
-      enfants: [enfant1, enfant2, enfant3]
-    individus:
-      couple1:
-        age: 55
-        salaire_net:
-          2016-01: 3100
-      couple2:
-        age: 45
-        chomage_net:
-          2016-01: 1400
-      enfant1:
-        age: 5
-      enfant2:
-        age: 7
-      enfant3:
-        age: 9
-    foyers_fiscaux:
-      foyer_fiscal_0:
-        declarants:
-        - couple1
-        - couple2
-        personnes_a_charge:
-        - enfant1
-        - enfant2
-        - enfant3
+    parisien: true
+    statut_occupation_logement: sans_domicile
   output:
     paris_energie_famille: 0
 
-- name: 222 Famille éligible pour l'aide paris energie famille
+- name: Couple avec 3 enfants éligible pour l'aide paris energie famille
   period: 2016-02
   input:
-    famille:
-      parents: [couple1, couple2]
-      enfants: [enfant1, enfant2, enfant3]
-      parisien: true
-    menage:
-      statut_occupation_logement: locataire_vide
-      personne_de_reference: couple1
-      conjoint: couple2
-      enfants: [enfant1, enfant2, enfant3]
-    individus:
-      couple1:
-        age: 55
-        salaire_net:
-          2016-01: 3100
-      couple2:
-        age: 45
-        chomage_net:
-          2016-01: 1400
-      enfant1:
-        age: 5
-      enfant2:
-        age: 7
-      enfant3:
-        age: 9
-    foyers_fiscaux:
-      foyer_fiscal_0:
-        declarants:
-        - couple1
-        - couple2
-        personnes_a_charge:
-        - enfant1
-        - enfant2
-        - enfant3
+    paris_base_ressources_couple:
+      2016-01: 4500
+    paris_nb_enfants: 3
+    paris_energie_famille_elig: true
   output:
     paris_energie_famille: 275
 
-- name: 333 Famille éligible pour l'aide paris energie famille
+- name: Couple avec 1 enfant éligible pour l'aide paris energie famille
   period: 2016-02
   input:
-    famille:
-      parents: [couple1, couple2]
-      enfants: [enfant1]
-      parisien: true
-    menage:
-      statut_occupation_logement: locataire_vide
-      personne_de_reference: couple1
-      conjoint: couple2
-      enfants: [enfant1]
-    individus:
-      couple1:
-        age: 55
-        salaire_net:
-          2016-01: 1100
-      couple2:
-        age: 55
-        chomage_net:
-          2016-01: 400
-      enfant1:
-        age: 5
-    foyers_fiscaux:
-      foyer_fiscal_0:
-        declarants:
-        - couple1
-        - couple2
-        personnes_a_charge:
-        - enfant1
+    paris_base_ressources_couple:
+      2016-01: 1500
+    paris_nb_enfants: 1
+    paris_energie_famille_elig: true
   output:
     paris_energie_famille: 138
 
-- name: 444 Famille éligible pour l'aide paris energie famille
+- name: Couple avec 2 enfants éligible pour l'aide paris energie famille
   period: 2016-02
   input:
-    famille:
-      parents: [couple1, couple2]
-      enfants: [enfant1, enfant2]
-      parisien: true
-    menage:
-      statut_occupation_logement: locataire_vide
-      personne_de_reference: couple1
-      conjoint: couple2
-      enfants: [enfant1, enfant2]
-    individus:
-      couple1:
-        age: 55
-        salaire_net:
-          2016-01: 2100
-      couple2:
-        age: 55
-        chomage_net:
-          2016-01: 400
-      enfant1:
-        age: 5
-      enfant2:
-        age: 9
-    foyers_fiscaux:
-      foyer_fiscal_0:
-        declarants:
-        - couple1
-        - couple2
-        personnes_a_charge:
-        - enfant1
-        - enfant2
+    paris_base_ressources_couple:
+      2016-01: 2500
+    paris_nb_enfants: 2
+    paris_energie_famille_elig: true
   output:
     paris_energie_famille: 138
 
-- name: 555 Famille éligible pour l'aide paris energie famille
+- name: Couple avec 2 enfants handicapés éligible pour l'aide paris energie famille
   period: 2016-02
   input:
-    famille:
-      parents: [couple1, couple2]
-      enfants: [enfant1, enfant2]
-      parisien: true
-    menage:
-      statut_occupation_logement: locataire_vide
-      personne_de_reference: couple1
-      conjoint: couple2
-      enfants: [enfant1, enfant2]
-    individus:
-      couple1:
-        age: 55
-        salaire_net:
-          2016-01: 4100
-      couple2:
-        age: 55
-        chomage_net:
-          2016-01: 400
-      enfant1:
-        age: 5
-        handicap: true
-      enfant2:
-        age: 9
-        handicap: true
-    foyers_fiscaux:
-      foyer_fiscal_0:
-        declarants:
-        - couple1
-        - couple2
-        personnes_a_charge:
-        - enfant1
-        - enfant2
+    paris_base_ressources_couple:
+      2016-01: 4500
+    paris_nb_enfants: 2
+    paris_nb_enfants_handicapes: 2
+    paris_energie_famille_elig: true
   output:
     paris_energie_famille: 275
 
-- name: Famille non éligible pour l'aide paris energie famille
+- name: Couple avec 2 enfants handicapés non éligible pour l'aide paris energie famille
   period: 2016-02
   input:
-    famille:
-      parents: [couple1, couple2]
-      enfants: [enfant1, enfant2]
-      parisien: true
-    menage:
-      statut_occupation_logement: locataire_vide
-      personne_de_reference: couple1
-      conjoint: couple2
-      enfants: [enfant1, enfant2]
-    individus:
-      couple1:
-        age: 55
-        handicap: true
-        salaire_net:
-          2016-01: 4100
-      couple2:
-        age: 55
-        chomage_net:
-          2016-01: 1400
-      enfant1:
-        age: 5
-        handicap: true
-      enfant2:
-        age: 9
-        handicap: true
-    foyers_fiscaux:
-      foyer_fiscal_0:
-        declarants:
-        - couple1
-        - couple2
-        personnes_a_charge:
-        - enfant1
-        - enfant2
+    paris_base_ressources_couple:
+      2016-01: 5500
+    paris_nb_enfants: 2
+    paris_nb_enfants_handicapes: 2
+    paris_energie_famille_elig: true
   output:
     paris_energie_famille: 0
 
-- name: 666 Famille éligible pour l'aide paris energie famille
+- name: Couple avec 1 enfant handicapé éligible pour l'aide paris energie famille
   period: 2016-02
   input:
-    famille:
-      parents: [couple1, couple2]
-      enfants: [enfant1]
-      parisien: true
-    menage:
-      statut_occupation_logement: locataire_vide
-      personne_de_reference: couple1
-      conjoint: couple2
-      enfants: [enfant1]
-    individus:
-      couple1:
-        age: 35
-        salaire_net:
-          2015-11: 1860
-          2015-12: 1860
-          2016-01: 1860
-          year:2015-02: 22320
-      couple2:
-        age: 55
-      enfant1:
-        age: 9
-        handicap: true
-    foyers_fiscaux:
-      foyer_fiscal_0:
-        declarants:
-        - couple1
-        - couple2
-        personnes_a_charge:
-        - enfant1
+    paris_base_ressources_couple:
+      2016-01: 1860
+    paris_nb_enfants: 1
+    paris_nb_enfants_handicapes: 1
+    paris_energie_famille_elig: true
   output:
     paris_energie_famille: 275
 
-- name: 777 Famille éligible pour l'aide paris energie famille
+- name: Couple avec 2 enfants dont 1 handicapé éligible pour l'aide paris energie famille
   period: 2016-02
   input:
-    famille:
-      parents: [couple1, couple2]
-      enfants: [enfant1, enfant2]
-      parisien: true
-    menage:
-      statut_occupation_logement: locataire_vide
-      personne_de_reference: couple1
-      conjoint: couple2
-      enfants: [enfant1, enfant2]
-    individus:
-      couple1:
-        age: 35
-        salaire_net:
-          2015-11: 1000
-          2015-12: 1000
-          2016-01: 1000
-          year:2015-02: 22320
-      couple2:
-        age: 55
-      enfant1:
-        age: 9
-        handicap: true
-      enfant2:
-        age: 9
-    foyers_fiscaux:
-      foyer_fiscal_0:
-        declarants:
-        - couple1
-        - couple2
-        personnes_a_charge:
-        - enfant1
-        - enfant2
+    paris_base_ressources_couple:
+      2016-01: 1000
+    paris_nb_enfants: 2
+    paris_nb_enfants_handicapes: 1
+    paris_energie_famille_elig: true
   output:
     paris_energie_famille: 275
 
-- name: famille éligible pour l'aide paris energie famille
+- name: Isolé avec 2 enfants dont 1 handicapés  éligible pour l'aide paris energie famille
   period: 2016-02
   input:
-    famille:
-      parents: [couple1]
-      enfants: [enfant1, enfant2]
-      parisien: true
-    menage:
-      statut_occupation_logement: locataire_vide
-      personne_de_reference: couple1
-      enfants: [enfant1, enfant2]
-    individus:
-      couple1:
-        age: 35
-        salaire_net:
-          2015-11: 1000
-          2015-12: 1000
-          2016-01: 1000
-          year:2015-02: 22320
-      enfant1:
-        age: 9
-        handicap: true
-      enfant2:
-        age: 9
-    foyers_fiscaux:
-      foyer_fiscal_0:
-        declarants:
-        - couple1
-        personnes_a_charge:
-        - enfant1
-        - enfant2
+    paris_base_ressources_couple:
+      2016-01: 1000
+    paris_nb_enfants: 2
+    paris_nb_enfants_handicapes: 1
+    paris_energie_famille_elig: true
   output:
     paris_energie_famille: 275
 
 - name: famille éligible pour l'aide paris energie famille
   period: 2018-06
   input:
-    famille:
-      parents: [couple1]
-      enfants: [enfant1, enfant2]
-      parisien: true
-    menage:
-      statut_occupation_logement: loge_gratuitement
-      participation_frais: true
-      personne_de_reference: couple1
-      enfants: [enfant1, enfant2]
-    individus:
-      couple1:
-        age: 35
-        salaire_net:
-          2018-03: 850
-          2018-04: 850
-          2018-05: 850
-        pensions_alimentaires_percues:
-          2018-03: 200
-          2018-04: 200
-          2018-05: 200
-      enfant1:
-        age: 9
-      enfant2:
-        age: 9
-    foyers_fiscaux:
-      foyer_fiscal_0:
-        declarants:
-        - couple1
-        personnes_a_charge:
-        - enfant1
-        - enfant2
+    paris_base_ressources_couple:
+      2018-05: 850
+    paris_nb_enfants: 2
+    paris_nb_enfants_handicapes: 0
+    paris_energie_famille_elig: true
   output:
     paris_energie_famille: 138
 
