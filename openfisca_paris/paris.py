@@ -242,7 +242,7 @@ class paris_condition_taux_effort(Variable):
     definition_period = MONTH
 
     def formula(famille, period, legislation):
-        last_month = period.last_month
+        # TODO: Vérifier cette formule
 
         taux_effort = legislation(period).paris.paris_logement.taux_effort
         loyer = famille.demandeur.menage('loyer', period)
@@ -253,6 +253,7 @@ class paris_condition_taux_effort(Variable):
         calcul_taux_effort = (loyer + charges_forfaitaire_logement - aide_logement) / ressources_mensuelles
         condition_taux_effort = calcul_taux_effort >= taux_effort
         return condition_taux_effort
+
 
 class paris_loyer_net(Variable):
     value_type = float

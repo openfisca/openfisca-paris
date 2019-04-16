@@ -22,7 +22,7 @@ class paris_complement_sante_pa_eligibilite(Variable):
 		base_ressources = famille('paris_base_ressources_couple', period.last_month)
 		param_plafond = parameters(period).paris.personnes_agees.paris_complement_sante.plafond
 		en_couple = famille('en_couple', period)
-		plafond = where(en_couple, param_plafond.en_couple, param_plafond.personne_isolee)
+		plafond = where(en_couple, param_plafond.couple, param_plafond.personne_isolee)
 
 		return parisien * personnes_agees * (base_ressources <= plafond)
 

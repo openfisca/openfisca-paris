@@ -1,0 +1,92 @@
+# === Tests pour paris_logement_pa_eligibilite ===
+- name: Une personne âgée isolée avec des ressources inférieures au SMIC mensuel net arrondi est éligible
+  period: 2019-02
+  input:
+    paris_logement_pa_ph_eligibilite: true
+    paris_personnes_agees: true
+    paris_base_ressources_foyer: 
+      2019-01: 1210
+  output:
+    paris_logement_pa_eligibilite: true
+
+- name: Une personne âgée isolée avec des ressources supérieures au SMIC mensuel net arrondi n'est pas éligible
+  period: 2019-02
+  input:
+    paris_logement_pa_ph_eligibilite: true
+    paris_personnes_agees: true
+    en_couple: false
+    paris_base_ressources_foyer: 
+      2019-01: 1211
+  output:
+    paris_logement_pa_eligibilite: false
+
+- name: Une personne âgée en couple sans enfant avec des ressources inférieures au SMIC mensuel net arrondi est éligible
+  period: 2019-02
+  input:
+    paris_logement_pa_ph_eligibilite: true
+    paris_personnes_agees: true
+    en_couple: true
+    paris_base_ressources_foyer: 
+      2019-01: 1210
+  output:
+    paris_logement_pa_eligibilite: true
+
+- name: Une personne âgée en couple sans enfant avec des ressources supérieures au SMIC mensuel net arrondi n'est pas éligible
+  period: 2019-02
+  input:
+    paris_logement_pa_ph_eligibilite: true
+    paris_personnes_agees: true
+    en_couple: true
+    paris_base_ressources_foyer: 
+      2019-01: 1211
+  output:
+    paris_logement_pa_eligibilite: false
+
+- name: Une personne âgée en couple avec un enfant dont les ressources sont <= 1600€ est éligible
+  period: 2019-02
+  input:
+    paris_logement_pa_ph_eligibilite: true
+    paris_personnes_agees: true
+    en_couple: true
+    paris_nb_enfants: 1
+    paris_base_ressources_foyer: 
+      2019-01: 1600
+  output:
+    paris_logement_pa_eligibilite: true
+
+- name: Une personne âgée en couple avec un enfant dont les ressources sont > 1600€ n'est pas éligible
+  period: 2019-02
+  input:
+    paris_logement_pa_ph_eligibilite: true
+    paris_personnes_agees: true
+    en_couple: true
+    paris_nb_enfants: 1
+    paris_base_ressources_foyer: 
+      2019-01: 1601
+  output:
+    paris_logement_pa_eligibilite: false
+
+# === Tests pour paris_logement_pa_montant ===
+- name: Une personne âgée éligible, isolée, reçoit 84€
+  period: 2019-02
+  input:
+    paris_logement_pa_eligibilite: true
+  output:
+    paris_logement_pa_montant: 84
+
+- name: Une personne âgée éligible, en couple sans enfant, reçoit 95€
+  period: 2019-02
+  input:
+    paris_logement_pa_eligibilite: true
+    en_couple: true
+  output:
+    paris_logement_pa_montant: 95
+
+- name: Une personne âgée éligible, en couple avec un enfant, reçoit 116€
+  period: 2019-02
+  input:
+    paris_logement_pa_eligibilite: true
+    en_couple: true
+    paris_nb_enfants: 1
+  output:
+    paris_logement_pa_montant: 116

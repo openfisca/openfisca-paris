@@ -1,0 +1,38 @@
+plafond:
+  avec_enfant:
+    unit: currency
+    values:
+      2012-01-01:
+        value: 1600.0
+      2015-01-01:
+        value: 1600.0
+      2019-01-01:
+        value: 1600.0
+montant:
+  personne_isolee:
+    unit: currency
+    values:
+      2012-01-01:
+        value: 84.0
+      2015-01-01:
+        value: 84.0
+      2019-01-01:
+        value: 84.0
+  couple_sans_enfant:
+    unit: currency
+    values:
+      2012-01-01:
+        value: 95.0
+      2015-01-01:
+        value: 95.0
+      2019-01-01:
+        value: 95.0
+  couple_avec_enfant:
+    unit: currency
+    values:
+      2012-01-01:
+        value: 116.0
+      2015-01-01:
+        value: 116.0
+      2019-01-01:
+        value: 116.0

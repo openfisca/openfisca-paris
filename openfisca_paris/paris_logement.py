@@ -37,14 +37,13 @@ class paris_logement_pa_ph(Variable):
 
         base_ressources = famille('paris_base_ressources_foyer', last_month)
         loyer_net = famille('paris_loyer_net', period)
-        ressources_familiale = base_ressources
 
         personnes_couple = famille('en_couple', period)
         nb_enfants = famille('paris_nb_enfants', period)
         paris_logement_elig_pa_ph = famille('paris_logement_elig_pa_ph', period)
 
         plafond = select([(nb_enfants >= 1), (nb_enfants < 1)], [plafond_pl_avec_enf, plafond_pl])
-        condition_ressource = ressources_familiale <= plafond
+        condition_ressource = base_ressources <= plafond
         montant_aide = select([personnes_couple * (nb_enfants > 0), personnes_couple,
             ((personnes_couple != 1) * (nb_enfants == 0)), ((personnes_couple != 1) * (nb_enfants >= 1))],
             [aide_couple_avec_enf, aide_couple_ss_enf, aide_pers_isol, 0])
@@ -53,8 +52,34 @@ class paris_logement_pa_ph(Variable):
 
         result = where(result_montant > 0, result_montant, 0)
 
-        return result * condition_ressource * paris_logement_elig_pa_ph
+        paris_logement_pa = famille('paris_logement_pa', period)
+        return max_(result * condition_ressource * paris_logement_elig_pa_ph, paris_logement_pa)
 
+# NEW : utilisée pour les personnes âgées, a vocation à être utilisée pour les personnes handicapées également
+class paris_logement_pa_ph_eligibilite(Variable):
+    value_type = bool
+    label = u"Eligibilité à l'aide Paris Logement pour les personnes agées et les personne handicapées"
+    entity = Famille
+    definition_period = MONTH
+
+    def formula(famille, period):
+        parisien = famille('parisien', period)
+
+        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
+        statut_occupation_elig = (
+            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm) +
+            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_vide) +
+            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble) +
+            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer)
+        )
+
+        condition_taux_effort = famille('paris_condition_taux_effort', period)
+
+        nb_enfants = famille('paris_nb_enfants', period)
+
+        return parisien * statut_occupation_elig * condition_taux_effort * (nb_enfants <= 1)
+
+# OLD : encore utilisée pour les personnes handicapées
 class paris_logement_elig_pa_ph(Variable):
     value_type = bool
     label = u"Personne qui est eligible pour l'aide PL pour les personnes agées et les personne handicapées"
@@ -64,14 +89,14 @@ class paris_logement_elig_pa_ph(Variable):
     def formula(famille, period):
         parisien = famille('parisien', period)
 
-        personnes_agees = famille.members('paris_personnes_agees', period)
-        personnes_agees_famille = famille.any(personnes_agees)
+        # personnes_agees = famille.members('paris_personnes_agees', period)
+        # personnes_agees_famille = famille.any(personnes_agees)
 
         personne_handicap_individu = famille.members('paris_personnes_handicap', period)
         personne_handicap = famille.sum(personne_handicap_individu)
 
         enfant_handicape = famille.members('paris_enfant_handicape', period)
-        nb_enfant = famille.sum(enfant_handicape)
+        nb_enfants_handicapes = famille.sum(enfant_handicape)
 
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
         statut_occupation_elig = (
@@ -82,9 +107,9 @@ class paris_logement_elig_pa_ph(Variable):
         )
         condition_taux_effort = famille('paris_condition_taux_effort', period)
 
-        adulte_handicape = (personne_handicap - nb_enfant) >= 1
+        adulte_handicape = (personne_handicap - nb_enfants_handicapes) >= 1
 
-        result = parisien * statut_occupation_elig * (personnes_agees_famille + adulte_handicape) * condition_taux_effort
+        result = parisien * statut_occupation_elig * (adulte_handicape) * condition_taux_effort
         return result
 
 class paris_logement_fam(Variable):
@@ -101,13 +126,12 @@ class paris_logement_fam(Variable):
 
         base_ressources = famille('paris_base_ressources_foyer', last_month)
         loyer_net = famille('paris_loyer_net', period)
-        ressources_familiale = base_ressources
 
         personnes_couple = famille('en_couple', period)
         nb_enfants = famille('paris_nb_enfants', period)
         paris_logement_elig_fam = famille('paris_logement_elig_fam', period)
 
-        condition_ressource = ressources_familiale <= plafond_pl_fam
+        condition_ressource = base_ressources <= plafond_pl_fam
 
         montant_aide = where(personnes_couple * (nb_enfants > 0), aide_pl_fam, 0)
 
@@ -158,18 +182,17 @@ class paris_logement_apd(Variable):
 
         indemnite = famille('paris_indemnite_enfant', last_month)
         loyer_net = famille('paris_loyer_net', period)
-        ressources_familiale = base_ressources - indemnite
 
         personnes_couple = famille('en_couple', period)
         paris_logement_elig_apd = famille('paris_logement_elig_apd', period)
 
-        condition_ressource = ressources_familiale <= plafond
+        condition_ressources = (base_ressources - indemnite) <= plafond
 
         montant_aide = where(personnes_couple, aide_pl_apd_couple, aide_pl_apd_pers_isol)
 
         result = where((montant_aide > loyer_net), (montant_aide - (montant_aide - loyer_net)), montant_aide)
 
-        return result * condition_ressource * paris_logement_elig_apd
+        return result * condition_ressources * paris_logement_elig_apd
 
 class paris_logement_elig_apd(Variable):
     value_type = bool
