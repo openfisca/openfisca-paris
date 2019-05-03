@@ -52,8 +52,7 @@ class paris_logement_pa_montant(Variable):
 		montant = where(not_(en_couple), param_montant.personne_isolee,
 			where(nb_enfants < 1, param_montant.couple_sans_enfant, param_montant.couple_avec_enfant))
 
-		# TODO: Calculer cette charge de logement
-		charge_logement = 10000
+		charge_logement = famille('paris_logement_charge_nette_base', period)
 
 		return min_(montant, charge_logement)
 

@@ -71,6 +71,7 @@
   period: 2019-02
   input:
     paris_logement_pa_eligibilite: true
+    paris_logement_charge_nette_base: 120
   output:
     paris_logement_pa_montant: 84
 
@@ -78,6 +79,7 @@
   period: 2019-02
   input:
     paris_logement_pa_eligibilite: true
+    paris_logement_charge_nette_base: 120
     en_couple: true
   output:
     paris_logement_pa_montant: 95
@@ -86,7 +88,16 @@
   period: 2019-02
   input:
     paris_logement_pa_eligibilite: true
+    paris_logement_charge_nette_base: 120
     en_couple: true
     paris_nb_enfants: 1
   output:
     paris_logement_pa_montant: 116
+
+- name: Une personne âgée éligible, dont le montant de la charge nette est inférieur au montant de l'aide, reçoit le minimum entre les deux
+  period: 2019-02
+  input:
+    paris_logement_pa_eligibilite: true
+    paris_logement_charge_nette_base: 50
+  output:
+    paris_logement_pa_montant: 50

@@ -36,7 +36,7 @@ class paris_logement_pa_ph(Variable):
         aide_couple_avec_enf = legislation(period).paris.paris_logement.aide_couple_avec_enf
 
         base_ressources = famille('paris_base_ressources_foyer', last_month)
-        loyer_net = famille('paris_loyer_net', period)
+        loyer_net = famille('paris_logement_charge_nette_base', period)
 
         personnes_couple = famille('en_couple', period)
         nb_enfants = famille('paris_nb_enfants', period)
@@ -125,7 +125,7 @@ class paris_logement_fam(Variable):
         aide_pl_fam = legislation(period).paris.paris_logement.aide_pl_fam
 
         base_ressources = famille('paris_base_ressources_foyer', last_month)
-        loyer_net = famille('paris_loyer_net', period)
+        loyer_net = famille('paris_logement_charge_nette_base', period)
 
         personnes_couple = famille('en_couple', period)
         nb_enfants = famille('paris_nb_enfants', period)
@@ -181,7 +181,7 @@ class paris_logement_apd(Variable):
         base_ressources = famille('paris_base_ressources_foyer', last_month)
 
         indemnite = famille('paris_indemnite_enfant', last_month)
-        loyer_net = famille('paris_loyer_net', period)
+        loyer_net = famille('paris_logement_charge_nette_base', period)
 
         personnes_couple = famille('en_couple', period)
         paris_logement_elig_apd = famille('paris_logement_elig_apd', period)
@@ -224,3 +224,28 @@ class paris_logement_elig_apd(Variable):
         result = parisien * statut_occupation_elig * (personnes_agees_famille != 1) * (personne_handicap_famille != 1) * condition_taux_effort * (loyer > 0) * (nb_enfants == 0)
 
         return result
+
+class paris_logement_charge_nette_base(Variable):
+    value_type = float
+    label = u"Charge nette de logement pour les locataires"
+    entity = Famille
+    definition_period = MONTH
+
+    def formula(famille, period):
+
+        loyer = famille.demandeur.menage('loyer', period)
+        charges_locatives = famille.demandeur.menage('charges_locatives', period)
+        aide_logement = famille('aide_logement', period)
+
+        return max_(0, loyer + charges_locatives - aide_logement)
+
+
+class paris_logement_charge_nette_etendue(Variable):
+    value_type = float
+    label = u"Charge nette de logement prenant également en compte les primo-accédants et les propriétaires"
+    entity = Famille
+    definition_period = MONTH
+
+    def formula(famille, period):
+        # TODO: à compléter
+        return famille('paris_logement_charge_nette_base', period)

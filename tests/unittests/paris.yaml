@@ -67,3 +67,88 @@
       2019-01: 702
     paris_base_ressources_foyer:
       2019-01: 777
+
+- name: Taux d'effort = 30%
+  period: 2019-02
+  input:
+    famille:
+      parents: [parent1, parent2]
+      en_couple: true
+      aide_logement: 25
+      aide_logement_charges: 15
+    individus:
+      parent1:
+        salaire_net: 
+          2019-01: 175
+      parent2:
+        chomage_net: 
+          2019-01: 125
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+          - parent1
+          - parent2
+    menage:
+      statut_occupation_logement: locataire_vide
+      personne_de_reference: parent1
+      conjoint: parent2
+      loyer: 100
+  output:
+    paris_condition_taux_effort: true
+
+- name: Taux d'effort < 30%
+  period: 2019-02
+  input:
+    famille:
+      parents: [parent1, parent2]
+      en_couple: true
+      aide_logement: 25
+      aide_logement_charges: 15
+    individus:
+      parent1:
+        salaire_net: 
+          2019-01: 175
+      parent2:
+        chomage_net: 
+          2019-01: 125
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+          - parent1
+          - parent2
+    menage:
+      statut_occupation_logement: locataire_vide
+      personne_de_reference: parent1
+      conjoint: parent2
+      loyer: 99 # Loyer plus faible que dans le 1er test
+  output:
+    paris_condition_taux_effort: false
+
+- name: Taux d'effort < 30% à cause du minimum vieillesse (aspa)
+  period: 2019-02
+  input:
+    famille:
+      parents: [parent1, parent2]
+      en_couple: true
+      aide_logement: 25
+      aide_logement_charges: 15
+    individus:
+      parent1:
+        salaire_net: 
+          2019-01: 175
+        age: 65 # Seul changement par rapport au premier test : personne âgée
+      parent2:
+        chomage_net: 
+          2019-01: 125
+    foyers_fiscaux:
+      foyer_fiscal_0:
+        declarants:
+          - parent1
+          - parent2
+    menage:
+      statut_occupation_logement: locataire_vide
+      personne_de_reference: parent1
+      conjoint: parent2
+      loyer: 100
+  output:
+    paris_condition_taux_effort: false

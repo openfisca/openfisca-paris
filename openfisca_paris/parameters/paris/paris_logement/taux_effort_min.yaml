@@ -1,4 +1,4 @@
-description: charges de logement représentant 30% des ressources
+description: Limite basse du taux d'effort, en pourcentage des ressources
 unit: currency
 values:
   2012-01-01:

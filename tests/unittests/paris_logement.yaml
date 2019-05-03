@@ -337,7 +337,7 @@
   output:
     paris_logement: 84
 
-- name: Famille éligible pour l'aide Paris logement car un couple avec deux enfant et ressources < 1600
+- name: Famille non éligible pour l'aide Paris logement car avec les aides au logement, le taux d'effort n'est pas suffisant
   relative_error_margin: 0.02
   description: Paris Logement PA et PH
   period: 2016-02
@@ -378,7 +378,9 @@
         - enfant1
         - enfant2
   output:
-    paris_logement: 113.25
+    aide_logement: 437.1
+    paris_condition_taux_effort: false
+    paris_logement: 0
 
 - name: Couple non éligible pour l'aide Paris logement car un couple avec ressources > 1140
   description: Paris Logement PA et PH
@@ -445,7 +447,7 @@
   output:
     paris_logement: 95
 
-- name: Famille éligible pour l'aide Paris logement car un couple avec deux enfant et ressources < 1600
+- name: Famille non éligible pour l'aide Paris logement car avec les aides au logement, le taux d'effort n'est pas suffisant
   relative_error_margin: 0.02
   description: Paris Logement Couple avec enfants
   period: 2016-02
@@ -483,7 +485,9 @@
         - enfant1
         - enfant2
   output:
-    paris_logement: 113.25
+    aide_logement: 437.1
+    paris_condition_taux_effort: false
+    paris_logement: 0
 
 - name: Famille non éligible pour l'aide Paris logement car un couple avec deux enfant et ressources > 1600
   description: Paris Logement Couple avec enfants

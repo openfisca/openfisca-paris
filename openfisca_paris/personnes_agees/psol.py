@@ -14,14 +14,11 @@ class paris_solidarite_pa_base_ressources(Variable):
     reference = "article II.1.1.b.4 du règlement municipal du CASVP"
 
     def formula(famille, period, parameters):
+        
+        base_ressources = famille('paris_base_ressources_couple', period)
+        aspa_reference = famille('paris_aspa_reference', period)
 
-        base_ressource = famille('paris_base_ressources_couple', period)
-        aspa  = parameters(period).prestations.minima_sociaux.aspa
-
-        en_couple = famille('en_couple', period)
-        minimum_vieillesse = (en_couple * aspa.montant_annuel_couple + not_(en_couple) * aspa.montant_annuel_seul) / 12
-
-        return max_(minimum_vieillesse, base_ressource)
+        return max_(aspa_reference, base_ressources)
 
 
 class paris_solidarite_pa_montant(Variable):
@@ -33,13 +30,13 @@ class paris_solidarite_pa_montant(Variable):
 
     def formula(famille, period, parameters):
 
-        base_ressource = famille('paris_solidarite_pa_base_ressources', period)
+        base_ressources = famille('paris_solidarite_pa_base_ressources', period)
         plafond_psol = parameters(period).paris.personnes_agees.psol.plafond
 
         en_couple = famille('en_couple', period)
         plafond = (en_couple * plafond_psol.couple + not_(en_couple) * plafond_psol.personne_seule)
 
-        return max_(0, plafond - base_ressource)
+        return max_(0, plafond - base_ressources)
 
 
 class paris_solidarite_pa_eligibilite(Variable):
