@@ -1,151 +1,38 @@
 - name: Famille éligible pour l'allocation de soutien aux parents d’enfants handicapés
   period: 2016-02
   input:
-    famille:
-      parents: [couple1, couple2]
-      enfants: [enfant1, enfant2, enfant3]
-      parisien: true
-    menage:
-      statut_occupation_logement: locataire_vide
-      personne_de_reference: couple1
-      conjoint: couple2
-      enfants: [enfant1, enfant2, enfant3]
-    individus:
-      couple1:
-        age: 55
-        salaire_net:
-          2016-01: 3100
-      couple2:
-        age: 55
-        chomage_net:
-          2016-01: 1400
-      enfant1:
-        age: 5
-      enfant2:
-        age: 7
-      enfant3:
-        age: 9
-        handicap: true
-    foyers_fiscaux:
-      foyer_fiscal_0:
-        declarants:
-        - couple1
-        - couple2
-        personnes_a_charge:
-        - enfant1
-        - enfant2
-        - enfant3
+    parisien: true
+    paris_logement_aspeh_base_ressources: 4500
+    paris_nb_enfants_handicapes: 1
   output:
     paris_logement_aspeh: 153
 
-- name: Famille non éligible pour l'allocation de soutien aux parents d’enfants handicapés
+- name: Famille sans enfant handicapé non éligible à l'allocation de soutien aux parents d’enfants handicapés
   period: 2016-02
   input:
-    famille:
-      parents: [couple1, couple2]
-      enfants: [enfant1]
-      parisien: true
-      paje_clca: 1000
-    menage:
-      statut_occupation_logement: locataire_vide
-      personne_de_reference: couple1
-      conjoint: couple2
-      enfants: [enfant1]
-    individus:
-      couple1:
-        age: 55
-        salaire_net:
-          2016-01: 1100
-      couple2:
-        age: 55
-        chomage_net:
-          2016-01: 400
-      enfant1:
-        age: 5
-    foyers_fiscaux:
-      foyer_fiscal_0:
-        declarants:
-        - couple1
-        - couple2
-        personnes_a_charge:
-        - enfant1
+    parisien: true
+    paris_logement_aspeh_base_ressources: 4500
+    paris_nb_enfants_handicapes: 0
   output:
     paris_logement_aspeh: 0
 
-- name: Famille non éligible pour l'allocation de soutien aux parents d’enfants handicapés
+- name: Famille aux ressources trop élevées pour l'allocation de soutien aux parents d’enfants handicapés
   period: 2016-02
   input:
-    famille:
-      parents: [couple1, couple2]
-      enfants: [enfant1, enfant2]
-      parisien: true
-      paje_clca: 100
-    menage:
-      statut_occupation_logement: locataire_vide
-      personne_de_reference: couple1
-      conjoint: couple2
-      enfants: [enfant1, enfant2]
-    individus:
-      couple1:
-        age: 55
-        salaire_net:
-          2016-01: 4100
-      couple2:
-        age: 55
-        chomage_net:
-          2016-01: 400
-      enfant1:
-        age: 5
-      enfant2:
-        age: 9
-        handicap: true
-    foyers_fiscaux:
-      foyer_fiscal_0:
-        declarants:
-        - couple1
-        - couple2
-        personnes_a_charge:
-        - enfant1
-        - enfant2
+    parisien: true
+    paje_clca:
+      2016-01: 1000
+    paris_base_ressources_couple:
+      2016-01: 4500
+    paris_nb_enfants_handicapes: 1
   output:
-    paris_logement_aspeh: 153
+    paris_logement_aspeh: 0
 
-- name: Famille éligible pour l'allocation de soutien aux parents d’enfants handicapés
+- name: Famille avec 2 enfants éligible à l'allocation de soutien aux parents d’enfants handicapés
   period: 2016-02
   input:
-    famille:
-      parents: [couple1, couple2]
-      enfants: [enfant1, enfant2]
-      parisien: true
-      paje_clca: 100
-    menage:
-      statut_occupation_logement: locataire_vide
-      personne_de_reference: couple1
-      conjoint: couple2
-      enfants: [enfant1, enfant2]
-    individus:
-      couple1:
-        age: 55
-        handicap: true
-        salaire_net:
-          2016-01: 4100
-      couple2:
-        age: 55
-        chomage_net:
-          2016-01: 400
-      enfant1:
-        age: 5
-        handicap: true
-      enfant2:
-        age: 9
-        handicap: true
-    foyers_fiscaux:
-      foyer_fiscal_0:
-        declarants:
-        - couple1
-        - couple2
-        personnes_a_charge:
-        - enfant1
-        - enfant2
+    parisien: true
+    paris_logement_aspeh_base_ressources: 4500
+    paris_nb_enfants_handicapes: 2
   output:
     paris_logement_aspeh: 306
