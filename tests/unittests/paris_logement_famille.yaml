@@ -124,6 +124,7 @@
       enfants: [enfant1, enfant2]
       parisien: true
       en_couple: true
+      paris_base_ressources_foyer: 1900
     menage:
       statut_occupation_logement: proprietaire
       personne_de_reference: parent1
@@ -133,8 +134,6 @@
     individus:
       parent1:
         age: 55
-        salaire_net:
-          2016-01: 1900
       parent2:
         age: 55
       enfant1:
@@ -268,6 +267,7 @@
       enfants: [enfant1, enfant2]
       parisien: true
       en_couple: true
+      paris_base_ressources_foyer: 1900
     menage:
       statut_occupation_logement: locataire_vide
       personne_de_reference: parent1
@@ -277,8 +277,6 @@
     individus:
       parent1:
         age: 55
-        salaire_net:
-          2016-01: 1900
       parent2:
         age: 55
       enfant1:
