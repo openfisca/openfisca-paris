@@ -29,6 +29,7 @@ class paris_pass_seniors(Variable):
     def formula(individu, period):
         return (
             individu.famille('parisien', period)
+            * (individu.menage('statut_occupation_logement', period) != TypesStatutOccupationLogement.sans_domicile)
             * individu('paris_personnes_agees', period)
             * individu.foyer_fiscal('paris_navigo_amethyste_eligibilite_financiere', period)
         )
@@ -44,6 +45,7 @@ class paris_pass_access(Variable):
     def formula(individu, period):
         return (
             individu.famille('parisien', period)
+            * (individu.menage('statut_occupation_logement', period) != TypesStatutOccupationLogement.sans_domicile)
             * individu('paris_personnes_handicap', period)
             * individu.foyer_fiscal('paris_navigo_amethyste_eligibilite_financiere', period)
         )
