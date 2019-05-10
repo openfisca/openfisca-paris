@@ -44,7 +44,7 @@
     handicap: true
     statut_occupation_logement: locataire_vide
     loyer: 550
-    salaire_net:
+    paris_base_ressources_foyer:
       2016-01: 600
   output:
     paris_logement: 84
@@ -58,7 +58,7 @@
     handicap: true
     statut_occupation_logement: locataire_vide
     loyer: 550
-    salaire_net:
+    paris_base_ressources_foyer:
       2016-01: 800
   output:
     paris_logement: 84
@@ -108,6 +108,9 @@
     parisien: true
     statut_occupation_logement: locataire_vide
     loyer: 350
+    paris_base_ressources_famille:
+      2016-01: 0
+      2016-02: 0
   output:
     paris_logement: 77.839
 
@@ -121,6 +124,8 @@
     handicap: true
     statut_occupation_logement: locataire_vide
     loyer: 550
+    paris_base_ressources_famille:
+      2016-01: 0
   output:
     paris_logement: 84
 
@@ -136,6 +141,8 @@
     loyer: 550
     aah:
       2016-01: 800
+    paris_base_ressources_famille:
+      2016-01: 0
   output:
     paris_logement: 95
 
@@ -166,6 +173,8 @@
     aah:
       2016-01: 800
     loyer: 550
+    paris_base_ressources_famille:
+      2016-01: 0
   output:
     paris_logement: 84
 
@@ -337,6 +346,9 @@
       parents: [parent1, parent2]
       enfants: [enfant1, enfant2]
       parisien: true
+      paris_base_ressources_famille:
+        2016-01: 0
+        2016-02: 0
     menage:
       statut_occupation_logement: locataire_vide
       personne_de_reference: parent1
@@ -405,6 +417,8 @@
     famille:
       parents: [parent1, parent2]
       parisien: true
+      paris_base_ressources_famille:
+        2016-01: 0
     menage:
       statut_occupation_logement: locataire_vide
       personne_de_reference: parent1
@@ -440,6 +454,9 @@
       parents: [parent1, parent2]
       enfants: [enfant1, enfant2]
       parisien: true
+      paris_base_ressources_famille:
+        2016-01: 0
+        2016-02: 0
     menage:
       statut_occupation_logement: locataire_vide
       personne_de_reference: parent1
@@ -517,23 +534,10 @@
     loyer: 550
     aide_logement:
       2016-01: 200
+    paris_base_ressources_famille:
+      2016-01: 0
     salaire_net:
       2016-01: 850
-  output:
-    paris_logement: 84
-
-- name: Personne éligible au PL car ressources trop bas
-  description: Paris Logement Parisien en difficulté
-  period: 2016-02
-  input:
-    age: 45
-    parisien: true
-    statut_occupation_logement: locataire_vide
-    loyer: 550
-    aide_logement:
-      2016-01: 200
-    rsa:
-      2016-01: 450
   output:
     paris_logement: 84
 

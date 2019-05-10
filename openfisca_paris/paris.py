@@ -69,7 +69,7 @@ class paris_base_ressources_famille(Variable):
 
     def formula(famille, period):
         aspa = famille('aspa', period)
-        rsa = famille('rsa', period.last_month)
+        rsa = famille('rsa', period)
         return aspa + rsa
 
 class paris_base_ressources_couple(Variable):

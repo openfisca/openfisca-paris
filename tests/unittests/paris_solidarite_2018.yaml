@@ -42,6 +42,7 @@
     handicap: true
     loyer: 600
     chomage_net: 600
+    paris_base_ressources_famille: 0
   output:
     paris_logement_psol: 96
 
@@ -152,6 +153,7 @@
     handicap: true
     aah: 500
     salaire_net: 80
+    paris_base_ressources_famille: 0
   output:
     paris_logement_psol: 96
 
@@ -330,6 +332,7 @@
       parents: [parent]
       enfants: [enfant1]
       parisien: true
+      paris_base_ressources_famille: 0
     menage:
       statut_occupation_logement: locataire_vide
       personne_de_reference: parent
