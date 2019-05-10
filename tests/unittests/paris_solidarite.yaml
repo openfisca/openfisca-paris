@@ -43,6 +43,7 @@
     handicap: true
     loyer: 600
     chomage_net: 600
+    paris_base_ressources_famille: 0
   output:
     paris_logement_psol: 92.35
 
@@ -156,6 +157,7 @@
     handicap: true
     aah: 500
     salaire_net: 80
+    paris_base_ressources_famille: 0
   output:
     paris_logement_psol: 92.35
 
