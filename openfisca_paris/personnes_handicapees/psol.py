@@ -37,7 +37,7 @@ class paris_solidarite_ph_eligibilite(Variable):
     def formula(famille, period, parameters):
 
         personnes_handicapees = famille.members('paris_personnes_handicap', period)
-        return famille.any(personnes_handicapees, role = famille.PARENT)
+        return famille.any(personnes_handicapees, role = Famille.PARENT)
 
 
 class paris_solidarite_ph_montant(Variable):
