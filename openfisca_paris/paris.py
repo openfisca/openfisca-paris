@@ -63,7 +63,7 @@ class paris_base_ressources_i(Variable):
 
 class paris_base_ressources_famille(Variable):
     value_type = float
-    label = u"Base de ressources liée à une famille, pour l'ensemble des aides de Paris"
+    label = u"Base de ressources liée à une famille (à ajouter aux ressources des individus), pour l'ensemble des aides de Paris"
     entity = Famille
     definition_period = MONTH
 
@@ -231,6 +231,20 @@ class paris_condition_taux_effort(Variable):
 
     def formula(famille, period, legislation):
 
+        taux_effort = famille('paris_taux_effort', period)
+        taux_effort_min = legislation(period).paris.paris_logement.taux_effort_min
+
+        return taux_effort >= taux_effort_min
+
+
+class paris_taux_effort(Variable):
+    value_type = float
+    label = u"Taux d'effort pour le loyer"
+    entity = Famille
+    definition_period = MONTH
+
+    def formula(famille, period, legislation):
+
         loyer = famille.demandeur.menage('loyer', period)
         charges_forfaitaire_logement = famille('aide_logement_charges', period)
         aide_logement = famille('aide_logement', period)
@@ -239,7 +253,4 @@ class paris_condition_taux_effort(Variable):
         aspa_reference = famille('paris_aspa_reference', period)
         ressources = max_(aspa_reference, base_ressources)
 
-        calcul_taux_effort = (loyer + charges_forfaitaire_logement - aide_logement) / ressources
-        taux_effort_min = legislation(period).paris.paris_logement.taux_effort_min
-
-        return calcul_taux_effort >= taux_effort_min
+        return (loyer + charges_forfaitaire_logement - aide_logement) / ressources

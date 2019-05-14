@@ -1,0 +1,43 @@
+- name: Personne âgée éligible
+  period: 2019-02
+  input:
+    paris_logement_pa_ph_eligibilite: true
+    paris_personnes_agees: true
+    paris_base_ressources_foyer: 
+      2019-01: 1210
+    paris_logement_pa_plafond: 1210
+  output:
+    paris_logement_pa_eligibilite: true
+
+- name: Personne non-éligible (car ne correspondant pas au critère "personne âgée")
+  period: 2019-02
+  input:
+    paris_logement_pa_ph_eligibilite: true
+    paris_personnes_agees: false
+    paris_base_ressources_foyer: 
+      2019-01: 1210
+    paris_logement_pa_plafond: 1210
+  output:
+    paris_logement_pa_eligibilite: false
+
+- name: Personne non-éligible (car ne correspondant pas aux autres critères d'éligibilité évalués par ailleurs)
+  period: 2019-02
+  input:
+    paris_logement_pa_ph_eligibilite: false
+    paris_personnes_agees: true
+    paris_base_ressources_foyer: 
+      2019-01: 1210
+    paris_logement_pa_plafond: 1210
+  output:
+    paris_logement_pa_eligibilite: false
+
+- name: Personne non-éligible (car la base ressources est supérieure au plafond)
+  period: 2019-02
+  input:
+    paris_logement_pa_ph_eligibilite: true
+    paris_personnes_agees: true
+    paris_base_ressources_foyer: 
+      2019-01: 1211
+    paris_logement_pa_plafond: 1210
+  output:
+    paris_logement_pa_eligibilite: false

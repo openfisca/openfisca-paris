@@ -1,0 +1,23 @@
+- name: Le plafond pour une personne âgée isolée est de 1210€ (SMIC mensuel net arrondi)
+  absolute_error_margin: 1
+  period: 2019-02
+  input:
+    paris_nb_enfants: 0
+  output:
+    paris_logement_pa_plafond: 1210
+
+- name: Le plafond pour une personne âgée en couple sans enfant est de 1210€ (SMIC mensuel net arrondi)
+  absolute_error_margin: 1
+  period: 2019-02
+  input:
+    en_couple: true
+    paris_nb_enfants: 0
+  output:
+    paris_logement_pa_plafond: 1210
+
+- name: Le plafond pour une personne âgée avec un enfant à charge est de 1600€
+  period: 2019-02
+  input:
+    paris_nb_enfants: 1
+  output:
+    paris_logement_pa_plafond: 1600

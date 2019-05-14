@@ -159,6 +159,8 @@
     en_couple: true
     paris_nb_enfants: 1
     loyer: 550
+    paris_base_ressources_famille:
+      2016-01: 0
   output:
     paris_logement: 116
 

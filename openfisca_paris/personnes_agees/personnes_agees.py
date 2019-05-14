@@ -18,7 +18,7 @@ class paris_personnes_agees(Variable):
         age = individu('age', period)
         aspa_eligibilite = individu('aspa_eligibilite', period)
 
-        return (age >= age_min) + (aspa_eligibilite)
+        return (age >= age_min) + aspa_eligibilite
 
 
 class paris_aspa_reference(Variable):
