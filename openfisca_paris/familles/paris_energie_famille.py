@@ -13,22 +13,15 @@ class paris_energie_famille_elig(Variable):
 
     def formula(famille, period):
         parisien = famille('parisien', period)
+
         statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
         participation_frais = famille.demandeur.menage('participation_frais', period)
-        charge_logement = (
-            (statut_occupation_logement == TypesStatutOccupationLogement.primo_accedant) +
-            (statut_occupation_logement == TypesStatutOccupationLogement.proprietaire) +
-            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm) +
-            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_vide) +
-            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble) +
-            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer) +
-            ((statut_occupation_logement == TypesStatutOccupationLogement.loge_gratuitement) 
-              * participation_frais  )
+        logement_a_charge = (
+            famille('paris_logement_a_charge', period) +
+            ((statut_occupation_logement == TypesStatutOccupationLogement.loge_gratuitement) * participation_frais)
             )
 
-        result = parisien * charge_logement
-
-        return result
+        return parisien * logement_a_charge
 
 class paris_energie_famille(Variable):
     value_type = float

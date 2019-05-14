@@ -13,20 +13,30 @@ class paris_forfait_famille_eligibilite(Variable):
     definition_period = MONTH
 
     def formula(famille, period):
+
         parisien = famille('parisien', period)
-        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
-        charge_logement = (
-            (statut_occupation_logement == TypesStatutOccupationLogement.primo_accedant) +
-            (statut_occupation_logement == TypesStatutOccupationLogement.proprietaire) +
-            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm) +
-            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_vide) +
-            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble) +
-            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer)
+        logement_a_charge = famille('paris_logement_a_charge', period)
+        nb_enfants = famille('paris_nb_enfants', period)
+
+        return parisien * logement_a_charge * (nb_enfants >= 3)
+
+
+class paris_forfait_famille_montant(Variable):
+    value_type = float
+    label = u"Montant de l'aide Paris Forfait Famille"
+    entity = Famille
+    definition_period = MONTH
+
+    def formula(famille, period, legislation):
+        
+        param = legislation(period).paris.familles.paris_forfait_famille
+        base_ressources = famille('paris_base_ressources_couple', period.last_month)
+
+        return select(
+            [base_ressources <= param.plafond.premier, base_ressources <= param.plafond.deuxieme, base_ressources > param.plafond.deuxieme],
+            [param.montant.premier_plafond, param.montant.deuxieme_plafond, 0]
             )
 
-        result = parisien * charge_logement
-
-        return result
 
 class paris_forfait_famille(Variable):
     value_type = float
@@ -35,17 +45,8 @@ class paris_forfait_famille(Variable):
     definition_period = MONTH
 
     def formula(famille, period, legislation):
-        last_month = period.last_month
 
-        premier_plafond = legislation(period).paris.familles.paris_forfait_famille.premier_plafond
-        deuxieme_plafond = legislation(period).paris.familles.paris_forfait_famille.deuxieme_plafond
-        aide_1er_plafond = legislation(period).paris.familles.paris_forfait_famille.aide_1er_plafond
-        aide_2eme_plafond = legislation(period).paris.familles.paris_forfait_famille.aide_2eme_plafond
+        eligibilite = famille('paris_forfait_famille_eligibilite', period)
+        montant = famille('paris_forfait_famille_montant', period)
 
-        nb_enfants = famille('paris_nb_enfants', period)
-        elig = famille('paris_forfait_famille_eligibilite', period)
-        ressources_mensuelles_famille = famille('paris_base_ressources_couple', last_month)
-        montant_aide = select([(ressources_mensuelles_famille <= premier_plafond),
-            (ressources_mensuelles_famille <= deuxieme_plafond)], [aide_1er_plafond, aide_2eme_plafond])
-        result = (select([(nb_enfants >= 3), (nb_enfants < 3)], [montant_aide, 0])) * elig
-        return result
+        return eligibilite * montant

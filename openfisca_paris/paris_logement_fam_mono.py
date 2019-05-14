@@ -19,17 +19,9 @@ class paris_logement_est_monoparentale(Variable):
         nb_enfants = famille('paris_nb_enfants', period)
         parisien = famille('parisien', period)
 
-        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
-        statut_occupation_plfm = (
-            (statut_occupation_logement == TypesStatutOccupationLogement.primo_accedant) +
-            (statut_occupation_logement == TypesStatutOccupationLogement.proprietaire) +
-            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm) +
-            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_vide) +
-            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble) +
-            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer)
-        )
+        logement_a_charge = famille('paris_logement_a_charge', period)
 
-        return  parent_solo * (nb_enfants >= 1) * (nb_enfants < 4) * parisien * statut_occupation_plfm
+        return  parent_solo * (nb_enfants >= 1) * (nb_enfants < 4) * parisien * logement_a_charge
 
 
 class paris_logement_plfm_montant(Variable):

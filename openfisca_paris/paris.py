@@ -256,3 +256,38 @@ class paris_condition_taux_effort(Variable):
         taux_effort_min = legislation(period).paris.paris_logement.taux_effort_min
 
         return taux_effort >= taux_effort_min
+
+
+class paris_locataire(Variable):
+    value_type = bool
+    label = u"Famille qui est locataire de son logement"
+    entity = Famille
+    definition_period = MONTH
+
+    def formula(famille, period):
+
+        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
+
+        return (
+            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm) +
+            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_vide) +
+            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble) +
+            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer)
+            )
+
+class paris_logement_a_charge(Variable):
+    value_type = bool
+    label = u"Famille qui acquitte ses charges de logement"
+    entity = Famille
+    definition_period = MONTH
+
+    def formula(famille, period):
+
+        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
+        locataire = famille('paris_locataire', period)
+
+        return (
+            locataire +
+            (statut_occupation_logement == TypesStatutOccupationLogement.primo_accedant) +
+            (statut_occupation_logement == TypesStatutOccupationLogement.proprietaire)
+            )

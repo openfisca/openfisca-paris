@@ -64,20 +64,11 @@ class paris_logement_pa_ph_eligibilite(Variable):
 
     def formula(famille, period):
         parisien = famille('parisien', period)
-
-        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
-        statut_occupation_elig = (
-            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm) +
-            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_vide) +
-            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble) +
-            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer)
-        )
-
+        locataire = famille('paris_locataire', period)
         condition_taux_effort = famille('paris_condition_taux_effort', period)
-
         nb_enfants = famille('paris_nb_enfants', period)
 
-        return parisien * statut_occupation_elig * condition_taux_effort * (nb_enfants <= 1)
+        return parisien * locataire * condition_taux_effort * (nb_enfants <= 1)
 
 
 class paris_logement_ph_eligibilite(Variable):
@@ -88,23 +79,15 @@ class paris_logement_ph_eligibilite(Variable):
 
     def formula(famille, period):
         parisien = famille('parisien', period)
+        locataire = famille('paris_locataire', period)
+        condition_taux_effort = famille('paris_condition_taux_effort', period)
 
         personne_handicap_individu = famille.members('paris_personnes_handicap', period)
         personne_handicap = famille.sum(personne_handicap_individu)
         nb_enfants_handicapes = famille('paris_nb_enfants_handicapes', period)
         adulte_handicape = (personne_handicap - nb_enfants_handicapes) >= 1
 
-        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
-        statut_occupation_elig = (
-            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm) +
-            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_vide) +
-            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble) +
-            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer)
-        )
-        condition_taux_effort = famille('paris_condition_taux_effort', period)
-
-        result = parisien * statut_occupation_elig * adulte_handicape * condition_taux_effort
-        return result
+        return parisien * locataire * condition_taux_effort * adulte_handicape
 
 class paris_logement_fam(Variable):
     value_type = float
@@ -148,16 +131,10 @@ class paris_logement_elig_fam(Variable):
         personne_handicap = famille.members('paris_personnes_handicap', period)
         personne_handicap_famille = famille.any(personne_handicap)
 
-        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
-        statut_occupation_elig = (
-            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm) +
-            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_vide) +
-            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble) +
-            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer)
-        )
+        locataire = famille('paris_locataire', period)
         condition_taux_effort = famille('paris_condition_taux_effort', period)
-        result = parisien * statut_occupation_elig * (personnes_agees_famille != 1) * (personne_handicap_famille != 1) * condition_taux_effort
-        return result
+
+        return parisien * locataire * (personnes_agees_famille != 1) * (personne_handicap_famille != 1) * condition_taux_effort
 
 class paris_logement_apd(Variable):
     value_type = float
@@ -196,6 +173,8 @@ class paris_logement_elig_apd(Variable):
 
     def formula(famille, period):
         parisien = famille('parisien', period)
+        
+        locataire = famille('paris_locataire', period)
 
         personnes_agees = famille.members('paris_personnes_agees', period)
         personnes_agees_famille = famille.any(personnes_agees)
@@ -203,21 +182,14 @@ class paris_logement_elig_apd(Variable):
         personne_handicap = famille.members('paris_personnes_handicap', period)
         personne_handicap_famille = famille.any(personne_handicap)
 
-        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
+        condition_taux_effort = famille('paris_condition_taux_effort', period)
+        
         loyer = famille.demandeur.menage('loyer', period)
+
         nb_enfants = famille('paris_nb_enfants', period)
 
-        statut_occupation_elig = (
-            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm) +
-            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_vide) +
-            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble) +
-            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer)
-        )
-        condition_taux_effort = famille('paris_condition_taux_effort', period)
+        return parisien * locataire * (personnes_agees_famille != 1) * (personne_handicap_famille != 1) * condition_taux_effort * (loyer > 0) * (nb_enfants == 0)
 
-        result = parisien * statut_occupation_elig * (personnes_agees_famille != 1) * (personne_handicap_famille != 1) * condition_taux_effort * (loyer > 0) * (nb_enfants == 0)
-
-        return result
 
 class paris_logement_charge_nette_mensuelle(Variable):
     value_type = float
