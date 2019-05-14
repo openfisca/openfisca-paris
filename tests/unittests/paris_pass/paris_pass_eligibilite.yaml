@@ -1,0 +1,34 @@
+- name: Eligibilité au Pass Paris Seniors ou Pass Paris Access'
+  period: 2018-03
+  input:
+    parisien: true
+    statut_occupation_logement: locataire_vide
+    paris_pass_eligibilite_financiere: true
+  output:
+    paris_pass_eligibilite: true
+
+- name: Non-éligibilité au Pass Paris Seniors ou Pass Paris Access' (car statut de logement ne correspondant pas)
+  period: 2018-03
+  input:
+    parisien: true
+    statut_occupation_logement: sans_domicile
+    paris_pass_eligibilite_financiere: true
+  output:
+    paris_pass_eligibilite: false
+
+- name: Non-éligibilité au Pass Paris Seniors ou Pass Paris Access' (car non-éligibilité financière)
+  period: 2018-03
+  input:
+    parisien: true
+    statut_occupation_logement: locataire_vide
+    paris_pass_eligibilite_financiere: false
+  output:
+    paris_pass_eligibilite: false
+
+- name: Non-éligibilité au Pass Paris Seniors ou Pass Paris Access' (car non-parisien)
+  period: 2018-03
+  input:
+    statut_occupation_logement: locataire_vide
+    paris_pass_eligibilite_financiere: true
+  output:
+    paris_pass_eligibilite: false

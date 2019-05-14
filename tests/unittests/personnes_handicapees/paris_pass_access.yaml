@@ -1,0 +1,23 @@
+- name: Eligibilité au Pass Paris Access
+  period: 2018-03
+  input:
+    paris_pass_eligibilite: true
+    paris_personnes_handicap: true
+  output:
+    paris_pass_access: true
+
+- name: Non-éligibilité au Pass Paris Access
+  period: 2018-03
+  input:
+    paris_pass_eligibilite: false
+    paris_personnes_handicap: true
+  output:
+    paris_pass_access: false
+
+- name: Non-éligibilité au Pass Paris Access
+  period: 2018-03
+  input:
+    paris_pass_eligibilite: true
+    paris_personnes_handicap: false
+  output:
+    paris_pass_access: false
