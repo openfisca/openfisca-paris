@@ -1,0 +1,26 @@
+- name: Montant correct
+  period: 2019-04
+  input:
+    paris_energie_familles_eligibilite_simple: true
+    paris_energie_familles_eligibilite_financiere: true
+    paris_energie_familles_montant: 666
+  output:
+    paris_energie_familles: 666
+
+- name: Montant nul si l'éligibilité simple n'est pas remplie
+  period: 2019-04
+  input:
+    paris_energie_familles_eligibilite_simple: false
+    paris_energie_familles_eligibilite_financiere: true
+    paris_energie_familles_montant: 666
+  output:
+    paris_energie_familles: 0
+
+- name: Montant nul si l'éligibilité financière n'est pas remplie
+  period: 2019-04
+  input:
+    paris_energie_familles_eligibilite_simple: true
+    paris_energie_familles_eligibilite_financiere: false
+    paris_energie_familles_montant: 666
+  output:
+    paris_energie_familles: 0

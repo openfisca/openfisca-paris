@@ -1,0 +1,49 @@
+- name: Montant de 138€ pour une famille avec 1 enfant
+  period: 2019-04
+  input:
+    paris_nb_enfants: 1
+  output:
+    paris_energie_familles_montant: 138
+
+- name: Montant de 138€ pour une famille avec 2 enfants
+  period: 2019-04
+  input:
+    paris_nb_enfants: 2
+  output:
+    paris_energie_familles_montant: 138
+
+- name: Montant de 275€ pour une famille avec 3 enfants
+  period: 2019-04
+  input:
+    paris_nb_enfants: 3
+  output:
+    paris_energie_familles_montant: 275
+
+- name: Montant de 275€ pour une famille avec 4 enfants
+  period: 2019-04
+  input:
+    paris_nb_enfants: 4
+  output:
+    paris_energie_familles_montant: 275
+
+- name: Montant de 275€ pour une famille avec 1 enfant handicapé
+  period: 2019-04
+  input:
+    paris_nb_enfants_handicapes: 1
+  output:
+    paris_energie_familles_montant: 275
+
+- name: Montant de 275€ pour une famille avec 2 enfants dont 1 enfant handicapé
+  period: 2019-04
+  input:
+    paris_nb_enfants_handicapes: 1
+    paris_nb_enfants: 2
+  output:
+    paris_energie_familles_montant: 275
+
+- name: Montant de 275€ pour une famille avec 2 enfants handicapés
+  period: 2019-04
+  input:
+    paris_nb_enfants_handicapes: 2
+  output:
+    paris_energie_familles_montant: 275
