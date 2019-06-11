@@ -3,7 +3,8 @@
   input:
     loyer: 380
     aide_logement: 309
-    paris_base_ressources_foyer: 466
+    paris_base_ressources_foyer: 
+      2017-06: 466
   output:
     aide_logement_charges: 53.27
     paris_condition_taux_effort: false

@@ -63,7 +63,7 @@ class paris_base_ressources_i(Variable):
 
 class paris_base_ressources_famille(Variable):
     value_type = float
-    label = u"Base de ressources pour une famille, pour l'ensemble des aides de Paris"
+    label = u"Base de ressources liée à une famille (à ajouter aux ressources des individus), pour l'ensemble des aides de Paris"
     entity = Famille
     definition_period = MONTH
 
@@ -182,18 +182,6 @@ class paris_enfant_handicape_garde_alternee(Variable):
 
         return garde_alternee * paris_enfant_handicape
 
-class paris_personnes_agees(Variable):
-    value_type = bool
-    label = u"Personne âgée"
-    entity = Individu
-    definition_period = MONTH
-
-    def formula(individu, period, legislation):
-        age_min = legislation(period).paris.age_pers_agee
-        age = individu('age', period)
-        aspa_eligibilite = individu('aspa_eligibilite', period)
-        personne_agee = (age >= age_min) + (aspa_eligibilite)
-        return personne_agee
 
 class paris_personnes_handicap(Variable):
     value_type = bool
@@ -235,41 +223,36 @@ class paris_nb_enfants_handicapes(Variable):
         return famille.sum(nb_enfants)
 
 
-class paris_condition_taux_effort(Variable):
-    value_type = bool
-    label = u"condition du taux d'effort"
+class paris_taux_effort(Variable):
+    value_type = float
+    label = u"Taux d'effort pour le loyer"
     entity = Famille
     definition_period = MONTH
+    reference = "Articles II.2.1.b.3 et III.2.1.b.3 et IV.2.3.b.3 et V.3.1.b.3 du Règlement Municipal"
 
     def formula(famille, period, legislation):
-        last_month = period.last_month
 
-        taux_effort = legislation(period).paris.paris_logement.taux_effort
         loyer = famille.demandeur.menage('loyer', period)
+        charges_forfaitaires_logement = famille('aide_logement_charges', period)
         aide_logement = famille('aide_logement', period)
 
-        ressources_mensuelles = famille('paris_base_ressources_foyer', period)
-        charges_forfaitaire_logement = famille('aide_logement_charges', period)
-        calcul_taux_effort = (loyer + charges_forfaitaire_logement - aide_logement) / ressources_mensuelles
-        condition_taux_effort = calcul_taux_effort >= taux_effort
-        return condition_taux_effort
+        base_ressources = famille('paris_base_ressources_foyer', period.last_month)
+        aspa_reference = famille('paris_aspa_reference', period)
+        ressources = max_(aspa_reference, base_ressources)
 
-class paris_loyer_net(Variable):
-    value_type = float
-    label = u"Charge nette de logement"
+        return (loyer + charges_forfaitaires_logement - aide_logement) / ressources
+
+
+class paris_condition_taux_effort(Variable):
+    value_type = bool
+    label = u"Condition vérifiant si le taux d'effort est suffisamment élevé"
     entity = Famille
     definition_period = MONTH
+    reference = "Articles II.2.1.b.3 et III.2.1.b.3 et IV.2.3.b.3 et V.3.1.b.3 du Règlement Municipal"
 
-    def formula(famille, period):
-        last_month = period.last_month
+    def formula(famille, period, legislation):
 
-        aide_logement = famille('aide_logement', period)
-        aide_logement_dernier = famille('aide_logement', last_month)
-        loyer = famille.demandeur.menage('loyer', period)
-        charges_locatives = famille.demandeur.menage('charges_locatives', period)
+        taux_effort = famille('paris_taux_effort', period)
+        taux_effort_min = legislation(period).paris.paris_logement.taux_effort_min
 
-        montant_aide_logement = where(aide_logement_dernier > 0, aide_logement_dernier, aide_logement)
-
-        result = loyer + charges_locatives - montant_aide_logement
-
-        return result
+        return taux_effort >= taux_effort_min

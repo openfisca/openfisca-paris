@@ -61,7 +61,7 @@ class paris_logement_plfm(Variable):
     def formula(famille, period, legislation):
         last_month = period.last_month
 
-        loyer_net = famille('paris_loyer_net', period)
+        loyer_net = famille('paris_logement_charge_nette_mensuelle', period)
         est_monoparentale = famille('paris_logement_est_monoparentale', period)
 
         montant_aide_max = famille('paris_logement_plfm_montant', period)

@@ -5,65 +5,61 @@
       parents: [parent1, parent2]
       enfants: [enfant1]
       en_couple: true
-      aspa:
-        2019-01: 10
-      aide_logement: # ne doit pas être pris en compte
-        2019-01: 15
-      rsa:
-        2019-01: 18
+      aspa: 10
+      aide_logement: 15 # ne doit pas être pris en compte
+      rsa: 18
     individus:
       parent1:
-        ass:
-          2019-01: 20
-        aah:
-          2019-01: 30
-        caah:
-          2019-01: 14
-        retraite_nette:
-          2019-01: 50
-        allocation_securisation_professionnelle:
-          2019-01: 55
-        prestation_compensatoire:
-          2019-01: 60
-        pensions_invalidite:
-          2019-01: 65
-        revenus_stage_formation_pro:
-          2019-01: 70
-        indemnites_journalieres:
-          2019-01: 80
-        indemnites_volontariat:
-          2019-01: 85
+        ass: 20
+        aah: 30
+        caah: 14
+        retraite_nette: 50
+        allocation_securisation_professionnelle: 55
+        prestation_compensatoire: 60
+        pensions_invalidite: 65
+        revenus_stage_formation_pro: 70
+        indemnites_journalieres: 80
+        indemnites_volontariat: 85
       parent2:
-        asi:
-          2019-01: 25
-        salaire_net:
-          2019-01: 35
-        indemnites_chomage_partiel:
-          2019-01: 40
-        chomage_net:
-          2019-01: 45
+        asi: 25
+        salaire_net: 35
+        indemnites_chomage_partiel: 40
+        chomage_net: 45
       enfant1:
-        indemnites_stage:
-          2019-01: 75
+        indemnites_stage: 75
     foyers_fiscaux:
       foyer_fiscal_0:
         declarants:
         - parent1
-      foyer_fiscal_1:
-        declarants:
         - parent2
-      foyer_fiscal_2:
-        declarants:
+        personnes_a_charge:
         - enfant1
     menage:
-      statut_occupation_logement: locataire_vide
       personne_de_reference: parent1
       conjoint: parent2
       enfants: [enfant1]
   output:
-    paris_base_ressources_famille: 
-      2019-01: 10 + 18
-    paris_base_ressources_couple:
-      2019-01: 702
+    paris_base_ressources_famille: 10 + 18
+    paris_base_ressources_couple: (10 + 18) + (20 + 30 + 14 + 50 + 55 + 60 + 65 + 70 + 80 + 85) + (25 + 35 + 40 + 45)
+    paris_base_ressources_foyer: (10 + 18) + (20 + 30 + 14 + 50 + 55 + 60 + 65 + 70 + 80 + 85) + (25 + 35 + 40 + 45) + 75
+
+- name: Taux d'effort, avec ou sans ASPA
+  period: 2019-02
+  relative_error_margin: 0.1
+  input:
+    aide_logement: [25, 25]
+    aide_logement_charges: [15, 15]
     paris_base_ressources_foyer:
-      2019-01: 777
+      2019-01: [300, 300]
+    paris_aspa_reference: [0, 1348]
+    loyer: [100, 100]
+  output:
+    paris_aspa_reference: [0, 1348]
+    paris_taux_effort: [0.3, 0.07] # [(100 + 15 - 25) / 300, (100 + 15 - 25) / 1348]
+
+- name: Condition vérifiant si le taux d'effort est suffisamment élevé
+  period: 2019-02
+  input:
+    paris_taux_effort: [0.3, 0.299]
+  output:
+    paris_condition_taux_effort: [true, false]

@@ -1,79 +1,37 @@
-# === Tests pour paris_complement_sante_pa_eligibilite ===
-- name: Une personne non-parisienne n'est pas éligible
+- name: Eligibilité d'une personne âgée seule à Paris Complément Santé
   period: 2019-02
   input:
-    parisien: false
-    paris_personnes_agees: true
+    parisien: [false, true, true]
+    paris_personnes_agees: [true, true, true]
     paris_base_ressources_couple: 
-      2019-01: 980
+      2019-01: [908, 980, 981]
   output:
-    paris_complement_sante_pa_eligibilite: false
+    paris_complement_sante_pa_eligibilite: [false, true, false]
 
-- name: Une personne âgée seule avec 980 € de ressources est éligible
+- name: Eligibilité d'une personne âgée en couple à Paris Complément Santé
   period: 2019-02
   input:
-    parisien: true
-    paris_personnes_agees: true
+    parisien: [false, true, true]
+    paris_personnes_agees: [true, true, true]
+    en_couple: [true, true, true]
     paris_base_ressources_couple: 
-      2019-01: 980
+      2019-01: [1553, 1553, 1554]
   output:
-    paris_complement_sante_pa_eligibilite: true
+    paris_complement_sante_pa_eligibilite: [false, true, false]
 
-- name: Une personne âgée seule avec 981 € de ressources est non éligible
+- name: Montant de Paris Complément Santé pour une personne éligible, en fonction du cumul ou non avec l'ACS et/ou la CMU-C
   period: 2019-02
   input:
-    parisien: true
-    paris_personnes_agees: true
-    paris_base_ressources_couple: 
-      2019-01: 981
+    paris_complement_sante_pa_eligibilite: [true, true, true]
+    cmu_c: [false, false, true]
+    acs: [0, 23, 0]
   output:
-    paris_complement_sante_pa_eligibilite: false
+    paris_complement_sante_pa_montant: [468, 445, 0]
 
-- name: Une personne âgée en couple avec 1553 € de ressources est éligible
+- name: Paris Complément Santé pour une personne âgée
   period: 2019-02
   input:
-    parisien: true
-    paris_personnes_agees: true
-    en_couple: true
-    paris_base_ressources_couple: 
-      2019-01: 1553
+    paris_complement_sante_pa_eligibilite: [true, false]
+    paris_complement_sante_pa_montant: [100, 100]
   output:
-    paris_complement_sante_pa_eligibilite: true
-
-- name: Une personne âgée en couple avec 1554 € de ressources est non éligible
-  period: 2019-02
-  input:
-    parisien: true
-    paris_personnes_agees: true
-    en_couple: true
-    paris_base_ressources_couple: 
-      2019-01: 1554
-  output:
-    paris_complement_sante_pa_eligibilite: false
-
-# === Tests pour paris_complement_sante_pa_montant ===
-- name: Une personne éligible et sans cumul avec l'ACS ni la CMU-C reçoit un montant de 468 €
-  period: 2019-02
-  input:
-    paris_complement_sante_pa_eligibilite: true
-    cmu_c: false
-    acs: 0
-  output:
-    paris_complement_sante_pa_montant: 468
-
-- name: Une personne éligible et qui cumule avec 23 € d'ACS reçoit un montant de 445 €
-  period: 2019-02
-  input:
-    paris_complement_sante_pa_eligibilite: true
-    cmu_c: false
-    acs: 23
-  output:
-    paris_complement_sante_pa_montant: 445
-
-- name: Une personne éligible et qui cumule avec la CMU-C reçoit un montant de 0 €
-  period: 2019-02
-  input:
-    paris_complement_sante_pa_eligibilite: true
-    cmu_c: true
-  output:
-    paris_complement_sante_pa_montant: 0
+    paris_complement_sante_pa: [100, 0]
