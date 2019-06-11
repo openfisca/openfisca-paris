@@ -43,40 +43,23 @@
     paris_base_ressources_couple: (10 + 18) + (20 + 30 + 14 + 50 + 55 + 60 + 65 + 70 + 80 + 85) + (25 + 35 + 40 + 45)
     paris_base_ressources_foyer: (10 + 18) + (20 + 30 + 14 + 50 + 55 + 60 + 65 + 70 + 80 + 85) + (25 + 35 + 40 + 45) + 75
 
-- name: Taux d'effort
+- name: Taux d'effort, avec ou sans ASPA
   period: 2019-02
+  relative_error_margin: 0.1
   input:
-    aide_logement: 25
-    aide_logement_charges: 15
+    aide_logement: [25, 25]
+    aide_logement_charges: [15, 15]
     paris_base_ressources_foyer:
-      2019-01: 300
-    loyer: 100
+      2019-01: [300, 300]
+    paris_aspa_reference: [0, 1348]
+    loyer: [100, 100]
   output:
-    paris_aspa_reference: 0
-    paris_taux_effort: (100 + 15 - 25) / 300
+    paris_aspa_reference: [0, 1348]
+    paris_taux_effort: [0.3, 0.07] # [(100 + 15 - 25) / 300, (100 + 15 - 25) / 1348]
 
-- name: Taux d'effort avec ASPA supérieure aux ressources
+- name: Condition vérifiant si le taux d'effort est suffisamment élevé
   period: 2019-02
   input:
-    aide_logement: 25
-    aide_logement_charges: 15
-    paris_base_ressources_foyer:
-      2019-01: 300
-    paris_aspa_reference: 1348
-    loyer: 100
+    paris_taux_effort: [0.3, 0.299]
   output:
-    paris_taux_effort: (100 + 15 - 25) / 1348
-
-- name: Taux d'effort = 30%
-  period: 2019-02
-  input:
-    paris_taux_effort: 0.3
-  output:
-    paris_condition_taux_effort: true
-
-- name: Taux d'effort < 30%
-  period: 2019-02
-  input:
-    paris_taux_effort: 0.299
-  output:
-    paris_condition_taux_effort: false
+    paris_condition_taux_effort: [true, false]

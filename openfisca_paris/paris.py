@@ -223,11 +223,32 @@ class paris_nb_enfants_handicapes(Variable):
         return famille.sum(nb_enfants)
 
 
+class paris_taux_effort(Variable):
+    value_type = float
+    label = u"Taux d'effort pour le loyer"
+    entity = Famille
+    definition_period = MONTH
+    reference = "Articles II.2.1.b.3 et III.2.1.b.3 et IV.2.3.b.3 et V.3.1.b.3 du Règlement Municipal"
+
+    def formula(famille, period, legislation):
+
+        loyer = famille.demandeur.menage('loyer', period)
+        charges_forfaitaires_logement = famille('aide_logement_charges', period)
+        aide_logement = famille('aide_logement', period)
+
+        base_ressources = famille('paris_base_ressources_foyer', period.last_month)
+        aspa_reference = famille('paris_aspa_reference', period)
+        ressources = max_(aspa_reference, base_ressources)
+
+        return (loyer + charges_forfaitaires_logement - aide_logement) / ressources
+
+
 class paris_condition_taux_effort(Variable):
     value_type = bool
     label = u"Condition vérifiant si le taux d'effort est suffisamment élevé"
     entity = Famille
     definition_period = MONTH
+    reference = "Articles II.2.1.b.3 et III.2.1.b.3 et IV.2.3.b.3 et V.3.1.b.3 du Règlement Municipal"
 
     def formula(famille, period, legislation):
 
@@ -235,22 +256,3 @@ class paris_condition_taux_effort(Variable):
         taux_effort_min = legislation(period).paris.paris_logement.taux_effort_min
 
         return taux_effort >= taux_effort_min
-
-
-class paris_taux_effort(Variable):
-    value_type = float
-    label = u"Taux d'effort pour le loyer"
-    entity = Famille
-    definition_period = MONTH
-
-    def formula(famille, period, legislation):
-
-        loyer = famille.demandeur.menage('loyer', period)
-        charges_forfaitaire_logement = famille('aide_logement_charges', period)
-        aide_logement = famille('aide_logement', period)
-
-        base_ressources = famille('paris_base_ressources_foyer', period.last_month)
-        aspa_reference = famille('paris_aspa_reference', period)
-        ressources = max_(aspa_reference, base_ressources)
-
-        return (loyer + charges_forfaitaire_logement - aide_logement) / ressources

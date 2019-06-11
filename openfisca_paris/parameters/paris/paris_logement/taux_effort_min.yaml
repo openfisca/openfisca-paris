@@ -1,4 +1,4 @@
-description: Limite basse du taux d'effort, en pourcentage des ressources
+description: Limite inférieure du taux d'effort, en pourcentage des ressources
 unit: currency
 values:
   2012-01-01:

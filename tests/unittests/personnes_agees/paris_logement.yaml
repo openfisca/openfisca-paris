@@ -1,0 +1,37 @@
+- name: Plafond d'éligibilité à Paris Logement pour les personnes âgées
+  period: 2019-02
+  absolute_error_margin: 1
+  input:
+    en_couple: [false, true, true]
+    paris_nb_enfants: [0, 0, 1]
+  output:
+    paris_logement_pa_plafond: [1210, 1210, 1600]
+
+- name: Eligibilité d'une personne âgée à Paris Logement
+  period: 2019-02
+  input:
+    paris_logement_pa_ph_eligibilite: [false, true, true, true]
+    paris_personnes_agees: [true, false, true, true]
+    paris_base_ressources_foyer: 
+      2019-01: [1210, 1210, 1210, 1211]
+    paris_logement_pa_plafond: [1210, 1210, 1210, 1210]
+  output:
+    paris_logement_pa_eligibilite: [false, false, true, false]
+
+- name: Montant de Paris Logement pour une personne âgée éligible, en fonction de sa situation familiale et de sa charge nette mensuelle
+  period: 2019-02
+  input:
+    paris_logement_pa_eligibilite: [true, true, true, true]
+    paris_logement_charge_nette_mensuelle: [120, 120, 120, 50]
+    en_couple: [false, true, true, false]
+    paris_nb_enfants: [0, 0, 1, 0]
+  output:
+    paris_logement_pa_montant: [84, 95, 116, 50]
+
+- name: Paris Logement pour une personne âgée
+  period: 2019-02
+  input:
+    paris_logement_pa_eligibilite: [true, false]
+    paris_logement_pa_montant: [110, 110]
+  output:
+    paris_logement_pa: [110, 0]

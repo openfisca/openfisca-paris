@@ -85,7 +85,7 @@ class paris_logement_familles(Variable):
         plf_handicap = famille('plf_handicap', period)
         menage = famille.demandeur.menage
         loyer = menage('loyer', period) + menage('charges_locatives', period)
-        loyer_net = famille('paris_logement_charge_nette_base', period)
+        loyer_net = famille('paris_logement_charge_nette_mensuelle', period)
         P = legislation(period).paris.paris_logement_familles
         plafond_plfm = legislation(period).paris.plfm.deuxieme_plafond_plfm
 

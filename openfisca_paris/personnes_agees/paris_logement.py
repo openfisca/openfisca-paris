@@ -17,8 +17,8 @@ class paris_logement_pa_plafond(Variable):
 	def formula(famille, period, parameters):
 		smic_brut_mensuel = parameters(period).cotsoc.gen.smic_h_b * parameters(period).cotsoc.gen.nb_heure_travail_mensuel
 
-        # Utilisation des valeurs indicatives de service-public.fr pour passer du SMIC brut au SMIC net
-        # https://www.service-public.fr/particuliers/vosdroits/F2300
+		# Utilisation des valeurs indicatives de service-public.fr pour passer du SMIC brut au SMIC net
+		# https://www.service-public.fr/particuliers/vosdroits/F2300
 		# Dans l'attente de la formule effectivement utilisée par la ville de Paris
 		smic_net_mensuel = 7.94 / 10.03 * smic_brut_mensuel
 		smic_arrondi = ceil(smic_net_mensuel / 10) * 10	# arrondi à la dizaine supérieure
@@ -65,7 +65,7 @@ class paris_logement_pa_montant(Variable):
 				[not_(en_couple), nb_enfants < 1, nb_enfants >=1],
 				[param_montant.personne_isolee, param_montant.couple_sans_enfant, param_montant.couple_avec_enfant]
 			)
-		charge_logement = famille('paris_logement_charge_nette_base', period)
+		charge_logement = famille('paris_logement_charge_nette_mensuelle', period)
 
 		return min_(montant, charge_logement)
 
