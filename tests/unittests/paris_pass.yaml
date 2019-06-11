@@ -1,0 +1,17 @@
+- name: Eligibilité financière au Pass Paris Seniors ou Pass Paris Access', en prenant en compte les possibilités de renouvellement
+  period: 2018-03
+  input:
+    ir_ss_qf:
+      2015: [3000, 2028, 2029, 2028]
+      2016: [2028, 2430, 2430, 2431]
+  output:
+    paris_pass_eligibilite_financiere: [true, true, false, false]
+
+- name: Eligibilité au Pass Paris Seniors ou Pass Paris Access'
+  period: 2018-03
+  input:
+    parisien: [false, true, true, true]
+    statut_occupation_logement: [locataire_vide, sans_domicile, locataire_vide, locataire_vide]
+    paris_pass_eligibilite_financiere: [true, true, false, true]
+  output:
+    paris_pass_eligibilite: [false, false, false, true]

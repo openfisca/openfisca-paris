@@ -16,7 +16,7 @@ class paris_pass_eligibilite_financiere(Variable):
         base_ressources_precedente = foyer_fiscal('ir_ss_qf', period.n_2.last_year)
 
         elig = base_ressources <= paris_pass.imposition_maximale
-        elig_renouvellement = (base_ressources <= paris_pass.imposition_maximale_renouvellement) * (base_ressources_precedente <= paris_pass.imposition_maximale)
+        elig_renouvellement = (base_ressources <= paris_pass.imposition_maximale_en_renouvellement) * (base_ressources_precedente <= paris_pass.imposition_maximale)
 
         return elig + elig_renouvellement
 

@@ -1,23 +1,7 @@
 - name: Eligibilité au Pass Paris Seniors
   period: 2018-03
   input:
-    paris_pass_eligibilite: true
-    paris_personnes_agees: true
+    paris_pass_eligibilite: [true, true, false]
+    paris_personnes_agees: [true, false, true]
   output:
-    paris_pass_seniors: true
-
-- name: Non-éligibilité au Pass Paris Seniors
-  period: 2018-03
-  input:
-    paris_pass_eligibilite: false
-    paris_personnes_agees: true
-  output:
-    paris_pass_seniors: false
-
-- name: Non-éligibilité au Pass Paris Seniors
-  period: 2018-03
-  input:
-    paris_pass_eligibilite: true
-    paris_personnes_agees: false
-  output:
-    paris_pass_seniors: false
+    paris_pass_seniors: [true, false, false]
