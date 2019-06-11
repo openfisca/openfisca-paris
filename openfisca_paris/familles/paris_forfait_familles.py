@@ -6,9 +6,9 @@ from numpy import (maximum as max_, logical_not as not_, absolute as abs_, minim
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
 
-class paris_forfait_famille_eligibilite(Variable):
+class paris_forfait_familles_eligibilite(Variable):
     value_type = bool
-    label = u"Eligibilité à l'aide Paris Forfait Famille"
+    label = u"Eligibilité à l'aide Paris Forfait Familles"
     entity = Famille
     definition_period = MONTH
 
@@ -21,15 +21,15 @@ class paris_forfait_famille_eligibilite(Variable):
         return parisien * logement_a_charge * (nb_enfants >= 3)
 
 
-class paris_forfait_famille_montant(Variable):
+class paris_forfait_familles_montant(Variable):
     value_type = float
-    label = u"Montant de l'aide Paris Forfait Famille"
+    label = u"Montant de l'aide Paris Forfait Familles"
     entity = Famille
     definition_period = MONTH
 
     def formula(famille, period, legislation):
         
-        param = legislation(period).paris.familles.paris_forfait_famille
+        param = legislation(period).paris.familles.paris_forfait_familles
         base_ressources = famille('paris_base_ressources_couple', period.last_month)
 
         return select(
@@ -38,15 +38,15 @@ class paris_forfait_famille_montant(Variable):
             )
 
 
-class paris_forfait_famille(Variable):
+class paris_forfait_familles(Variable):
     value_type = float
-    label = u"Aide Paris Forfait Famille"
+    label = u"Aide Paris Forfait Familles"
     entity = Famille
     definition_period = MONTH
 
     def formula(famille, period, legislation):
 
-        eligibilite = famille('paris_forfait_famille_eligibilite', period)
-        montant = famille('paris_forfait_famille_montant', period)
+        eligibilite = famille('paris_forfait_familles_eligibilite', period)
+        montant = famille('paris_forfait_familles_montant', period)
 
         return eligibilite * montant

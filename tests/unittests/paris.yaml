@@ -67,27 +67,13 @@
 - name: Locataire
   period: 2019-04
   input:
-    statut_occupation_logement: locataire_hlm
+    statut_occupation_logement: [locataire_hlm, locataire_vide, locataire_meuble, locataire_foyer, sans_domicile, primo_accedant, proprietaire, loge_gratuitement]
   output:
-    paris_locataire: true
-
-- name: Non-locataire
-  period: 2019-04
-  input:
-    parisien: true
-  output:
-    paris_locataire: false
+    paris_locataire: [true, true, true, true, false, false, false, false]
 
 - name: Logement à charge
   period: 2019-04
   input:
-    statut_occupation_logement: proprietaire
+    statut_occupation_logement: [locataire_hlm, locataire_vide, locataire_meuble, locataire_foyer, sans_domicile, primo_accedant, proprietaire, loge_gratuitement]
   output:
-    paris_logement_a_charge: true
-
-- name: Logement pas à charge
-  period: 2019-04
-  input:
-    parisien: true
-  output:
-    paris_logement_a_charge: false
+    paris_logement_a_charge: [true, true, true, true, false, true, true, false]

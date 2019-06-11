@@ -1,0 +1,24 @@
+- name: Eligibilité d'une famille à l'aide Paris Forfait Familles
+  period: 2016-02
+  input:
+    parisien: [true, false, true, true]
+    paris_logement_a_charge: [true, true, false, true]
+    paris_nb_enfants: [3, 3, 3, 2]
+  output:
+    paris_forfait_familles_eligibilite: [true, false, false, false]
+
+- name: Montant de l'aide Paris Forfait Familles
+  period: 2019-04
+  input:
+    paris_base_ressources_couple:
+      2019-03: [3000, 3001, 5000, 5001]
+  output:
+    paris_forfait_familles_montant: [305, 200, 200, 0]
+
+- name: Paris Forfait Familles
+  period: 2019-04
+  input:
+    paris_forfait_familles_eligibilite: [true, true, false]
+    paris_forfait_familles_montant: [true, false, true]
+  output:
+    paris_forfait_familles: [true, false, false]
