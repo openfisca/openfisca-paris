@@ -21,7 +21,7 @@ class paris_complement_sante(Variable):
         montant_aide_cs = P.paris.complement_sante.montant_aide_cs
 
         parisien = famille('parisien', period)
-        personnes_handicape_i = famille.members('paris_personnes_handicap', period)
+        personnes_handicape_i = famille.members('paris_personne_handicapee', period)
         personnes_handicap = famille.any(personnes_handicape_i)
         en_couple = famille('en_couple', period)
         cmu_c = famille('cmu_c', period)

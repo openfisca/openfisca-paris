@@ -82,7 +82,7 @@ class paris_logement_ph_eligibilite(Variable):
         locataire = famille('paris_locataire', period)
         condition_taux_effort = famille('paris_condition_taux_effort', period)
 
-        personne_handicap_individu = famille.members('paris_personnes_handicap', period)
+        personne_handicap_individu = famille.members('paris_personne_handicapee', period)
         personne_handicap = famille.sum(personne_handicap_individu)
         nb_enfants_handicapes = famille('paris_nb_enfants_handicapes', period)
         adulte_handicape = (personne_handicap - nb_enfants_handicapes) >= 1
@@ -128,7 +128,7 @@ class paris_logement_elig_fam(Variable):
         personnes_agees = famille.members('paris_personne_agee', period)
         personnes_agees_famille = famille.any(personnes_agees)
 
-        personne_handicap = famille.members('paris_personnes_handicap', period)
+        personne_handicap = famille.members('paris_personne_handicapee', period)
         personne_handicap_famille = famille.any(personne_handicap)
 
         locataire = famille('paris_locataire', period)
@@ -179,7 +179,7 @@ class paris_logement_elig_apd(Variable):
         personnes_agees = famille.members('paris_personne_agee', period)
         personnes_agees_famille = famille.any(personnes_agees)
 
-        personne_handicap = famille.members('paris_personnes_handicap', period)
+        personne_handicap = famille.members('paris_personne_handicapee', period)
         personne_handicap_famille = famille.any(personne_handicap)
 
         condition_taux_effort = famille('paris_condition_taux_effort', period)

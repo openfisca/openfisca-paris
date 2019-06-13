@@ -11,7 +11,7 @@ class paris_pass_access(Variable):
 
     def formula(individu, period):
 
-        personnes_handicap = individu('paris_personnes_handicap', period)
+        personnes_handicap = individu('paris_personne_handicapee', period)
         eligibilite_pass = individu('paris_pass_eligibilite', period)
         
         return personnes_handicap * eligibilite_pass

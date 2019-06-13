@@ -183,17 +183,6 @@ class paris_enfant_handicape_garde_alternee(Variable):
         return garde_alternee * paris_enfant_handicape
 
 
-class paris_personnes_handicap(Variable):
-    value_type = bool
-    label = u"Personne qui a le statut Handicapé"
-    entity = Individu
-    definition_period = MONTH
-
-    def formula(individu, period, legislation):
-
-        handicap = individu('handicap', period)
-        return handicap
-
 class paris_nb_enfants(Variable):
     value_type = float
     label = u"Nombre d'enfant dans la famille"
