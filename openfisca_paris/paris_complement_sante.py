@@ -8,56 +8,15 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 
 class paris_complement_sante(Variable):
     value_type = float
-    label = u"L'aide Complémentaire Santé Paris"
+    label = u"Paris Complément Santé pour les personnes âgées et les personnes handicapées"
     entity = Famille
     definition_period = MONTH
 
     def formula(famille, period, legislation):
-        last_month = period.last_month
-
-        P = legislation(period)
-        plafond_pers_isol_cs = P.paris.complement_sante.plafond_pers_isol_cs
-        plafond_couple_cs = P.paris.complement_sante.plafond_couple_cs
-        montant_aide_cs = P.paris.complement_sante.montant_aide_cs
 
         parisien = famille('parisien', period)
-        personnes_handicape_i = famille.members('paris_personne_handicapee', period)
-        personnes_handicap = famille.any(personnes_handicape_i)
-        en_couple = famille('en_couple', period)
-        cmu_c = famille('cmu_c', period)
-        aspa = famille('aspa', last_month)
-        asi = famille.sum(famille.members('asi', last_month))
-        ass = famille.sum(famille.members('ass', last_month))
-        aide_logement = famille('aide_logement', last_month)
-        acs_montant = famille('acs_montant', period)
-        acs_plafond = famille('acs_plafond', period)
 
-        ressources_demandeur = famille.demandeur('paris_base_ressources_i', period)
-        ressources_conjoint = famille.conjoint('paris_base_ressources_i', period)
+        pcs_pa = famille('paris_complement_sante_pa', period)
+        pcs_ph = famille('paris_complement_sante_ph', period)
 
-        ressources_pers_isol = ressources_demandeur + aspa + ass + asi + aide_logement
-
-        ressources_couple = ressources_demandeur + ressources_conjoint
-
-        ressources_couple += aspa + ass + asi + aide_logement
-
-        plafond = where(en_couple, plafond_couple_cs, plafond_pers_isol_cs)
-
-        acs_isole = (ressources_pers_isol <= (acs_plafond / 12)) * acs_montant
-        acs_couple = (ressources_couple <= (acs_plafond / 12)) * acs_montant
-
-        montant_pers_handicap = where(parisien * personnes_handicap * (en_couple != 1) *
-            (ressources_pers_isol <= plafond) * (montant_aide_cs >= acs_isole) * (cmu_c != 1),
-            montant_aide_cs - acs_isole, 0)
-
-        montant_couple = where(parisien * en_couple * personnes_handicap *
-         (ressources_couple <= plafond) * (montant_aide_cs >= acs_couple) *
-         (acs_couple > 0) * (cmu_c != 1), montant_aide_cs - acs_couple, 0)
-
-        montant_couple_ss_acs = where(parisien * en_couple * personnes_handicap *
-            (acs_couple == 0) * (cmu_c != 1) * (ressources_couple <= plafond), montant_aide_cs, 0)
-
-        montant_agrege = montant_pers_handicap + montant_couple + montant_couple_ss_acs
-
-        montant_pa = famille('paris_complement_sante_pa', period)
-        return max_(montant_agrege, montant_pa)
+        return parisien * max_(pcs_pa, pcs_ph)

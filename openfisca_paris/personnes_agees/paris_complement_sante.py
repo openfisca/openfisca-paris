@@ -14,7 +14,6 @@ class paris_complement_sante_pa_eligibilite(Variable):
 	reference = "article II.1.2.b.3 du règlement municipal du CASVP"
 
 	def formula(famille, period, parameters):
-		parisien = famille('parisien', period)
 		
 		personnes_agees_i = famille.members('paris_personne_agee', period)
 		personnes_agees = famille.any(personnes_agees_i)
@@ -24,7 +23,7 @@ class paris_complement_sante_pa_eligibilite(Variable):
 		en_couple = famille('en_couple', period)
 		plafond = where(en_couple, param_plafond.en_couple, param_plafond.personne_isolee)
 
-		return parisien * personnes_agees * (base_ressources <= plafond)
+		return personnes_agees * (base_ressources <= plafond)
 
 
 class paris_complement_sante_pa_montant(Variable):

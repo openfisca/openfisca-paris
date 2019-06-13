@@ -1,6 +1,6 @@
 - name: 1/ Personne éligible au CSP
   description: Paris Complementaire Santé
-  period: 2016-02
+  period: 2019-02
   input:
     age: 30
     parisien: true
@@ -9,13 +9,13 @@
     en_couple: false
     cmu_c: false
     salaire_net:
-      2016-01: 850
+      2019-01: 850
     loyer: 800
   output:
     paris_complement_sante: 268
 
 - name: 2/ Famille éligible pour l'aide complementaire sante paris
-  period: 2016-02
+  period: 2019-02
   input:
     famille:
       parents: [Couple1]
@@ -23,7 +23,7 @@
       parisien: true
       en_couple: false
       aide_logement:
-        2016-01: 422
+        2019-01: 422
     menage:
       statut_occupation_logement: locataire_vide
       personne_de_reference: Couple1
@@ -33,7 +33,7 @@
         age: 33
         handicap: true
         aah:
-          2016-01: 807
+          2019-01: 807
       enfant1:
         age: 7
     foyers_fiscaux:
@@ -47,7 +47,7 @@
     paris_complement_sante: 0
 
 - name: 3/ Famille éligible pour l'aide complementaire sante paris
-  period: 2016-02
+  period: 2019-02
   input:
     famille:
       parents: [Couple1, Couple2]
@@ -62,12 +62,12 @@
       Couple1:
         age: 75
         salaire_net:
-          2016-01: 900
+          2019-01: 900
           year:2015-02: 9000
       Couple2:
         age: 75
         salaire_net:
-          2016-01: 300
+          2019-01: 300
           year:2015-02: 3000
     foyers_fiscaux:
       foyer_fiscal_0:
@@ -80,7 +80,7 @@
     paris_complement_sante: 0
 
 - name: 4/ Famille éligible pour l'aide complementaire sante paris
-  period: 2016-02
+  period: 2019-02
   input:
     famille:
       parents: [Couple1, Couple2]
@@ -95,12 +95,12 @@
       Couple1:
         age: 75
         salaire_net:
-          2016-01: 900
+          2019-01: 900
           year:2015-02: 9000
       Couple2:
         age: 75
         salaire_net:
-          2016-01: 400
+          2019-01: 400
           year:2015-02: 4000
     foyers_fiscaux:
       foyer_fiscal_0:
@@ -113,7 +113,7 @@
     paris_complement_sante: 0
 
 - name: 5/ Famille éligible pour l'aide complementaire sante paris
-  period: 2016-02
+  period: 2019-02
   input:
     famille:
       parents: [Couple1, Couple2]
@@ -128,7 +128,7 @@
       Couple1:
         age: 75
         salaire_net:
-          2016-01: 1300
+          2019-01: 1300
           year:2015-02: 13000
       Couple2:
         age: 75
@@ -144,7 +144,7 @@
 
 - name: 6/ Personne éligible au CSP
   description: Paris Complementaire Santé
-  period: 2016-02
+  period: 2019-02
   input:
     age: 45
     parisien: true
@@ -152,14 +152,14 @@
     handicap: true
     en_couple: false
     salaire_net:
-      2016-01: 895
+      2019-01: 895
     loyer: 700
   output:
     paris_complement_sante: 0
 
 - name: 7/ Personne éligible au CSP
   description: Paris Complementaire Santé
-  period: 2016-02
+  period: 2019-02
   input:
     age: 45
     parisien: true
@@ -167,14 +167,14 @@
     handicap: true
     en_couple: false
     salaire_net:
-      2016-01: 900
+      2019-01: 900
     loyer: 700
   output:
     paris_complement_sante: 0
 
 - name: 8/ Personne éligible au CSP
   description: Paris Complementaire Santé
-  period: 2016-02
+  period: 2019-02
   input:
     age: 45
     parisien: true
@@ -183,14 +183,14 @@
     en_couple: false
     cmu_c: false
     salaire_net:
-      2016-01: 900
+      2019-01: 900
     loyer: 700
   output:
     paris_complement_sante: 268
 
 - name: 9/ Personne éligible au CSP
   description: Paris Complementaire Santé
-  period: 2016-02
+  period: 2019-02
   input:
     age: 45
     parisien: true
@@ -198,14 +198,14 @@
     handicap: true
     en_couple: false
     salaire_net:
-      2016-01: 910
+      2019-01: 910
     loyer: 700
   output:
     paris_complement_sante: 0
 
 - name: 10/ Personne non éligible au CSP
   description: Paris Complementaire Santé
-  period: 2016-02
+  period: 2019-02
   input:
     age: 45
     parisien: true
@@ -213,22 +213,22 @@
     handicap: true
     en_couple: false
     salaire_net:
-      2016-01: 915
+      2019-01: 915
     loyer: 700
   output:
     paris_complement_sante: 0
 
 - name: 11/ Famille éligible pour l'aide complementaire sante paris >> fail
-  period: 2016-02
+  period: 2019-02
   input:
     famille:
       parents: [Couple1, Couple2]
       parisien: true
       en_couple: true
       aspa:
-        2016-01: 800
+        2019-01: 800
       aide_logement:
-        2016-01: 200
+        2019-01: 200
     menage:
       statut_occupation_logement: locataire_vide
       personne_de_reference: Couple1
@@ -240,7 +240,7 @@
       Couple2:
         age: 45
         chomage_net:
-          2016-01: 150
+          2019-01: 150
     foyers_fiscaux:
       foyer_fiscal_0:
         declarants:
@@ -252,14 +252,14 @@
     paris_complement_sante: 0
 
 - name: 12/ Famille éligible pour l'aide paris energie famille avec une aide ACS
-  period: 2016-02
+  period: 2019-02
   input:
     famille:
       parents: [Couple1, Couple2]
       parisien: true
       en_couple: true
       aide_logement:
-        2016-01: 200
+        2019-01: 200
     menage:
       statut_occupation_logement: locataire_vide
       personne_de_reference: Couple1
@@ -269,11 +269,11 @@
       Couple1:
         age: 45
         salaire_net:
-          2016-01: 335
+          2019-01: 335
       Couple2:
         age: 45
         aah:
-          2016-01: 800
+          2019-01: 800
     foyers_fiscaux:
       foyer_fiscal_0:
         declarants:
@@ -285,16 +285,16 @@
     paris_complement_sante: 0
 
 - name: 13/ Famille éligible pour l'aide paris energie famille avec une aide ACS
-  period: 2016-02
+  period: 2019-02
   input:
     famille:
       parents: [Couple1, Couple2]
       parisien: true
       en_couple: true
       aide_logement:
-        2016-01: 200
+        2019-01: 200
       aspa:
-        2016-01: 1200
+        2019-01: 1200
     menage:
       statut_occupation_logement: locataire_vide
       personne_de_reference: Couple1
@@ -306,7 +306,7 @@
       Couple2:
         age: 45
         salaire_net:
-          2016-01: 200
+          2019-01: 200
     foyers_fiscaux:
       foyer_fiscal_0:
         declarants:
@@ -318,14 +318,14 @@
     paris_complement_sante: 0
 
 - name: 14/ Famille éligible pour l'aide paris energie famille avec une aide ACS
-  period: 2016-02
+  period: 2019-02
   input:
     famille:
       parents: [Couple1, Couple2]
       parisien: true
       en_couple: true
       aspa:
-        2016-01: 1200
+        2019-01: 1200
     menage:
       statut_occupation_logement: locataire_vide
       personne_de_reference: Couple1
@@ -337,7 +337,7 @@
       Couple2:
         age: 45
         salaire_net:
-          2016-01: 200
+          2019-01: 200
     foyers_fiscaux:
       foyer_fiscal_0:
         declarants:
