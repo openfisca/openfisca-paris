@@ -26,8 +26,8 @@ class paris_logement_aspeh(Variable):
     definition_period = MONTH
 
     def formula(famille, period, legislation):
-        plafond_aspeh = legislation(period).paris.aspeh.plafond_aspeh
-        montant = legislation(period).paris.aspeh.aide_aspeh
+        plafond_aspeh = legislation(period).paris.familles.aspeh.plafond_aspeh
+        montant = legislation(period).paris.familles.aspeh.aide_aspeh
 
         parisien = famille('parisien', period)
         nb_enfant_handicape = famille('paris_nb_enfants_handicapes', period)

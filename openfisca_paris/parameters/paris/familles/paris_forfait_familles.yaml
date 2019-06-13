@@ -1,0 +1,30 @@
+plafond:
+  premier:
+    unit: currency
+    values:
+      2012-01-01:
+        value: 3000.0
+      2015-01-01:
+        value: 3000.0
+  deuxieme:
+    unit: currency
+    values:
+      2012-01-01:
+        value: 5000.0
+      2015-01-01:
+        value: 5000.0
+montant:
+  premier_plafond:
+    unit: currency
+    values:
+      2012-01-01:
+        value: 305.0
+      2015-01-01:
+        value: 305.0
+  deuxieme_plafond:
+    unit: currency
+    values:
+      2012-01-01:
+        value: 200.0
+      2015-01-01:
+        value: 200.0

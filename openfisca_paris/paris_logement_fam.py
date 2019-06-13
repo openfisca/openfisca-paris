@@ -12,20 +12,11 @@ class paris_logement_familles_elig(Variable):
     definition_period = MONTH
 
     def formula(famille, period):
+
         parisien = famille('parisien', period)
-        statut_occupation_logement = famille.demandeur.menage('statut_occupation_logement', period)
-        charge_logement = (
-            (statut_occupation_logement == TypesStatutOccupationLogement.primo_accedant) +
-            (statut_occupation_logement == TypesStatutOccupationLogement.proprietaire) +
-            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_hlm) +
-            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_vide) +
-            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_meuble) +
-            (statut_occupation_logement == TypesStatutOccupationLogement.locataire_foyer)
-            )
+        logement_a_charge = famille('paris_logement_a_charge', period)
 
-        result = parisien * charge_logement
-
-        return result
+        return parisien * logement_a_charge
 
 
 class plf_handicap(Variable):

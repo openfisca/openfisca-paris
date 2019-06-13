@@ -63,3 +63,17 @@
     paris_taux_effort: [0.3, 0.299]
   output:
     paris_condition_taux_effort: [true, false]
+
+- name: Locataire
+  period: 2019-04
+  input:
+    statut_occupation_logement: [locataire_hlm, locataire_vide, locataire_meuble, locataire_foyer, sans_domicile, primo_accedant, proprietaire, loge_gratuitement]
+  output:
+    paris_locataire: [true, true, true, true, false, false, false, false]
+
+- name: Logement à charge
+  period: 2019-04
+  input:
+    statut_occupation_logement: [locataire_hlm, locataire_vide, locataire_meuble, locataire_foyer, sans_domicile, primo_accedant, proprietaire, loge_gratuitement]
+  output:
+    paris_logement_a_charge: [true, true, true, true, false, true, true, false]
