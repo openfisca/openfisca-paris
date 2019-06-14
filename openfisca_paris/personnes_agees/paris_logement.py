@@ -40,7 +40,7 @@ class paris_logement_pa_eligibilite(Variable):
 	def formula(famille, period, parameters):
 		pa_ph_eligibilite = famille('paris_logement_pa_ph_eligibilite', period)
 
-		personnes_agees_i = famille.members('paris_personnes_agees', period)
+		personnes_agees_i = famille.members('paris_personne_agee', period)
 		personnes_agees = famille.any(personnes_agees_i)
 
 		base_ressources = famille('paris_base_ressources_foyer', period.last_month)

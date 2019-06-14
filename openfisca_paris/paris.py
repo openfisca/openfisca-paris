@@ -191,11 +191,7 @@ class paris_personnes_handicap(Variable):
 
     def formula(individu, period, legislation):
 
-        age_min = legislation(period).paris.age_pers_inapte
         handicap = individu('handicap', period)
-        inapte_travail = individu('inapte_travail', period)
-        age = individu('age', period)
-        handicap = handicap + ((age < age_min) * inapte_travail)
         return handicap
 
 class paris_nb_enfants(Variable):

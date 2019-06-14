@@ -125,7 +125,7 @@ class paris_logement_elig_fam(Variable):
     def formula(famille, period):
         parisien = famille('parisien', period)
 
-        personnes_agees = famille.members('paris_personnes_agees', period)
+        personnes_agees = famille.members('paris_personne_agee', period)
         personnes_agees_famille = famille.any(personnes_agees)
 
         personne_handicap = famille.members('paris_personnes_handicap', period)
@@ -176,7 +176,7 @@ class paris_logement_elig_apd(Variable):
         
         locataire = famille('paris_locataire', period)
 
-        personnes_agees = famille.members('paris_personnes_agees', period)
+        personnes_agees = famille.members('paris_personne_agee', period)
         personnes_agees_famille = famille.any(personnes_agees)
 
         personne_handicap = famille.members('paris_personnes_handicap', period)

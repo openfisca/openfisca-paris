@@ -47,7 +47,7 @@ class paris_solidarite_pa_eligibilite(Variable):
     
     def formula(famille, period, parameters):
 
-        personnes_agees_i = famille.members('paris_personnes_agees', period)
+        personnes_agees_i = famille.members('paris_personne_agee', period)
         return famille.any(personnes_agees_i)
 
 

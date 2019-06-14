@@ -1,33 +1,8 @@
-- name: Une personne parisienne de 65 ans est éligible aux aides des personnes âgées
+- name: Eligibilité aux aides destinées aux personnes âgées
   period: 2019-02
   input:
-    age: 65
-    parisien: true
+    age: [64, 65, 59, 60, 50]
+    inapte_travail: [false, false, true, true, false]
+    aspa_eligibilite: [false, false, false, false, true]
   output:
-    paris_personnes_agees: true
-
-- name: Une personne parisienne de 64 ans, non-éligible à l'ASPA, n'est pas éligible aux aides des personnes âgées
-  period: 2019-02
-  input:
-    age: 64
-    parisien: true
-    aspa_eligibilite: false
-  output:
-    paris_personnes_agees: false
-
-- name: Une personne parisienne de 64 ans, éligible à l'ASPA, est éligible aux aides des personnes âgées
-  period: 2019-02
-  input:
-    age: 64
-    parisien: true
-    aspa_eligibilite: true
-  output:
-    paris_personnes_agees: true
-
-- name: Une personne parisienne de 59 ans n'est pas éligible aux aides des personnes âgées
-  period: 2019-02
-  input:
-    age: 59
-    parisien: true
-  output:
-    paris_personnes_agees: false
+    paris_personne_agee: [false, true, false, true, true]
