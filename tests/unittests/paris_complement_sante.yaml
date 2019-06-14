@@ -1,3 +1,12 @@
+- name: Complément Santé Paris
+  period: 2019-02
+  input:
+    parisien: [true, true, true, false]
+    paris_complement_sante_pa: [0, 445, 50, 50]
+    paris_complement_sante_ph: [0, 0, 468, 468]
+  output:
+    paris_complement_sante: [0, 445, 468, 0]
+
 - name: 1/ Personne éligible au CSP
   description: Paris Complementaire Santé
   period: 2019-02
@@ -8,7 +17,7 @@
     handicap: true
     en_couple: false
     cmu_c: false
-    salaire_net:
+    paris_base_ressources_couple:
       2019-01: 850
     loyer: 800
   output:
@@ -182,7 +191,7 @@
     handicap: true
     en_couple: false
     cmu_c: false
-    salaire_net:
+    paris_base_ressources_couple:
       2019-01: 900
     loyer: 700
   output:

@@ -18,7 +18,7 @@ class paris_complement_sante_ph_eligibilite(Variable):
 		personne_handicapee = famille.members('paris_personne_handicapee', period)
 		personnes_handicapees = famille.any(personne_handicapee)
 
-		base_ressources = famille.demandeur('paris_base_ressources_i', period.last_month)
+		base_ressources = famille('paris_base_ressources_couple', period.last_month)
 
 		param_plafond = parameters(period).paris.personnes_handicapees.paris_complement_sante.plafond
 		en_couple = famille('en_couple', period)
@@ -27,7 +27,6 @@ class paris_complement_sante_ph_eligibilite(Variable):
 		param_aah = parameters(period).prestations.minima_sociaux.aah
 		plafond_2 = param_aah.montant + param_aah.mva
 
-		# Voir l'article III.1.2.b.3 (p.37) du Règlement Municipal / S'agit-il d'un OU (max_) ou d'un ET (min_) ?
 		return personnes_handicapees * (base_ressources <= max_(plafond_1, plafond_2)) 
 
 
