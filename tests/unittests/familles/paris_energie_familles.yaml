@@ -1,0 +1,60 @@
+- name: Eligibilité à l'aide Paris Energie Familles (sans prendre en compte les conditions financières)
+  period: 2019-04
+  input:
+    parisien: [true, true, false]
+    paris_logement_a_charge: [true, false, true]
+  output:
+    paris_energie_familles_eligibilite_simple: [true, false, false]
+
+- name: Eligibilité à l'aide Paris Energie Familles pour une famille hebergée (sans prendre en compte les conditions financières)
+  period: 2019-04
+  input:
+    parisien: [true, true]
+    paris_logement_a_charge: [false, false]
+    statut_occupation_logement: [loge_gratuitement, loge_gratuitement]
+    participation_frais: [true, false]
+  output:
+    paris_energie_familles_eligibilite_simple: [true, false]
+
+- name: Eligibilité financière à l'aide Paris Energie Familles pour une famille sans enfant handicapé
+  period: 2019-04
+  input:
+    paris_nb_enfants: [0, 1, 1, 2, 2, 3, 3, 4, 4]
+    paris_base_ressources_couple:
+      2019-03: [2000, 2000, 2001, 2500, 2501, 5000, 5001, 5000, 5001]
+  output:
+    paris_energie_familles_eligibilite_financiere: [false, true, false, true, false, true, false, true, false]
+
+- name: Eligibilité financière à l'aide Paris Energie Familles pour une famille avec enfant(s) handicapé(s)
+  period: 2019-04
+  input:
+    paris_nb_enfants_handicapes: [1, 1, 1, 1, 2, 2]
+    paris_nb_enfants: [1, 1, 2, 2, 2, 2]
+    paris_base_ressources_couple:
+      2019-03: [5000, 5001, 5000, 5001, 5000, 5001]
+  output:
+    paris_energie_familles_eligibilite_financiere: [true, false, true, false, true, false]
+
+- name: Montant de l'aide Paris Energie Familles pour une famille sans enfant handicapé
+  period: 2019-04
+  input:
+    paris_nb_enfants: [0, 1, 2, 3, 4]
+  output:
+    paris_energie_familles_montant: [0, 138, 138, 275, 275]
+
+- name: Montant de l'aide Paris Energie Familles pour une famille avec enfant(s) handicapé(s)
+  period: 2019-04
+  input:
+    paris_nb_enfants_handicapes: [1, 1, 2]
+    paris_nb_enfants: [1, 2, 2]
+  output:
+    paris_energie_familles_montant: [275, 275, 275]
+
+- name: Paris Energie Familles
+  period: 2019-04
+  input:
+    paris_energie_familles_eligibilite_simple: [true, true, false]
+    paris_energie_familles_eligibilite_financiere: [true, false, true]
+    paris_energie_familles_montant: [666, 666, 666]
+  output:
+    paris_energie_familles: [666, 0, 0]

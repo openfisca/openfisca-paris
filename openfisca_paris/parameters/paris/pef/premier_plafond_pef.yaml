@@ -1,7 +1,0 @@
-description: '1er Plafond des ressources pour l''aide paris énergie famille '
-unit: currency
-values:
-  2012-01-01:
-    value: 2000.0
-  2015-01-01:
-    value: 2000.0
