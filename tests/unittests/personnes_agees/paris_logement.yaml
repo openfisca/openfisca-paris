@@ -11,7 +11,7 @@
   period: 2019-02
   input:
     paris_logement_pa_ph_eligibilite: [false, true, true, true]
-    paris_personnes_agees: [true, false, true, true]
+    paris_personne_agee: [true, false, true, true]
     paris_base_ressources_foyer: 
       2019-01: [1210, 1210, 1210, 1211]
     paris_logement_pa_plafond: [1210, 1210, 1210, 1210]

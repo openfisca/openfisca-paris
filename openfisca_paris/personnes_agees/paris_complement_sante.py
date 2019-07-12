@@ -16,7 +16,7 @@ class paris_complement_sante_pa_eligibilite(Variable):
 	def formula(famille, period, parameters):
 		parisien = famille('parisien', period)
 		
-		personnes_agees_i = famille.members('paris_personnes_agees', period)
+		personnes_agees_i = famille.members('paris_personne_agee', period)
 		personnes_agees = famille.any(personnes_agees_i)
 
 		base_ressources = famille('paris_base_ressources_couple', period.last_month)

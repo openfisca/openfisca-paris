@@ -1,0 +1,10 @@
+age_min:
+  unit: year
+  values:
+    2012-01-01: 65
+    2015-01-01: 65
+age_min_si_inaptitude:
+  unit: year
+  values:
+    2012-01-01: 60
+    2015-01-01: 60
