@@ -1,9 +1,0 @@
-description: 'Plafond de la Complementaire Santé pour un couple '
-unit: currency
-values:
-  2012-01-01:
-    value: 1430.0
-  2015-01-01:
-    value: 1430.0
-  2018-01-01:
-    value: 1453.0

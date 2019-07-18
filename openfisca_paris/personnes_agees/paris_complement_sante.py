@@ -11,20 +11,19 @@ class paris_complement_sante_pa_eligibilite(Variable):
 	entity = Famille
 	definition_period = MONTH
 	label = u"Éligibilité au Complément Santé Paris pour les personnes âgées"
-	reference = "article II.1.2.b.3 du règlement municipal du CASVP"
+	reference = "Article II.1.2.b.3 du règlement municipal du CASVP"
 
 	def formula(famille, period, parameters):
-		parisien = famille('parisien', period)
 		
-		personnes_agees_i = famille.members('paris_personne_agee', period)
-		personnes_agees = famille.any(personnes_agees_i)
+		personne_agee = famille.members('paris_personne_agee', period)
+		personnes_agees = famille.any(personne_agee)
 
 		base_ressources = famille('paris_base_ressources_couple', period.last_month)
 		param_plafond = parameters(period).paris.personnes_agees.paris_complement_sante.plafond
 		en_couple = famille('en_couple', period)
 		plafond = where(en_couple, param_plafond.en_couple, param_plafond.personne_isolee)
 
-		return parisien * personnes_agees * (base_ressources <= plafond)
+		return personnes_agees * (base_ressources <= plafond)
 
 
 class paris_complement_sante_pa_montant(Variable):
@@ -32,9 +31,10 @@ class paris_complement_sante_pa_montant(Variable):
 	entity = Famille
 	definition_period = MONTH
 	label = u"Montant du Complément Santé Paris pour les personnes âgées"
-	reference = "articles II.1.2.a.2 & II.1.2.b.6 du règlement municipal du CASVP"
+	reference = "Articles II.1.2.a.2 & II.1.2.b.6 du règlement municipal du CASVP"
 
 	def formula(famille, period, parameters):
+		
 		montant = parameters(period).paris.personnes_agees.paris_complement_sante.montant
 		acs = famille('acs', period)
 		cmu_c = famille('cmu_c', period)
@@ -47,9 +47,11 @@ class paris_complement_sante_pa(Variable):
 	entity = Famille
 	definition_period = MONTH
 	label = u"Complément Santé Paris pour les personnes âgées"
-	reference = "article II.1.2 du règlement municipal du CASVP"
+	reference = "Article II.1.2 du règlement municipal du CASVP"
 
 	def formula(famille, period, parameters):
+
 		eligibilite = famille('paris_complement_sante_pa_eligibilite', period)
 		montant = famille('paris_complement_sante_pa_montant', period)
+		
 		return eligibilite * montant

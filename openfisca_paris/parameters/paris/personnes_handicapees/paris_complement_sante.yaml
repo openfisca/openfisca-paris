@@ -1,0 +1,16 @@
+plafond:
+  personne_isolee:
+    unit: currency
+    values:
+      2012-01-01: 965.0
+      2019-01-01: 965.0
+  en_couple:
+    unit: currency
+    values:
+      2012-01-01: 1553.0
+      2019-01-01: 1553.0
+montant:
+  unit: currency
+  values:
+    2012-01-01: 468.0
+    2019-01-01: 468.0

@@ -1,0 +1,14 @@
+- name: Personne handicapée
+  period: 2019-05
+  input:
+    handicap: [true, false, false, false, false, false]
+    aah: 
+      2019-04: [0, 1, 0, 0, 0, 0]
+    pch:
+      2019-04: [0, 0, 1, 0, 0, 0]
+    pensions_invalidite: 
+      2019-04: [0, 0, 0, 1, 0, 0]
+    rente_accident_travail: 
+      2019-04: [0, 0, 0, 0, 1, 0]
+  output:
+    paris_personne_handicapee: [true, true, true, true, true, false]

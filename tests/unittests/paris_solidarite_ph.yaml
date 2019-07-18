@@ -1,7 +1,7 @@
 - name: Perçois l'AAH uniquement
   period: 2019-02
   input:
-    paris_personnes_handicap: true
+    paris_personne_handicapee: true
     paris_base_ressources_couple: 860
   output:
     paris_solidarite_ph: 105
