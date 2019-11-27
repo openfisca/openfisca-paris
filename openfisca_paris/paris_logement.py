@@ -165,6 +165,7 @@ class paris_logement_apd(Variable):
 
         return result * condition_ressources * paris_logement_elig_apd
 
+
 class paris_logement_elig_apd(Variable):
     value_type = bool
     label = u"Personne qui est eligible pour l'aide Paris Logement aide aux parisiens en difficultés"
@@ -183,12 +184,30 @@ class paris_logement_elig_apd(Variable):
         personne_handicap_famille = famille.any(personne_handicap)
 
         condition_taux_effort = famille('paris_condition_taux_effort', period)
+
+        etudiant_ok = famille('paris_logement_elig_apd_etudiant', period)
         
         loyer = famille.demandeur.menage('loyer', period)
 
         nb_enfants = famille('paris_nb_enfants', period)
 
-        return parisien * locataire * (personnes_agees_famille != 1) * (personne_handicap_famille != 1) * condition_taux_effort * (loyer > 0) * (nb_enfants == 0)
+        return parisien * locataire * etudiant_ok * (personnes_agees_famille != 1) * (personne_handicap_famille != 1) * condition_taux_effort * (loyer > 0) * (nb_enfants == 0)
+
+
+class paris_logement_elig_apd_etudiant(Variable):
+    value_type = bool
+    label = u"Évaluation de l'éligibilité des étudiants à Paris Logement aide aux parisiens en difficultés"
+    entity = Famille
+    definition_period = MONTH
+
+    def formula(famille, period):
+        etudiant_i = famille.members('etudiant', period)
+        etudiant = famille.any(etudiant_i)
+
+        boursier_i = famille.members('boursier', period)
+        boursier = famille.any(boursier_i)
+
+        return not_(etudiant) + (etudiant * boursier)
 
 
 class paris_logement_charge_nette_mensuelle(Variable):
