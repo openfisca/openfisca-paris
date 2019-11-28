@@ -592,3 +592,11 @@
       2016-01: 850
   output:
     paris_logement: 0
+
+- name: Non étudiant, Étudiant boursier et non boursier
+  period: 2019-05
+  input:
+    etudiant: [false, false, true, true]
+    boursier: [false, true, false, true]
+  output:
+    paris_logement_elig_apd_etudiant: [true, true, false, true]
