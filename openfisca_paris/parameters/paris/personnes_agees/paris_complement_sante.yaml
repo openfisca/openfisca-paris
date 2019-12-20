@@ -12,6 +12,8 @@ plafond:
         value: 915.0
       2019-01-01:
         value: 980.0
+      2020-01-01:
+        value: 1015.0
   en_couple:
     unit: currency
     values:
@@ -23,6 +25,8 @@ plafond:
         value: 1453.0
       2019-01-01:
         value: 1553.0
+      2020-01-01:
+        value: 1608.0
 montant:
   unit: currency
   values:
