@@ -68,9 +68,10 @@ class paris_base_ressources_famille(Variable):
     definition_period = MONTH
 
     def formula(famille, period):
+        aeeh = famille('aeeh', period)
         aspa = famille('aspa', period)
         rsa = famille('rsa', period)
-        return aspa + rsa
+        return aeeh + aspa + rsa
 
 class paris_base_ressources_couple(Variable):
     value_type = float
