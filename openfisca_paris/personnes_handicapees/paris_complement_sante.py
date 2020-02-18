@@ -8,26 +8,23 @@ from openfisca_france.model.base import *  # noqa analysis:ignore
 
 class paris_complement_sante_ph_eligibilite(Variable):
 	value_type = bool
-	entity = Famille
+	entity = Individu
 	definition_period = MONTH
 	label = u"Éligibilité au Complément Santé Paris pour les personnes handicapées"
 	reference = "Article III.1.2.b.3 du règlement municipal du CASVP"
 
-	def formula(famille, period, parameters):
-		
-		personne_handicapee = famille.members('paris_personne_handicapee', period)
-		personnes_handicapees = famille.any(personne_handicapee)
+	def formula(individu, period, parameters):
+		personne_handicapee = individu('paris_personne_handicapee', period)
 
-		base_ressources = famille('paris_base_ressources_couple', period.last_month)
+		base_ressources = individu('paris_base_ressources_i', period)
 
 		param_plafond = parameters(period).paris.personnes_handicapees.paris_complement_sante.plafond
-		en_couple = famille('en_couple', period)
-		plafond_1 = where(en_couple, param_plafond.en_couple, param_plafond.personne_isolee)
+		plafond_1 = param_plafond.personne_isolee
 
 		param_aah = parameters(period).prestations.minima_sociaux
 		plafond_2 = param_aah.aah.montant + param_aah.caah.majoration_vie_autonome
 
-		return personnes_handicapees * (base_ressources <= max_(plafond_1, plafond_2)) 
+		return personne_handicapee * (base_ressources <= max_(plafond_1, plafond_2))
 
 
 class paris_complement_sante_ph_montant(Variable):
@@ -55,7 +52,7 @@ class paris_complement_sante_ph(Variable):
 
 	def formula(famille, period, parameters):
 
-		eligibilite = famille('paris_complement_sante_ph_eligibilite', period)
+		eligibilite = famille.demandeur('paris_complement_sante_ph_eligibilite', period)
 		montant = famille('paris_complement_sante_ph_montant', period)
 		
 		return eligibilite * montant
