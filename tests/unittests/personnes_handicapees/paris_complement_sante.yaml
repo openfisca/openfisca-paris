@@ -2,8 +2,7 @@
   period: 2019-02
   input:
     paris_personne_handicapee: [false, true, true]
-    paris_base_ressources_couple: 
-      2019-01: [965, 965, 966]
+    paris_base_ressources_i: [965, 965, 966]
   output:
     paris_complement_sante_ph_eligibilite: [false, true, false]
 
@@ -12,8 +11,7 @@
   input:
     paris_personne_handicapee: [false, true, true]
     en_couple: [true, true, true]
-    paris_base_ressources_couple: 
-      2019-01: [1553, 1553, 1554]
+    paris_base_ressources_i: [963, 963, 968]
   output:
     paris_complement_sante_ph_eligibilite: [false, true, false]
 
@@ -33,3 +31,133 @@
     paris_complement_sante_ph_montant: [100, 100]
   output:
     paris_complement_sante_ph: [100, 0]
+
+- name: couple, 2 PH, droit à CSP
+  period: 2020-01
+  input:
+    famille:
+      parents: ['personne1', 'personne2']
+      parisien: true
+      paris_base_ressources_famille:
+        2019-12: 0
+      cmu_c: false
+    menage:
+      personne_de_reference: personne1
+      conjoint: personne2
+      statut_occupation_logement: locataire_vide
+      logement_conventionne: true
+      depcom: 75012
+      loyer: 700
+      charges_locatives: 45
+    individus:
+      personne1:
+        date_naissance: 1980-08-05
+        handicap: true
+        aah:
+          2019-12: 900
+      personne2:
+        date_naissance: 1983-08-05
+        handicap: true
+        aah:
+          2019-12: 900
+    foyer_fiscal:
+      declarants: [personne1, personne2]
+  output:
+    paris_complement_sante_ph: 468
+
+- name: couple, une PH et une PA, droit à CSP/ OK)
+  period: 2020-01
+  input:
+    famille:
+      parents: ['personne1', 'personne2']
+      parisien: true
+      paris_base_ressources_famille:
+        2019-12: 0
+    menage:
+      personne_de_reference: personne1
+      conjoint: personne2
+      statut_occupation_logement: locataire_vide
+      logement_conventionne: true
+      depcom: 75012
+      loyer: 700
+      charges_locatives: 45
+    individus:
+      personne1:
+        date_naissance: 1980-08-05
+        handicap: true
+        aah:
+          2019-12: 725
+      personne2:
+        date_naissance: 1953-08-05
+        activite: retraite
+        retraite_imposable:
+         2019-12: 2336.38
+    foyer_fiscal:
+      declarants: [personne1, personne2]
+  output:
+    paris_complement_sante_ph: 468
+
+- name: couple, une PH et une PA, droit à CSP OK
+  period: 2020-01
+  input:
+    famille:
+      parents: ['personne1', 'personne2']
+      parisien: true
+      paris_base_ressources_famille:
+        2019-12: 0
+    menage:
+      personne_de_reference: personne1
+      conjoint: personne2
+      statut_occupation_logement: locataire_vide
+      logement_conventionne: true
+      depcom: 75012
+      loyer: 700
+      charges_locatives: 45
+    individus:
+      personne1:
+        date_naissance: 1980-08-05
+        handicap: true
+        aah:
+          2019-12: 725
+      personne2:
+        date_naissance: 1953-08-05
+        activite: retraite
+        retraite_imposable:
+         2019-12: 2336.38
+    foyer_fiscal:
+      declarants: [personne1, personne2]
+  output:
+    paris_complement_sante_ph: 468
+
+- name: couple, une PH et une personne non ouvre droit, droit à CSP OK
+  period: 2020-01
+  input:
+    famille:
+      parents: ['personne1', 'personne2']
+      parisien: true
+      paris_base_ressources_famille:
+        2019-12: 0
+
+    menage:
+      personne_de_reference: personne1
+      conjoint: personne2
+      statut_occupation_logement: locataire_vide
+      logement_conventionne: true
+      depcom: 75012
+      loyer: 700
+      charges_locatives: 45
+    individus:
+      personne1:
+        date_naissance: 1980-08-05
+        handicap: true
+        aah:
+          2019-12: 725
+      personne2:
+        date_naissance: 1953-08-05
+        activite: retraite
+        salaire_imposable:
+         2019-12: 900
+    foyer_fiscal:
+      declarants: [personne1, personne2]
+  output:
+    paris_complement_sante_ph: 468
