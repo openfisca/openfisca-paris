@@ -137,7 +137,6 @@
       parisien: true
       paris_base_ressources_famille:
         2019-12: 0
-
     menage:
       personne_de_reference: personne1
       conjoint: personne2
