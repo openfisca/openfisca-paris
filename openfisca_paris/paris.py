@@ -11,7 +11,7 @@ class parisien(Variable):
     definition_period = MONTH
     label = u"Résident à Paris au moins 3 ans dans les 5 dernières années"
 
-class paris_base_ressources_individu(Variable):
+class paris_base_ressources_i(Variable):
     value_type = float
     label = u"Base de ressources pour un individu, pour l'ensemble des aides de Paris"
     entity = Individu
@@ -104,7 +104,7 @@ class paris_base_ressources_individu(Variable):
 
         return result
 
-class paris_base_ressources_i(Variable):
+class paris_base_ressources_individu(Variable):
     value_type = float
     label = u"Base de ressources pour un individu, pour l'ensemble des aides de Paris"
     entity = Individu
@@ -176,8 +176,8 @@ class paris_base_ressources_couple(Variable):
 
     def formula(famille, period):
         en_couple = famille('en_couple', period)
-        ressources_demandeur = famille.demandeur('paris_base_ressources_individu', period)
-        ressources_conjoint = famille.conjoint('paris_base_ressources_individu', period)
+        ressources_demandeur = famille.demandeur('paris_base_ressources_i', period)
+        ressources_conjoint = famille.conjoint('paris_base_ressources_i', period)
         ressources_famille = famille('paris_base_ressources_famille', period)
         return where(en_couple,
             ressources_demandeur + ressources_conjoint + ressources_famille,
@@ -190,7 +190,7 @@ class paris_base_ressources_foyer(Variable):
     definition_period = MONTH
 
     def formula(famille, period):
-        ressources = famille.members('paris_base_ressources_individu', period)
+        ressources = famille.members('paris_base_ressources_i', period)
         ressources_famille = famille('paris_base_ressources_famille', period)
 
         return famille.sum(ressources) + ressources_famille
