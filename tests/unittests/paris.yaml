@@ -13,7 +13,7 @@
         ass: 20
         aah: 30
         caah: 14
-        retraite_nette: 50
+        retraite_imposable: 50
         allocation_securisation_professionnelle: 55
         prestation_compensatoire: 60
         pensions_invalidite: 65
@@ -22,9 +22,9 @@
         indemnites_volontariat: 85
       parent2:
         asi: 25
-        salaire_net: 35
+        salaire_imposable: 35
         indemnites_chomage_partiel: 40
-        chomage_net: 45
+        chomage_imposable: 45
       enfant1:
         indemnites_stage: 75
     foyers_fiscaux:
