@@ -15,7 +15,7 @@
     individus:
       parent1:
         age: 55
-        salaire_net:
+        salaire_imposable:
           2016-01: 1000
       parent2:
         age: 55
@@ -277,7 +277,7 @@
       parent1:
         age: 55
         handicap: true
-        chomage_net:
+        chomage_imposable:
           2016-01: 2000
     foyer_fiscal:
       declarants:
@@ -360,7 +360,7 @@
     individus:
       parent1:
         age: 55
-        salaire_net:
+        salaire_imposable:
           2016-01: 1000
       parent2:
         age: 55
@@ -399,7 +399,7 @@
     individus:
       parent1:
         age: 65
-        salaire_net:
+        salaire_imposable:
           2016-01: 1000
       parent2:
         age: 55
@@ -431,7 +431,7 @@
     individus:
       parent1:
         age: 55
-        salaire_net:
+        salaire_imposable:
           2016-01: 500
         handicap: true
         aah:
@@ -470,7 +470,7 @@
     individus:
       parent1:
         age: 55
-        salaire_net:
+        salaire_imposable:
           2016-01: 1000
       parent2:
         age: 55
@@ -509,11 +509,11 @@
     individus:
       parent1:
         age: 55
-        salaire_net:
+        salaire_imposable:
           2016-01: 1000
       parent2:
         age: 55
-        salaire_net:
+        salaire_imposable:
           2016-01: 1000
       enfant1:
         age: 5
@@ -542,7 +542,7 @@
       2016-01: 200
     paris_base_ressources_famille:
       2016-01: 0
-    salaire_net:
+    salaire_imposable:
       2016-01: 850
   output:
     paris_logement: 84
@@ -557,7 +557,7 @@
     loyer: 550
     aide_logement:
       2016-01: 200
-    salaire_net:
+    salaire_imposable:
       2016-01: 1450
   output:
     paris_logement: 0
@@ -588,7 +588,7 @@
     loyer: 550
     apl:
       2016-01: 200
-    salaire_net:
+    salaire_imposable:
       2016-01: 850
   output:
     paris_logement: 0
