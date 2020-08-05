@@ -16,7 +16,7 @@ class paris_complement_sante_ph_eligibilite(Variable):
 	def formula(individu, period, parameters):
 		personne_handicapee = individu('paris_personne_handicapee', period)
 
-		base_ressources = individu('paris_base_ressources_individu', period)
+		base_ressources = individu('paris_base_ressources_i', period)
 
 		param_plafond = parameters(period).paris.personnes_handicapees.paris_complement_sante.plafond
 		plafond_1 = param_plafond.personne_isolee
