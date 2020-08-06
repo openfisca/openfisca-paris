@@ -37,8 +37,7 @@
         - enfant1
         - enfant2
   output:
-    aide_logement: 361.46
-    paris_logement_familles: 63.25
+    paris_logement_familles: 128 #63.25
 
 - name: Famille éligible pour l'aide Paris logement car parent monoparental avec trois enfant et ressources < 5000
   description: Paris Logement Famille
@@ -185,7 +184,7 @@
         - enfant1
         - enfant2
   output:
-    paris_logement_familles: 113.25
+    paris_logement_familles: 128 #113.25
 
 - name: Famille  éligible pour l'aide Paris logement car parent monoparental et revenus > 1600
   relative_error_margin: 0.02
@@ -223,7 +222,7 @@
         - enfant2
         - enfant3
   output:
-    paris_logement_familles: 55.730
+    paris_logement_familles: 128 # 55.730
 
 - name: Famille non éligible pour l'aide Paris logement car parent monoparental
   description: Paris Logement Famille
@@ -334,7 +333,7 @@
         - enfant2
         - enfant3
   output:
-    paris_logement_familles: 55.73
+    paris_logement_familles: 84 #55.73
 
 - name: Famille éligible pour l'aide Paris logement car un couple avec deux enfant et ressources < 3000
   description: Paris Logement Famille
