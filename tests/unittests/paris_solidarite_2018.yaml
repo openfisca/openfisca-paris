@@ -15,10 +15,10 @@
     individus:
       couple1:
         age: 35
-        salaire_net: 500
+        salaire_imposable: 500
       couple2:
         age: 35
-        salaire_net: 10
+        salaire_imposable: 10
       enfant1:
         age: 8
         handicap: true
@@ -41,7 +41,7 @@
     statut_occupation_logement: locataire_vide
     handicap: true
     loyer: 600
-    chomage_net: 600
+    chomage_imposable: 600
     paris_base_ressources_famille: 0
   output:
     paris_logement_psol: 96
@@ -54,7 +54,7 @@
     parisien: true
     statut_occupation_logement: locataire_vide
     loyer: 600
-    salaire_net: 2500
+    salaire_imposable: 2500
   output:
     paris_logement_psol: 0
 
@@ -74,12 +74,12 @@
       couple1:
         age: 65
         handicap: true
-        salaire_net: 900
+        salaire_imposable: 900
         aah: 500
       couple2:
         age: 65
         handicap: true
-        salaire_net: 5
+        salaire_imposable: 5
         aah: 5
     foyers_fiscaux:
       foyer_fiscal_0:
@@ -104,13 +104,13 @@
       couple1:
         age: 55
         aah: 900
-        salaire_net: 500
+        salaire_imposable: 500
         handicap: true
       couple2:
         age: 65
         handicap: true
         aah: 100
-        salaire_net: 10
+        salaire_imposable: 10
     foyers_fiscaux:
       foyer_fiscal_0:
         declarants:
@@ -139,7 +139,7 @@
     statut_occupation_logement: locataire_vide
     handicap: false
     aah: 500
-    salaire_net: 80
+    salaire_imposable: 80
   output:
     paris_logement_psol: 0
 
@@ -152,7 +152,7 @@
     statut_occupation_logement: locataire_vide
     handicap: true
     aah: 500
-    salaire_net: 80
+    salaire_imposable: 80
     paris_base_ressources_famille: 0
   output:
     paris_logement_psol: 96
@@ -166,7 +166,7 @@
     statut_occupation_logement: locataire_vide
     handicap: true
     aah: 500
-    salaire_net: 450
+    salaire_imposable: 450
   output:
     paris_logement_psol: 0
 
@@ -179,7 +179,7 @@
     statut_occupation_logement: locataire_vide
     handicap: true
     aah: 800
-    salaire_net: 600
+    salaire_imposable: 600
   output:
     paris_logement_psol: 0
 
@@ -197,11 +197,11 @@
     individus:
       couple1:
         age: 55
-        chomage_net: 100
+        chomage_imposable: 100
       couple2:
         age: 55
         indemnites_stage: 100
-        salaire_net: 100
+        salaire_imposable: 100
     foyers_fiscaux:
       foyer_fiscal_0:
         declarants:
@@ -236,7 +236,7 @@
     individus:
       couple1:
         age: 65
-        chomage_net: 915
+        chomage_imposable: 915
     foyer_fiscal:
       declarants:
       - couple1
@@ -285,7 +285,7 @@
     individus:
       couple1:
         age: 65
-        salaire_net: 100
+        salaire_imposable: 100
       couple2:
         age: 66
     foyers_fiscaux:
@@ -315,7 +315,7 @@
       couple2:
         age: 55
         indemnites_stage: 100
-        salaire_net: 100
+        salaire_imposable: 100
     foyers_fiscaux:
       foyer_fiscal_0:
         declarants:
