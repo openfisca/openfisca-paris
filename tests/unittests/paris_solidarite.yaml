@@ -19,10 +19,16 @@
     individus:
       couple1:
         age: 75
-        retraite_imposable: 1052
+        retraite_imposable:
+          2020-05: 1052
+          2020-04: 1052
+          2020-03: 1052
       couple2:
         age: 55
-        retraite_imposable: 450
+        retraite_imposable:
+          2020-05: 450
+          2020-04: 450
+          2020-03: 450
     foyers_fiscaux:
       foyer_fiscal_0:
         declarants:
@@ -30,4 +36,3 @@
         - couple2
   output:
     paris_logement_psol: 106
-    paris_logement: 95
