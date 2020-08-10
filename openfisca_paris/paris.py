@@ -26,7 +26,7 @@ class paris_base_ressources_i(Variable):
         salaire_imposable = individu('salaire_imposable', period)
         revenus_stage_formation_pro = individu('revenus_stage_formation_pro', period)
         chomage_imposable = individu('chomage_imposable', period)
-        retraite_imposable = individu('retraite_imposable', last_3_months) / 3
+        retraite_imposable = individu('retraite_imposable', last_3_months, options = [ADD]) / 3
 
 
         #indemnites:
