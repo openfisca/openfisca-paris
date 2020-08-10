@@ -13,7 +13,10 @@
         ass: 20
         aah: 30
         caah: 14
-        retraite_imposable: 50
+        retraite_imposable:
+          2019-01: 50
+          2018-12: 50
+          2018-11: 50
         allocation_securisation_professionnelle: 55
         prestation_compensatoire: 60
         pensions_invalidite: 65
