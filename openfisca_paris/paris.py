@@ -20,7 +20,7 @@ class paris_base_ressources_i(Variable):
     def formula(individu, period, legislation):
 
         last_year = period.last_year
-        last_3_months = period.period.last_3_months
+        last_3_months = period.last_3_months
 
         #Salaires
         salaire_imposable = individu('salaire_imposable', period)
