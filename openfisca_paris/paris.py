@@ -18,50 +18,15 @@ class paris_base_ressources_i(Variable):
     definition_period = MONTH
 
     def formula(individu, period, legislation):
-        # dedommagement_victime_amiante,
-        # indemnites_journalieres_maladie,
-        # indemnites_journalieres_maladie_professionnelle,
-        # indemnites_journalieres_maternite,
-        # indemnites_volontariat
-        # indemnites_chomage_partiel
-        # indemnites_journalieres_maladie
-        # indemnites_stage
-        # pensions_alimentaires_percues
-        # pensions_alimentaires_versees_individu
-        # salaire_imposable
-        # indemnite_fin_contrat
-        # chomage_imposable
-        # revenus_stage_formation_pro
-        # remuneration_apprenti
-        # allocation_securisation_professionnelle
-        # prime_forfaitaire_mensuelle_reprise_activite
-        # salarie_regime_alsace_moselle
-        # tns_autres_revenus
-        # tns_autres_revenus_chiffre_affaires
-        # tns_benefice_exploitant_agricole
-        # tns_micro_entreprise_chiffre_affaires
-        # tns_micro_entreprise_benefice
-        # tns_auto_entrepreneur_chiffre_affaires
-        # tns_auto_entrepreneur_benefice
-        # pensions_invalidite
-        # rente_accident_travail
-        # retraite_imposable
-        # pensions_alimentaires_percues
-        # pensions_alimentaires_versees_individu
-        # prestation_compensatoire
-        # frais_reels
-        # revenus_locatifs
-        # revenus_capital
-        # plus_values_gains_divers
-        # gains_exceptionnels
-
 
         last_year = period.last_year
+        last_3_months = period.period.last_3_months
+
         #Salaires
         salaire_imposable = individu('salaire_imposable', period)
         revenus_stage_formation_pro = individu('revenus_stage_formation_pro', period)
         chomage_imposable = individu('chomage_imposable', period)
-        retraite_imposable = individu('retraite_imposable', period)
+        retraite_imposable = individu('retraite_imposable', last_3_months) / 3
 
 
         #indemnites:
