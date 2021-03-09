@@ -10,8 +10,8 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     install_requires=[
-        'OpenFisca-Core >= 25.3, < 35',
-        'OpenFisca-France >= 34.8.0, < 49'
+        'OpenFisca-Core >= 25.3, < 36',
+        'OpenFisca-France >= 34.8.0, < 52'
     ],
     extras_require = {
         'test': 'nose'
