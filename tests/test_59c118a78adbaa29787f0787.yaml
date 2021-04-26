@@ -298,11 +298,6 @@ input:
     personnes_a_charge: []
   individus:
     demandeur:
-      echelon_bourse:
-        2017-09: -1
-        2017-08: -1
-        2017-07: -1
-        2017-06: -1
       enfant_a_charge:
         '2017': false
       enfant_place:

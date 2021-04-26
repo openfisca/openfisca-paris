@@ -302,11 +302,6 @@ input:
     - enfant_0
   individus:
     demandeur:
-      echelon_bourse:
-        2017-09: -1
-        2017-08: -1
-        2017-07: -1
-        2017-06: -1
       enfant_a_charge:
         '2017': false
       enfant_place:
@@ -458,11 +453,6 @@ input:
         2017-08: inconnue
         2017-07: inconnue
         2017-06: inconnue
-      echelon_bourse:
-        2017-09: -1
-        2017-08: -1
-        2017-07: -1
-        2017-06: -1
       enfant_a_charge:
         '2017': true
       enfant_place:
@@ -529,11 +519,6 @@ input:
         2016-10: 0
         2016-09: 0
     conjoint:
-      echelon_bourse:
-        2017-09: -1
-        2017-08: -1
-        2017-07: -1
-        2017-06: -1
       enfant_a_charge:
         '2017': false
       enfant_place:
