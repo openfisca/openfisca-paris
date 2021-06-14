@@ -43,7 +43,7 @@ Les tests d'OpenFisca-Paris sont au format `.yaml`.
 Pour les exécuter, dans votre répertoire `openfisca-paris`, utilisez la commande suivante :
 
 ```sh
-openfisca test tests/unittest/**/*.yaml --extensions openfisca_paris
+openfisca test tests/unittests/**/*.yaml --extensions openfisca_paris
 ```
 
 Les tests se sont déroulés sans erreur si les résultats s'achèvent par `OK` tel que présenté dans cet exemple :
