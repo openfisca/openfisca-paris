@@ -270,21 +270,11 @@ input:
     personnes_a_charge: []
   individus:
     592d092160ca897f11fed127:
-      tns_auto_entrepreneur_type_activite:
-        2017-05: bic
-        2017-04: bic
-        2017-03: bic
-        2017-02: bic
       date_naissance:
         2017-05: '1963-09-22'
         2017-04: '1963-09-22'
         2017-03: '1963-09-22'
         2017-02: '1963-09-22'
-      tns_micro_entreprise_type_activite:
-        2017-05: bic
-        2017-04: bic
-        2017-03: bic
-        2017-02: bic
       enfant_place:
         2017-05: false
         2017-04: false
