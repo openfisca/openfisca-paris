@@ -15,7 +15,8 @@ class paris_logement_pa_plafond(Variable):
 	reference = "article II.2.1.b/2 du règlement municipal du CASVP"
 
 	def formula(famille, period, parameters):
-		smic_brut_mensuel = parameters(period).cotsoc.gen.smic_h_b * parameters(period).cotsoc.gen.nb_heure_travail_mensuel
+		salaire_minimum = parameters(period).marche_travail.salaire_minimum
+		smic_brut_mensuel = salaire_minimum.smic_h_b * salaire_minimum.nb_heure_travail_mensuel
 
 		# Utilisation des valeurs indicatives de service-public.fr pour passer du SMIC brut au SMIC net
 		# https://www.service-public.fr/particuliers/vosdroits/F2300
