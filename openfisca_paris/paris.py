@@ -42,14 +42,14 @@ class paris_base_ressources_i(Variable):
         pensions_invalidite = individu('pensions_invalidite', period)
 
         def revenus_tns():
-            revenus_auto_entrepreneur = individu('tns_auto_entrepreneur_benefice', period, options = [ADD])
+            revenus_auto_entrepreneur = individu('rpns_auto_entrepreneur_benefice', period, options = [ADD])
 
             # Les revenus TNS hors AE sont estimés en se basant sur le revenu N-1
-            tns_micro_entreprise_benefice = individu('tns_micro_entreprise_benefice', last_year) / 12
-            tns_benefice_exploitant_agricole = individu('tns_benefice_exploitant_agricole', last_year) / 12
-            tns_autres_revenus = individu('tns_autres_revenus', last_year) / 12
+            rpns_micro_entreprise_benefice = individu('rpns_micro_entreprise_benefice', last_year) / 12
+            rpns_benefice_exploitant_agricole = individu('rpns_benefice_exploitant_agricole', last_year) / 12
+            rpns_autres_revenus = individu('rpns_autres_revenus', last_year) / 12
 
-            return revenus_auto_entrepreneur + tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole + tns_autres_revenus
+            return revenus_auto_entrepreneur + rpns_micro_entreprise_benefice + rpns_benefice_exploitant_agricole + rpns_autres_revenus
 
         result = (
             ass + aah + asi + caah
