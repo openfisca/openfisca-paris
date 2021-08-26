@@ -329,16 +329,6 @@ input:
         2017-08: bic
         2017-07: bic
         2017-06: bic
-      tns_micro_entreprise_type_activite:
-        2017-09: bic
-        2017-08: bic
-        2017-07: bic
-        2017-06: bic
-      tns_auto_entrepreneur_type_activite:
-        2017-09: bic
-        2017-08: bic
-        2017-07: bic
-        2017-06: bic
       date_naissance:
         2017-09: '1961-12-18'
         2017-08: '1961-12-18'

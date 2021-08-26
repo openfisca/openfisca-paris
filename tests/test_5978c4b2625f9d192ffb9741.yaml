@@ -285,21 +285,11 @@ input:
     personnes_a_charge: []
   individus:
     demandeur:
-      tns_auto_entrepreneur_type_activite:
-        2017-07: bic
-        2017-06: bic
-        2017-05: bic
-        2017-04: bic
       date_naissance:
         2017-07: '1967-06-01'
         2017-06: '1967-06-01'
         2017-05: '1967-06-01'
         2017-04: '1967-06-01'
-      tns_micro_entreprise_type_activite:
-        2017-07: bic
-        2017-06: bic
-        2017-05: bic
-        2017-04: bic
       enfant_place:
         2017-07: false
         2017-06: false
