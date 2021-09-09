@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="Openfisca-Paris",
-    version="2.2.4",
+    version="2.2.5",
     description="Plugin OpenFisca pour les aides sociales de la mairie de Paris",
     license="http://www.fsf.org/licensing/licenses/agpl-3.0.html",
     author="Mairie de Paris, Incubateur de Services Numériques (SGMAP)",
@@ -11,7 +11,7 @@ setup(
     include_package_data=True,
     install_requires=[
         'OpenFisca-Core >= 35.2.0, < 36',
-        'OpenFisca-France >= 61, < 62'
+        'OpenFisca-France >= 61, < 75'
     ],
     extras_require = {
         'test': [
