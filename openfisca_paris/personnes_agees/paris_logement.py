@@ -62,8 +62,11 @@ class paris_logement_pa_montant(Variable):
 		nb_enfants = famille('paris_nb_enfants', period)
 		param_montant = parameters(period).paris.personnes_agees.paris_logement.montant
 
+		couple_avec_enfant = en_couple * (nb_enfants == 1)
+		couple_sans_enfant = en_couple * (nb_enfants == 0)
+		personne_isolee = not_(en_couple) * (nb_enfants == 0)
 		montant = select(
-				[not_(en_couple), nb_enfants < 1, nb_enfants >=1],
+				[personne_isolee , couple_sans_enfant, couple_avec_enfant],
 				[param_montant.personne_isolee, param_montant.couple_sans_enfant, param_montant.couple_avec_enfant]
 			)
 		charge_logement = famille('paris_logement_charge_nette_mensuelle', period)

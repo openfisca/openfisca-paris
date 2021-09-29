@@ -47,16 +47,16 @@ class paris_base_ressources_i(Variable):
         pensions_invalidite = individu('pensions_invalidite', period)
 
         def revenus_tns():
-            revenus_auto_entrepreneur = individu('tns_auto_entrepreneur_benefice', period, options = [ADD])
+            revenus_auto_entrepreneur = individu('rpns_auto_entrepreneur_benefice', period, options = [ADD])
 
             # Les revenus TNS hors AE sont estimés en se basant sur le revenu N-1
-            tns_micro_entreprise_benefice = individu('tns_micro_entreprise_benefice', last_year) / 12
-            tns_benefice_exploitant_agricole = individu('tns_benefice_exploitant_agricole', last_year) / 12
-            tns_autres_revenus = individu('tns_autres_revenus', last_year) / 12
+            rpns_micro_entreprise_benefice = individu('rpns_micro_entreprise_benefice', last_year) / 12
+            rpns_benefice_exploitant_agricole = individu('rpns_benefice_exploitant_agricole', last_year) / 12
+            rpns_autres_revenus = individu('rpns_autres_revenus', last_year) / 12
 
             return (
-                revenus_auto_entrepreneur + tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole
-                + tns_autres_revenus
+                revenus_auto_entrepreneur + rpns_micro_entreprise_benefice + rpns_benefice_exploitant_agricole
+                + rpns_autres_revenus
                 )
 
         result = (
@@ -64,58 +64,6 @@ class paris_base_ressources_i(Variable):
             + salaire_imposable + indemnites_stage_imposable + revenus_stage_formation_pro
             + chomage_imposable + allocation_securisation_professionnelle + indemnites_journalieres + indemnites_chomage_partiel + indemnites_volontariat
             + prestation_compensatoire + retraite_imposable+ pensions_invalidite
-            + revenus_tns()
-            )
-
-        return result
-
-class paris_base_ressources_individu(Variable):
-    value_type = float
-    label = u"Base de ressources pour un individu, pour l'ensemble des aides de Paris"
-    entity = Individu
-    definition_period = MONTH
-
-    def formula(individu, period, legislation):
-        last_year = period.last_year
-
-        ass = individu('ass', period)
-        aah = individu('aah', period)
-        asi = individu('asi', period)
-        caah = individu('caah', period)
-
-        salaire_net = individu('salaire_net', period)
-        print(salaire_net)
-        indemnites_stage = individu('indemnites_stage', period)
-        smic = legislation(period).paris.smic_net_mensuel
-        indemnites_stage_imposable = where((smic >= indemnites_stage), indemnites_stage, 0)
-        revenus_stage_formation_pro = individu('revenus_stage_formation_pro', period)
-
-        chomage_net = individu('chomage_net', period)
-        allocation_securisation_professionnelle = individu('allocation_securisation_professionnelle', period)
-        indemnites_journalieres = individu('indemnites_journalieres', period)
-        indemnites_chomage_partiel = individu('indemnites_chomage_partiel', period)
-        indemnites_volontariat = individu('indemnites_volontariat', period)
-
-        prestation_compensatoire = individu('prestation_compensatoire', period)
-        retraite_nette = individu('retraite_nette', period)
-
-        pensions_invalidite = individu('pensions_invalidite', period)
-
-        def revenus_tns():
-            revenus_auto_entrepreneur = individu('rpns_auto_entrepreneur_benefice', period, options = [ADD])
-
-            # Les revenus TNS hors AE sont estimés en se basant sur le revenu N-1
-            tns_micro_entreprise_benefice = individu('rpns_micro_entreprise_benefice', last_year) / 12
-            tns_benefice_exploitant_agricole = individu('rpns_benefice_exploitant_agricole', last_year) / 12
-            tns_autres_revenus = individu('rpns_autres_revenus', last_year) / 12
-
-            return revenus_auto_entrepreneur + tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole + tns_autres_revenus
-
-        result = (
-            ass + aah + asi + caah
-            + salaire_net + indemnites_stage_imposable + revenus_stage_formation_pro
-            + chomage_net + allocation_securisation_professionnelle + indemnites_journalieres + indemnites_chomage_partiel + indemnites_volontariat
-            + prestation_compensatoire + retraite_nette + pensions_invalidite
             + revenus_tns()
             )
 
@@ -131,6 +79,7 @@ class paris_base_ressources_famille(Variable):
         aeeh = famille('aeeh', period)
         aspa = famille('aspa', period)
         rsa = famille('rsa', period)
+
         return aeeh + aspa + rsa
 
 class paris_base_ressources_couple(Variable):
@@ -144,6 +93,7 @@ class paris_base_ressources_couple(Variable):
         ressources_demandeur = famille.demandeur('paris_base_ressources_i', period)
         ressources_conjoint = famille.conjoint('paris_base_ressources_i', period)
         ressources_famille = famille('paris_base_ressources_famille', period)
+
         return where(en_couple,
             ressources_demandeur + ressources_conjoint + ressources_famille,
             ressources_demandeur + ressources_famille)

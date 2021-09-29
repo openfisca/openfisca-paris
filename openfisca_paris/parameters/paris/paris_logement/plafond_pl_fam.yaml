@@ -1,7 +1,0 @@
-description: plafond des ressources mensuelles pour un couple avec enfant
-unit: currency
-values:
-  2012-01-01:
-    value: 1600.0
-  2015-01-01:
-    value: 1600.0
