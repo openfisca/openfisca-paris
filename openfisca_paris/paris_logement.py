@@ -29,8 +29,9 @@ class paris_logement_pa_ph(Variable):
     def formula(famille, period, legislation):
         last_month = period.last_month
 
-        plafond_pl = legislation(period).paris.paris_logement.plafond_pl
-        plafond_pl_avec_enf = legislation(period).paris.paris_logement.plafond_pl_avec_enf
+        plafond_pl_personne_isolee = legislation(period).paris.paris_logement.plafond_pl_personne_isolee
+        plafond_pl_couple_sans_enf = legislation(period).paris.paris_logement.plafond_pl_couple_sans_enf
+        plafond_pl_couple_avec_enf = legislation(period).paris.paris_logement.plafond_pl_couple_avec_enf
         aide_pers_isol = legislation(period).paris.paris_logement.aide_pers_isol
         aide_couple_ss_enf = legislation(period).paris.paris_logement.aide_couple_ss_enf
         aide_couple_avec_enf = legislation(period).paris.paris_logement.aide_couple_avec_enf
@@ -42,11 +43,16 @@ class paris_logement_pa_ph(Variable):
         nb_enfants = famille('paris_nb_enfants', period)
         paris_logement_ph_eligibilite = famille('paris_logement_ph_eligibilite', period)
 
-        plafond = select([(nb_enfants >= 1), (nb_enfants < 1)], [plafond_pl_avec_enf, plafond_pl])
+        couple_avec_enfant = personnes_couple * (nb_enfants == 1)
+        couple_sans_enfant = personnes_couple * (nb_enfants == 0)
+        personne_isolee = not_(personnes_couple) * (nb_enfants == 0)
+
+        plafond = select([couple_avec_enfant, couple_sans_enfant, personne_isolee],
+            [plafond_pl_couple_avec_enf, plafond_pl_couple_sans_enf, plafond_pl_personne_isolee])
         condition_ressource = base_ressources <= plafond
-        montant_aide = select([personnes_couple * (nb_enfants > 0), personnes_couple,
-            ((personnes_couple != 1) * (nb_enfants == 0)), ((personnes_couple != 1) * (nb_enfants >= 1))],
-            [aide_couple_avec_enf, aide_couple_ss_enf, aide_pers_isol, 0])
+
+        montant_aide = select([couple_avec_enfant, couple_sans_enfant, personne_isolee],
+            [aide_couple_avec_enf, aide_couple_ss_enf, aide_pers_isol])
 
         result_montant = where((montant_aide > loyer_net), (montant_aide - (montant_aide - loyer_net)), montant_aide)
 
@@ -91,15 +97,15 @@ class paris_logement_ph_eligibilite(Variable):
 
 class paris_logement_fam(Variable):
     value_type = float
-    label = u"Paris Logement pour les couples avec enfant(s)"
+    label = u"Paris Logement pour les couples avec enfant"
     entity = Famille
     definition_period = MONTH
 
     def formula(famille, period, legislation):
         last_month = period.last_month
 
-        plafond_pl_fam = legislation(period).paris.paris_logement.plafond_pl_fam
-        aide_pl_fam = legislation(period).paris.paris_logement.aide_pl_fam
+        plafond_pl_couple_avec_enf = legislation(period).paris.paris_logement.plafond_pl_couple_avec_enf
+        aide_couple_avec_enf = legislation(period).paris.paris_logement.aide_couple_avec_enf
 
         base_ressources = famille('paris_base_ressources_foyer', last_month)
         loyer_net = famille('paris_logement_charge_nette_mensuelle', period)
@@ -108,9 +114,10 @@ class paris_logement_fam(Variable):
         nb_enfants = famille('paris_nb_enfants', period)
         paris_logement_elig_fam = famille('paris_logement_elig_fam', period)
 
-        condition_ressource = base_ressources <= plafond_pl_fam
+        condition_ressource = base_ressources <= plafond_pl_couple_avec_enf
 
-        montant_aide = where(personnes_couple * (nb_enfants > 0), aide_pl_fam, 0)
+        couple_avec_enfant = personnes_couple * (nb_enfants == 1)
+        montant_aide = where(couple_avec_enfant, aide_couple_avec_enf, 0)
 
         result = where((montant_aide > loyer_net), (montant_aide - (montant_aide - loyer_net)), montant_aide)
 
@@ -145,9 +152,10 @@ class paris_logement_apd(Variable):
     def formula(famille, period, legislation):
         last_month = period.last_month
 
-        plafond = legislation(period).paris.paris_logement.plafond_pl_apd
-        aide_pl_apd_pers_isol = legislation(period).paris.paris_logement.aide_pl_apd_pers_isol
-        aide_pl_apd_couple = legislation(period).paris.paris_logement.aide_pl_apd_couple
+        plafond_pl_personne_isolee = legislation(period).paris.paris_logement.plafond_pl_personne_isolee
+        plafond_pl_couple_sans_enf = legislation(period).paris.paris_logement.plafond_pl_couple_sans_enf
+        aide_pers_isol = legislation(period).paris.paris_logement.aide_pers_isol
+        aide_couple_ss_enf = legislation(period).paris.paris_logement.aide_couple_ss_enf
 
         base_ressources = famille('paris_base_ressources_foyer', last_month)
 
@@ -155,11 +163,18 @@ class paris_logement_apd(Variable):
         loyer_net = famille('paris_logement_charge_nette_mensuelle', period)
 
         personnes_couple = famille('en_couple', period)
+        nb_enfants = famille('paris_nb_enfants', period)
         paris_logement_elig_apd = famille('paris_logement_elig_apd', period)
+
+        couple_sans_enfant = personnes_couple * (nb_enfants == 0)
+        personne_isolee = not_(personnes_couple) * (nb_enfants == 0)
+        plafond = select([couple_sans_enfant, personne_isolee],
+            [plafond_pl_couple_sans_enf, plafond_pl_personne_isolee])
 
         condition_ressources = (base_ressources - indemnite) <= plafond
 
-        montant_aide = where(personnes_couple, aide_pl_apd_couple, aide_pl_apd_pers_isol)
+        montant_aide = select([couple_sans_enfant, personne_isolee],
+            [aide_couple_ss_enf, aide_pers_isol])
 
         result = where((montant_aide > loyer_net), (montant_aide - (montant_aide - loyer_net)), montant_aide)
 
