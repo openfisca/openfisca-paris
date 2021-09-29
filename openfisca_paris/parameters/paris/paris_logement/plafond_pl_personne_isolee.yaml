@@ -1,15 +1,13 @@
-description: plafond des ressources mensuelles pour un couple sans enfant
+description: plafond des ressources mensuelles pour une personne isolée
 unit: currency
 values:
   2012-01-01:
     value: 1140.0
   2015-01-01:
     value: 1140.0
-  2017-01-01:
-    value: 1160.0
   2018-01-01:
     value: 1180.0
   2019-01-01:
     value: 1210.0
   2020-01-01:
-    value: 1220.0
+    value: 1220.00
