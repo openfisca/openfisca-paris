@@ -17,8 +17,8 @@ class paris_solidarite_ph_base_ressources(Variable):
 
         base_ressource = famille('paris_base_ressources_couple', period)
         
-        aspa  = parameters(period).prestations.minima_sociaux.aspa
-        aah = parameters(period).prestations.minima_sociaux.aah
+        aspa = parameters(period).prestations_sociales.solidarite_insertion.minimum_vieillesse.aspa
+        aah = parameters(period).prestations_sociales.prestations_etat_de_sante.invalidite.aah
         en_couple = famille('en_couple', period)
         # ASPA est utilisé comme seuil de ressources pour
         # les couples avec personne en situation de handicap
