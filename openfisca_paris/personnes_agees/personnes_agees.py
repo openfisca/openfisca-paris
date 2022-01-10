@@ -35,7 +35,7 @@ class paris_aspa_reference(Variable):
         personne_agee = famille.members('paris_personne_agee', period)
         personnes_agees_famille = famille.any(personne_agee)
         en_couple = famille('en_couple', period)
-        aspa = parameters(period).prestations_sociales.solidarite_insertion.minimum_vieillesse.aspa
+        aspa_montant_maximum_annuel = parameters(period).prestations_sociales.solidarite_insertion.minimum_vieillesse.aspa.montant_maximum_annuel
 
         
-        return personnes_agees_famille * (en_couple * aspa.montant_annuel_couple + not_(en_couple) * aspa.montant_annuel_seul) / 12
+        return personnes_agees_famille * (en_couple * aspa_montant_maximum_annuel.couples + not_(en_couple) * aspa_montant_maximum_annuel.personnes_seules) / 12

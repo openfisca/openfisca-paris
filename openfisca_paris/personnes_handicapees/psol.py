@@ -17,13 +17,13 @@ class paris_solidarite_ph_base_ressources(Variable):
 
         base_ressource = famille('paris_base_ressources_couple', period)
         
-        aspa = parameters(period).prestations_sociales.solidarite_insertion.minimum_vieillesse.aspa
+        aspa_montant_maximum_annuel = parameters(period).prestations_sociales.solidarite_insertion.minimum_vieillesse.aspa.montant_maximum_annuel
         aah = parameters(period).prestations_sociales.prestations_etat_de_sante.invalidite.aah
         en_couple = famille('en_couple', period)
         # ASPA est utilisé comme seuil de ressources pour
         # les couples avec personne en situation de handicap
         # faute d'AAH pour couple
-        montant_psol_handicap = ((en_couple * aspa.montant_annuel_couple) / 12 + not_(en_couple) * aah.montant)
+        montant_psol_handicap = ((en_couple * aspa_montant_maximum_annuel.couples) / 12 + not_(en_couple) * aah.montant)
 
         return max_(montant_psol_handicap, base_ressource)
 
