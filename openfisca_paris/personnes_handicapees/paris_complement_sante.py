@@ -24,7 +24,7 @@ class paris_complement_sante_ph_eligibilite(Variable):
 		en_couple = famille('en_couple', period)
 		plafond_1 = where(en_couple, param_plafond.en_couple, param_plafond.personne_isolee)
 
-		param_aah = parameters(period).prestations.minima_sociaux
+		param_aah = parameters(period).prestations_sociales.prestations_etat_de_sante.invalidite
 		plafond_2 = param_aah.aah.montant + param_aah.caah.majoration_vie_autonome
 
 		return personnes_handicapees * (base_ressources <= max_(plafond_1, plafond_2)) 
