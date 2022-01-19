@@ -15,17 +15,17 @@ install-test:
 	pip install --editable ".[test]"
 
 install: deps
-	@# Install OpenFisca-France-Local for development.
-	@# `make install` installs the editable version of OpenFisca-France-Local.
+	@# Install OpenFisca-Paris for development.
+	@# `make install` installs the editable version of OpenFisca-Paris.
 	@# This allows contributors to test as they code.
 	pip install --editable . --upgrade
 
 build: clean deps
-	@# Install OpenFisca-France-Local for deployment and publishing.
+	@# Install OpenFisca-Paris for deployment and publishing.
 	@# `make build` allows us to be be sure tests are run against the packaged version
-	@# of OpenFisca-France-Local, the same we put in the hands of users and reusers.
+	@# of OpenFisca-Paris, the same we put in the hands of users and reusers.
 	python -m build
-	pip uninstall --yes openfisca-france-local
+	pip uninstall --yes openfisca-paris
 	find dist -name "*.whl" -exec pip install {} \;
 
 test:
