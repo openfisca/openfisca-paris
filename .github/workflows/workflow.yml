@@ -44,7 +44,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.7.12
+          python-version: 3.7
       - name: Cache build
         id: restore-build
         uses: actions/cache@v2
