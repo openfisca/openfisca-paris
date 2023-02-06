@@ -6,7 +6,7 @@ setup(
     version="3.6.1",
     author="OpenFisca Team",
     author_email="contact@openfisca.fr",
-    classifiers = [
+    classifiers=[
         "Development Status :: 5 - Production/Stable",
         "License :: OSI Approved :: GNU Affero General Public License v3",
         "Operating System :: POSIX",
@@ -14,7 +14,7 @@ setup(
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Topic :: Scientific/Engineering :: Information Analysis",
-        ],
+    ],
     description="Plugin OpenFisca pour les aides sociales de la mairie de Paris",
     keywords="benefit france paris microsimulation social tax",
     license="http://www.fsf.org/licensing/licenses/agpl-3.0.html",
@@ -23,12 +23,12 @@ setup(
     include_package_data=True,
     install_requires=[
         'OpenFisca-Core >= 35.2.0, < 36',
-        'OpenFisca-France >= 141.0.0, < 142.0.1',
+        'OpenFisca-France >= 142.0.1, < 143',
     ],
-    extras_require = {
+    extras_require={
         'test': [
             'nose',
             'pytest >= 5.4.2'
-            ]
+        ]
     },
 )
