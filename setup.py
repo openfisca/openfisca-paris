@@ -22,7 +22,7 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     install_requires=[
-        'OpenFisca-Core >= 35.2.0, < 36',
+        'OpenFisca-Core >= 38.0.2, < 38.0.3',
         'OpenFisca-France >= 102, < 121'
     ],
     extras_require = {
