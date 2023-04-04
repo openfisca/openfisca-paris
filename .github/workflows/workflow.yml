@@ -9,6 +9,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        openfisca-dependencies: [minimal, maximal]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -21,7 +24,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ env.pythonLocation }}
-          key: build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}
+          key: build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-${{ matrix.openfisca-dependencies }}
           restore-keys: |  # in case of a cache miss (systematically unless the same commit is built repeatedly), the keys below will be used to restore dependencies from previous builds, and the cache will be stored at the end of the job, making up-to-date dependencies available for all jobs of the workflow; see more at https://docs.github.com/en/actions/advanced-guides/caching-dependencies-to-speed-up-workflows#example-using-the-cache-action
             build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}
             build-${{ env.pythonLocation }}-
@@ -29,14 +32,21 @@ jobs:
         run: make install-test
       - name: Build package
         run: make build
+      - name: Minimal version
+        if: matrix.openfisca-dependencies == 'minimal'
+        run: | # Installs the OpenFisca dependencies minimal version from setup.py
+            pip install $(python ${GITHUB_WORKSPACE}/.github/get_minimal_version.py)
       - name: Cache release
         id: restore-release
         uses: actions/cache@v2
         with:
           path: dist
-          key: release-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}
+          key: release-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-${{ matrix.openfisca-dependencies }}
   test-yaml:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        openfisca-dependencies: [minimal, maximal]
     needs: [ build ]
     steps:
       - name: Checkout
@@ -50,7 +60,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ env.pythonLocation }}
-          key: build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}
+          key: build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-${{ matrix.openfisca-dependencies }}
       - name: Run YAML test
         run: |
           openfisca test tests --country-package openfisca_france --extensions openfisca_paris
@@ -91,6 +101,9 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        openfisca-dependencies: [maximal]
     needs: [ check-for-functional-changes ]
     if: needs.check-for-functional-changes.outputs.status == 'success'
     env:
@@ -109,13 +122,13 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ env.pythonLocation }}
-          key: build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}
+          key: build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-${{ matrix.openfisca-dependencies }}
       - name: Cache release
         id: restore-release
         uses: actions/cache@v2
         with:
           path: dist
-          key: release-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}
+          key: release-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-${{ matrix.openfisca-dependencies }}
       - name: Upload a Python package to PyPi
         run: twine upload dist/* --username $PYPI_USERNAME --password $PYPI_PASSWORD
       - name: Publish a git tag
