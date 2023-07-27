@@ -3,7 +3,7 @@ from setuptools import setup, find_namespace_packages
 
 setup(
     name="Openfisca-Paris",
-    version="4.0.2",
+    version="5.0.0",
     author="OpenFisca Team",
     author_email="contact@openfisca.fr",
     classifiers=[
@@ -23,8 +23,8 @@ setup(
     packages=find_namespace_packages(),
     include_package_data=True,
     install_requires=[
-        'OpenFisca-Core >= 40.0.1, < 41',
-        'OpenFisca-France >= 149.1.1, < 150',
+        'OpenFisca-Core >= 40.0.1, < 42',
+        'OpenFisca-France >= 149.1.1, < 151',
     ],
     extras_require={
         'test': [
