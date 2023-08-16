@@ -21,7 +21,7 @@ class paris_complement_sante_ph_eligibilite(Variable):
 		param_plafond = parameters(period).paris.personnes_handicapees.paris_complement_sante.plafond
 		plafond_1 = param_plafond.personne_isolee
 
-		param_aah = parameters(period).prestations.minima_sociaux
+		param_aah = parameters(period).prestations_sociales.prestations_etat_de_sante.invalidite
 		plafond_2 = param_aah.aah.montant + param_aah.caah.majoration_vie_autonome
 
 		return personne_handicapee * (base_ressources <= max_(plafond_1, plafond_2))
