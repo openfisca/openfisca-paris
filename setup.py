@@ -3,7 +3,7 @@ from setuptools import setup, find_namespace_packages
 
 setup(
     name="Openfisca-Paris",
-    version="5.4.0",
+    version="5.4.1",
     author="OpenFisca Team",
     author_email="contact@openfisca.fr",
     classifiers=[
