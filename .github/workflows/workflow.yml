@@ -85,7 +85,7 @@ jobs:
   # The `deploy` job is dependent on the output of the `check-for-functional-changes` job.
   check-for-functional-changes:
     runs-on: ubuntu-20.04
-    if: github.ref == 'refs/heads/master' # Only triggered for the `master` branch
+    # if: github.ref == 'refs/heads/master' # Only triggered for the `master` branch
     needs: [ check-version ]
     outputs:
       status: ${{ steps.stop-early.outputs.status }}
@@ -132,5 +132,8 @@ jobs:
           key: release-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-${{ matrix.openfisca-dependencies }}
       - name: Upload a Python package to PyPi
         uses: pypa/gh-action-pypi-publish@release/v1
+        # With statement only to specify testPy destination, Pypi is default
+        with:
+          repository-url: https://test.pypi.org/legacy/
       - name: Publish a git tag
         run: "${GITHUB_WORKSPACE}/.github/publish-git-tag.sh"
