@@ -3,7 +3,7 @@ from setuptools import setup, find_namespace_packages
 
 setup(
     name="Openfisca-Paris",
-    version="5.5.0",
+    version="5.5.1",
     author="OpenFisca Team",
     author_email="contact@openfisca.fr",
     classifiers=[
@@ -17,6 +17,7 @@ setup(
         "Topic :: Scientific/Engineering :: Information Analysis",
     ],
     description="Plugin OpenFisca pour les aides sociales de la mairie de Paris",
+    long_description_content_type='text/markdown',
     keywords="benefit france paris microsimulation social tax",
     license="http://www.fsf.org/licensing/licenses/agpl-3.0.html",
 
