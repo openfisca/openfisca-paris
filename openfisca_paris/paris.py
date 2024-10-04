@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import division
 
-from numpy import (maximum as max_, logical_not as not_, absolute as abs_, minimum as min_, select, where)
+from numpy import (full_like as fl_, inf, divide as div_, maximum as max_, where)
 
 from openfisca_france.model.base import *  # noqa analysis:ignore
 
@@ -226,8 +226,15 @@ class paris_taux_effort(Variable):
         aspa_reference = famille('paris_aspa_reference', period)
         ressources = max_(aspa_reference, base_ressources)
 
-        return (loyer + charges_forfaitaires_logement - aide_logement) / ressources
+        # Utiliser si les ressources sont à 0
+        ressources_inf = fl_(ressources, inf)
 
+        return div_(
+            (loyer + charges_forfaitaires_logement - aide_logement),
+            ressources,
+            out=ressources_inf,
+            where=ressources != 0
+        )
 
 class paris_condition_taux_effort(Variable):
     value_type = bool
