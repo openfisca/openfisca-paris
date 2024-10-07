@@ -1,4 +1,4 @@
-description: '1er Plafond des ressources pour l''aide paris forfait famille '
+description: "1er Plafond des ressources pour l'aide paris forfait famille "
 unit: currency
 values:
   2012-01-01:
@@ -13,3 +13,5 @@ values:
     value: 1220.0
   2022-09-01:
     value: 1330.0
+  2024-02-01:
+    value: 1400.00

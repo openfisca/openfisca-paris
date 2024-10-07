@@ -16,6 +16,8 @@ plafond:
         value: 1015.0
       2022-09-01:
         value: 1077.0
+      2024-02-01:
+        value: 1129.00
   couple:
     unit: currency
     values:
@@ -33,3 +35,5 @@ plafond:
         value: 1608.0
       2022-09-01:
         value: 1683.0
+      2024-02-01:
+        value: 1786.00
