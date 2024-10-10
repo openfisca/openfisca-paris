@@ -18,45 +18,53 @@ class paris_base_ressources_i(Variable):
     definition_period = MONTH
 
     def formula(individu, period, legislation):
+
         last_year = period.last_year
+        last_3_months = period.last_3_months
 
-        ass = individu('ass', period)
-        aah = individu('aah', period)
-        asi = individu('asi', period)
-        caah = individu('caah', period)
+        #Salaires
+        salaire_imposable = individu('salaire_imposable', period)
+        revenus_stage_formation_pro = individu('revenus_stage_formation_pro', period)
+        chomage_imposable = individu('chomage_imposable', period)
+        retraite_imposable = individu('retraite_imposable', last_3_months, options = [ADD]) / 3
 
-        salaire_net = individu('salaire_net', period)
+
+        #indemnites:
         indemnites_stage = individu('indemnites_stage', period)
         smic = legislation(period).paris.smic_net_mensuel
         indemnites_stage_imposable = where((smic >= indemnites_stage), indemnites_stage, 0)
-        revenus_stage_formation_pro = individu('revenus_stage_formation_pro', period)
-
-        chomage_net = individu('chomage_net', period)
-        allocation_securisation_professionnelle = individu('allocation_securisation_professionnelle', period)
         indemnites_journalieres = individu('indemnites_journalieres', period)
         indemnites_chomage_partiel = individu('indemnites_chomage_partiel', period)
         indemnites_volontariat = individu('indemnites_volontariat', period)
 
+        #pensions
+        ass = individu('ass', period)
+        aah = individu('aah', period)
+        asi = individu('asi', period)
+        caah = individu('caah', period)
+        allocation_securisation_professionnelle = individu('allocation_securisation_professionnelle', period)
         prestation_compensatoire = individu('prestation_compensatoire', period)
-        retraite_nette = individu('retraite_nette', period)
         pensions_invalidite = individu('pensions_invalidite', period)
 
-        def revenus_tns():
+        def revenus_rpns():
             revenus_auto_entrepreneur = individu('rpns_auto_entrepreneur_benefice', period, options = [ADD])
 
-            # Les revenus TNS hors AE sont estimés en se basant sur le revenu N-1
-            tns_micro_entreprise_benefice = individu('rpns_micro_entreprise_benefice', last_year) / 12
-            tns_benefice_exploitant_agricole = individu('rpns_benefice_exploitant_agricole', last_year) / 12
-            tns_autres_revenus = individu('rpns_autres_revenus', last_year) / 12
+            # Les revenus RPNS hors AE sont estimés en se basant sur le revenu N-1
+            rpns_micro_entreprise_benefice = individu('rpns_micro_entreprise_benefice', last_year) / 12
+            rpns_benefice_exploitant_agricole = individu('rpns_benefice_exploitant_agricole', last_year) / 12
+            rpns_autres_revenus = individu('rpns_autres_revenus', last_year) / 12
 
-            return revenus_auto_entrepreneur + tns_micro_entreprise_benefice + tns_benefice_exploitant_agricole + tns_autres_revenus
+            return (
+                revenus_auto_entrepreneur + rpns_micro_entreprise_benefice + rpns_benefice_exploitant_agricole
+                + rpns_autres_revenus
+                )
 
         result = (
             ass + aah + asi + caah
-            + salaire_net + indemnites_stage_imposable + revenus_stage_formation_pro
-            + chomage_net + allocation_securisation_professionnelle + indemnites_journalieres + indemnites_chomage_partiel + indemnites_volontariat
-            + prestation_compensatoire + retraite_nette + pensions_invalidite
-            + revenus_tns()
+            + salaire_imposable + indemnites_stage_imposable + revenus_stage_formation_pro
+            + chomage_imposable + allocation_securisation_professionnelle + indemnites_journalieres + indemnites_chomage_partiel + indemnites_volontariat
+            + prestation_compensatoire + retraite_imposable+ pensions_invalidite
+            + revenus_rpns()
             )
 
         return result
@@ -84,7 +92,6 @@ class paris_base_ressources_couple(Variable):
         ressources_demandeur = famille.demandeur('paris_base_ressources_i', period)
         ressources_conjoint = famille.conjoint('paris_base_ressources_i', period)
         ressources_famille = famille('paris_base_ressources_famille', period)
-
         return where(en_couple,
             ressources_demandeur + ressources_conjoint + ressources_famille,
             ressources_demandeur + ressources_famille)

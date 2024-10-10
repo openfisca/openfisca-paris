@@ -1,4 +1,4 @@
-description: '1er Plafond des ressources pour l''aide paris forfait famille '
+description: plafond des ressources mensuelles pour une personne isolée ou un couple sans enfant
 unit: currency
 values:
   2012-01-01:
@@ -10,6 +10,6 @@ values:
   2019-01-01:
     value: 1210.0
   2020-01-01:
-    value: 1220.0
+    value: 1220.00
   2022-09-01:
-    value: 1330.0
+    value: 1330.00
