@@ -37,7 +37,7 @@
         - enfant1
         - enfant2
   output:
-    paris_logement_familles: 128 #63.25
+    paris_logement_familles: 128
 
 - name: Famille éligible pour l'aide Paris logement car parent monoparental avec trois enfant et ressources < 5000
   description: Paris Logement Famille
