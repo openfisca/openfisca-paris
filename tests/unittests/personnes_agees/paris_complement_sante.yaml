@@ -2,7 +2,7 @@
   period: 2019-02
   input:
     paris_personne_agee: [false, true, true]
-    paris_base_ressources_couple: 
+    paris_base_ressources_couple:
       2019-01: [980, 980, 981]
   output:
     paris_complement_sante_pa_eligibilite: [false, true, false]
@@ -12,7 +12,7 @@
   input:
     paris_personne_agee: [false, true, true]
     en_couple: [true, true, true]
-    paris_base_ressources_couple: 
+    paris_base_ressources_couple:
       2019-01: [1553, 1553, 1554]
   output:
     paris_complement_sante_pa_eligibilite: [false, true, false]
@@ -33,3 +33,101 @@
     paris_complement_sante_pa_montant: [100, 100]
   output:
     paris_complement_sante_pa: [100, 0]
+
+- name: couple, 2 Personnes âgées, droit à CSP
+  period: 2020-01
+  input:
+    famille:
+      parents: ['personne1', 'personne2']
+      parisien: true
+      paris_base_ressources_famille:
+        2019-12: 0
+    menage:
+      personne_de_reference: personne1
+      conjoint: personne2
+      statut_occupation_logement: locataire_vide
+      logement_conventionne: true
+      depcom: 75012
+      loyer: 599
+      charges_locatives: 65
+    individus:
+      personne1:
+        activite: retraite
+        date_naissance: 1940-06-05
+        retraite_imposable:
+          2019-12: 806.51
+      personne2:
+        activite: retraite
+        date_naissance: 1943-06-05
+        retraite_imposable:
+          2019-12: 578.06
+    foyer_fiscal:
+      declarants: [personne1, personne2]
+  output:
+    paris_complement_sante_pa: 468
+
+- name: couple, une PA et une PH, droit à CSP
+  period: 2020-01
+  input:
+    famille:
+      parents: ['personne1', 'personne2']
+      parisien: true
+      paris_base_ressources_famille:
+        2019-12: 0
+      aide_logement:
+        2019-12: 170
+    menage:
+      personne_de_reference: personne1
+      conjoint: personne2
+      statut_occupation_logement: locataire_vide
+      logement_conventionne: true
+      depcom: 75012
+      loyer: 599
+      charges_locatives: 65
+    individus:
+      personne1:
+        activite: retraite
+        date_naissance: 1940-06-05
+        retraite_imposable:
+          2019-12: 806.51
+      personne2:
+        date_naissance: 1963-08-05
+        handicap: true
+        aah:
+          2019-12: 723
+    foyer_fiscal:
+      declarants: [personne1, personne2]
+  output:
+    paris_complement_sante_pa: 468
+
+- name: couple, une PA + une personne non ouvre droit, droit à CSP
+  period: 2020-01
+  input:
+    famille:
+      parents: ['personne1', 'personne2']
+      parisien: true
+      paris_base_ressources_famille:
+        2019-12: 0
+      aide_logement:
+        2019-12: 170
+      cmu_c: false
+    menage:
+      personne_de_reference: personne1
+      conjoint: personne2
+      statut_occupation_logement: locataire_vide
+      logement_conventionne: true
+      depcom: 75012
+      loyer: 659
+      charges_locatives: 45
+    individus:
+      personne1:
+        activite: retraite
+        date_naissance: 1950-06-05
+        retraite_imposable:
+          2019-12: 1336.38
+      personne2:
+        date_naissance: 1963-08-05
+    foyer_fiscal:
+      declarants: [personne1, personne2]
+  output:
+    paris_complement_sante_pa: 468

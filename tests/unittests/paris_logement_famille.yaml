@@ -16,7 +16,7 @@
     individus:
       parent1:
         age: 35
-        salaire_net:
+        salaire_imposable:
           2015-11: 1000
           2015-12: 1000
           2016-01: 1000
@@ -37,7 +37,7 @@
         - enfant1
         - enfant2
   output:
-    paris_logement_familles: 63.25
+    paris_logement_familles: 128
 
 - name: Famille éligible pour l'aide Paris logement car parent monoparental avec trois enfant et ressources < 5000
   description: Paris Logement Famille
@@ -55,7 +55,7 @@
     individus:
       parent1:
         age: 35
-        salaire_net:
+        salaire_imposable:
           2015-11: 1000
           2015-12: 1000
           2016-01: 1000
@@ -95,7 +95,7 @@
     individus:
       parent1:
         age: 55
-        salaire_net:
+        salaire_imposable:
           2016-01: 3580
         pensions_alimentaires_percues: 46
       enfant1:
@@ -169,7 +169,7 @@
     individus:
       parent1:
         age: 55
-        salaire_net:
+        salaire_imposable:
           2016-01: 1900
       enfant1:
         age: 5
@@ -204,7 +204,7 @@
     individus:
       parent1:
         age: 55
-        salaire_net:
+        salaire_imposable:
           2016-01: 1900
       enfant1:
         age: 5
@@ -241,7 +241,7 @@
     individus:
       parent1:
         age: 55
-        salaire_net:
+        salaire_imposable:
           2016-01: 1500
       enfant1:
         age: 5
@@ -313,7 +313,7 @@
     individus:
       parent1:
         age: 55
-        salaire_net:
+        salaire_imposable:
           2016-01: 2900
       parent2:
         age: 55
@@ -351,7 +351,7 @@
     individus:
       parent1:
         age: 55
-        salaire_net:
+        salaire_imposable:
           2016-01: 4000
       enfant1:
         age: 5
@@ -388,7 +388,7 @@
     individus:
       parent1:
         age: 55
-        salaire_net:
+        salaire_imposable:
           2016-01: 4900
       parent2:
         age: 55
@@ -432,7 +432,7 @@
     individus:
       parent1:
         age: 55
-        salaire_net:
+        salaire_imposable:
           2016-01: 2900
       parent2:
         age: 55
