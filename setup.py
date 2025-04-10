@@ -25,7 +25,7 @@ setup(
     include_package_data=True,
     install_requires=[
         'OpenFisca-Core >= 43, < 44',
-        'OpenFisca-France >= 169.0.0, < 170',
+        'OpenFisca-France >= 169.0.0, < 171.0.0',
     ],
     extras_require={
         'test': [
