@@ -8,11 +8,11 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     strategy:
       matrix:
         openfisca-dependencies: [minimal, maximal]
-        python-version: ["3.9.9", "3.10.6"]
+        python-version: ["3.9.12", "3.10.11"]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -44,7 +44,7 @@ jobs:
           path: dist
           key: release-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-${{ matrix.openfisca-dependencies }}
   test-yaml:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     strategy:
       matrix:
         openfisca-dependencies: [minimal, maximal]
@@ -55,7 +55,8 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.9.9
+          python-version: 3.9.12
+
       - name: Cache build
         id: restore-build
         uses: actions/cache@v3
@@ -67,7 +68,7 @@ jobs:
           openfisca test tests --country-package openfisca_france --extensions openfisca_paris
 
   check-version:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     needs: [ test-yaml ] # Last job to run
     steps:
       - uses: actions/checkout@v3
@@ -76,7 +77,8 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.9.9
+          python-version: 3.9.12
+
       - name: Check version number has been properly updated
         run: "${GITHUB_WORKSPACE}/.github/is-version-number-acceptable.sh"
 
@@ -84,7 +86,7 @@ jobs:
   # We build a separate job to substitute the halt option.
   # The `deploy` job is dependent on the output of the `check-for-functional-changes` job.
   check-for-functional-changes:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     if: github.ref == 'refs/heads/master' # Only triggered for the `master` branch
     needs: [ check-version ]
     outputs:
@@ -96,12 +98,13 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.9.9
+          python-version: 3.9.12
+
       - id: stop-early
         run: if "${GITHUB_WORKSPACE}/.github/has-functional-changes.sh" ; then echo "::set-output name=status::success" ; fi
 
   deploy:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     strategy:
       matrix:
         openfisca-dependencies: [maximal]
@@ -117,7 +120,8 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.9.9
+          python-version: 3.9.12
+
       - name: Cache build
         id: restore-build
         uses: actions/cache@v3
