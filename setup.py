@@ -1,3 +1,5 @@
+
+
 # -*- coding: utf-8 -*-
 from setuptools import setup, find_namespace_packages
 
@@ -25,7 +27,7 @@ setup(
     include_package_data=True,
     install_requires=[
         'OpenFisca-Core >= 43, < 44',
-        'OpenFisca-France >= 169.0.0, < 170',
+        'OpenFisca-France >= 169.0.0, <= 170.1.12',
     ],
     extras_require={
         'test': [
