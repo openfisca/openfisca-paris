@@ -6,23 +6,31 @@ on:
       - master
   pull_request:
 
+env:
+  # Versions disponibles visibles sur https://raw.githubusercontent.com/actions/python-versions/main/versions-manifest.json
+  MIN_PYTHON_VERSION: &min_python_version "3.11"
+  MAX_PYTHON_VERSION: &max_python_version "3.13"
+
 jobs:
   build:
     runs-on: ubuntu-24.04
     strategy:
-      matrix:
+      matrix: &python-matrix
         openfisca-dependencies: [minimal, maximal]
-        python-version: ["3.9.12", "3.10.11"]
+        python-version: [*min_python_version, *max_python_version]
+        exclude:  # Les versions minimales (numpy 1.26) ne fournissent pas de wheels pour Python 3.13
+          - openfisca-dependencies: minimal
+            python-version: *max_python_version
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v7
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v7
         with:
           python-version: ${{ matrix.python-version }}
       - name: Cache build
         id: restore-build
-        uses: actions/cache@v3
+        uses: actions/cache@v6
         with:
           path: ${{ env.pythonLocation }}
           key: build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-${{ matrix.openfisca-dependencies }}
@@ -39,27 +47,26 @@ jobs:
             pip install $(python ${GITHUB_WORKSPACE}/.github/get_minimal_version.py)
       - name: Cache release
         id: restore-release
-        uses: actions/cache@v3
+        uses: actions/cache@v6
         with:
           path: dist
           key: release-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-${{ matrix.openfisca-dependencies }}
   test-yaml:
     runs-on: ubuntu-24.04
     strategy:
-      matrix:
-        openfisca-dependencies: [minimal, maximal]
+      matrix: *python-matrix
     needs: [ build ]
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v7
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v7
         with:
-          python-version: 3.9.12
+          python-version: ${{ matrix.python-version }}
 
       - name: Cache build
         id: restore-build
-        uses: actions/cache@v3
+        uses: actions/cache@v6
         with:
           path: ${{ env.pythonLocation }}
           key: build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-${{ matrix.openfisca-dependencies }}
@@ -71,13 +78,13 @@ jobs:
     runs-on: ubuntu-24.04
     needs: [ test-yaml ] # Last job to run
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0 # Fetch all the tags
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v7
         with:
-          python-version: 3.9.12
+          python-version: ${{ env.MIN_PYTHON_VERSION }}
 
       - name: Check version number has been properly updated
         run: "${GITHUB_WORKSPACE}/.github/is-version-number-acceptable.sh"
@@ -92,16 +99,16 @@ jobs:
     outputs:
       status: ${{ steps.stop-early.outputs.status }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0 # Fetch all the tags
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v7
         with:
-          python-version: 3.9.12
+          python-version: ${{ env.MIN_PYTHON_VERSION }}
 
       - id: stop-early
-        run: if "${GITHUB_WORKSPACE}/.github/has-functional-changes.sh" ; then echo "::set-output name=status::success" ; fi
+        run: if "${GITHUB_WORKSPACE}/.github/has-functional-changes.sh" ; then echo "status=success" >> "$GITHUB_OUTPUT" ; fi
 
   deploy:
     runs-on: ubuntu-24.04
@@ -114,23 +121,23 @@ jobs:
             id-token: write
             contents: write
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0 # Fetch all the tags
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v7
         with:
-          python-version: 3.9.12
+          python-version: ${{ env.MIN_PYTHON_VERSION }}
 
       - name: Cache build
         id: restore-build
-        uses: actions/cache@v3
+        uses: actions/cache@v6
         with:
           path: ${{ env.pythonLocation }}
           key: build-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-${{ matrix.openfisca-dependencies }}
       - name: Cache release
         id: restore-release
-        uses: actions/cache@v3
+        uses: actions/cache@v6
         with:
           path: dist
           key: release-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-${{ matrix.openfisca-dependencies }}
