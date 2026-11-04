@@ -21,6 +21,9 @@ jobs:
         exclude:  # Les versions minimales (numpy 1.26) ne fournissent pas de wheels pour Python 3.13
           - openfisca-dependencies: minimal
             python-version: *max_python_version
+        include:  # Les jobs Python minimal gardent les noms de checks requis par la protection de branche
+          - python-version: *min_python_version
+            required-check: true
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -28,6 +31,7 @@ jobs:
         uses: actions/setup-python@v7
         with:
           python-version: ${{ matrix.python-version }}
+          check-latest: true  # Même version de patch Python sur tous les runners, sinon le cache de build (clé basée sur pythonLocation) n'est pas retrouvé
       - name: Cache build
         id: restore-build
         uses: actions/cache@v6
@@ -52,6 +56,7 @@ jobs:
           path: dist
           key: release-${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ github.sha }}-${{ matrix.openfisca-dependencies }}
   test-yaml:
+    name: test-yaml (${{ matrix.openfisca-dependencies }}${{ !matrix.required-check && format(', {0}', matrix.python-version) || '' }})
     runs-on: ubuntu-24.04
     strategy:
       matrix: *python-matrix
@@ -63,6 +68,7 @@ jobs:
         uses: actions/setup-python@v7
         with:
           python-version: ${{ matrix.python-version }}
+          check-latest: true
 
       - name: Cache build
         id: restore-build
@@ -128,6 +134,7 @@ jobs:
         uses: actions/setup-python@v7
         with:
           python-version: ${{ env.MIN_PYTHON_VERSION }}
+          check-latest: true
 
       - name: Cache build
         id: restore-build
