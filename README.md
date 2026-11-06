@@ -6,7 +6,7 @@
 
 ## Installation
 
-Ce paquet requiert [Python 3](https://www.python.org/downloads/) et [pip](https://pip.pypa.io/en/stable/installing/).
+Ce paquet requiert [Python 3.11 ou supérieur](https://www.python.org/downloads/) et [pip](https://pip.pypa.io/en/stable/installing/).
 
 ```sh
 python --version  # Devrait afficher "Python 3.x.x".
