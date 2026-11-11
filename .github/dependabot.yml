@@ -3,7 +3,7 @@ updates:
   - package-ecosystem: "pip"
     directory: "/"
     schedule:
-      interval: "daily"
+      interval: "weekly"
     rebase-strategy: "disabled"
     versioning-strategy: increase
     open-pull-requests-limit: 1
@@ -14,3 +14,20 @@ updates:
       prefix: "chore"
     allow:
       - dependency-type: "direct"
+    groups:
+      pip-security:
+        applies-to: security-updates
+        patterns: ["*"]
+      # OpenFisca-Core / OpenFisca-France et le reste en une seule PR.
+      pip-deps:
+        patterns: ["*"]
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    commit-message:
+      prefix: "chore"
+    groups:
+      github-actions:
+        patterns: ["*"]
